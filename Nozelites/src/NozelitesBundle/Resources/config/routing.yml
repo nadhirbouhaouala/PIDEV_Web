@@ -1,0 +1,6 @@
+nozelites_homepagefront:
+    path:     /front
+    defaults: { _controller: NozelitesBundle:DefaultFront:index }
+nozelites_homepageback:
+    path:     /back
+    defaults: { _controller: NozelitesBundle:DefaultBack:index }

@@ -1,0 +1,4 @@
+services:
+#    nozelites.example:
+#        class: NozelitesBundle\Example
+#        arguments: ["@service_id", "plain_value", "%parameter%"]
