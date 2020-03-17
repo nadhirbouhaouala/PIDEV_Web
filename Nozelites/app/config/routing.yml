@@ -1,3 +1,11 @@
+nozelites_groupe_membre:
+    resource: "@NozelitesBundle/Controller/GroupeMembreController.php"
+    type:     annotation
+
+nozelites_groupe:
+    resource: "@NozelitesBundle/Controller/GroupeController.php"
+    type:     annotation
+
 nozelites:
     resource: "@NozelitesBundle/Resources/config/routing.yml"
     prefix:   /

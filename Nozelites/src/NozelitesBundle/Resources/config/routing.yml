@@ -1,6 +1,31 @@
 nozelites_homepagefront:
     path:     /front
     defaults: { _controller: NozelitesBundle:DefaultFront:index }
+
+
+nozelites_membregroupesfront:
+    path:     /frontmembregroupes
+    defaults: { _controller: NozelitesBundle:DefaultFront:membregroupes }
+nozelites_membregroupesajouterfront:
+    path:     /frontmembregroupesajouter
+    defaults: { _controller: NozelitesBundle:DefaultFront:membregroupesajouter }
+groupe_index:
+    path:     /groupe/acceuil
+    defaults: { _controller: NozelitesBundle:Groupe:index}
+groupe_new:
+    path:     /groupe/ajouter
+    defaults: { _controller: NozelitesBundle:Groupe:new}
+groupe_show:
+    path:     /groupe/afficher/{id}
+    defaults: { _controller: NozelitesBundl	e:Groupe:show}
+groupe_edit:
+    path:     /groupe/modifier/{id}
+    defaults: { _controller: NozelitesBundle:Groupe:edit}
+groupe_delete:
+    path:     /groupe/supprimer/{id}
+    defaults: { _controller: NozelitesBundle:Groupe:delete}
+
+
 nozelites_homepageback:
     path:     /back
     defaults: { _controller: NozelitesBundle:DefaultBack:index }

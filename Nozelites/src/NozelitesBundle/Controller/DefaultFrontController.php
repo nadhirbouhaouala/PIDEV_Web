@@ -11,4 +11,12 @@ class DefaultFrontController extends Controller
     {
         return $this->render('@Nozelites/front/index.html.twig');
     }
+    public function membregroupesAction()
+    {
+        return $this->render('@Nozelites/Front/MembreGroupes.html.twig');
+    }
+    public function membregroupesajouterAction()
+    {
+        return $this->render('@Nozelites/Front/MembreGroupesAjouter.html.twig');
+    }
 }

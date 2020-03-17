@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Groupemembres list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Idgm</th>
+                <th>Idinvite</th>
+                <th>Etat</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for groupeMembre in groupeMembres %}
+            <tr>
+                <td><a href="{{ path('groupemembre_show', { 'idGm': groupeMembre.idGm }) }}">{{ groupeMembre.idGm }}</a></td>
+                <td>{{ groupeMembre.idInvite }}</td>
+                <td>{{ groupeMembre.etat }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('groupemembre_show', { 'idGm': groupeMembre.idGm }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('groupemembre_edit', { 'idGm': groupeMembre.idGm }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('groupemembre_new') }}">Create a new groupeMembre</a>
+        </li>
+    </ul>
+{% endblock %}

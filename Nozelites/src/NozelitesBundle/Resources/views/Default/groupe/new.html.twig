@@ -1,0 +1,26 @@
+{% extends '@Nozelites/basefrontmembre.html.twig' %}
+
+{% block titre %}{{ parent() }} - MGroup add {% endblock %}
+
+{% block content %}
+<div class="intro-banner" data-background-image="images/home-background.jpg">
+    <div class="container">
+
+        <h1>Groupe creation</h1>
+
+        {{ form_start(form) }}
+            {{ form_widget(form) }}
+            <input type="submit" value="Create" />
+        {{ form_end(form) }}
+
+        <ul>
+            <li>
+                <a href="{{ path('nozelites_membregroupesfront') }}">Back to the list</a>
+            </li>
+        </ul>
+
+    </div>
+</div>
+
+
+{% endblock %}

@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Groupemembre</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Idgm</th>
+                <td>{{ groupeMembre.idGm }}</td>
+            </tr>
+            <tr>
+                <th>Idinvite</th>
+                <td>{{ groupeMembre.idInvite }}</td>
+            </tr>
+            <tr>
+                <th>Etat</th>
+                <td>{{ groupeMembre.etat }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('groupemembre_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('groupemembre_edit', { 'idGm': groupeMembre.idGm }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}
