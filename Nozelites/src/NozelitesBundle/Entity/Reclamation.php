@@ -64,5 +64,158 @@ class Reclamation
     private $date;
 
 
-}
 
+    /**
+     * Get idrecl
+     *
+     * @return integer
+     */
+    public function getIdrecl()
+    {
+        return $this->idrecl;
+    }
+
+    /**
+     * Set idEmeteur
+     *
+     * @param integer $idEmeteur
+     *
+     * @return Reclamation
+     */
+    public function setIdEmeteur($idEmeteur)
+    {
+        $this->idEmeteur = $idEmeteur;
+
+        return $this;
+    }
+
+    /**
+     * Get idEmeteur
+     *
+     * @return integer
+     */
+    public function getIdEmeteur()
+    {
+        return $this->idEmeteur;
+    }
+
+    /**
+     * Set idCible
+     *
+     * @param integer $idCible
+     *
+     * @return Reclamation
+     */
+    public function setIdCible($idCible)
+    {
+        $this->idCible = $idCible;
+
+        return $this;
+    }
+
+    /**
+     * Get idCible
+     *
+     * @return integer
+     */
+    public function getIdCible()
+    {
+        return $this->idCible;
+    }
+
+    /**
+     * Set description
+     *
+     * @param string $description
+     *
+     * @return Reclamation
+     */
+    public function setDescription($description)
+    {
+        $this->description = $description;
+
+        return $this;
+    }
+
+    /**
+     * Get description
+     *
+     * @return string
+     */
+    public function getDescription()
+    {
+        return $this->description;
+    }
+
+    /**
+     * Set etat
+     *
+     * @param integer $etat
+     *
+     * @return Reclamation
+     */
+    public function setEtat($etat)
+    {
+        $this->etat = $etat;
+
+        return $this;
+    }
+
+    /**
+     * Get etat
+     *
+     * @return integer
+     */
+    public function getEtat()
+    {
+        return $this->etat;
+    }
+
+    /**
+     * Set selecteur
+     *
+     * @param string $selecteur
+     *
+     * @return Reclamation
+     */
+    public function setSelecteur($selecteur)
+    {
+        $this->selecteur = $selecteur;
+
+        return $this;
+    }
+
+    /**
+     * Get selecteur
+     *
+     * @return string
+     */
+    public function getSelecteur()
+    {
+        return $this->selecteur;
+    }
+
+    /**
+     * Set date
+     *
+     * @param \DateTime $date
+     *
+     * @return Reclamation
+     */
+    public function setDate($date)
+    {
+        $this->date = $date;
+
+        return $this;
+    }
+
+    /**
+     * Get date
+     *
+     * @return \DateTime
+     */
+    public function getDate()
+    {
+        return $this->date;
+    }
+}

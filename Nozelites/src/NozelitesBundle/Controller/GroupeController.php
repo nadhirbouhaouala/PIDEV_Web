@@ -3,6 +3,7 @@
 namespace NozelitesBundle\Controller;
 
 use NozelitesBundle\Entity\Groupe;
+use NozelitesBundle\Entity\GroupeMembre;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component\HttpFoundation\Request;
@@ -48,10 +49,16 @@ class GroupeController extends Controller
             $em->persist($groupe);
             $em->flush();
 
+            $groupeMembre = new Groupemembre();
+            $groupeMembre->setIdGroupe(8);
+            $groupeMembre->setIdMembre(1);// membre connected (session)
+            $em->persist($groupeMembre);
+            $em->flush();
+
             return $this->redirectToRoute('groupe_show', array('idGroupe' => $groupe->getIdgroupe()));
         }
 
-        return $this->render('@Nozelites/default/groupe/new.html.twig', array(
+        return $this->render('@Nozelites/Front/MembreGroupesAjouter.html.twig', array(
             'groupe' => $groupe,
             'form' => $form->createView(),
         ));
@@ -132,5 +139,88 @@ class GroupeController extends Controller
             ->setMethod('DELETE')
             ->getForm()
         ;
+    }
+
+
+
+    public function showGroupesInvitationsAction()
+    {
+        $id_membre_actif = 8;
+
+        $em = $this->getDoctrine()->getManager();
+        $groupes = $em->getRepository('NozelitesBundle:Groupe')->findAll();
+
+        $groupesmembres = $em->getRepository('NozelitesBundle:GroupeMembre')
+            ->findBy(array('idMembre'=>$id_membre_actif));
+        $membres = $em->getRepository('NozelitesBundle:Membre')->findAll();
+
+        return $this->render('@Nozelites/Front/MembreGroupes.html.twig',
+            array('groupes' => $groupes,'groupesmembres' => $groupesmembres,'membres'=>$membres)
+            );
+    }
+
+    public function newgroupeInvitationAction(Request $request)
+    {
+        $id_membre_actif = 8;
+
+        $groupe = new Groupe();
+        $form = $this->createForm('NozelitesBundle\Form\GroupeType', $groupe);
+        $form->handleRequest($request);
+
+        $em = $this->getDoctrine()->getManager();
+        $membres = $em->getRepository('NozelitesBundle:Membre')->findAll();
+        $membrecncte = $em->getRepository('NozelitesBundle:Membre')->find($id_membre_actif);
+
+        if ($request->getMethod() == "POST") {
+            $groupe = new Groupe();
+            $groupe->setTitre($request->get('titre'));
+            $groupe->setDescription($request->get('description'));
+            $groupe->setAutorisation($request->get('autorisation'));
+            $em->persist($groupe);
+            $em->flush();
+            //admin
+            $groupeMembre = new Groupemembre();
+            $groupeMembre->setIdGroupe($groupe);
+            $groupeMembre->setIdMembre($membrecncte);// membre connected (session)
+            $groupeMembre->setIdInvite(-1);
+            $groupeMembre->setEtat("administrateur");
+            $em->persist($groupeMembre);
+            $em->flush();
+            //invitations
+            for($i=0 ; $i<$request->get('invitations'); $i++)
+            {
+                $groupeMembre = new Groupemembre();
+                $groupeMembre->setIdGroupe($groupe);
+                    $membre = $em->getRepository('NozelitesBundle:Membre')->find($request->get('membre'.$i));
+                $groupeMembre->setIdMembre($membre);// membre connected (session)
+                $groupeMembre->setIdInvite($id_membre_actif);
+                $groupeMembre->setEtat("invitation");
+                $em->persist($groupeMembre);
+                $em->flush();
+            }
+            /*
+
+            $groupeMembre = new Groupemembre();
+            $groupeMembre->setIdGroupe($groupe->getIdGroupe());
+            $groupeMembre->setIdMembre($id_membre_actif);// membre connected (session)
+            $em->persist($groupeMembre);
+            $em->flush();*/
+
+            return $this->redirectToRoute('nozelites_membregroupesfront');
+        }
+
+        return $this->render('@Nozelites/Front/MembreGroupesAjouter.html.twig',
+            array('membres'=> $membres,));
+    }
+
+    public function accepterinvitationAction(Request $request,$id)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $gm = $em->getRepository('NozelitesBundle:GroupeMembre')->find($id);
+        if($gm->getEtat()=="invitation")$gm->setEtat("standard");
+        $em->persist($gm);
+        $em->flush();
+
+        return $this->redirectToRoute('nozelites_membregroupesfront');
     }
 }

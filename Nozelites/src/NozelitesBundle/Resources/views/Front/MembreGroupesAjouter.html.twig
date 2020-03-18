@@ -6,18 +6,98 @@
     <div class="intro-banner" data-background-image="images/home-background.jpg">
         <div class="container">
 
-            <h1>Groupe creation</h1>
+            <div class="row">
 
-            {{ form_start(form) }}
-            {{ form_widget(form) }}
-            <input type="submit" value="Create" />
-            {{ form_end(form) }}
+                <div class="col-xl-6 col-lg-6 content-left-offset">
+                    <h1>Groupe creation</h1>
+                    <br>
+                    <form method="post" id="mainform">
+                        <input type="text" name="titre" class="with-border" value="">
+                        <input type="text" name="description" class="with-border" value="">
+                        <select name="autorisation" class="selectpicker">
+                            <option value="1">Publique</option>
+                            <option value="2">Privé</option>
+                        </select>
+                        <br>
+                        <input type="hidden" name="invitations" value="0">
+                        <input type="submit" value="Create" />
+                    </form>
 
-            <ul>
-                <li>
-                    <a href="{{ path('nozelites_membregroupesfront') }}">Back to the list</a>
-                </li>
-            </ul>
+                    <ul>
+                        <li>
+                            <a href="{{ path('nozelites_membregroupesfront') }}">Back to the list</a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="col-xl-6 col-lg-6">
+                    <div class="dashboard-box" style="overflow-x:auto;">
+                        <!-- Headline -->
+                        <div class="headline">
+                            <h3><i class="icon-material-outline-face"></i> Mes groupes </h3>
+                            <input type="text" placeholder="Chercher ici ..." >
+                        </div>
+                        <input type="text" name="bouhaouala">
+                        <div class="content">
+                            <ul class="dashboard-box-list">
+                                {%  for membre in membres %}
+
+                                        <li>
+                                            <!-- Overview -->
+                                            <div class="freelancer-overview" onclick="alert('show');">
+                                                <div class="freelancer-overview-inner">
+
+                                                    <!-- Avatar -->
+                                                    <div class="freelancer-avatar">
+                                                        <div class="verified-badge"></div>
+                                                        <a href="#"><img src="{{ asset('images/user-avatar-big-02.jpg') }}" alt=""></a>
+                                                    </div>
+
+                                                    <!-- Name -->
+                                                    <div class="freelancer-name">
+                                                        <h4><a href="#"> {{ membre.login }}
+                                                                <img class="flag" src="images/flags/de.svg" alt="" title="Germany" data-tippy-placement="top"></a></h4>
+                                                        <span>{{ membre.login }} </span>
+                                                        <!-- Rating -->
+                                                        <div class="freelancer-rating">
+                                                            <div class="star-rating" data-rating="4.2"></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+<script type="text/javascript">
+    function invitermembre(idmembre) {
+        var input = document.createElement('input');
+        input.setAttribute('type','hidden');
+        input.setAttribute('name','membre'+document.getElementsByName('invitations')[0].value);
+        input.setAttribute('value',idmembre);
+        document.getElementById('mainform').appendChild(input);
+        document.getElementsByName('invitations')[0].value=parseFloat(document.getElementsByName('invitations')[0].value)+parseFloat(1);
+        document.getElementById("btn_"+idmembre).style="display:none";
+        //alert(idmembre+" "+document.getElementsByName('invitations')[0].value);
+    }
+</script>
+
+                                            <!-- Buttons -->
+                                            <div class="buttons-to-right">
+                                                <button onclick="invitermembre({{ membre.idusr }})" id="btn_{{ membre.idusr }}" class="button red ripple-effect ico" title="Inviter" data-tippy-placement="left"><i class="icon-feather-mail"></i></button>
+                                                <!--<a href="#" class="button red ripple-effect ico" title="Supprimer" data-tippy-placement="left"><i class="icon-feather-trash-2"></i></a>
+                                                <a href="#" class="button red ripple-effect ico" title="Accepter" data-tippy-placement="left"><i class="icon-material-outline-check"></i></a>
+                                                <a href="#" class="button red ripple-effect ico" title="Refuser" data-tippy-placement="left"><i class="icon-feather-trash-2"></i></a>-->
+                                            </div>
+                                        </li>
+
+                                {%  endfor %}
+                            </ul>
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+            </div>
 
         </div>
     </div>

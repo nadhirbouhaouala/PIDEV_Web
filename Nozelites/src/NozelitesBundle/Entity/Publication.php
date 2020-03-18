@@ -64,5 +64,158 @@ class Publication
     private $nbJaime;
 
 
-}
 
+    /**
+     * Get id
+     *
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set titre
+     *
+     * @param string $titre
+     *
+     * @return Publication
+     */
+    public function setTitre($titre)
+    {
+        $this->titre = $titre;
+
+        return $this;
+    }
+
+    /**
+     * Get titre
+     *
+     * @return string
+     */
+    public function getTitre()
+    {
+        return $this->titre;
+    }
+
+    /**
+     * Set description
+     *
+     * @param string $description
+     *
+     * @return Publication
+     */
+    public function setDescription($description)
+    {
+        $this->description = $description;
+
+        return $this;
+    }
+
+    /**
+     * Get description
+     *
+     * @return string
+     */
+    public function getDescription()
+    {
+        return $this->description;
+    }
+
+    /**
+     * Set image
+     *
+     * @param string $image
+     *
+     * @return Publication
+     */
+    public function setImage($image)
+    {
+        $this->image = $image;
+
+        return $this;
+    }
+
+    /**
+     * Get image
+     *
+     * @return string
+     */
+    public function getImage()
+    {
+        return $this->image;
+    }
+
+    /**
+     * Set idGroupe
+     *
+     * @param integer $idGroupe
+     *
+     * @return Publication
+     */
+    public function setIdGroupe($idGroupe)
+    {
+        $this->idGroupe = $idGroupe;
+
+        return $this;
+    }
+
+    /**
+     * Get idGroupe
+     *
+     * @return integer
+     */
+    public function getIdGroupe()
+    {
+        return $this->idGroupe;
+    }
+
+    /**
+     * Set idPublicateur
+     *
+     * @param integer $idPublicateur
+     *
+     * @return Publication
+     */
+    public function setIdPublicateur($idPublicateur)
+    {
+        $this->idPublicateur = $idPublicateur;
+
+        return $this;
+    }
+
+    /**
+     * Get idPublicateur
+     *
+     * @return integer
+     */
+    public function getIdPublicateur()
+    {
+        return $this->idPublicateur;
+    }
+
+    /**
+     * Set nbJaime
+     *
+     * @param integer $nbJaime
+     *
+     * @return Publication
+     */
+    public function setNbJaime($nbJaime)
+    {
+        $this->nbJaime = $nbJaime;
+
+        return $this;
+    }
+
+    /**
+     * Get nbJaime
+     *
+     * @return integer
+     */
+    public function getNbJaime()
+    {
+        return $this->nbJaime;
+    }
+}

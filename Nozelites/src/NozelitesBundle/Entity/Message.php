@@ -63,5 +63,134 @@ class Message
     private $idEmeteur;
 
 
-}
 
+    /**
+     * Get idmessage
+     *
+     * @return integer
+     */
+    public function getIdmessage()
+    {
+        return $this->idmessage;
+    }
+
+    /**
+     * Set objet
+     *
+     * @param string $objet
+     *
+     * @return Message
+     */
+    public function setObjet($objet)
+    {
+        $this->objet = $objet;
+
+        return $this;
+    }
+
+    /**
+     * Get objet
+     *
+     * @return string
+     */
+    public function getObjet()
+    {
+        return $this->objet;
+    }
+
+    /**
+     * Set texte
+     *
+     * @param string $texte
+     *
+     * @return Message
+     */
+    public function setTexte($texte)
+    {
+        $this->texte = $texte;
+
+        return $this;
+    }
+
+    /**
+     * Get texte
+     *
+     * @return string
+     */
+    public function getTexte()
+    {
+        return $this->texte;
+    }
+
+    /**
+     * Set date
+     *
+     * @param string $date
+     *
+     * @return Message
+     */
+    public function setDate($date)
+    {
+        $this->date = $date;
+
+        return $this;
+    }
+
+    /**
+     * Get date
+     *
+     * @return string
+     */
+    public function getDate()
+    {
+        return $this->date;
+    }
+
+    /**
+     * Set idDestinataire
+     *
+     * @param \NozelitesBundle\Entity\Membre $idDestinataire
+     *
+     * @return Message
+     */
+    public function setIdDestinataire(\NozelitesBundle\Entity\Membre $idDestinataire = null)
+    {
+        $this->idDestinataire = $idDestinataire;
+
+        return $this;
+    }
+
+    /**
+     * Get idDestinataire
+     *
+     * @return \NozelitesBundle\Entity\Membre
+     */
+    public function getIdDestinataire()
+    {
+        return $this->idDestinataire;
+    }
+
+    /**
+     * Set idEmeteur
+     *
+     * @param \NozelitesBundle\Entity\Membre $idEmeteur
+     *
+     * @return Message
+     */
+    public function setIdEmeteur(\NozelitesBundle\Entity\Membre $idEmeteur = null)
+    {
+        $this->idEmeteur = $idEmeteur;
+
+        return $this;
+    }
+
+    /**
+     * Get idEmeteur
+     *
+     * @return \NozelitesBundle\Entity\Membre
+     */
+    public function getIdEmeteur()
+    {
+        return $this->idEmeteur;
+    }
+}

@@ -53,5 +53,110 @@ class Listediplome
     private $idMembre;
 
 
-}
 
+    /**
+     * Get idDiplome
+     *
+     * @return integer
+     */
+    public function getIdDiplome()
+    {
+        return $this->idDiplome;
+    }
+
+    /**
+     * Set organisation
+     *
+     * @param string $organisation
+     *
+     * @return Listediplome
+     */
+    public function setOrganisation($organisation)
+    {
+        $this->organisation = $organisation;
+
+        return $this;
+    }
+
+    /**
+     * Get organisation
+     *
+     * @return string
+     */
+    public function getOrganisation()
+    {
+        return $this->organisation;
+    }
+
+    /**
+     * Set domaine
+     *
+     * @param string $domaine
+     *
+     * @return Listediplome
+     */
+    public function setDomaine($domaine)
+    {
+        $this->domaine = $domaine;
+
+        return $this;
+    }
+
+    /**
+     * Get domaine
+     *
+     * @return string
+     */
+    public function getDomaine()
+    {
+        return $this->domaine;
+    }
+
+    /**
+     * Set date
+     *
+     * @param string $date
+     *
+     * @return Listediplome
+     */
+    public function setDate($date)
+    {
+        $this->date = $date;
+
+        return $this;
+    }
+
+    /**
+     * Get date
+     *
+     * @return string
+     */
+    public function getDate()
+    {
+        return $this->date;
+    }
+
+    /**
+     * Set idMembre
+     *
+     * @param \NozelitesBundle\Entity\Membre $idMembre
+     *
+     * @return Listediplome
+     */
+    public function setIdMembre(\NozelitesBundle\Entity\Membre $idMembre = null)
+    {
+        $this->idMembre = $idMembre;
+
+        return $this;
+    }
+
+    /**
+     * Get idMembre
+     *
+     * @return \NozelitesBundle\Entity\Membre
+     */
+    public function getIdMembre()
+    {
+        return $this->idMembre;
+    }
+}

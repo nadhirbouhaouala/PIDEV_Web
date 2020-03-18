@@ -50,5 +50,110 @@ class Portfolio
     private $lien;
 
 
-}
 
+    /**
+     * Get idPort
+     *
+     * @return integer
+     */
+    public function getIdPort()
+    {
+        return $this->idPort;
+    }
+
+    /**
+     * Set idMembre
+     *
+     * @param integer $idMembre
+     *
+     * @return Portfolio
+     */
+    public function setIdMembre($idMembre)
+    {
+        $this->idMembre = $idMembre;
+
+        return $this;
+    }
+
+    /**
+     * Get idMembre
+     *
+     * @return integer
+     */
+    public function getIdMembre()
+    {
+        return $this->idMembre;
+    }
+
+    /**
+     * Set titre
+     *
+     * @param string $titre
+     *
+     * @return Portfolio
+     */
+    public function setTitre($titre)
+    {
+        $this->titre = $titre;
+
+        return $this;
+    }
+
+    /**
+     * Get titre
+     *
+     * @return string
+     */
+    public function getTitre()
+    {
+        return $this->titre;
+    }
+
+    /**
+     * Set description
+     *
+     * @param string $description
+     *
+     * @return Portfolio
+     */
+    public function setDescription($description)
+    {
+        $this->description = $description;
+
+        return $this;
+    }
+
+    /**
+     * Get description
+     *
+     * @return string
+     */
+    public function getDescription()
+    {
+        return $this->description;
+    }
+
+    /**
+     * Set lien
+     *
+     * @param string $lien
+     *
+     * @return Portfolio
+     */
+    public function setLien($lien)
+    {
+        $this->lien = $lien;
+
+        return $this;
+    }
+
+    /**
+     * Get lien
+     *
+     * @return string
+     */
+    public function getLien()
+    {
+        return $this->lien;
+    }
+}

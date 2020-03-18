@@ -36,5 +36,62 @@ class Admin
     private $mdp;
 
 
-}
 
+    /**
+     * Get idusr
+     *
+     * @return integer
+     */
+    public function getIdusr()
+    {
+        return $this->idusr;
+    }
+
+    /**
+     * Set login
+     *
+     * @param string $login
+     *
+     * @return Admin
+     */
+    public function setLogin($login)
+    {
+        $this->login = $login;
+
+        return $this;
+    }
+
+    /**
+     * Get login
+     *
+     * @return string
+     */
+    public function getLogin()
+    {
+        return $this->login;
+    }
+
+    /**
+     * Set mdp
+     *
+     * @param string $mdp
+     *
+     * @return Admin
+     */
+    public function setMdp($mdp)
+    {
+        $this->mdp = $mdp;
+
+        return $this;
+    }
+
+    /**
+     * Get mdp
+     *
+     * @return string
+     */
+    public function getMdp()
+    {
+        return $this->mdp;
+    }
+}

@@ -39,5 +39,62 @@ class Formation
     private $idMembre;
 
 
-}
 
+    /**
+     * Get idFormation
+     *
+     * @return integer
+     */
+    public function getIdFormation()
+    {
+        return $this->idFormation;
+    }
+
+    /**
+     * Set titre
+     *
+     * @param string $titre
+     *
+     * @return Formation
+     */
+    public function setTitre($titre)
+    {
+        $this->titre = $titre;
+
+        return $this;
+    }
+
+    /**
+     * Get titre
+     *
+     * @return string
+     */
+    public function getTitre()
+    {
+        return $this->titre;
+    }
+
+    /**
+     * Set idMembre
+     *
+     * @param \NozelitesBundle\Entity\Membre $idMembre
+     *
+     * @return Formation
+     */
+    public function setIdMembre(\NozelitesBundle\Entity\Membre $idMembre = null)
+    {
+        $this->idMembre = $idMembre;
+
+        return $this;
+    }
+
+    /**
+     * Get idMembre
+     *
+     * @return \NozelitesBundle\Entity\Membre
+     */
+    public function getIdMembre()
+    {
+        return $this->idMembre;
+    }
+}

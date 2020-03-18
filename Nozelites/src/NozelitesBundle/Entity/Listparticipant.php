@@ -36,5 +36,62 @@ class Listparticipant
     private $etatp;
 
 
-}
 
+    /**
+     * Get ide
+     *
+     * @return integer
+     */
+    public function getIde()
+    {
+        return $this->ide;
+    }
+
+    /**
+     * Set idm
+     *
+     * @param integer $idm
+     *
+     * @return Listparticipant
+     */
+    public function setIdm($idm)
+    {
+        $this->idm = $idm;
+
+        return $this;
+    }
+
+    /**
+     * Get idm
+     *
+     * @return integer
+     */
+    public function getIdm()
+    {
+        return $this->idm;
+    }
+
+    /**
+     * Set etatp
+     *
+     * @param integer $etatp
+     *
+     * @return Listparticipant
+     */
+    public function setEtatp($etatp)
+    {
+        $this->etatp = $etatp;
+
+        return $this;
+    }
+
+    /**
+     * Get etatp
+     *
+     * @return integer
+     */
+    public function getEtatp()
+    {
+        return $this->etatp;
+    }
+}

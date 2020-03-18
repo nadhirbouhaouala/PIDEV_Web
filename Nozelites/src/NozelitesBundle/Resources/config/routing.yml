@@ -5,10 +5,15 @@ nozelites_homepagefront:
 
 nozelites_membregroupesfront:
     path:     /frontmembregroupes
-    defaults: { _controller: NozelitesBundle:DefaultFront:membregroupes }
+    defaults: { _controller: NozelitesBundle:Groupe:showGroupesInvitations }
 nozelites_membregroupesajouterfront:
     path:     /frontmembregroupesajouter
-    defaults: { _controller: NozelitesBundle:DefaultFront:membregroupesajouter }
+    defaults: { _controller: NozelitesBundle:Groupe:newgroupeInvitation }
+nozelites_membregroupesaccepterinvitationfront:
+    path:     /frontmembregroupesaccepterinvitation/{id}
+    defaults: { _controller: NozelitesBundle:Groupe:accepterinvitation }
+
+
 groupe_index:
     path:     /groupe/acceuil
     defaults: { _controller: NozelitesBundle:Groupe:index}
