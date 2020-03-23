@@ -12,7 +12,24 @@ nozelites_membregroupesajouterfront:
 nozelites_membregroupesaccepterinvitationfront:
     path:     /frontmembregroupesaccepterinvitation/{id}
     defaults: { _controller: NozelitesBundle:Groupe:accepterinvitation }
-
+nozelites_membregroupesrefuserinvitationfront:
+    path:     /frontmembregroupesrefuserinvitation/{id}
+    defaults: { _controller: NozelitesBundle:Groupe:refuserinvitation }
+nozelites_membregroupesmodifierfront:
+    path:     /frontmembregroupesmodifier/{id}
+    defaults: { _controller: NozelitesBundle:Groupe:modifiergroupe }
+nozelites_membregroupessupprimerfront:
+    path:     /frontmembregroupessupprimer/{id}
+    defaults: { _controller: NozelitesBundle:Groupe:supprimergroupe }
+nozelites_membregroupeafficherfront:
+    path:     /frontmembregroupeafficher/{id}
+    defaults: { _controller: NozelitesBundle:Groupe:affichergroupe }
+nozelites_membreinviterfront:
+    path:     /frontmembreinviter/{id}/{idmembre}
+    defaults: { _controller: NozelitesBundle:Groupe:invitermembre }
+nozelites_membreretirerfront:
+    path:     /frontmembreretirer/{id}/{idmembre}
+    defaults: { _controller: NozelitesBundle:Groupe:retirermembre }
 
 groupe_index:
     path:     /groupe/acceuil

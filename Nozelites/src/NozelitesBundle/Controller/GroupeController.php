@@ -4,6 +4,7 @@ namespace NozelitesBundle\Controller;
 
 use NozelitesBundle\Entity\Groupe;
 use NozelitesBundle\Entity\GroupeMembre;
+use NozelitesBundle\Entity\Membre;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component\HttpFoundation\Request;
@@ -145,7 +146,7 @@ class GroupeController extends Controller
 
     public function showGroupesInvitationsAction()
     {
-        $id_membre_actif = 8;
+        $id_membre_actif = 9;
 
         $em = $this->getDoctrine()->getManager();
         $groupes = $em->getRepository('NozelitesBundle:Groupe')->findAll();
@@ -161,7 +162,7 @@ class GroupeController extends Controller
 
     public function newgroupeInvitationAction(Request $request)
     {
-        $id_membre_actif = 8;
+        $id_membre_actif = 9;
 
         $groupe = new Groupe();
         $form = $this->createForm('NozelitesBundle\Form\GroupeType', $groupe);
@@ -170,6 +171,7 @@ class GroupeController extends Controller
         $em = $this->getDoctrine()->getManager();
         $membres = $em->getRepository('NozelitesBundle:Membre')->findAll();
         $membrecncte = $em->getRepository('NozelitesBundle:Membre')->find($id_membre_actif);
+
 
         if ($request->getMethod() == "POST") {
             $groupe = new Groupe();
@@ -210,7 +212,7 @@ class GroupeController extends Controller
         }
 
         return $this->render('@Nozelites/Front/MembreGroupesAjouter.html.twig',
-            array('membres'=> $membres,));
+            array('membres'=> $membres,"membrecncte"=>$membrecncte,));
     }
 
     public function accepterinvitationAction(Request $request,$id)
@@ -223,4 +225,198 @@ class GroupeController extends Controller
 
         return $this->redirectToRoute('nozelites_membregroupesfront');
     }
+
+    public function refuserinvitationAction(GroupeMembre $idgm)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $groupeMembre = $em->getRepository('NozelitesBundle:GroupeMembre')->find($idgm);
+        $em->remove($groupeMembre);
+        $em->flush();
+
+        return $this->redirectToRoute('nozelites_membregroupesfront');
+    }
+
+    public function modifiergroupeAction(Request $request, Groupe $id)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $groupe = $em->getRepository('NozelitesBundle:Groupe')->find($id);
+        $editForm = $this->createForm('NozelitesBundle\Form\GroupeType', $groupe);
+        $editForm->handleRequest($request);
+
+        if ($editForm->isSubmitted() && $editForm->isValid()) {
+            $this->getDoctrine()->getManager()->flush();
+
+            return $this->redirectToRoute('nozelites_membregroupesfront');
+        }
+
+        return $this->render('@Nozelites/Front/MembreGroupesModifier.html.twig', array(
+            'groupe' => $groupe,
+            'edit_form' => $editForm->createView(),
+        ));
+    }
+
+    public function supprimergroupeAction(Request $request, Groupe $id)
+    {
+        $id_membre_actif = 9;
+
+        $em = $this->getDoctrine()->getManager();
+        $gm = $em->getRepository('NozelitesBundle:GroupeMembre')
+            ->findOneBy(array('idGroupe'=>$id,
+                'idMembre'=>$id_membre_actif));
+        if($gm->getEtat()=="administrateur")//que l'admin peut supprimer
+        {
+            $groupe = $em->getRepository('NozelitesBundle:Groupe')->find($id);
+            $em->remove($groupe);
+            $em->flush();
+        }
+
+
+        return $this->redirectToRoute('nozelites_membregroupesfront');
+    }
+
+    public function affichergroupeAction(Groupe $id)
+    {
+        $id_membre_actif = 9;
+
+        $em = $this->getDoctrine()->getManager();
+        $groupe = $em->getRepository('NozelitesBundle:Groupe')->find($id);
+
+        $gms = $em->getRepository('NozelitesBundle:GroupeMembre')->findBy(array('idGroupe'=>$id));
+        $m_admins = [];$m_membres = [];$m_bloquer = [];$m_autres = [];
+        for($i=0 ; $i<sizeof($gms);$i++)
+        {
+            if($gms[$i]->getEtat() == "administrateur")$m_admins[sizeof($m_admins)]=$gms[$i]->getIdMembre();
+            else if($gms[$i]->getEtat() == "standard" || $gms[$i]->getEtat() == "membre")$m_membres[sizeof($m_membres)]=$gms[$i]->getIdMembre();
+            else $m_bloquer[sizeof($m_bloquer)]=$gms[$i]->getIdMembre();
+        }
+        $membres = $em->getRepository('NozelitesBundle:Membre')->findAll();
+        for($j=0 ; $j<sizeof($membres);$j++)
+        {
+            $exist = false;
+            for($i=0 ; $i<sizeof($gms);$i++)
+                if($membres[$j] == $gms[$i]->getIdMembre()){$exist=true;break;}
+
+            if($exist==false)$m_autres[sizeof($m_autres)] = $membres[$j];
+        }
+
+        $isadmin = false;
+        $result = $em->getRepository('NozelitesBundle:GroupeMembre')->findOneBy(array('idGroupe'=>$id,'idMembre'=>$id_membre_actif));
+        if($result)
+            if($result->getEtat()=="administrateur")
+                $isadmin=true;
+
+        //var_dump($gm_membres);
+        return $this->render('@Nozelites/Front/MembreGroup.html.twig', array(
+            'isadmin'=>$isadmin,
+            'groupe' => $groupe,
+            'admins' => $m_admins,
+            'membres' => $m_membres,
+            'autres' => $m_autres,
+        ));
+    }
+
+    public function invitermembreAction(Groupe $id,Membre $idmembre)
+    {
+        $id_membre_actif = 9;
+
+        $em = $this->getDoctrine()->getManager();
+
+        $groupe = $em->getRepository('NozelitesBundle:Groupe')->find($id);
+
+        //inviter membre
+        $groupeMembre = new Groupemembre();
+        $groupeMembre->setIdGroupe($groupe);
+        $membre = $em->getRepository('NozelitesBundle:Membre')->find($idmembre);
+        $groupeMembre->setIdMembre($membre);// membre connected (session)
+        $groupeMembre->setIdInvite($id_membre_actif);
+        $groupeMembre->setEtat("invitation");
+        $em->persist($groupeMembre);
+        $em->flush();
+        //fin inviter membre
+
+        $gms = $em->getRepository('NozelitesBundle:GroupeMembre')->findBy(array('idGroupe'=>$id));
+        $m_admins = [];$m_membres = [];$m_bloquer = [];$m_autres = [];
+        for($i=0 ; $i<sizeof($gms);$i++)
+        {
+            if($gms[$i]->getEtat() == "administrateur")$m_admins[sizeof($m_admins)]=$gms[$i]->getIdMembre();
+            else if($gms[$i]->getEtat() == "standard" || $gms[$i]->getEtat() == "membre")$m_membres[sizeof($m_membres)]=$gms[$i]->getIdMembre();
+            else $m_bloquer[sizeof($m_bloquer)]=$gms[$i]->getIdMembre();
+        }
+        $membres = $em->getRepository('NozelitesBundle:Membre')->findAll();
+        for($j=0 ; $j<sizeof($membres);$j++)
+        {
+            $exist = false;
+            for($i=0 ; $i<sizeof($gms);$i++)
+                if($membres[$j] == $gms[$i]->getIdMembre()){$exist=true;break;}
+
+            if($exist==false)$m_autres[sizeof($m_autres)] = $membres[$j];
+        }
+
+        $isadmin = false;
+        $result = $em->getRepository('NozelitesBundle:GroupeMembre')->findOneBy(array('idGroupe'=>$id,'idMembre'=>$id_membre_actif));
+        if($result)
+            if($result->getEtat()=="administrateur")
+                $isadmin=true;
+
+        //var_dump($gm_membres);
+        return $this->render('@Nozelites/Front/MembreGroup.html.twig', array(
+            'isadmin'=>$isadmin,
+            'groupe' => $groupe,
+            'admins' => $m_admins,
+            'membres' => $m_membres,
+            'autres' => $m_autres,
+        ));
+    }
+
+    public function retirermembreAction(Groupe $id,Membre $idmembre)
+    {
+        $id_membre_actif = 9;
+
+        $em = $this->getDoctrine()->getManager();
+
+        $groupe = $em->getRepository('NozelitesBundle:Groupe')->find($id);
+
+        //inviter membre
+        $groupeMembre = $em->getRepository('NozelitesBundle:GroupeMembre')
+            ->findOneBy(array('idGroupe'=>$id,
+                'idMembre'=>$idmembre));
+        $groupeMembre->setEtat("bloquer");
+        $em->persist($groupeMembre);
+        $em->flush();
+        //fin inviter membre
+
+        $gms = $em->getRepository('NozelitesBundle:GroupeMembre')->findBy(array('idGroupe'=>$id));
+        $m_admins = [];$m_membres = [];$m_bloquer = [];$m_autres = [];
+        for($i=0 ; $i<sizeof($gms);$i++)
+        {
+            if($gms[$i]->getEtat() == "administrateur")$m_admins[sizeof($m_admins)]=$gms[$i]->getIdMembre();
+            else if($gms[$i]->getEtat() == "standard" || $gms[$i]->getEtat() == "membre")$m_membres[sizeof($m_membres)]=$gms[$i]->getIdMembre();
+            else $m_bloquer[sizeof($m_bloquer)]=$gms[$i]->getIdMembre();
+        }
+        $membres = $em->getRepository('NozelitesBundle:Membre')->findAll();
+        for($j=0 ; $j<sizeof($membres);$j++)
+        {
+            $exist = false;
+            for($i=0 ; $i<sizeof($gms);$i++)
+                if($membres[$j] == $gms[$i]->getIdMembre()){$exist=true;break;}
+
+            if($exist==false)$m_autres[sizeof($m_autres)] = $membres[$j];
+        }
+
+        $isadmin = false;
+        $result = $em->getRepository('NozelitesBundle:GroupeMembre')->findOneBy(array('idGroupe'=>$id,'idMembre'=>$id_membre_actif));
+        if($result)
+            if($result->getEtat()=="administrateur")
+                $isadmin=true;
+
+        //var_dump($gm_membres);
+        return $this->render('@Nozelites/Front/MembreGroup.html.twig', array(
+            'isadmin'=>$isadmin,
+            'groupe' => $groupe,
+            'admins' => $m_admins,
+            'membres' => $m_membres,
+            'autres' => $m_autres,
+        ));
+    }
+
 }

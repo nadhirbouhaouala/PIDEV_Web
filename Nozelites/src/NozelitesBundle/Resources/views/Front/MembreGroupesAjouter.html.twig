@@ -41,7 +41,7 @@
                         <div class="content">
                             <ul class="dashboard-box-list">
                                 {%  for membre in membres %}
-
+                                    {% if membre != membrecncte %}
                                         <li>
                                             <!-- Overview -->
                                             <div class="freelancer-overview" onclick="alert('show');">
@@ -81,13 +81,14 @@
 
                                             <!-- Buttons -->
                                             <div class="buttons-to-right">
-                                                <button onclick="invitermembre({{ membre.idusr }})" id="btn_{{ membre.idusr }}" class="button red ripple-effect ico" title="Inviter" data-tippy-placement="left"><i class="icon-feather-mail"></i></button>
+                                                <button onclick="invitermembre({{ membre.idusr }})" id="btn_{{ membre.idusr }}" class="button red ripple-effect ico" title="Inviter" data-tippy-placement="left"><i class="icon-feather-plus"></i></button>
                                                 <!--<a href="#" class="button red ripple-effect ico" title="Supprimer" data-tippy-placement="left"><i class="icon-feather-trash-2"></i></a>
                                                 <a href="#" class="button red ripple-effect ico" title="Accepter" data-tippy-placement="left"><i class="icon-material-outline-check"></i></a>
                                                 <a href="#" class="button red ripple-effect ico" title="Refuser" data-tippy-placement="left"><i class="icon-feather-trash-2"></i></a>-->
                                             </div>
                                         </li>
 
+                                    {% endif %}
                                 {%  endfor %}
                             </ul>
                         </div>

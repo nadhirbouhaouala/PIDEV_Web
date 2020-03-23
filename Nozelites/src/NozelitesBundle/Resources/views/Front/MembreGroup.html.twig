@@ -1,0 +1,216 @@
+{% extends '@Nozelites/basefrontmembre.html.twig' %}
+{# extends '@Nozelites/basefront.html.twig' #}
+
+{% block titre %}{{ parent() }} - Acceuil {% endblock %}
+
+{% block content %}
+<!-- Intro Banner
+================================================== -->
+<!-- add class "disable-gradient" to enable consistent background overlay -->
+<div class="intro-banner" data-background-image="images/home-background.jpg">
+    <div class="container">
+
+        <!-- Overview -->
+        <div class="freelancer-overview" onclick="document.getElementById('show').click();">
+            <div class="freelancer-overview-inner">
+
+                <!-- Avatar -->
+                <div class="freelancer-avatar">
+                    <div class="verified-badge"></div>
+                    <a href="#"><img src="{{ asset('images/user-avatar-big-02.jpg') }}" alt=""></a>
+                </div>
+
+                <!-- Name -->
+                <div class="freelancer-name">
+                    <h4><a href="#"> {{ groupe.titre }}
+                            <img class="flag" src="images/flags/de.svg" alt="" title="Germany" data-tippy-placement="top"></a></h4>
+                    <span>{{ groupe.description }} </span>
+                    <!-- Rating -->
+                    <div class="freelancer-rating">
+                        <div class="star-rating" data-rating="{% if groupe.autorisation == 1 %}fermé{%  else %}ouvert{%  endif %}"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Buttons -->
+        <div class="buttons-to-right">
+            <a href="" class="button red ripple-effect ico" title="Modifier" data-tippy-placement="left"><i class="icon-feather-edit-2"></i></a>
+            <!--<a href="#" class="button red ripple-effect ico" title="Accepter" data-tippy-placement="left"><i class="icon-material-outline-check"></i></a>
+            <a href="#" class="button red ripple-effect ico" title="Refuser" data-tippy-placement="left"><i class="icon-feather-trash-2"></i></a>-->
+        </div>
+
+        <div class="row">
+            <div class="col-xl-6 col-lg-6 content-left-offset">
+                <div class="dashboard-box">
+
+                    <!-- Headline -->
+                    <div class="headline">
+                        <h3><i class="icon-material-outline-face"></i> Membres </h3>
+                    </div>
+
+                    <div class="content">
+                        <ul class="dashboard-box-list">
+                            {%  for admin in admins %}
+
+                                    <li>
+                                        <!-- Overview -->
+                                        <div class="freelancer-overview" onclick="alert('show')">
+                                            <div class="freelancer-overview-inner">
+
+                                                <!-- Avatar -->
+                                                <div class="freelancer-avatar">
+                                                    <div class="verified-badge"></div>
+                                                    <a href="#"><img src="{{ asset('images/user-avatar-big-02.jpg') }}" alt=""></a>
+                                                </div>
+
+                                                <!-- Name -->
+                                                <div class="freelancer-name">
+                                                    <h4><a href="#"> {{ admin.login }} -
+                                                            <img class="flag" src="images/flags/de.svg" alt="" title="Germany" data-tippy-placement="top"></a></h4>
+                                                    <span>admin.mail - admin.tel</span>
+                                                    <!-- Rating -->
+                                                    <div class="freelancer-rating">
+                                                        <div class="star-rating" data-rating="admin"></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!-- Buttons -->
+                                        <div class="buttons-to-right">
+                                            <!--<a href="#" class="button red ripple-effect ico" title="Remove" data-tippy-placement="left"><i class="icon-feather-trash-2"></i></a>
+                                            <a href="#" class="button red ripple-effect ico" title="edit" data-tippy-placement="left"><i class="icon-feather-edit-2"></i></a>
+                                            <a href="" onclick="alert('')" class="button red ripple-effect ico" title="Accepter" data-tippy-placement="left"><i class="icon-material-outline-check"></i></a>
+                                            <a href="" class="button red ripple-effect ico" title="Refuser" data-tippy-placement="left"><i class="icon-feather-x"></i></a>-->
+                                        </div>
+                                    </li>
+
+                            {%  endfor %}
+
+                            {%  for membre in membres %}
+
+                                <li id="{{ "membre_"~membre.idusr }}">
+                                    <!-- Overview -->
+                                    <div class="freelancer-overview" onclick="alert('show')">
+                                        <div class="freelancer-overview-inner">
+
+                                            <!-- Avatar -->
+                                            <div class="freelancer-avatar">
+                                                <div class="verified-badge"></div>
+                                                <a href="#"><img src="{{ asset('images/user-avatar-big-02.jpg') }}" alt=""></a>
+                                            </div>
+
+                                            <!-- Name -->
+                                            <div class="freelancer-name">
+                                                <h4><a href="#"> {{ membre.login }} -
+                                                        <img class="flag" src="images/flags/de.svg" alt="" title="Germany" data-tippy-placement="top"></a></h4>
+                                                <span>membre.mail - membre.tel</span>
+                                                <!-- Rating -->
+                                                <div class="freelancer-rating">
+                                                    <div class="star-rating" data-rating="simple"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Buttons -->
+                                    <div class="buttons-to-right">
+                                        <!--<a href="#" class="button red ripple-effect ico" title="Remove" data-tippy-placement="left"><i class="icon-feather-trash-2"></i></a>
+                                        <a href="#" class="button red ripple-effect ico" title="edit" data-tippy-placement="left"><i class="icon-feather-edit-2"></i></a>
+                                        <a href="" onclick="alert('')" class="button red ripple-effect ico" title="Accepter" data-tippy-placement="left"><i class="icon-material-outline-check"></i></a>
+                                        <a href="" class="button red ripple-effect ico" title="Refuser" data-tippy-placement="left"><i class="icon-feather-x"></i></a>-->
+                                        {% if isadmin == true %}
+                                        <button onclick="
+                                                $.ajax(
+                                                    {url: '{{ path('nozelites_membreretirerfront',{'id':groupe.idGroupe,'idmembre':membre.idusr}) }}', //This is the current doc
+                                                    //type: 'POST',
+                                                    //dataType:'json', // add json datatype to get json
+                                                    //data: ({retirer: idmembre }),
+                                                    success: function(data){
+                                                        console.log(data);
+                                                    }
+                                                });
+                                                document.getElementById('{{ "membre_"~membre.idusr }}').style.display = 'none';
+                                                " class="button red ripple-effect ico" title="Retirer" data-tippy-placement="left"><i class="icon-feather-x"></i></button>
+                                        {% endif %}
+                                    </div>
+                                </li>
+
+                            {%  endfor %}
+
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-xl-6 col-lg-6">
+                <div class="dashboard-box">
+
+                    <!-- Headline -->
+                    <div class="headline">
+                        <h3><i class="icon-material-outline-face"></i> Invitations </h3>
+                    </div>
+
+                    <div class="content">
+                        <ul class="dashboard-box-list">
+                            {%  for autre in autres %}
+
+                                <li id="{{ "autre_"~autre.idusr }}">
+                                    <!-- Overview -->
+                                    <div class="freelancer-overview" onclick="alert('show')">
+                                        <div class="freelancer-overview-inner">
+
+                                            <!-- Avatar -->
+                                            <div class="freelancer-avatar">
+                                                <div class="verified-badge"></div>
+                                                <a href="#"><img src="{{ asset('images/user-avatar-big-02.jpg') }}" alt=""></a>
+                                            </div>
+
+                                            <!-- Name -->
+                                            <div class="freelancer-name">
+                                                <h4><a href="#"> {{ autre.login }} -
+                                                        <img class="flag" src="images/flags/de.svg" alt="" title="Germany" data-tippy-placement="top"></a></h4>
+                                                <span>autre.mail - autre.tel</span>
+                                                <!-- Rating -->
+                                                <div class="freelancer-rating">
+                                                    <div class="star-rating" data-rating="{{ autre.experience }}"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Buttons -->
+                                    <div class="buttons-to-right">
+                                        <!--<a href="#" class="button red ripple-effect ico" title="Remove" data-tippy-placement="left"><i class="icon-feather-trash-2"></i></a>
+                                        <a href="#" class="button red ripple-effect ico" title="edit" data-tippy-placement="left"><i class="icon-feather-edit-2"></i></a>
+                                        <a href="" onclick="alert('')" class="button red ripple-effect ico" title="Accepter" data-tippy-placement="left"><i class="icon-material-outline-check"></i></a>-->
+                                        <button onclick="
+                                                $.ajax(
+                                                {url: '{{ path('nozelites_membreinviterfront',{'id':groupe.idGroupe,'idmembre':autre.idusr}) }}', //This is the current doc
+                                                //type: 'POST',
+                                                //dataType:'json', // add json datatype to get json
+                                                //data: ({retirer: idmembre }),
+                                                success: function(data){
+                                                console.log(data);
+                                                }
+                                                });
+                                                document.getElementById('{{ "autre_"~autre.idusr }}').style.display = 'none';
+                                                " class="button red ripple-effect ico" title="Inviter" data-tippy-placement="left"><i class="icon-feather-plus"></i></button>
+                                    </div>
+                                </li>
+
+                            {%  endfor %}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+
+
+        </div>
+
+    </div>
+</div>
+
+{% endblock %}

@@ -34,7 +34,8 @@
 
                                     <li>
                                         <!-- Overview -->
-                                        <div class="freelancer-overview" onclick="alert('show');">
+                                        <div class="freelancer-overview" onclick="document.getElementById('{{ 'show_'~gm.idGm }}').click();">
+                                            <a href="{{ path('nozelites_membregroupeafficherfront',{'id':gm.idGroupe.idGroupe}) }}" id="{{ 'show_'~gm.idGm }}"></a>
                                             <div class="freelancer-overview-inner">
 
                                                 <!-- Avatar -->
@@ -58,9 +59,10 @@
 
                                         <!-- Buttons -->
                                         <div class="buttons-to-right">
-                                            <a href="#" class="button red ripple-effect ico" title="Modifier" data-tippy-placement="left"><i class="icon-feather-edit-2"></i></a>
-                                            <a href="#" class="button red ripple-effect ico" title="Supprimer" data-tippy-placement="left"><i class="icon-feather-trash-2"></i></a>
-
+                                            <a href="{{ path('nozelites_membregroupesmodifierfront',{'id':gm.idGroupe.idGroupe}) }}" class="button red ripple-effect ico" title="Modifier" data-tippy-placement="left"><i class="icon-feather-edit-2"></i></a>
+                                            {% if gm.etat == "administrateur" %}
+                                                <a href="{{ path('nozelites_membregroupessupprimerfront',{'id':gm.idGroupe.idGroupe}) }}" class="button red ripple-effect ico" title="Supprimer" data-tippy-placement="left"><i class="icon-feather-trash-2"></i></a>
+                                            {% endif %}
                                             <!--<a href="#" class="button red ripple-effect ico" title="Accepter" data-tippy-placement="left"><i class="icon-material-outline-check"></i></a>
                                             <a href="#" class="button red ripple-effect ico" title="Refuser" data-tippy-placement="left"><i class="icon-feather-trash-2"></i></a>-->
                                         </div>
@@ -91,7 +93,7 @@
 
                                 <li>
                                     <!-- Overview -->
-                                    <div class="freelancer-overview" onclick="alert('show');">
+                                    <div class="freelancer-overview" onclick="alert('show')">
                                         <div class="freelancer-overview-inner">
 
                                             <!-- Avatar -->
@@ -125,7 +127,7 @@
                                         <!--<a href="#" class="button red ripple-effect ico" title="Remove" data-tippy-placement="left"><i class="icon-feather-trash-2"></i></a>
                                         <a href="#" class="button red ripple-effect ico" title="edit" data-tippy-placement="left"><i class="icon-feather-edit-2"></i></a>-->
                                         <a href="{{ path('nozelites_membregroupesaccepterinvitationfront',{'id':gm.idGm}) }}" onclick="alert('{{ gm.idGm }}')" class="button red ripple-effect ico" title="Accepter" data-tippy-placement="left"><i class="icon-material-outline-check"></i></a>
-                                        <a href="#" class="button red ripple-effect ico" title="Refuser" data-tippy-placement="left"><i class="icon-feather-x"></i></a>
+                                        <a href="{{ path('nozelites_membregroupesrefuserinvitationfront',{'id':gm.idGm}) }}" class="button red ripple-effect ico" title="Refuser" data-tippy-placement="left"><i class="icon-feather-x"></i></a>
                                     </div>
                                 </li>
 
