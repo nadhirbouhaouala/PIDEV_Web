@@ -3,5 +3,3 @@
 3-creer les nouv compiser symfony
 4-importer la bdd
 5-weal zid el mp mte3ek fel app/config/parameters
-6-decompresser vendor.rar et le copier dans le projet Nozelites/
-7-copier parameters.yml dans /Nozelites/app/config/
