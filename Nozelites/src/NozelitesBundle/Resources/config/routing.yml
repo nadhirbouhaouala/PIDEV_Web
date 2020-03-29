@@ -51,3 +51,21 @@ groupe_delete:
 nozelites_homepageback:
     path:     /back
     defaults: { _controller: NozelitesBundle:DefaultBack:index }
+nozelites_admingroupesback:
+    path:     /backadmingroupes
+    defaults: { _controller: NozelitesBundle:Groupe:showGroupesadmin }
+nozelites_admingroupeafficherback:
+    path:     /backadmingroupe/afficher/{id}
+    defaults: { _controller: NozelitesBundle:Groupe:affichergroupeadmin}
+nozelites_admingroupesupprimerback:
+    path:     /backadmingroupe/supprimer/{id}
+    defaults: { _controller: NozelitesBundle:Groupe:supprimergroupeadmin}
+nozelites_admingroupemodifierback:
+    path:     /backadmingroupe/modifier/{id}
+    defaults: { _controller: NozelitesBundle:Groupe:modifiergroupeadmin}
+nozelites_adminbloquermembreback:
+    path:     /frontbloquermembre/{id}/{idmembre}
+    defaults: { _controller: NozelitesBundle:Groupe:bloquermembreadmin }
+nozelites_admindebloquermembreback:
+    path:     /frontdebloquermembre/{id}/{idmembre}
+    defaults: { _controller: NozelitesBundle:Groupe:debloquermembreadmin }

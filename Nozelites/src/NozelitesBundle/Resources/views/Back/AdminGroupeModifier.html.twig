@@ -1,0 +1,32 @@
+{% extends '@Nozelites/baseback.html.twig' %}
+
+{% block titre %}{{ parent() }} - Acceuil {% endblock %}
+
+{% block content %}
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+
+        <div class="container">
+            <div class="container-fluid">
+                <h1>Groupe edit</h1>
+
+                {{ form_start(edit_form) }}
+                {{ form_widget(edit_form) }}
+                <input type="submit" value="Edit" />
+                {{ form_end(edit_form) }}
+
+                <ul>
+                    <li>
+                        <a href="{{ path('nozelites_admingroupesback') }}">Back to the list</a>
+                    </li>
+                    <li>
+
+                    </li>
+                </ul>
+            </div>
+
+    </div>
+{% endblock %}
+
+
+

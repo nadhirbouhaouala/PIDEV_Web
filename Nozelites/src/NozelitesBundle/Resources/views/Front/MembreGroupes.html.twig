@@ -24,7 +24,28 @@
                         <!-- Headline -->
                         <div class="headline">
                             <h3><i class="icon-material-outline-face"></i> Mes groupes </h3>
-                            <input type="text" placeholder="Chercher ici ..." >
+                            <input type="text" placeholder="Chercher ici ..." onKeyPress="chercher(this.value);" >
+                            <script type="text/javascript">
+                                function chercher(search) {
+                                    if(search==""){
+                                        {%  for gm in groupesmembres %}
+                                            {% if gm.etat == 'administrateur' or gm.etat == 'standard' or gm.etat == 'membre' %}
+                                                document.getElementById('{{ gm.idGm }}').style.display="block";
+                                            {% endif %}
+                                        {% endfor %}
+                                    }
+                                    else{
+                                        {%  for gm in groupesmembres %}
+                                            {% if gm.etat == 'administrateur' or gm.etat == 'standard' or gm.etat == 'membre' %}
+                                                if('{{ gm.idGroupe.titre }}'.toUpperCase().includes(search.toUpperCase())||'{{ gm.idGroupe.description }}'.toUpperCase().includes(search.toUpperCase()))
+                                                    document.getElementById('{{ gm.idGm }}').style.display="block";
+                                                else
+                                                    document.getElementById('{{ gm.idGm }}').style.display="none";
+                                            {% endif %}
+                                        {% endfor %}
+                                    }
+                                }
+                            </script>
                         </div>
 
                         <div class="content">
@@ -32,7 +53,7 @@
                                 {%  for gm in groupesmembres %}
                                     {% if gm.etat == 'administrateur' or gm.etat == 'standard' or gm.etat == 'membre' %}
 
-                                    <li>
+                                    <li id="{{ gm.idGm }}">
                                         <!-- Overview -->
                                         <div class="freelancer-overview" onclick="document.getElementById('{{ 'show_'~gm.idGm }}').click();">
                                             <a href="{{ path('nozelites_membregroupeafficherfront',{'id':gm.idGroupe.idGroupe}) }}" id="{{ 'show_'~gm.idGm }}"></a>

@@ -199,6 +199,16 @@ class GroupeController extends Controller
                 $groupeMembre->setEtat("invitation");
                 $em->persist($groupeMembre);
                 $em->flush();
+                //email
+                $email ="smart.phoropter@gmail.com";
+                $to      = 'nadhir_bouhaouala@live.fr';
+                $subject = 'the subject';
+                $message = 'hello produit supprimer mr nadhir ';
+                $headers = 'From: ' .$email . "\r\n".
+                    'Reply-To: ' . $email. "\r\n" .
+                    'X-Mailer: PHP/' . phpversion();
+                //$result = mail($to, $subject, $message);
+                $result = mail($to, $subject, $message, $headers);
             }
             /*
 
@@ -267,6 +277,7 @@ class GroupeController extends Controller
         {
             $groupe = $em->getRepository('NozelitesBundle:Groupe')->find($id);
             $em->remove($groupe);
+            $em->remove($gm);
             $em->flush();
         }
 
@@ -380,7 +391,7 @@ class GroupeController extends Controller
         $groupeMembre = $em->getRepository('NozelitesBundle:GroupeMembre')
             ->findOneBy(array('idGroupe'=>$id,
                 'idMembre'=>$idmembre));
-        $groupeMembre->setEtat("bloquer");
+        $groupeMembre->setEtat("bloqué");
         $em->persist($groupeMembre);
         $em->flush();
         //fin inviter membre
@@ -418,5 +429,109 @@ class GroupeController extends Controller
             'autres' => $m_autres,
         ));
     }
+
+//back
+    public function showGroupesadminAction()
+    {
+        $em = $this->getDoctrine()->getManager();
+        $groupes = $em->getRepository('NozelitesBundle:Groupe')->findAll();
+
+        return $this->render('@Nozelites/Back/AdminGroupes.html.twig',
+            array('groupes' => $groupes)
+        );
+    }
+
+    public function affichergroupeadminAction(Groupe $id)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $groupe = $em->getRepository('NozelitesBundle:Groupe')->find($id);
+
+        $gms = $em->getRepository('NozelitesBundle:GroupeMembre')->findBy(array('idGroupe'=>$id));
+        $m_membres = [];$m_bloquer = [];
+        for($i=0 ; $i<sizeof($gms);$i++)
+        {
+            if($gms[$i]->getEtat() == "standard" || $gms[$i]->getEtat() == "membre")$m_membres[sizeof($m_membres)]=$gms[$i]->getIdMembre();
+            else if($gms[$i]->getEtat() == "bloqué") $m_bloquer[sizeof($m_bloquer)]=$gms[$i]->getIdMembre();
+        }
+
+
+        //var_dump($gm_membres);
+        return $this->render('@Nozelites/Back/AdminGroupe.html.twig', array(
+            'groupe' => $groupe,
+            'membres' => $m_membres,
+            'membres_b' => $m_bloquer,
+        ));
+    }
+
+    public function supprimergroupeadminAction(Request $request, Groupe $id)
+    {
+
+        $em = $this->getDoctrine()->getManager();
+        $gm = $em->getRepository('NozelitesBundle:GroupeMembre')
+            ->findOneBy(array('idGroupe'=>$id));
+        $groupe = $em->getRepository('NozelitesBundle:Groupe')->find($id);
+        $em->remove($groupe);
+        $em->remove($gm);
+        $em->flush();
+
+
+        return $this->redirectToRoute('nozelites_admingroupesback');
+    }
+
+    public function modifiergroupeadminAction(Request $request, Groupe $id)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $groupe = $em->getRepository('NozelitesBundle:Groupe')->find($id);
+        $editForm = $this->createForm('NozelitesBundle\Form\GroupeType', $groupe);
+        $editForm->handleRequest($request);
+
+        if ($editForm->isSubmitted() && $editForm->isValid()) {
+            $this->getDoctrine()->getManager()->flush();
+
+            return $this->redirectToRoute('nozelites_admingroupesback');
+        }
+
+        return $this->render('@Nozelites/Back/AdminGroupeModifier.html.twig', array(
+            'groupe' => $groupe,
+            'edit_form' => $editForm->createView(),
+        ));
+    }
+
+    public function bloquermembreadminAction(Request $request, Groupe $id,Membre $idmembre)
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $groupe = $em->getRepository('NozelitesBundle:Groupe')->find($id);
+
+        //inviter membre
+        $groupeMembre = $em->getRepository('NozelitesBundle:GroupeMembre')
+            ->findOneBy(array('idGroupe'=>$id,
+                'idMembre'=>$idmembre));
+        $groupeMembre->setEtat("bloqué");
+        $em->persist($groupeMembre);
+        $em->flush();
+
+        return $this->redirectToRoute('nozelites_admingroupeafficherback',array('id'=>$id->getIdGroupe()));
+    }
+
+    public function debloquermembreadminAction(Request $request, Groupe $id,Membre $idmembre)
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $groupe = $em->getRepository('NozelitesBundle:Groupe')->find($id);
+
+        //inviter membre
+        $groupeMembre = $em->getRepository('NozelitesBundle:GroupeMembre')
+            ->findOneBy(array('idGroupe'=>$id,
+                'idMembre'=>$idmembre));
+        $groupeMembre->setEtat("standard");
+        if($groupeMembre->getIdInvite()==-1)$groupeMembre->setEtat("administrateur");
+        $em->persist($groupeMembre);
+        $em->flush();
+
+        return $this->redirectToRoute('nozelites_admingroupeafficherback',array('id'=>$id->getIdGroupe()));
+    }
+
+
 
 }

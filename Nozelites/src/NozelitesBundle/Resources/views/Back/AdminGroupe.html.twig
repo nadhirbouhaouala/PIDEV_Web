@@ -19,38 +19,47 @@
 
                     <div class="card">
                         <div class="card-header">
-                            <h3 class="card-title">Liste des groupes</h3>
+                            <h3 class="card-title">Groupe</h3>
+                            <br>
+                            <h4><b>Titre : </b><h5>{{ groupe.titre }}</h5></h4>
+                            <br>
+                            <h4><b>Description : </b><h5>{{ groupe.description }}</h5></h4>
+                            <br>
+                            <h4><b>Titre : </b><h5>{% if groupe.autorisation == 1 %}fermé{%  else %}ouvert{%  endif %}</h5></h4>
+
+
                         </div>
                         <!-- /.card-header -->
                         <div class="card-body">
                             <table id="tableau" class="table table-bordered table-striped">
                                 <thead>
                                 <tr>
-                                    <th>Afficher</th>
-                                    <th>Titre</th>
-                                    <th>Description</th>
-                                    <th>Etat</th>
-                                    <th>Supprimer</th>
-                                    <th>Modifier</th>
+                                    <th>Login</th>
+                                    <th>Mail</th>
+                                    <th>Telephone</th>
+                                    <th>bloquer</th>
+                                    <th>debloquer</th>
                                 </tr>
                                 </thead>
                                 <tbody>
-                                {% for groupe in groupes %}
+                                {% for membre in membres %}
                                     <tr>
-                                        <td><a href="{{ path('nozelites_admingroupeafficherback',{'id':groupe.idGroupe}) }}" class="btn btn-block btn-info">Afficher</a></td>
-                                        <td>{{ groupe.titre }}</td>
-                                        <td>{{ groupe.description }}</td>
+                                        <td>{{ membre.login }}</td>
+                                        <td>{{ membre.mail }}</td>
+                                        <td>{{ membre.tel }}</td>
                                         <td>
-                                            {% if groupe.autorisation == 1 %}Ouvert
-                                            {% else %}Fermé
-                                            {% endif %}
+                                            <a href="{{ path('nozelites_adminbloquermembreback',{'id':groupe.idGroupe,'idmembre':membre.idusr}) }}" class="btn btn-block btn-danger">Bloquer</a>
                                         </td>
-                                        <td>
-                                            <a href="{{ path('nozelites_admingroupesupprimerback',{'id':groupe.idGroupe}) }}" class="btn btn-block btn-danger">Supprimer</a>
-                                        </td>
-                                        <td>
-                                            <a href="{{ path('nozelites_admingroupemodifierback',{'id':groupe.idGroupe}) }}" class="btn btn-block btn-warning">Modifier</a>
-                                        </td>
+                                        <td></td>
+                                    </tr>
+                                {% endfor %}
+                                {% for membre in membres_b %}
+                                    <tr>
+                                        <td>{{ membre.login }}</td>
+                                        <td>{{ membre.mail }}</td>
+                                        <td>{{ membre.tel }}</td>
+                                        <td></td>
+                                        <td><a href="{{ path('nozelites_admindebloquermembreback',{'id':groupe.idGroupe,'idmembre':membre.idusr}) }}" class="btn btn-block btn-danger">Debloquer</a></td>
                                     </tr>
                                 {% endfor %}
                                 </tfoot>

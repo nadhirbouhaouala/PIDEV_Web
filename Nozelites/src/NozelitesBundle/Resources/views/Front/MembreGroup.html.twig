@@ -3,6 +3,12 @@
 
 {% block titre %}{{ parent() }} - Acceuil {% endblock %}
 
+{% block stylesheets %}
+{{ parent() }}
+    <!-- Toastr style -->
+    <link href="{{ asset('css/toastr.min.css') }}" rel="stylesheet">
+{% endblock %}
+
 {% block content %}
 <!-- Intro Banner
 ================================================== -->
@@ -213,4 +219,15 @@
     </div>
 </div>
 
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <!-- Toastr script -->
+    <script src="{{ asset('js/toastr.min.js') }}"></script>
+    <script>
+        $(function () {
+            toastr.success('Bienvenue au groupe', '{{ groupe.titre }}')
+        });
+    </script>
 {% endblock %}
