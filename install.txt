@@ -1,5 +1,0 @@
-1-file -> settings -> command line tool support
-2-supprimer composer et symfony
-3-creer les nouv compiser symfony
-4-importer la bdd
-5-weal zid el mp mte3ek fel app/config/parameters
