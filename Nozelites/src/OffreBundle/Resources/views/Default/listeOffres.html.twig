@@ -1,0 +1,42 @@
+{% extends '@Nozelites/basefrontchasseur.html.twig' %}
+
+{% block title %}{{ parent() }} - Offres {% endblock %}
+
+{% block content %}
+    <div class="content">
+        <ul class="dashboard-box-list">
+            {%  for offre in offres %}
+                {% if offre.idEmetteur.idUsr == 2 %} {#Id du chasseur connecté#}
+                    <li id="{{ offre.id }}">
+                        <!-- Overview -->
+                        <div class="freelancer-overview" onclick="document.getElementById('{{ 'show_'~offre.id }}').click();">
+                            <div class="freelancer-overview-inner">
+                                <!-- Name -->
+                                <div class="freelancer-name">
+                                    <h4><a href="#"><b>Etat : </b> {{ offre.etat }}</h4>
+                                    <span><b>Elite : </b>{{ offre.idRecepteur.nom ~ " " ~ offre.idRecepteur.prenom }} </span><br>
+                                    <span> <b>Type : </b>{{ offre.type }} </span><br>
+                                    <span> <b>Entreprise : </b>{{ offre.entreprise }} </span><br>
+                                    <span> <b>Domaine : </b>{{ offre.domaine}} </span><br>
+                                    <span> <b>Poste : </b>{{ offre.poste }} </span><br>
+                                    <span> <b>Requis : </b>{{ offre.requis }} </span><br>
+                                    <span> <b>Description : </b>{{ offre.description }} </span><br>
+                                    <span> <b>Date : </b>{{ offre.date }} </span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Buttons -->
+                        <div class="buttons-to-right">
+                            <a href="{{ path('offre_modifier',{'id':offre.id}) }}" class="button red ripple-effect ico" title="Modifier" data-tippy-placement="left"><i class="icon-feather-edit-2"></i></a>
+                            <a href="{{ path('offre_supprimer',{'id':offre.id}) }}" class="button red ripple-effect ico" title="Supprimer" data-tippy-placement="left"><i class="icon-feather-trash-2"></i></a>
+                        </div>
+                    </li>
+                {% endif %}
+            {%  endfor %}
+        </ul>
+    </div>
+{% endblock %}
+
+
+

@@ -107,6 +107,44 @@ class appDevDebugProjectContainerUrlMatcher extends Symfony\Bundle\FrameworkBund
 
         }
 
+        elseif (0 === strpos($pathinfo, '/offre')) {
+            // offre_homepage
+            if ('/offre' === $trimmedPathinfo) {
+                $ret = array (  '_controller' => 'OffreBundle\\Controller\\DefaultController::indexAction',  '_route' => 'offre_homepage',);
+                if ('/' === substr($pathinfo, -1)) {
+                    // no-op
+                } elseif ('GET' !== $canonicalMethod) {
+                    goto not_offre_homepage;
+                } else {
+                    return array_replace($ret, $this->redirect($rawPathinfo.'/', 'offre_homepage'));
+                }
+
+                return $ret;
+            }
+            not_offre_homepage:
+
+            // offre_liste
+            if ('/offre/showoffres' === $pathinfo) {
+                return array (  '_controller' => 'OffreBundle\\Controller\\OffreController::consulterOffresAction',  '_route' => 'offre_liste',);
+            }
+
+            // offre_supprimer
+            if (0 === strpos($pathinfo, '/offre/supprimeroffre') && preg_match('#^/offre/supprimeroffre/(?P<id>[^/]++)$#sD', $pathinfo, $matches)) {
+                return $this->mergeDefaults(array_replace($matches, ['_route' => 'offre_supprimer']), array (  '_controller' => 'OffreBundle\\Controller\\OffreController::deleteAction',));
+            }
+
+            // offre_ajouter
+            if ('/offre/ajouteroffre' === $pathinfo) {
+                return array (  '_controller' => 'OffreBundle\\Controller\\OffreController::newAction',  '_route' => 'offre_ajouter',);
+            }
+
+            // offre_modifier
+            if (0 === strpos($pathinfo, '/offre/modifieroffre') && preg_match('#^/offre/modifieroffre/(?P<id>[^/]++)$#sD', $pathinfo, $matches)) {
+                return $this->mergeDefaults(array_replace($matches, ['_route' => 'offre_modifier']), array (  '_controller' => 'OffreBundle\\Controller\\OffreController::updateAction',));
+            }
+
+        }
+
         elseif (0 === strpos($pathinfo, '/groupe')) {
             if (0 === strpos($pathinfo, '/groupemembre')) {
                 // groupemembre_index

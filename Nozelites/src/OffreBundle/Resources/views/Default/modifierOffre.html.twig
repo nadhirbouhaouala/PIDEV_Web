@@ -1,0 +1,24 @@
+{% extends '@Nozelites/basefrontchasseur.html.twig' %}
+
+{% block titre %}{{ parent() }} - Offre {% endblock %}
+
+{% block content %}
+    <div class="intro-banner" data-background-image="images/home-background.jpg">
+        <div class="container">
+
+            <div class="row">
+
+                <div class="col-xl-6 col-lg-6 content-left-offset">
+                    <h1 style="color:#C41011;">Modifier votre offre</h1>
+                    <br>
+                    {{ form(form) }}
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+
+
+{% endblock %}

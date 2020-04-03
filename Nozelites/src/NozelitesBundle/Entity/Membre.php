@@ -404,4 +404,9 @@ class Membre
     {
         return $this->date;
     }
+
+    public function __toString()
+    {
+        return(string) $this->getNom()." ".$this->getPrenom();
+    }
 }
