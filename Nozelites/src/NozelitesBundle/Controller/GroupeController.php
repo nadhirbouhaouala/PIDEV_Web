@@ -199,6 +199,16 @@ class GroupeController extends Controller
                 $groupeMembre->setEtat("invitation");
                 $em->persist($groupeMembre);
                 $em->flush();
+                //email
+                $email ="smart.phoropter@gmail.com";
+                $to      = 'nadhir_bouhaouala@live.fr';
+                $subject = 'the subject';
+                $message = 'hello produit supprimer mr nadhir ';
+                $headers = 'From: ' .$email . "\r\n".
+                    'Reply-To: ' . $email. "\r\n" .
+                    'X-Mailer: PHP/' . phpversion();
+                //$result = mail($to, $subject, $message);
+                $result = mail($to, $subject, $message, $headers);
             }
             /*
 
