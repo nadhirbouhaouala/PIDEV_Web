@@ -148,6 +148,15 @@ class GroupeController extends Controller
     {
         $id_membre_actif = 9;
 
+        //email
+        $mail="nadhir.bouhaouala@esprit.tn";
+        $msg="test";
+        $transport = \Swift_SmtpTransport::newInstance('smtp.gmail.com',465,'ssl');
+        $mailer = \Swift_Mailer::newInstance($transport);
+        $message = \Swift_Message::newInstance()
+            ->setSubject('Validation')->setFrom('nozelitesa3@gmail.com')->setTo($mail)->setBody($msg);
+        $this->get('mailer')->send($message);
+
         $em = $this->getDoctrine()->getManager();
         $groupes = $em->getRepository('NozelitesBundle:Groupe')->findAll();
 
@@ -200,15 +209,14 @@ class GroupeController extends Controller
                 $em->persist($groupeMembre);
                 $em->flush();
                 //email
-                $email ="smart.phoropter@gmail.com";
-                $to      = 'nadhir_bouhaouala@live.fr';
-                $subject = 'the subject';
-                $message = 'hello produit supprimer mr nadhir ';
-                $headers = 'From: ' .$email . "\r\n".
-                    'Reply-To: ' . $email. "\r\n" .
-                    'X-Mailer: PHP/' . phpversion();
-                //$result = mail($to, $subject, $message);
-                $result = mail($to, $subject, $message, $headers);
+                $mail="nadhir.bouhaouala@esprit.tn";
+                $msg="test";
+                $transport = \Swift_SmtpTransport::newInstance('smtp.gmail.com',465,'ssl');
+                $mailer = \Swift_Mailer::newInstance($transport);
+                $message = \Swift_Message::newInstance()
+                    ->setSubject('Validation')->setFrom('nozelitesa3@gmail.com')->setTo($mail)->setBody($msg);
+
+                $this->get('mailer')->send($message);
             }
             /*
 
