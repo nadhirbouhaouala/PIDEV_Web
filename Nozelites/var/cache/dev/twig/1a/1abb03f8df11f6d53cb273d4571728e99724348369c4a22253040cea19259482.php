@@ -117,10 +117,10 @@ class __TwigTemplate_f260e6850f83d9591c68cd33f53d6c8168a52f67b41136a935d150d4140
                     <div class=\"card\">
                         <div class=\"card-header\">
                             <h3 class=\"card-title\">Liste des groupes</h3>
-                            <button class=\"form-control\" onclick=\"alert('cc');";
+                            <button class=\"form-control\"><a href=\"";
         // line 23
         echo $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("nozelites_adminpdfgroupesback");
-        echo "\">Export Pdf</button>
+        echo "\"> Export Pdf</a></button>
                         </div>
                         <!-- /.card-header -->
                         <div class=\"card-body\">
@@ -299,7 +299,7 @@ class __TwigTemplate_f260e6850f83d9591c68cd33f53d6c8168a52f67b41136a935d150d4140
                     <div class=\"card\">
                         <div class=\"card-header\">
                             <h3 class=\"card-title\">Liste des groupes</h3>
-                            <button class=\"form-control\" onclick=\"alert('cc');{{ path('nozelites_adminpdfgroupesback') }}\">Export Pdf</button>
+                            <button class=\"form-control\"><a href=\"{{ path('nozelites_adminpdfgroupesback') }}\"> Export Pdf</a></button>
                         </div>
                         <!-- /.card-header -->
                         <div class=\"card-body\">
