@@ -145,6 +145,52 @@ class appDevDebugProjectContainerUrlMatcher extends Symfony\Bundle\FrameworkBund
 
         }
 
+        elseif (0 === strpos($pathinfo, '/reclamation')) {
+            // reclamation_homepage
+            if ('/reclamation/index' === $pathinfo) {
+                return array (  '_controller' => 'ReclamationBundle\\Controller\\DefaultController::indexAction',  '_route' => 'reclamation_homepage',);
+            }
+
+            if (0 === strpos($pathinfo, '/reclamation/AjoutReclamation')) {
+                // Ajouter
+                if ('/reclamation/AjoutReclamation' === $pathinfo) {
+                    return array (  '_controller' => 'ReclamationBundle\\Controller\\ReclamationController::AjouterAction',  '_route' => 'Ajouter',);
+                }
+
+                // Ajouter1
+                if ('/reclamation/AjoutReclamation1' === $pathinfo) {
+                    return array (  '_controller' => 'ReclamationBundle\\Controller\\ReclamationController::Ajouter1Action',  '_route' => 'Ajouter1',);
+                }
+
+            }
+
+            // reclamation_show
+            if ('/reclamation/AfficheReclamation' === $pathinfo) {
+                return array (  '_controller' => 'ReclamationBundle\\Controller\\ReclamationController::AfficheRecAction',  '_route' => 'reclamation_show',);
+            }
+
+            // Delete
+            if (0 === strpos($pathinfo, '/reclamation/DeleteReclamation') && preg_match('#^/reclamation/DeleteReclamation/(?P<id>[^/]++)$#sD', $pathinfo, $matches)) {
+                return $this->mergeDefaults(array_replace($matches, ['_route' => 'Delete']), array (  '_controller' => 'ReclamationBundle\\Controller\\ReclamationController::DeleteAction',));
+            }
+
+            // Deleteback
+            if (0 === strpos($pathinfo, '/reclamation/DeleteBack') && preg_match('#^/reclamation/DeleteBack/(?P<id>[^/]++)$#sD', $pathinfo, $matches)) {
+                return $this->mergeDefaults(array_replace($matches, ['_route' => 'Deleteback']), array (  '_controller' => 'ReclamationBundle\\Controller\\ReclamationController::DeletebackAction',));
+            }
+
+            // Update
+            if (0 === strpos($pathinfo, '/reclamation/UpdateReclamation') && preg_match('#^/reclamation/UpdateReclamation/(?P<id>[^/]++)$#sD', $pathinfo, $matches)) {
+                return $this->mergeDefaults(array_replace($matches, ['_route' => 'Update']), array (  '_controller' => 'ReclamationBundle\\Controller\\ReclamationController::UpdateAction',));
+            }
+
+            // Traiter
+            if (0 === strpos($pathinfo, '/reclamation/TraiterReclamation') && preg_match('#^/reclamation/TraiterReclamation/(?P<id>[^/]++)$#sD', $pathinfo, $matches)) {
+                return $this->mergeDefaults(array_replace($matches, ['_route' => 'Traiter']), array (  '_controller' => 'ReclamationBundle\\Controller\\ReclamationController::TraiterAction',));
+            }
+
+        }
+
         elseif (0 === strpos($pathinfo, '/groupe')) {
             if (0 === strpos($pathinfo, '/groupemembre')) {
                 // groupemembre_index

@@ -1,0 +1,75 @@
+{% extends '@Reclamation/baseback.html.twig' %}
+{% block content %}
+<div class="col-12">
+    <div class="card">
+        <div class="card-header">
+            <h3 class="card-title">Responsive Hover Table</h3>
+
+            <div class="card-tools">
+                <div class="input-group input-group-sm" style="width: 150px;">
+                    <input type="text" name="table_search" class="form-control float-right" placeholder="Search">
+
+                    <div class="input-group-append">
+                        <button type="submit" class="btn btn-default"><i class="fas fa-search"></i></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /.card-header -->
+        <div class="card-body table-responsive p-0" >
+            <table class="table table-hover text-nowrap">
+                <thead>
+                <tr>
+                <tr>
+                    <th>ID</th>
+                    <th>Nom</th>
+                    <th>Prenom</th>
+                    <th>Titre</th>
+                    <th>Description</th>
+                    <th>Etat</th>
+                    <th>Selecteur</th>
+                    <th>Date de la Réclamation</th>
+                    <th>Delete</th>
+                    <th>Update</th>
+
+
+                </tr>
+                </tr>
+                </thead>
+                <tbody>
+                {% for rec in R %}
+                    <tr>
+                        <td>{{ rec.idrecl }}</td>
+                        <td>{{ rec.IdEmeteur.nom }}</td>
+                        <td>{{ rec.IdEmeteur.prenom}}</td>
+
+                        {% if rec.selecteur == "groupe" %}
+                            {% for groupe in groupes if groupe.idGroupe ==  rec.idCible %}
+                                <td data-label="Column 1">{{ groupe.titre }}</td>
+                            {% endfor %}
+                        {% elseif rec.selecteur == "event"  %}
+                            {% for event in evenements if event.ide ==  rec.idCible %}
+                                <td data-label="Column 1">{{ event.nom }}</td>
+                            {% endfor %}
+                            {% else %}
+                                {% for pub in pubs if pub.id ==  rec.idCible %}
+                                    <td data-label="Column 1">{{ pub.titre }}</td>
+                                {% endfor %}
+                        {% endif %}
+                        <td data-label="Column 1">{{ rec.description }}</td>
+                        <td data-label="Column 2">{{ rec.etat }}</td>
+                        <td data-label="Column 3">{{ rec.selecteur}}</td>
+                        <td data-label="Column 3"> {{  rec.date|date('Y-m-d H:i:s') }}</td>
+                        <td> <a href="{{ path('Deleteback',{'id':rec.idRecl}) }}" class="btn btn-primary">Delete</a></td>
+                        <td> <a href="{{ path('Traiter',{'id':rec.idRecl}) }}" class="button dark ripple-effect">Update</a></td>
+
+
+                    </tr>
+                {% endfor %}
+            </table>
+        </div>
+        <!-- /.card-body -->
+    </div>
+    <!-- /.card -->
+</div>
+{% endblock %}
