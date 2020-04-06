@@ -64,8 +64,11 @@ nozelites_admingroupemodifierback:
     path:     /backadmingroupe/modifier/{id}
     defaults: { _controller: NozelitesBundle:Groupe:modifiergroupeadmin}
 nozelites_adminbloquermembreback:
-    path:     /frontbloquermembre/{id}/{idmembre}
+    path:     /backbloquermembre/{id}/{idmembre}
     defaults: { _controller: NozelitesBundle:Groupe:bloquermembreadmin }
 nozelites_admindebloquermembreback:
-    path:     /frontdebloquermembre/{id}/{idmembre}
+    path:     /backdebloquermembre/{id}/{idmembre}
     defaults: { _controller: NozelitesBundle:Groupe:debloquermembreadmin }
+nozelites_adminpdfgroupesback:
+    path:     /backpdfgroupes
+    defaults: { _controller: NozelitesBundle:Groupe:pdfGroupes }

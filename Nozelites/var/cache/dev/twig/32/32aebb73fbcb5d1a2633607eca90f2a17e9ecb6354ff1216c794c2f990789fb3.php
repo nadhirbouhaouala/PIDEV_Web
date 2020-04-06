@@ -196,6 +196,6 @@ class __TwigTemplate_44980caf6df36d47e2fabb23ecd9405c4f63dfc40d83d29ebaf4c4d3566
         })|raw }}
     </div>
 {% endif %}
-", "@Twig/Exception/trace.html.twig", "C:\\wamp64\\www\\PIDEV_Web\\Nozelites\\vendor\\symfony\\symfony\\src\\Symfony\\Bundle\\TwigBundle\\Resources\\views\\Exception\\trace.html.twig");
+", "@Twig/Exception/trace.html.twig", "C:\\wamp64\\www\\3.2\\PIDEV\\PIDEV_Web\\Nozelites\\vendor\\symfony\\symfony\\src\\Symfony\\Bundle\\TwigBundle\\Resources\\views\\Exception\\trace.html.twig");
     }
 }

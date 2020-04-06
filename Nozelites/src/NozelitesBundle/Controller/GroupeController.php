@@ -8,6 +8,7 @@ use NozelitesBundle\Entity\Membre;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 /**
  * Groupe controller.
@@ -540,6 +541,33 @@ class GroupeController extends Controller
         return $this->redirectToRoute('nozelites_admingroupeafficherback',array('id'=>$id->getIdGroupe()));
     }
 
+    public function pdfGroupesAction(Request $request)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $groupes = $em->getRepository('NozelitesBundle:Groupe')->findAll();
+
+        $snappy = $this->get('knp_snappy.pdf');
+        $filename = 'myFirstSnappyPDF';
+        $url = 'http://ourcodeworld.com';
+
+
+        return new Response(
+            $snappy->getOutput($url),
+            200,
+            array(
+                'Content-Type'          => 'application/pdf',
+                'Content-Disposition'   => 'inline; filename="'.$filename.'.pdf"'
+            )
+        );
+        /*$this->get('knp_snappy.pdf')
+            ->setOption("encoding",'UTF-8')
+            ->generateFromHtml(
+            $this->renderView('@Nozelites/Back/AdminGroupes.html.twig',
+                array('groupes' => $groupes)
+            ),
+            '/path/to/the/file.pdf'
+        );*/
+    }
 
 
 }

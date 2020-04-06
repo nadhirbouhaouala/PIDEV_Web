@@ -20,6 +20,7 @@ class AppKernel extends Kernel
             new NozelitesBundle\NozelitesBundle(),
             new OffreBundle\OffreBundle(),
             new ReclamationBundle\ReclamationBundle(),
+            new Knp\Bundle\SnappyBundle\KnpSnappyBundle(),
         ];
 
         if (in_array($this->getEnvironment(), ['dev', 'test'], true)) {
