@@ -1,0 +1,15 @@
+{% extends '@Nozelites/basefrontmembre.html.twig' %}
+
+{% block titre %}{{ parent() }} - Event add {% endblock %}
+{% block content %}
+    {{ form_start(form) }}
+
+    {{ form_widget(form) }}
+    <input type="submit" value="Edit" class="uploadButton-button ripple-effect" />
+    <div class="uploadButton margin-top-30">
+
+
+
+    </div>
+    {{ form_end(form) }}
+{% endblock %}

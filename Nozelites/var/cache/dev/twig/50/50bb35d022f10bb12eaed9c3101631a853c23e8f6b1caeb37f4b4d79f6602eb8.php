@@ -423,7 +423,10 @@ class __TwigTemplate_6839bfac3468e9f06d58d8b71ab5f4885b124537418b54bf1ffdee1eb48
                                 </a>
                             </li>
                             <li class=\"nav-item\">
-                                <a href=\"pages/widgets.html\" class=\"nav-link\">
+                                <a href=\"";
+        // line 231
+        echo $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("nozelites_adminEvenementback");
+        echo "\" class=\"nav-link\">
                                     <i class=\"nav-icon fas fa-th\"></i>
                                     <p>
                                         Evénements
@@ -628,7 +631,7 @@ class __TwigTemplate_6839bfac3468e9f06d58d8b71ab5f4885b124537418b54bf1ffdee1eb48
 
     public function getDebugInfo()
     {
-        return array (  608 => 310,  603 => 308,  598 => 306,  593 => 304,  588 => 302,  583 => 300,  578 => 298,  574 => 297,  569 => 295,  564 => 293,  560 => 292,  555 => 290,  550 => 288,  545 => 286,  536 => 280,  531 => 278,  528 => 277,  519 => 276,  502 => 258,  493 => 257,  482 => 254,  473 => 253,  457 => 266,  455 => 257,  452 => 256,  450 => 253,  401 => 207,  382 => 191,  355 => 167,  349 => 163,  340 => 162,  208 => 38,  199 => 37,  187 => 273,  185 => 162,  182 => 161,  180 => 37,  176 => 35,  167 => 34,  153 => 27,  148 => 25,  143 => 23,  138 => 21,  133 => 19,  128 => 17,  123 => 15,  118 => 13,  113 => 11,  110 => 10,  101 => 9,  83 => 8,  71 => 312,  68 => 276,  66 => 34,  59 => 31,  57 => 9,  53 => 8,  44 => 1,);
+        return array (  611 => 310,  606 => 308,  601 => 306,  596 => 304,  591 => 302,  586 => 300,  581 => 298,  577 => 297,  572 => 295,  567 => 293,  563 => 292,  558 => 290,  553 => 288,  548 => 286,  539 => 280,  534 => 278,  531 => 277,  522 => 276,  505 => 258,  496 => 257,  485 => 254,  476 => 253,  460 => 266,  458 => 257,  455 => 256,  453 => 253,  428 => 231,  401 => 207,  382 => 191,  355 => 167,  349 => 163,  340 => 162,  208 => 38,  199 => 37,  187 => 273,  185 => 162,  182 => 161,  180 => 37,  176 => 35,  167 => 34,  153 => 27,  148 => 25,  143 => 23,  138 => 21,  133 => 19,  128 => 17,  123 => 15,  118 => 13,  113 => 11,  110 => 10,  101 => 9,  83 => 8,  71 => 312,  68 => 276,  66 => 34,  59 => 31,  57 => 9,  53 => 8,  44 => 1,);
     }
 
     /** @deprecated since 1.27 (to be removed in 2.0). Use getSourceContext() instead */
@@ -871,7 +874,7 @@ class __TwigTemplate_6839bfac3468e9f06d58d8b71ab5f4885b124537418b54bf1ffdee1eb48
                                 </a>
                             </li>
                             <li class=\"nav-item\">
-                                <a href=\"pages/widgets.html\" class=\"nav-link\">
+                                <a href=\"{{ path(\"nozelites_adminEvenementback\") }}\" class=\"nav-link\">
                                     <i class=\"nav-icon fas fa-th\"></i>
                                     <p>
                                         Evénements
@@ -954,6 +957,6 @@ class __TwigTemplate_6839bfac3468e9f06d58d8b71ab5f4885b124537418b54bf1ffdee1eb48
         {% endblock %}
     </body>
 </html>
-", "@Nozelites/baseback.html.twig", "C:\\wamp64\\www\\3.2\\PIDEV\\PIDEV_Web\\Nozelites\\src\\NozelitesBundle\\Resources\\views\\baseback.html.twig");
+", "@Nozelites/baseback.html.twig", "C:\\wamp64\\www\\PIDEV_Web\\Nozelites\\src\\NozelitesBundle\\Resources\\views\\baseback.html.twig");
     }
 }
