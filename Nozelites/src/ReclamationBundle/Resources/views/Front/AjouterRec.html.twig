@@ -62,19 +62,28 @@
                         <br>
                         <form action="{{ path('Ajouter1') }}" method="post" id="mainform">
 
+
                            <label>selecteur</label>
                             <select name="selecteur" class="selectpicker">
+
+
                                 <option value="groupe">Groupe</option>
                                 <option value="event">Event</option>
                             </select>
-                            <label>Description</label>
-                            <input type="text" name="description" class="with-border" value="">
+
+{#                            <label>Description</label>#}
+{#                            <input type="text" name="description" class="with-border" value="">#}
+                                <div>
+                                    <textarea class="with-border" name="description" cols="40" rows="5" id="comments" placeholder="Message" spellcheck="true" required="required"></textarea>
+                                </div>
+
                             <input type="hidden" name="id_cible">
                             <input type="hidden" name="id_emetteur">
 
                             <br>
 
                             <input type="submit"  value="Create" />
+
                         </form>
 
                     </div>

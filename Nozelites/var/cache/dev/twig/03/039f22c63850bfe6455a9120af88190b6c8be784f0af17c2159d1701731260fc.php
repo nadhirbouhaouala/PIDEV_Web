@@ -122,19 +122,28 @@ class __TwigTemplate_e368b1cbefe22a790606d9e4f2512a5f640e62cabee90f9ce8224b8c3c4
         echo $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("Ajouter1");
         echo "\" method=\"post\" id=\"mainform\">
 
+
                            <label>selecteur</label>
                             <select name=\"selecteur\" class=\"selectpicker\">
+
+
                                 <option value=\"groupe\">Groupe</option>
                                 <option value=\"event\">Event</option>
                             </select>
-                            <label>Description</label>
-                            <input type=\"text\" name=\"description\" class=\"with-border\" value=\"\">
+
+";
+        // line 76
+        echo "                                <div>
+                                    <textarea class=\"with-border\" name=\"description\" cols=\"40\" rows=\"5\" id=\"comments\" placeholder=\"Message\" spellcheck=\"true\" required=\"required\"></textarea>
+                                </div>
+
                             <input type=\"hidden\" name=\"id_cible\">
                             <input type=\"hidden\" name=\"id_emetteur\">
 
                             <br>
 
                             <input type=\"submit\"  value=\"Create\" />
+                      
                         </form>
 
                     </div>
@@ -166,7 +175,7 @@ class __TwigTemplate_e368b1cbefe22a790606d9e4f2512a5f640e62cabee90f9ce8224b8c3c4
 
     public function getDebugInfo()
     {
-        return array (  122 => 63,  60 => 3,  51 => 2,  29 => 1,);
+        return array (  136 => 76,  122 => 63,  60 => 3,  51 => 2,  29 => 1,);
     }
 
     /** @deprecated since 1.27 (to be removed in 2.0). Use getSourceContext() instead */
@@ -243,19 +252,28 @@ class __TwigTemplate_e368b1cbefe22a790606d9e4f2512a5f640e62cabee90f9ce8224b8c3c4
                         <br>
                         <form action=\"{{ path('Ajouter1') }}\" method=\"post\" id=\"mainform\">
 
+
                            <label>selecteur</label>
                             <select name=\"selecteur\" class=\"selectpicker\">
+
+
                                 <option value=\"groupe\">Groupe</option>
                                 <option value=\"event\">Event</option>
                             </select>
-                            <label>Description</label>
-                            <input type=\"text\" name=\"description\" class=\"with-border\" value=\"\">
+
+{#                            <label>Description</label>#}
+{#                            <input type=\"text\" name=\"description\" class=\"with-border\" value=\"\">#}
+                                <div>
+                                    <textarea class=\"with-border\" name=\"description\" cols=\"40\" rows=\"5\" id=\"comments\" placeholder=\"Message\" spellcheck=\"true\" required=\"required\"></textarea>
+                                </div>
+
                             <input type=\"hidden\" name=\"id_cible\">
                             <input type=\"hidden\" name=\"id_emetteur\">
 
                             <br>
 
                             <input type=\"submit\"  value=\"Create\" />
+                      
                         </form>
 
                     </div>

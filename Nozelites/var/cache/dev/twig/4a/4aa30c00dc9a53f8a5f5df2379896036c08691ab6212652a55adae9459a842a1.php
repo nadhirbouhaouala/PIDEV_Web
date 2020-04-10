@@ -77,34 +77,35 @@ class __TwigTemplate_82126cf6b6119ee441ab9458331f6fedac75b59e84dc49f14ae8b548f79
                         <th>Date de la Réclamation</th>
                         <th>Delete</th>
                         <th>Update</th>
+                        <th>Note</th>
 
                     </tr>
                     ";
-        // line 25
+        // line 26
         $context['_parent'] = $context;
         $context['_seq'] = twig_ensure_traversable(($context["R"] ?? $this->getContext($context, "R")));
         foreach ($context['_seq'] as $context["_key"] => $context["rec"]) {
-            // line 26
+            // line 27
             echo "                    <tr>
                         <td>";
-            // line 27
+            // line 28
             echo twig_escape_filter($this->env, $this->getAttribute($this->getAttribute($context["rec"], "IdEmeteur", []), "nom", []), "html", null, true);
             echo "</td>
                         <td>";
-            // line 28
+            // line 29
             echo twig_escape_filter($this->env, $this->getAttribute($this->getAttribute($context["rec"], "IdEmeteur", []), "prenom", []), "html", null, true);
             echo "</td>
 
                         ";
-            // line 30
+            // line 31
             if (($this->getAttribute($context["rec"], "selecteur", []) == "groupe")) {
-                // line 31
+                // line 32
                 echo "                            ";
                 $context['_parent'] = $context;
                 $context['_seq'] = twig_ensure_traversable(($context["groupes"] ?? $this->getContext($context, "groupes")));
                 foreach ($context['_seq'] as $context["_key"] => $context["groupe"]) {
                     if (($this->getAttribute($context["groupe"], "idGroupe", []) == $this->getAttribute($context["rec"], "idCible", []))) {
-                        // line 32
+                        // line 33
                         echo "                                <td data-label=\"Column 1\">";
                         echo twig_escape_filter($this->env, $this->getAttribute($context["groupe"], "titre", []), "html", null, true);
                         echo "</td>
@@ -114,16 +115,16 @@ class __TwigTemplate_82126cf6b6119ee441ab9458331f6fedac75b59e84dc49f14ae8b548f79
                 $_parent = $context['_parent'];
                 unset($context['_seq'], $context['_iterated'], $context['_key'], $context['groupe'], $context['_parent'], $context['loop']);
                 $context = array_intersect_key($context, $_parent) + $_parent;
-                // line 34
+                // line 35
                 echo "                        ";
             } else {
-                // line 35
+                // line 36
                 echo "                            ";
                 $context['_parent'] = $context;
                 $context['_seq'] = twig_ensure_traversable(($context["evenements"] ?? $this->getContext($context, "evenements")));
                 foreach ($context['_seq'] as $context["_key"] => $context["event"]) {
                     if (($this->getAttribute($context["event"], "ide", []) == $this->getAttribute($context["rec"], "idCible", []))) {
-                        // line 36
+                        // line 37
                         echo "                                <td data-label=\"Column 1\">";
                         echo twig_escape_filter($this->env, $this->getAttribute($context["event"], "nom", []), "html", null, true);
                         echo "</td>
@@ -133,41 +134,50 @@ class __TwigTemplate_82126cf6b6119ee441ab9458331f6fedac75b59e84dc49f14ae8b548f79
                 $_parent = $context['_parent'];
                 unset($context['_seq'], $context['_iterated'], $context['_key'], $context['event'], $context['_parent'], $context['loop']);
                 $context = array_intersect_key($context, $_parent) + $_parent;
-                // line 38
+                // line 39
                 echo "                        ";
             }
-            // line 39
+            // line 40
             echo "                        <td data-label=\"Column 1\">";
             echo twig_escape_filter($this->env, $this->getAttribute($context["rec"], "description", []), "html", null, true);
             echo "</td>
                         <td data-label=\"Column 2\">";
-            // line 40
+            // line 41
             echo twig_escape_filter($this->env, $this->getAttribute($context["rec"], "etat", []), "html", null, true);
             echo "</td>
                         <td data-label=\"Column 3\">";
-            // line 41
+            // line 42
             echo twig_escape_filter($this->env, $this->getAttribute($context["rec"], "selecteur", []), "html", null, true);
             echo "</td>
                         <td data-label=\"Column 3\"> ";
-            // line 42
+            // line 43
             echo twig_escape_filter($this->env, twig_date_format_filter($this->env, $this->getAttribute($context["rec"], "date", []), "Y-m-d H:i:s"), "html", null, true);
             echo "</td>
                        <td> <a href=\"";
-            // line 43
+            // line 44
             echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("Delete", ["id" => $this->getAttribute($context["rec"], "idRecl", [])]), "html", null, true);
             echo "\" class=\"button ripple-effect\">Delete</a></td>
                        <td> <a href=\"";
-            // line 44
+            // line 45
             echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("Update", ["id" => $this->getAttribute($context["rec"], "idRecl", [])]), "html", null, true);
             echo "\" class=\"button dark ripple-effect\">Update</a></td>
-
-                    </tr>
+                        ";
+            // line 46
+            if (($this->getAttribute($context["rec"], "etat", []) == 1)) {
+                // line 47
+                echo "                        <td>  <a href=\"";
+                echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("AjouterNote", ["id" => $this->getAttribute($context["rec"], "idRecl", [])]), "html", null, true);
+                echo "\" class=\"button dark ripple-effect\">Note</a></td>
+                        ";
+            }
+            // line 49
+            echo "                    </tr>
                     ";
         }
         $_parent = $context['_parent'];
         unset($context['_seq'], $context['_iterated'], $context['_key'], $context['rec'], $context['_parent'], $context['loop']);
         $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 48
+        // line 51
         echo "                </table>
             </div>
 
@@ -197,7 +207,7 @@ class __TwigTemplate_82126cf6b6119ee441ab9458331f6fedac75b59e84dc49f14ae8b548f79
 
     public function getDebugInfo()
     {
-        return array (  171 => 48,  161 => 44,  157 => 43,  153 => 42,  149 => 41,  145 => 40,  140 => 39,  137 => 38,  127 => 36,  121 => 35,  118 => 34,  108 => 32,  102 => 31,  100 => 30,  95 => 28,  91 => 27,  88 => 26,  84 => 25,  60 => 3,  51 => 2,  29 => 1,);
+        return array (  181 => 51,  174 => 49,  168 => 47,  166 => 46,  162 => 45,  158 => 44,  154 => 43,  150 => 42,  146 => 41,  141 => 40,  138 => 39,  128 => 37,  122 => 36,  119 => 35,  109 => 33,  103 => 32,  101 => 31,  96 => 29,  92 => 28,  89 => 27,  85 => 26,  60 => 3,  51 => 2,  29 => 1,);
     }
 
     /** @deprecated since 1.27 (to be removed in 2.0). Use getSourceContext() instead */
@@ -232,6 +242,7 @@ class __TwigTemplate_82126cf6b6119ee441ab9458331f6fedac75b59e84dc49f14ae8b548f79
                         <th>Date de la Réclamation</th>
                         <th>Delete</th>
                         <th>Update</th>
+                        <th>Note</th>
 
                     </tr>
                     {% for rec in R %}
@@ -254,7 +265,9 @@ class __TwigTemplate_82126cf6b6119ee441ab9458331f6fedac75b59e84dc49f14ae8b548f79
                         <td data-label=\"Column 3\"> {{  rec.date|date('Y-m-d H:i:s') }}</td>
                        <td> <a href=\"{{ path('Delete',{'id':rec.idRecl}) }}\" class=\"button ripple-effect\">Delete</a></td>
                        <td> <a href=\"{{ path('Update',{'id':rec.idRecl}) }}\" class=\"button dark ripple-effect\">Update</a></td>
-
+                        {% if rec.etat == 1 %}
+                        <td>  <a href=\"{{ path('AjouterNote',{'id':rec.idRecl}) }}\" class=\"button dark ripple-effect\">Note</a></td>
+                        {% endif %}
                     </tr>
                     {% endfor %}
                 </table>

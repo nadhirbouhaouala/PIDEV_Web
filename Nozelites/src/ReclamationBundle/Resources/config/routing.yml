@@ -18,7 +18,7 @@ Update:
     path:     /UpdateReclamation/{id}
     defaults: { _controller: ReclamationBundle:Reclamation:Update }
 
-nozelites_homepageback:
+nozelites_homepagebac:
     path:     /back
     defaults: { _controller: ReclamationBundle:Reclamation:AfficheRec1 }
 
@@ -33,3 +33,7 @@ Traiter:
 Deleteback:
     path:     /DeleteBack/{id}
     defaults: { _controller: ReclamationBundle:Reclamation:Deleteback }
+
+AjouterNote:
+    path:     /AjoutNote/{id}
+    defaults: { _controller: ReclamationBundle:Evaluation:AjoutNote }
