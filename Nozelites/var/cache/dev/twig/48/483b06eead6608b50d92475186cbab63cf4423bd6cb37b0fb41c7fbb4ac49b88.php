@@ -61,13 +61,13 @@ class __TwigTemplate_c8618bef3396a84d08526b8319854a8f1ec5e9870d5127608b4386ab78a
 ";
         // line 14
         $this->displayBlock('body', $context, $blocks);
-        // line 494
+        // line 496
         echo "<!-- Scripts
 ================================================== -->
 ";
-        // line 496
+        // line 498
         $this->displayBlock('javascripts', $context, $blocks);
-        // line 552
+        // line 554
         echo "</body>
 </html>
 ";
@@ -141,20 +141,20 @@ class __TwigTemplate_c8618bef3396a84d08526b8319854a8f1ec5e9870d5127608b4386ab78a
         ";
         // line 20
         $this->displayBlock('header', $context, $blocks);
-        // line 327
+        // line 329
         echo "        <!-- Header Container / End -->
 
         ";
-        // line 329
+        // line 331
         $this->displayBlock('content', $context, $blocks);
-        // line 330
+        // line 332
         echo "
         <!-- Footer
         ================================================== -->
         ";
-        // line 333
+        // line 335
         $this->displayBlock('footer', $context, $blocks);
-        // line 489
+        // line 491
         echo "        <!-- Footer / End -->
 
     </div>
@@ -278,12 +278,23 @@ class __TwigTemplate_c8618bef3396a84d08526b8319854a8f1ec5e9870d5127608b4386ab78a
                                         </ul>
                                     </li>
 
-                                    <li><a href=\"#\">Evenements</a>
+                                    <li><a href=\"";
+        // line 110
+        echo $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("nozelites_AllEvenementfront");
+        echo "\">Evenements</a>
                                         <ul class=\"dropdown-nav\">
                                             <li><a href=\"";
         // line 112
         echo $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("nozelites_Evenementajouterfront");
         echo "\">creer</a></li>
+                                            <li><a href=\"";
+        // line 113
+        echo $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("nozelites_Evenementafficherfront");
+        echo "\">Mes Evenements</a></li>
+                                            <li><a href=\"";
+        // line 114
+        echo $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("nozelites_AllEvenementfront");
+        echo "\">All</a></li>
                                         </ul>
                                     </li>
 
@@ -506,7 +517,7 @@ class __TwigTemplate_c8618bef3396a84d08526b8319854a8f1ec5e9870d5127608b4386ab78a
 
     }
 
-    // line 329
+    // line 331
     public function block_content($context, array $blocks = [])
     {
         $__internal_085b0142806202599c7fe3b329164a92397d8978207a37e79d70b8c52599e33e = $this->env->getExtension("Symfony\\Bundle\\WebProfilerBundle\\Twig\\WebProfilerExtension");
@@ -523,7 +534,7 @@ class __TwigTemplate_c8618bef3396a84d08526b8319854a8f1ec5e9870d5127608b4386ab78a
 
     }
 
-    // line 333
+    // line 335
     public function block_footer($context, array $blocks = [])
     {
         $__internal_085b0142806202599c7fe3b329164a92397d8978207a37e79d70b8c52599e33e = $this->env->getExtension("Symfony\\Bundle\\WebProfilerBundle\\Twig\\WebProfilerExtension");
@@ -532,7 +543,7 @@ class __TwigTemplate_c8618bef3396a84d08526b8319854a8f1ec5e9870d5127608b4386ab78a
         $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02 = $this->env->getExtension("Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension");
         $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02->enter($__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "footer"));
 
-        // line 334
+        // line 336
         echo "            <div id=\"footer\">
 
                 <!-- Footer Top Section -->
@@ -696,7 +707,7 @@ class __TwigTemplate_c8618bef3396a84d08526b8319854a8f1ec5e9870d5127608b4386ab78a
 
     }
 
-    // line 496
+    // line 498
     public function block_javascripts($context, array $blocks = [])
     {
         $__internal_085b0142806202599c7fe3b329164a92397d8978207a37e79d70b8c52599e33e = $this->env->getExtension("Symfony\\Bundle\\WebProfilerBundle\\Twig\\WebProfilerExtension");
@@ -705,56 +716,56 @@ class __TwigTemplate_c8618bef3396a84d08526b8319854a8f1ec5e9870d5127608b4386ab78a
         $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02 = $this->env->getExtension("Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension");
         $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02->enter($__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "javascripts"));
 
-        // line 497
+        // line 499
         echo "    <script src=\"";
         echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\AssetExtension')->getAssetUrl("js/jquery-3.3.1.min.js"), "html", null, true);
         echo "\"></script>
     <script src=\"";
-        // line 498
+        // line 500
         echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\AssetExtension')->getAssetUrl("js/jquery-migrate-3.0.0.min.js"), "html", null, true);
         echo "\"></script>
     <script src=\"";
-        // line 499
+        // line 501
         echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\AssetExtension')->getAssetUrl("js/mmenu.min.js"), "html", null, true);
         echo "\"></script>
     <script src=\"";
-        // line 500
+        // line 502
         echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\AssetExtension')->getAssetUrl("js/tippy.all.min.js"), "html", null, true);
         echo "\"></script>
     <script src=\"";
-        // line 501
+        // line 503
         echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\AssetExtension')->getAssetUrl("js/simplebar.min.js"), "html", null, true);
         echo "\"></script>
     <script src=\"";
-        // line 502
+        // line 504
         echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\AssetExtension')->getAssetUrl("js/bootstrap-slider.min.js"), "html", null, true);
         echo "\"></script>
     <script src=\"";
-        // line 503
+        // line 505
         echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\AssetExtension')->getAssetUrl("js/bootstrap-select.min.js"), "html", null, true);
         echo "\"></script>
     <script src=\"";
-        // line 504
+        // line 506
         echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\AssetExtension')->getAssetUrl("js/snackbar.js"), "html", null, true);
         echo "\"></script>
     <script src=\"";
-        // line 505
+        // line 507
         echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\AssetExtension')->getAssetUrl("js/clipboard.min.js"), "html", null, true);
         echo "\"></script>
     <script src=\"";
-        // line 506
+        // line 508
         echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\AssetExtension')->getAssetUrl("js/counterup.min.js"), "html", null, true);
         echo "\"></script>
     <script src=\"";
-        // line 507
+        // line 509
         echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\AssetExtension')->getAssetUrl("js/magnific-popup.min.js"), "html", null, true);
         echo "\"></script>
     <script src=\"";
-        // line 508
+        // line 510
         echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\AssetExtension')->getAssetUrl("js/slick.min.js"), "html", null, true);
         echo "\"></script>
     <script src=\"";
-        // line 509
+        // line 511
         echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\AssetExtension')->getAssetUrl("js/custom.js"), "html", null, true);
         echo "\"></script>
 
@@ -819,7 +830,7 @@ class __TwigTemplate_c8618bef3396a84d08526b8319854a8f1ec5e9870d5127608b4386ab78a
 
     public function getDebugInfo()
     {
-        return array (  758 => 509,  754 => 508,  750 => 507,  746 => 506,  742 => 505,  738 => 504,  734 => 503,  730 => 502,  726 => 501,  722 => 500,  718 => 499,  714 => 498,  709 => 497,  700 => 496,  536 => 334,  527 => 333,  510 => 329,  285 => 112,  262 => 92,  257 => 90,  195 => 33,  181 => 21,  172 => 20,  158 => 489,  156 => 333,  151 => 330,  149 => 329,  145 => 327,  143 => 20,  136 => 15,  127 => 14,  115 => 9,  110 => 8,  101 => 7,  83 => 6,  71 => 552,  69 => 496,  65 => 494,  63 => 14,  56 => 11,  54 => 7,  50 => 6,  43 => 1,);
+        return array (  769 => 511,  765 => 510,  761 => 509,  757 => 508,  753 => 507,  749 => 506,  745 => 505,  741 => 504,  737 => 503,  733 => 502,  729 => 501,  725 => 500,  720 => 499,  711 => 498,  547 => 336,  538 => 335,  521 => 331,  296 => 114,  292 => 113,  288 => 112,  283 => 110,  262 => 92,  257 => 90,  195 => 33,  181 => 21,  172 => 20,  158 => 491,  156 => 335,  151 => 332,  149 => 331,  145 => 329,  143 => 20,  136 => 15,  127 => 14,  115 => 9,  110 => 8,  101 => 7,  83 => 6,  71 => 554,  69 => 498,  65 => 496,  63 => 14,  56 => 11,  54 => 7,  50 => 6,  43 => 1,);
     }
 
     /** @deprecated since 1.27 (to be removed in 2.0). Use getSourceContext() instead */
@@ -941,9 +952,11 @@ class __TwigTemplate_c8618bef3396a84d08526b8319854a8f1ec5e9870d5127608b4386ab78a
                                         </ul>
                                     </li>
 
-                                    <li><a href=\"#\">Evenements</a>
+                                    <li><a href=\"{{ path('nozelites_AllEvenementfront')}}\">Evenements</a>
                                         <ul class=\"dropdown-nav\">
                                             <li><a href=\"{{ path('nozelites_Evenementajouterfront')}}\">creer</a></li>
+                                            <li><a href=\"{{ path('nozelites_Evenementafficherfront')}}\">Mes Evenements</a></li>
+                                            <li><a href=\"{{ path('nozelites_AllEvenementfront')}}\">All</a></li>
                                         </ul>
                                     </li>
 

@@ -77,24 +77,39 @@ class __TwigTemplate_5fc668c324be91606bb5687802aa74c411520dec189003249fbf32fb2d2
         $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02->enter($__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "content"));
 
         // line 5
-        echo "    ";
+        echo "    <div class=\"intro-banner\" data-background-image=\"images/home-background.jpg\">
+
+    <div class=\"container\">
+
+    <div class=\"row\">
+
+    <div class=\"col-xl-6 col-lg-6 content-left-offset\">
+    <h1> creation</h1>
+        <p></p>
+    ";
+        // line 14
         echo         $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->renderBlock(($context["form"] ?? $this->getContext($context, "form")), 'form_start');
         echo "
 
     ";
-        // line 7
+        // line 16
         echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(($context["form"] ?? $this->getContext($context, "form")), 'widget');
         echo "
-    <input type=\"submit\" value=\"Edit\" class=\"uploadButton-button ripple-effect\" />
+    <input type=\"submit\" value=\"Ajouter\" class=\"uploadButton-button ripple-effect\" />
     <div class=\"uploadButton margin-top-30\">
 
 
 
     </div>
     ";
-        // line 14
+        // line 23
         echo         $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->renderBlock(($context["form"] ?? $this->getContext($context, "form")), 'form_end');
         echo "
+    </div>
+    </div>
+    </div>
+    </div>
+
 ";
         
         $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02->leave($__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02_prof);
@@ -116,7 +131,7 @@ class __TwigTemplate_5fc668c324be91606bb5687802aa74c411520dec189003249fbf32fb2d2
 
     public function getDebugInfo()
     {
-        return array (  96 => 14,  86 => 7,  80 => 5,  71 => 4,  52 => 3,  30 => 1,);
+        return array (  106 => 23,  96 => 16,  91 => 14,  80 => 5,  71 => 4,  52 => 3,  30 => 1,);
     }
 
     /** @deprecated since 1.27 (to be removed in 2.0). Use getSourceContext() instead */
@@ -133,16 +148,30 @@ class __TwigTemplate_5fc668c324be91606bb5687802aa74c411520dec189003249fbf32fb2d2
 
 {% block titre %}{{ parent() }} - Event add {% endblock %}
 {% block content %}
+    <div class=\"intro-banner\" data-background-image=\"images/home-background.jpg\">
+
+    <div class=\"container\">
+
+    <div class=\"row\">
+
+    <div class=\"col-xl-6 col-lg-6 content-left-offset\">
+    <h1> creation</h1>
+        <p></p>
     {{ form_start(form) }}
 
     {{ form_widget(form) }}
-    <input type=\"submit\" value=\"Edit\" class=\"uploadButton-button ripple-effect\" />
+    <input type=\"submit\" value=\"Ajouter\" class=\"uploadButton-button ripple-effect\" />
     <div class=\"uploadButton margin-top-30\">
 
 
 
     </div>
     {{ form_end(form) }}
+    </div>
+    </div>
+    </div>
+    </div>
+
 {% endblock %}", "@Nozelites/Front/EvenementAjouter.html.twig", "C:\\wamp64\\www\\PIDEV_Web\\Nozelites\\src\\NozelitesBundle\\Resources\\views\\Front\\EvenementAjouter.html.twig");
     }
 }

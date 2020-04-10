@@ -88,7 +88,7 @@ class __TwigTemplate_6ff341da6020dc43ae9226a2d685d26e00b857aef2094657ca85d9093d5
 
                     <!-- Section Headline -->
                     <div class=\"section-headline margin-top-60 margin-bottom-35\">
-                        <h4>Recent Posts</h4>
+                        <h4>Mes evenements</h4>
                     </div>
                     ";
         // line 17
@@ -96,48 +96,52 @@ class __TwigTemplate_6ff341da6020dc43ae9226a2d685d26e00b857aef2094657ca85d9093d5
         $context['_seq'] = twig_ensure_traversable(($context["evenement"] ?? $this->getContext($context, "evenement")));
         foreach ($context['_seq'] as $context["_key"] => $context["cc"]) {
             // line 18
-            echo "                        <li>
+            echo "                    ";
+            if (($this->getAttribute($context["cc"], "etat", []) == 1)) {
+                // line 19
+                echo "                        <li>
                         <!-- Blog Post -->
-                        <a href=\"pages-blog-post.html\" class=\"blog-post\">
+                            <a href=\"";
+                // line 21
+                echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("nozelites_EvenementpageMfront", ["id" => $this->getAttribute($context["cc"], "idE", [])]), "html", null, true);
+                echo "\" class=\"blog-post\">
                             <!-- Blog Post Thumbnail -->
                             <div class=\"blog-post-thumbnail\">
                                 <div class=\"blog-post-thumbnail-inner\">
-                                    <span class=\"blog-item-tag\">Tips</span>
+
                                     <img src=\"";
-            // line 25
-            echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\AssetExtension')->getAssetUrl(("front/images/" . $this->getAttribute($context["cc"], "image", []))), "html", null, true);
-            echo "\" alt=\"image\" />
+                // line 26
+                echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\AssetExtension')->getAssetUrl(("front/images/" . $this->getAttribute($context["cc"], "image", []))), "html", null, true);
+                echo "\" alt=\"image\" />
 
                                 </div>
                             </div>
                             <!-- Blog Post Content -->
                             <div class=\"blog-post-content\">
                                 <!--  <span class=\"blog-post-date\">";
-            // line 31
-            echo twig_escape_filter($this->env, $this->getAttribute($context["cc"], "nom", []), "html", null, true);
-            echo "</span>  -->
+                // line 32
+                echo twig_escape_filter($this->env, $this->getAttribute($context["cc"], "nom", []), "html", null, true);
+                echo "</span>  -->
                                 <h3>";
-            // line 32
-            echo twig_escape_filter($this->env, $this->getAttribute($context["cc"], "nom", []), "html", null, true);
-            echo "</h3>
+                // line 33
+                echo twig_escape_filter($this->env, $this->getAttribute($context["cc"], "nom", []), "html", null, true);
+                echo "</h3>
                                 <p>";
-            // line 33
-            echo twig_escape_filter($this->env, twig_date_format_filter($this->env, $this->getAttribute($context["cc"], "date", []), "d/m/Y"), "html", null, true);
-            echo "</p>
+                // line 34
+                echo twig_escape_filter($this->env, twig_date_format_filter($this->env, $this->getAttribute($context["cc"], "date", []), "d/m/Y"), "html", null, true);
+                echo "</p>
                             </div>
 
 
-
-
-                                <a href=\"";
-            // line 39
-            echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("nozelites_Evenementmodifierfront", ["id" => $this->getAttribute($context["cc"], "idE", [])]), "html", null, true);
-            echo "\" class=\"button red ripple-effect ico\"  title=\"Modifier\" data-tippy-placement=\"left\"><i class=\"icon-feather-edit-2\"></i></a>
+                            <a href=\"";
+                // line 38
+                echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("nozelites_Evenementmodifierfront", ["id" => $this->getAttribute($context["cc"], "idE", [])]), "html", null, true);
+                echo "\" class=\"button red ripple-effect ico\"  title=\"Modifier\" data-tippy-placement=\"left\"><i class=\"icon-feather-edit-2\"></i></a>
 
                                 <a href=\"";
-            // line 41
-            echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("nozelites_Evenementsupprimerfront", ["id" => $this->getAttribute($context["cc"], "idE", [])]), "html", null, true);
-            echo "\" class=\"button red ripple-effect ico\" title=\"Supprimer\" data-tippy-placement=\"left\"><i class=\"icon-feather-trash-2\"></i></a>
+                // line 40
+                echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("nozelites_Evenementsupprimerfront", ["id" => $this->getAttribute($context["cc"], "idE", [])]), "html", null, true);
+                echo "\" class=\"button red ripple-effect ico\" title=\"Supprimer\" data-tippy-placement=\"left\"><i class=\"icon-feather-trash-2\"></i></a>
 
                                 <!--<a href=\"#\" class=\"button red ripple-effect ico\" title=\"Accepter\" data-tippy-placement=\"left\"><i class=\"icon-material-outline-check\"></i></a>
                                 <a href=\"#\" class=\"button red ripple-effect ico\" title=\"Refuser\" data-tippy-placement=\"left\"><i class=\"icon-feather-trash-2\"></i></a>-->
@@ -147,6 +151,9 @@ class __TwigTemplate_6ff341da6020dc43ae9226a2d685d26e00b857aef2094657ca85d9093d5
                         </a>
                         </li>
                     ";
+            }
+            // line 50
+            echo "                    ";
         }
         $_parent = $context['_parent'];
         unset($context['_seq'], $context['_iterated'], $context['_key'], $context['cc'], $context['_parent'], $context['loop']);
@@ -249,7 +256,7 @@ class __TwigTemplate_6ff341da6020dc43ae9226a2d685d26e00b857aef2094657ca85d9093d5
 
     public function getDebugInfo()
     {
-        return array (  155 => 51,  139 => 41,  134 => 39,  125 => 33,  121 => 32,  117 => 31,  108 => 25,  99 => 18,  95 => 17,  80 => 4,  71 => 3,  52 => 2,  30 => 1,);
+        return array (  162 => 51,  156 => 50,  143 => 40,  138 => 38,  131 => 34,  127 => 33,  123 => 32,  114 => 26,  106 => 21,  102 => 19,  99 => 18,  95 => 17,  80 => 4,  71 => 3,  52 => 2,  30 => 1,);
     }
 
     /** @deprecated since 1.27 (to be removed in 2.0). Use getSourceContext() instead */
@@ -276,16 +283,17 @@ class __TwigTemplate_6ff341da6020dc43ae9226a2d685d26e00b857aef2094657ca85d9093d5
 
                     <!-- Section Headline -->
                     <div class=\"section-headline margin-top-60 margin-bottom-35\">
-                        <h4>Recent Posts</h4>
+                        <h4>Mes evenements</h4>
                     </div>
                     {% for cc in evenement %}
+                    {% if cc.etat==1 %}
                         <li>
                         <!-- Blog Post -->
-                        <a href=\"pages-blog-post.html\" class=\"blog-post\">
+                            <a href=\"{{ path('nozelites_EvenementpageMfront',{'id':cc.idE})}}\" class=\"blog-post\">
                             <!-- Blog Post Thumbnail -->
                             <div class=\"blog-post-thumbnail\">
                                 <div class=\"blog-post-thumbnail-inner\">
-                                    <span class=\"blog-item-tag\">Tips</span>
+
                                     <img src=\"{{ asset('front/images/'~ cc.image) }}\" alt=\"image\" />
 
                                 </div>
@@ -298,9 +306,7 @@ class __TwigTemplate_6ff341da6020dc43ae9226a2d685d26e00b857aef2094657ca85d9093d5
                             </div>
 
 
-
-
-                                <a href=\"{{ path('nozelites_Evenementmodifierfront',{'id':cc.idE}) }}\" class=\"button red ripple-effect ico\"  title=\"Modifier\" data-tippy-placement=\"left\"><i class=\"icon-feather-edit-2\"></i></a>
+                            <a href=\"{{ path('nozelites_Evenementmodifierfront',{'id':cc.idE}) }}\" class=\"button red ripple-effect ico\"  title=\"Modifier\" data-tippy-placement=\"left\"><i class=\"icon-feather-edit-2\"></i></a>
 
                                 <a href=\"{{ path('nozelites_Evenementsupprimerfront',{'id':cc.idE}) }}\" class=\"button red ripple-effect ico\" title=\"Supprimer\" data-tippy-placement=\"left\"><i class=\"icon-feather-trash-2\"></i></a>
 
@@ -311,6 +317,7 @@ class __TwigTemplate_6ff341da6020dc43ae9226a2d685d26e00b857aef2094657ca85d9093d5
                             <div class=\"entry-icon\"></div>
                         </a>
                         </li>
+                    {% endif %}
                     {% endfor %}
 
 

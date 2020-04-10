@@ -1,3 +1,7 @@
+nozelites_listparticipant:
+    resource: "@NozelitesBundle/Controller/ListparticipantController.php"
+    type:     annotation
+
 nozelites_evenement:
     resource: "@NozelitesBundle/Controller/EvenementController.php"
     type:     annotation
