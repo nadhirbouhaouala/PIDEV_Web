@@ -117,6 +117,10 @@ class __TwigTemplate_f260e6850f83d9591c68cd33f53d6c8168a52f67b41136a935d150d4140
                     <div class=\"card\">
                         <div class=\"card-header\">
                             <h3 class=\"card-title\">Liste des groupes</h3>
+                            <button class=\"form-control\"><a href=\"";
+        // line 23
+        echo $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("nozelites_adminpdfgroupesback");
+        echo "\"> Export Pdf</a></button>
                         </div>
                         <!-- /.card-header -->
                         <div class=\"card-body\">
@@ -133,46 +137,46 @@ class __TwigTemplate_f260e6850f83d9591c68cd33f53d6c8168a52f67b41136a935d150d4140
                                 </thead>
                                 <tbody>
                                 ";
-        // line 38
+        // line 39
         $context['_parent'] = $context;
         $context['_seq'] = twig_ensure_traversable(($context["groupes"] ?? $this->getContext($context, "groupes")));
         foreach ($context['_seq'] as $context["_key"] => $context["groupe"]) {
-            // line 39
+            // line 40
             echo "                                    <tr>
                                         <td><a href=\"";
-            // line 40
+            // line 41
             echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("nozelites_admingroupeafficherback", ["id" => $this->getAttribute($context["groupe"], "idGroupe", [])]), "html", null, true);
             echo "\" class=\"btn btn-block btn-info\">Afficher</a></td>
                                         <td>";
-            // line 41
+            // line 42
             echo twig_escape_filter($this->env, $this->getAttribute($context["groupe"], "titre", []), "html", null, true);
             echo "</td>
                                         <td>";
-            // line 42
+            // line 43
             echo twig_escape_filter($this->env, $this->getAttribute($context["groupe"], "description", []), "html", null, true);
             echo "</td>
                                         <td>
                                             ";
-            // line 44
+            // line 45
             if (($this->getAttribute($context["groupe"], "autorisation", []) == 1)) {
                 echo "Ouvert
                                             ";
             } else {
-                // line 45
+                // line 46
                 echo "Fermé
                                             ";
             }
-            // line 47
+            // line 48
             echo "                                        </td>
                                         <td>
                                             <a href=\"";
-            // line 49
+            // line 50
             echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("nozelites_admingroupesupprimerback", ["id" => $this->getAttribute($context["groupe"], "idGroupe", [])]), "html", null, true);
             echo "\" class=\"btn btn-block btn-danger\">Supprimer</a>
                                         </td>
                                         <td>
                                             <a href=\"";
-            // line 52
+            // line 53
             echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("nozelites_admingroupemodifierback", ["id" => $this->getAttribute($context["groupe"], "idGroupe", [])]), "html", null, true);
             echo "\" class=\"btn btn-block btn-warning\">Modifier</a>
                                         </td>
@@ -182,7 +186,7 @@ class __TwigTemplate_f260e6850f83d9591c68cd33f53d6c8168a52f67b41136a935d150d4140
         $_parent = $context['_parent'];
         unset($context['_seq'], $context['_iterated'], $context['_key'], $context['groupe'], $context['_parent'], $context['loop']);
         $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 56
+        // line 57
         echo "                                </tfoot>
                             </table>
                         </div>
@@ -205,7 +209,7 @@ class __TwigTemplate_f260e6850f83d9591c68cd33f53d6c8168a52f67b41136a935d150d4140
 
     }
 
-    // line 71
+    // line 72
     public function block_javascripts($context, array $blocks = [])
     {
         $__internal_085b0142806202599c7fe3b329164a92397d8978207a37e79d70b8c52599e33e = $this->env->getExtension("Symfony\\Bundle\\WebProfilerBundle\\Twig\\WebProfilerExtension");
@@ -214,17 +218,17 @@ class __TwigTemplate_f260e6850f83d9591c68cd33f53d6c8168a52f67b41136a935d150d4140
         $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02 = $this->env->getExtension("Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension");
         $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02->enter($__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "javascripts"));
 
-        // line 72
+        // line 73
         echo "    ";
         $this->displayParentBlock("javascripts", $context, $blocks);
         echo "
     <!-- DataTables -->
     <script src=\"";
-        // line 74
+        // line 75
         echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\AssetExtension')->getAssetUrl("plugins/datatables/jquery.dataTables.js"), "html", null, true);
         echo "\"></script>
     <script src=\"";
-        // line 75
+        // line 76
         echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\AssetExtension')->getAssetUrl("plugins/datatables-bs4/js/dataTables.bootstrap4.js"), "html", null, true);
         echo "\"></script>
     <script>
@@ -260,7 +264,7 @@ class __TwigTemplate_f260e6850f83d9591c68cd33f53d6c8168a52f67b41136a935d150d4140
 
     public function getDebugInfo()
     {
-        return array (  228 => 75,  224 => 74,  218 => 72,  209 => 71,  186 => 56,  176 => 52,  170 => 49,  166 => 47,  162 => 45,  157 => 44,  152 => 42,  148 => 41,  144 => 40,  141 => 39,  137 => 38,  109 => 12,  100 => 11,  88 => 8,  82 => 6,  73 => 5,  54 => 3,  32 => 1,);
+        return array (  232 => 76,  228 => 75,  222 => 73,  213 => 72,  190 => 57,  180 => 53,  174 => 50,  170 => 48,  166 => 46,  161 => 45,  156 => 43,  152 => 42,  148 => 41,  145 => 40,  141 => 39,  122 => 23,  109 => 12,  100 => 11,  88 => 8,  82 => 6,  73 => 5,  54 => 3,  32 => 1,);
     }
 
     /** @deprecated since 1.27 (to be removed in 2.0). Use getSourceContext() instead */
@@ -295,6 +299,7 @@ class __TwigTemplate_f260e6850f83d9591c68cd33f53d6c8168a52f67b41136a935d150d4140
                     <div class=\"card\">
                         <div class=\"card-header\">
                             <h3 class=\"card-title\">Liste des groupes</h3>
+                            <button class=\"form-control\"><a href=\"{{ path('nozelites_adminpdfgroupesback') }}\"> Export Pdf</a></button>
                         </div>
                         <!-- /.card-header -->
                         <div class=\"card-body\">
@@ -362,6 +367,10 @@ class __TwigTemplate_f260e6850f83d9591c68cd33f53d6c8168a52f67b41136a935d150d4140
     </script>
 {% endblock %}
 
+<<<<<<< HEAD
 ", "@Nozelites/Back/AdminGroupes.html.twig", "C:\\wamp64\\www\\PIDEV_Web\\Nozelites\\src\\NozelitesBundle\\Resources\\views\\Back\\AdminGroupes.html.twig");
+=======
+", "@Nozelites/Back/AdminGroupes.html.twig", "C:\\wamp64\\www\\3.2\\PIDEV\\PIDEV_Web\\Nozelites\\src\\NozelitesBundle\\Resources\\views\\Back\\AdminGroupes.html.twig");
+>>>>>>> 9056fd58fbd464b46b1db2770e20990e1163ff01
     }
 }

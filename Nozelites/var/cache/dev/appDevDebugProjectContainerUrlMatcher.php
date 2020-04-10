@@ -107,6 +107,44 @@ class appDevDebugProjectContainerUrlMatcher extends Symfony\Bundle\FrameworkBund
 
         }
 
+        elseif (0 === strpos($pathinfo, '/evenement')) {
+            // evenement_index
+            if ('/evenement' === $trimmedPathinfo) {
+                $ret = array (  '_controller' => 'NozelitesBundle\\Controller\\EvenementController::indexAction',  '_route' => 'evenement_index',);
+                if ('/' === substr($pathinfo, -1)) {
+                    // no-op
+                } elseif ('GET' !== $canonicalMethod) {
+                    goto not_evenement_index;
+                } else {
+                    return array_replace($ret, $this->redirect($rawPathinfo.'/', 'evenement_index'));
+                }
+
+                return $ret;
+            }
+            not_evenement_index:
+
+            // evenement_new
+            if ('/evenement/new' === $pathinfo) {
+                return array (  '_controller' => 'NozelitesBundle\\Controller\\EvenementController::newAction',  '_route' => 'evenement_new',);
+            }
+
+            // evenement_show
+            if (preg_match('#^/evenement/(?P<ide>[^/]++)$#sD', $pathinfo, $matches)) {
+                return $this->mergeDefaults(array_replace($matches, ['_route' => 'evenement_show']), array (  '_controller' => 'NozelitesBundle\\Controller\\EvenementController::showAction',));
+            }
+
+            // evenement_edit
+            if (preg_match('#^/evenement/(?P<ide>[^/]++)/edit$#sD', $pathinfo, $matches)) {
+                return $this->mergeDefaults(array_replace($matches, ['_route' => 'evenement_edit']), array (  '_controller' => 'NozelitesBundle\\Controller\\EvenementController::editAction',));
+            }
+
+            // evenement_delete
+            if (preg_match('#^/evenement/(?P<ide>[^/]++)$#sD', $pathinfo, $matches)) {
+                return $this->mergeDefaults(array_replace($matches, ['_route' => 'evenement_delete']), array (  '_controller' => 'NozelitesBundle\\Controller\\EvenementController::deleteAction',));
+            }
+
+        }
+
         elseif (0 === strpos($pathinfo, '/offre')) {
             // offre_homepage
             if ('/offre' === $trimmedPathinfo) {
@@ -279,7 +317,30 @@ class appDevDebugProjectContainerUrlMatcher extends Symfony\Bundle\FrameworkBund
                 return array (  '_controller' => 'NozelitesBundle\\Controller\\DefaultFrontController::indexAction',  '_route' => 'nozelites_homepagefront',);
             }
 
-            if (0 === strpos($pathinfo, '/frontmembre')) {
+            if (0 === strpos($pathinfo, '/frontEvenement')) {
+                // nozelites_Evenementajouterfront
+                if ('/frontEvenementAjouter' === $pathinfo) {
+                    return array (  '_controller' => 'NozelitesBundle\\Controller\\EvenementController::newAction',  '_route' => 'nozelites_Evenementajouterfront',);
+                }
+
+                // nozelites_Evenementafficherfront
+                if ('/frontEvenementAfficher' === $pathinfo) {
+                    return array (  '_controller' => 'NozelitesBundle\\Controller\\EvenementController::afficherAction',  '_route' => 'nozelites_Evenementafficherfront',);
+                }
+
+                // nozelites_Evenementmodifierfront
+                if (0 === strpos($pathinfo, '/frontEvenementmodifier') && preg_match('#^/frontEvenementmodifier/(?P<id>[^/]++)$#sD', $pathinfo, $matches)) {
+                    return $this->mergeDefaults(array_replace($matches, ['_route' => 'nozelites_Evenementmodifierfront']), array (  '_controller' => 'NozelitesBundle\\Controller\\EvenementController::editAction',));
+                }
+
+                // nozelites_Evenementsupprimerfront
+                if (0 === strpos($pathinfo, '/frontEvenementsupprimer') && preg_match('#^/frontEvenementsupprimer/(?P<id>[^/]++)$#sD', $pathinfo, $matches)) {
+                    return $this->mergeDefaults(array_replace($matches, ['_route' => 'nozelites_Evenementsupprimerfront']), array (  '_controller' => 'NozelitesBundle\\Controller\\EvenementController::deleteAction',));
+                }
+
+            }
+
+            elseif (0 === strpos($pathinfo, '/frontmembre')) {
                 if (0 === strpos($pathinfo, '/frontmembregroupes')) {
                     // nozelites_membregroupesfront
                     if ('/frontmembregroupes' === $pathinfo) {
@@ -330,42 +391,68 @@ class appDevDebugProjectContainerUrlMatcher extends Symfony\Bundle\FrameworkBund
 
             }
 
+        }
+
+        elseif (0 === strpos($pathinfo, '/back')) {
+            // nozelites_homepageback
+            if ('/back' === $pathinfo) {
+                return array (  '_controller' => 'NozelitesBundle\\Controller\\DefaultBackController::indexAction',  '_route' => 'nozelites_homepageback',);
+            }
+
+            if (0 === strpos($pathinfo, '/backadmingroupe')) {
+                // nozelites_admingroupesback
+                if ('/backadmingroupes' === $pathinfo) {
+                    return array (  '_controller' => 'NozelitesBundle\\Controller\\GroupeController::showGroupesadminAction',  '_route' => 'nozelites_admingroupesback',);
+                }
+
+                // nozelites_admingroupeafficherback
+                if (0 === strpos($pathinfo, '/backadmingroupe/afficher') && preg_match('#^/backadmingroupe/afficher/(?P<id>[^/]++)$#sD', $pathinfo, $matches)) {
+                    return $this->mergeDefaults(array_replace($matches, ['_route' => 'nozelites_admingroupeafficherback']), array (  '_controller' => 'NozelitesBundle\\Controller\\GroupeController::affichergroupeadminAction',));
+                }
+
+                // nozelites_admingroupesupprimerback
+                if (0 === strpos($pathinfo, '/backadmingroupe/supprimer') && preg_match('#^/backadmingroupe/supprimer/(?P<id>[^/]++)$#sD', $pathinfo, $matches)) {
+                    return $this->mergeDefaults(array_replace($matches, ['_route' => 'nozelites_admingroupesupprimerback']), array (  '_controller' => 'NozelitesBundle\\Controller\\GroupeController::supprimergroupeadminAction',));
+                }
+
+                // nozelites_admingroupemodifierback
+                if (0 === strpos($pathinfo, '/backadmingroupe/modifier') && preg_match('#^/backadmingroupe/modifier/(?P<id>[^/]++)$#sD', $pathinfo, $matches)) {
+                    return $this->mergeDefaults(array_replace($matches, ['_route' => 'nozelites_admingroupemodifierback']), array (  '_controller' => 'NozelitesBundle\\Controller\\GroupeController::modifiergroupeadminAction',));
+                }
+
+            }
+
+            elseif (0 === strpos($pathinfo, '/backadminEvenement')) {
+                // nozelites_adminEvenementback
+                if ('/backadminEvenement' === $pathinfo) {
+                    return array (  '_controller' => 'NozelitesBundle\\Controller\\EvenementController::showEvenementadminAction',  '_route' => 'nozelites_adminEvenementback',);
+                }
+
+                // nozelites_adminEvenementsupprimerback
+                if (0 === strpos($pathinfo, '/backadminEvenement/supprimer') && preg_match('#^/backadminEvenement/supprimer/(?P<id>[^/]++)$#sD', $pathinfo, $matches)) {
+                    return $this->mergeDefaults(array_replace($matches, ['_route' => 'nozelites_adminEvenementsupprimerback']), array (  '_controller' => 'NozelitesBundle\\Controller\\EvenementController::supprimerEvenementadminAction',));
+                }
+
+                // nozelites_adminEvenementAccepterback
+                if (0 === strpos($pathinfo, '/backadminEvenement/accepter') && preg_match('#^/backadminEvenement/accepter/(?P<id>[^/]++)$#sD', $pathinfo, $matches)) {
+                    return $this->mergeDefaults(array_replace($matches, ['_route' => 'nozelites_adminEvenementAccepterback']), array (  '_controller' => 'NozelitesBundle\\Controller\\EvenementController::accepterEventAction',));
+                }
+
+            }
+
             // nozelites_adminbloquermembreback
-            if (0 === strpos($pathinfo, '/frontbloquermembre') && preg_match('#^/frontbloquermembre/(?P<id>[^/]++)/(?P<idmembre>[^/]++)$#sD', $pathinfo, $matches)) {
+            if (0 === strpos($pathinfo, '/backbloquermembre') && preg_match('#^/backbloquermembre/(?P<id>[^/]++)/(?P<idmembre>[^/]++)$#sD', $pathinfo, $matches)) {
                 return $this->mergeDefaults(array_replace($matches, ['_route' => 'nozelites_adminbloquermembreback']), array (  '_controller' => 'NozelitesBundle\\Controller\\GroupeController::bloquermembreadminAction',));
             }
 
             // nozelites_admindebloquermembreback
-            if (0 === strpos($pathinfo, '/frontdebloquermembre') && preg_match('#^/frontdebloquermembre/(?P<id>[^/]++)/(?P<idmembre>[^/]++)$#sD', $pathinfo, $matches)) {
+            if (0 === strpos($pathinfo, '/backdebloquermembre') && preg_match('#^/backdebloquermembre/(?P<id>[^/]++)/(?P<idmembre>[^/]++)$#sD', $pathinfo, $matches)) {
                 return $this->mergeDefaults(array_replace($matches, ['_route' => 'nozelites_admindebloquermembreback']), array (  '_controller' => 'NozelitesBundle\\Controller\\GroupeController::debloquermembreadminAction',));
             }
 
-        }
-
-        // nozelites_homepageback
-        if ('/back' === $pathinfo) {
-            return array (  '_controller' => 'NozelitesBundle\\Controller\\DefaultBackController::indexAction',  '_route' => 'nozelites_homepageback',);
-        }
-
-        if (0 === strpos($pathinfo, '/backadmingroupe')) {
-            // nozelites_admingroupesback
-            if ('/backadmingroupes' === $pathinfo) {
-                return array (  '_controller' => 'NozelitesBundle\\Controller\\GroupeController::showGroupesadminAction',  '_route' => 'nozelites_admingroupesback',);
-            }
-
-            // nozelites_admingroupeafficherback
-            if (0 === strpos($pathinfo, '/backadmingroupe/afficher') && preg_match('#^/backadmingroupe/afficher/(?P<id>[^/]++)$#sD', $pathinfo, $matches)) {
-                return $this->mergeDefaults(array_replace($matches, ['_route' => 'nozelites_admingroupeafficherback']), array (  '_controller' => 'NozelitesBundle\\Controller\\GroupeController::affichergroupeadminAction',));
-            }
-
-            // nozelites_admingroupesupprimerback
-            if (0 === strpos($pathinfo, '/backadmingroupe/supprimer') && preg_match('#^/backadmingroupe/supprimer/(?P<id>[^/]++)$#sD', $pathinfo, $matches)) {
-                return $this->mergeDefaults(array_replace($matches, ['_route' => 'nozelites_admingroupesupprimerback']), array (  '_controller' => 'NozelitesBundle\\Controller\\GroupeController::supprimergroupeadminAction',));
-            }
-
-            // nozelites_admingroupemodifierback
-            if (0 === strpos($pathinfo, '/backadmingroupe/modifier') && preg_match('#^/backadmingroupe/modifier/(?P<id>[^/]++)$#sD', $pathinfo, $matches)) {
-                return $this->mergeDefaults(array_replace($matches, ['_route' => 'nozelites_admingroupemodifierback']), array (  '_controller' => 'NozelitesBundle\\Controller\\GroupeController::modifiergroupeadminAction',));
+            // nozelites_adminpdfgroupesback
+            if ('/backpdfgroupes' === $pathinfo) {
+                return array (  '_controller' => 'NozelitesBundle\\Controller\\GroupeController::pdfGroupesAction',  '_route' => 'nozelites_adminpdfgroupesback',);
             }
 
         }
