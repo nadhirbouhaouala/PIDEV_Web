@@ -48,8 +48,8 @@ class ReclamationController extends Controller
             $em->persist($reclamation);
             $em->flush();
 
-$mail="nadhir.bouhaouala@esprit.tn";
-  $msg="test";
+$mail="mohamedkheireddine.bairam@esprit.tn";
+  $msg="On a bien recu votre Reclamation";
                 $transport = \Swift_SmtpTransport::newInstance('smtp.gmail.com',465,'ssl');
            $mailer = \Swift_Mailer::newInstance($transport);
                                     $message = \Swift_Message::newInstance()
@@ -85,7 +85,7 @@ $mail="nadhir.bouhaouala@esprit.tn";
             ->find($id);
         $em->remove($reclamation);
         $em->flush();
-        return $this->redirectToRoute('nozelites_homepageback');
+        return $this->redirectToRoute('nozelites_homepagebac');
     }
     function AfficheRecAction(){
         $user = $this->get('security.token_storage')->getToken()->getUser();
@@ -189,7 +189,7 @@ $ide=5;
         $reclamation->setEtat(1);
         $em=$this->getDoctrine()->getManager();
         $em->flush();
-        return $this->redirectToRoute('nozelites_homepageback');
+        return $this->redirectToRoute('nozelites_homepagebac');
 
         return $this->render('@Reclamation/Front/ListReclamation.html.twig');
 
@@ -206,7 +206,6 @@ $ide=5;
        $groupss = $em->getRepository('ReclamationBundle:Groupe')->find($id_cible);
        if ($request->getMethod() == Request::METHOD_POST) {
 
-           var_dump($membres);
             $reclamation = new Reclamation();
             $reclamation->setIdCible($id_cible);
             //$reclamation->setIdEmeteur($id_emeteur);
@@ -220,8 +219,17 @@ $ide=5;
             $reclamation->setIdCible(5);
             $em->persist($reclamation);
             $em->flush();
+           $mail="mohamedkheireddine.bairam@esprit.tn";
+           $msg="On a bien recu votre Reclamation";
+           $transport = \Swift_SmtpTransport::newInstance('smtp.gmail.com',465,'ssl');
+           $mailer = \Swift_Mailer::newInstance($transport);
+           $message = \Swift_Message::newInstance()
+               ->setSubject('Validation')->setFrom('nozelitesa3@gmail.com')->setTo($mail)->setBody($msg);
 
-            return $this->redirectToRoute('reclamation_show');
+           $this->get('mailer')->send($message);
+
+
+           return $this->redirectToRoute('reclamation_show');
        }
 
         return $this->render('@Reclamation/Front/AjouterRec.html.twig');

@@ -14,8 +14,16 @@ if (!\class_exists(appDevDebugProjectContainer::class, false)) {
     \class_alias(\ContainerI8mcga0\appDevDebugProjectContainer::class, appDevDebugProjectContainer::class, false);
 }
 
+<<<<<<< HEAD
+return new \ContainerXgh9ons\appDevDebugProjectContainer([
+    'container.build_hash' => 'Xgh9ons',
+    'container.build_id' => '619f3992',
+    'container.build_time' => 1586382027,
+], __DIR__.\DIRECTORY_SEPARATOR.'ContainerXgh9ons');
+=======
 return new \ContainerI8mcga0\appDevDebugProjectContainer([
     'container.build_hash' => 'I8mcga0',
     'container.build_id' => '4f6bc63a',
     'container.build_time' => 1586435301,
 ], __DIR__.\DIRECTORY_SEPARATOR.'ContainerI8mcga0');
+>>>>>>> 9056fd58fbd464b46b1db2770e20990e1163ff01

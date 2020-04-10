@@ -30,9 +30,8 @@
     {% endblock %}
     <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
 </head>
-{% block body %}
 <body class="hold-transition sidebar-mini layout-fixed">
-
+{% block body %}
     <div class="wrapper">
 
         {% block navbar %}
@@ -205,8 +204,7 @@
                                 </a>
                             </li>
                             <li class="nav-item">
-{#                                <a href="{{ path("nozelites_admingroupesback") }}" class="nav-link">#}
-                                <a href="pages/widgets.html" class="nav-link">
+                                <a href="{{ path("nozelites_admingroupesback") }}" class="nav-link">
                                     <i class="nav-icon fas fa-users"></i>
                                     <p>
                                         Groupes
@@ -310,7 +308,6 @@
     <script src="{{ asset('dist/js/pages/dashboard.js') }}"></script>
     <!-- AdminLTE for demo purposes -->
     <script src="{{ asset('dist/js/demo.js') }}"></script>
-
-</body>
 {% endblock %}
+</body>
 </html>
