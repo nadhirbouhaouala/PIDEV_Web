@@ -6,6 +6,22 @@ offre_liste:
     path:     /showoffres
     defaults: { _controller: OffreBundle:Offre:consulterOffres }
 
+offre_liste_back:
+    path:     /showoffresback
+    defaults: { _controller: OffreBundle:Offre:consulterOffresBack }
+
+offre_liste_membre:
+    path:     /showoffresmembre
+    defaults: { _controller: OffreBundle:Offre:consulterOffresMembre }
+
+offre_accepter:
+    path:     /accepterOffre/{id}
+    defaults: { _controller: OffreBundle:Offre:accepterOffre }
+
+offre_refuser:
+    path:     /refuserOffre/{id}
+    defaults: { _controller: OffreBundle:Offre:refuserOffre }
+
 offre_supprimer:
     path:     /supprimeroffre/{id}
     defaults: { _controller: OffreBundle:Offre:delete }
@@ -17,3 +33,31 @@ offre_ajouter:
 offre_modifier:
     path:     /modifieroffre/{id}
     defaults: { _controller: OffreBundle:Offre:update }
+
+message_liste:
+    path:     /showmessages
+    defaults: { _controller: OffreBundle:Message:consulterMessages }
+
+message_liste_envoyes:
+    path:     /showmessagesenvoyes
+    defaults: { _controller: OffreBundle:Message:consulterMessagesEnvoyes }
+
+message_supprimer:
+    path:     /supprimermessage/{id}
+    defaults: { _controller: OffreBundle:Message:delete }
+
+message_ajouter:
+    path:     /ajoutermessage
+    defaults: { _controller: OffreBundle:Message:new }
+
+message_showone:
+    path:     /showonemessage{id}
+    defaults: { _controller: OffreBundle:Message:consulterOneMessage }
+
+message_repondre:
+    path:     /repondremessage{id}
+    defaults: { _controller: OffreBundle:Message:repondre }
+
+message_transferer:
+    path:     /transferermessage{id}
+    defaults: { _controller: OffreBundle:Message:transferer }

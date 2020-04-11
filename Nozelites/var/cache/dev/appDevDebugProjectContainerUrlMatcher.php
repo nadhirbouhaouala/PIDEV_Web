@@ -123,24 +123,94 @@ class appDevDebugProjectContainerUrlMatcher extends Symfony\Bundle\FrameworkBund
             }
             not_offre_homepage:
 
-            // offre_liste
-            if ('/offre/showoffres' === $pathinfo) {
-                return array (  '_controller' => 'OffreBundle\\Controller\\OffreController::consulterOffresAction',  '_route' => 'offre_liste',);
+            if (0 === strpos($pathinfo, '/offre/s')) {
+                if (0 === strpos($pathinfo, '/offre/show')) {
+                    if (0 === strpos($pathinfo, '/offre/showoffres')) {
+                        // offre_liste
+                        if ('/offre/showoffres' === $pathinfo) {
+                            return array (  '_controller' => 'OffreBundle\\Controller\\OffreController::consulterOffresAction',  '_route' => 'offre_liste',);
+                        }
+
+                        // offre_liste_back
+                        if ('/offre/showoffresback' === $pathinfo) {
+                            return array (  '_controller' => 'OffreBundle\\Controller\\OffreController::consulterOffresBackAction',  '_route' => 'offre_liste_back',);
+                        }
+
+                        // offre_liste_membre
+                        if ('/offre/showoffresmembre' === $pathinfo) {
+                            return array (  '_controller' => 'OffreBundle\\Controller\\OffreController::consulterOffresMembreAction',  '_route' => 'offre_liste_membre',);
+                        }
+
+                    }
+
+                    // message_showone
+                    if (0 === strpos($pathinfo, '/offre/showonemessage') && preg_match('#^/offre/showonemessage(?P<id>[^/]++)$#sD', $pathinfo, $matches)) {
+                        return $this->mergeDefaults(array_replace($matches, ['_route' => 'message_showone']), array (  '_controller' => 'OffreBundle\\Controller\\MessageController::consulterOneMessageAction',));
+                    }
+
+                    if (0 === strpos($pathinfo, '/offre/showmessages')) {
+                        // message_liste
+                        if ('/offre/showmessages' === $pathinfo) {
+                            return array (  '_controller' => 'OffreBundle\\Controller\\MessageController::consulterMessagesAction',  '_route' => 'message_liste',);
+                        }
+
+                        // message_liste_envoyes
+                        if ('/offre/showmessagesenvoyes' === $pathinfo) {
+                            return array (  '_controller' => 'OffreBundle\\Controller\\MessageController::consulterMessagesEnvoyesAction',  '_route' => 'message_liste_envoyes',);
+                        }
+
+                    }
+
+                }
+
+                // offre_supprimer
+                if (0 === strpos($pathinfo, '/offre/supprimeroffre') && preg_match('#^/offre/supprimeroffre/(?P<id>[^/]++)$#sD', $pathinfo, $matches)) {
+                    return $this->mergeDefaults(array_replace($matches, ['_route' => 'offre_supprimer']), array (  '_controller' => 'OffreBundle\\Controller\\OffreController::deleteAction',));
+                }
+
+                // message_supprimer
+                if (0 === strpos($pathinfo, '/offre/supprimermessage') && preg_match('#^/offre/supprimermessage/(?P<id>[^/]++)$#sD', $pathinfo, $matches)) {
+                    return $this->mergeDefaults(array_replace($matches, ['_route' => 'message_supprimer']), array (  '_controller' => 'OffreBundle\\Controller\\MessageController::deleteAction',));
+                }
+
             }
 
-            // offre_supprimer
-            if (0 === strpos($pathinfo, '/offre/supprimeroffre') && preg_match('#^/offre/supprimeroffre/(?P<id>[^/]++)$#sD', $pathinfo, $matches)) {
-                return $this->mergeDefaults(array_replace($matches, ['_route' => 'offre_supprimer']), array (  '_controller' => 'OffreBundle\\Controller\\OffreController::deleteAction',));
+            elseif (0 === strpos($pathinfo, '/offre/a')) {
+                // offre_accepter
+                if (0 === strpos($pathinfo, '/offre/accepterOffre') && preg_match('#^/offre/accepterOffre/(?P<id>[^/]++)$#sD', $pathinfo, $matches)) {
+                    return $this->mergeDefaults(array_replace($matches, ['_route' => 'offre_accepter']), array (  '_controller' => 'OffreBundle\\Controller\\OffreController::accepterOffreAction',));
+                }
+
+                // offre_ajouter
+                if ('/offre/ajouteroffre' === $pathinfo) {
+                    return array (  '_controller' => 'OffreBundle\\Controller\\OffreController::newAction',  '_route' => 'offre_ajouter',);
+                }
+
+                // message_ajouter
+                if ('/offre/ajoutermessage' === $pathinfo) {
+                    return array (  '_controller' => 'OffreBundle\\Controller\\MessageController::newAction',  '_route' => 'message_ajouter',);
+                }
+
             }
 
-            // offre_ajouter
-            if ('/offre/ajouteroffre' === $pathinfo) {
-                return array (  '_controller' => 'OffreBundle\\Controller\\OffreController::newAction',  '_route' => 'offre_ajouter',);
+            // offre_refuser
+            if (0 === strpos($pathinfo, '/offre/refuserOffre') && preg_match('#^/offre/refuserOffre/(?P<id>[^/]++)$#sD', $pathinfo, $matches)) {
+                return $this->mergeDefaults(array_replace($matches, ['_route' => 'offre_refuser']), array (  '_controller' => 'OffreBundle\\Controller\\OffreController::refuserOffreAction',));
+            }
+
+            // message_repondre
+            if (0 === strpos($pathinfo, '/offre/repondremessage') && preg_match('#^/offre/repondremessage(?P<id>[^/]++)$#sD', $pathinfo, $matches)) {
+                return $this->mergeDefaults(array_replace($matches, ['_route' => 'message_repondre']), array (  '_controller' => 'OffreBundle\\Controller\\MessageController::repondreAction',));
             }
 
             // offre_modifier
             if (0 === strpos($pathinfo, '/offre/modifieroffre') && preg_match('#^/offre/modifieroffre/(?P<id>[^/]++)$#sD', $pathinfo, $matches)) {
                 return $this->mergeDefaults(array_replace($matches, ['_route' => 'offre_modifier']), array (  '_controller' => 'OffreBundle\\Controller\\OffreController::updateAction',));
+            }
+
+            // message_transferer
+            if (0 === strpos($pathinfo, '/offre/transferermessage') && preg_match('#^/offre/transferermessage(?P<id>[^/]++)$#sD', $pathinfo, $matches)) {
+                return $this->mergeDefaults(array_replace($matches, ['_route' => 'message_transferer']), array (  '_controller' => 'OffreBundle\\Controller\\MessageController::transfererAction',));
             }
 
         }

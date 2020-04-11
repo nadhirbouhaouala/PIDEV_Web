@@ -444,6 +444,17 @@ class Membre extends \NozelitesBundle\Entity\Membre implements \Doctrine\ORM\Pro
     /**
      * {@inheritDoc}
      */
+    public function setIdusr($idusr)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setIdusr', [$idusr]);
+
+        return parent::setIdusr($idusr);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
     public function getDate()
     {
 

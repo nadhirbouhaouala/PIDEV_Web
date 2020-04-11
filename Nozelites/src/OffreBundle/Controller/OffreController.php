@@ -20,6 +20,28 @@ class OffreController extends Controller
         ));
     }
 
+    public function consulterOffresBackAction()
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $offres = $em->getRepository('NozelitesBundle:Offre')->findAll();
+
+        return $this->render('@Offre/Default/listeOffresBack.html.twig', array(
+            'offres' => $offres,
+        ));
+    }
+
+    public function consulterOffresMembreAction()
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $offres = $em->getRepository('NozelitesBundle:Offre')->findAll();
+
+        return $this->render('@Offre/Default/listeOffresMembre.html.twig', array(
+            'offres' => $offres,
+        ));
+    }
+
     public function deleteAction(int $id)
     {
         $em = $this->getDoctrine()->getManager();
@@ -70,5 +92,27 @@ class OffreController extends Controller
         }
 
         return $this->render('@Offre/Default/modifierOffre.html.twig', array('form' => $form->createView()));
+    }
+
+    public function accepterOffreAction($id)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $offre = $em->getRepository("NozelitesBundle:Offre")->find($id);
+
+        $offre->setEtat("Acceptée");
+        $em->flush();
+
+        return $this->redirectToRoute('offre_liste_membre');
+    }
+
+    public function refuserOffreAction($id)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $offre = $em->getRepository("NozelitesBundle:Offre")->find($id);
+
+        $offre->setEtat("Refusée");
+        $em->flush();
+
+        return $this->redirectToRoute('offre_liste_membre');
     }
 }
