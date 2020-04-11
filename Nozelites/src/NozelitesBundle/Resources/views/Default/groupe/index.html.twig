@@ -6,16 +6,15 @@
     <title></title>
 </head>
 <body>
-    <h1>Groupes list</h1>
+    <h1>Liste des Groupes</h1>
 
-    <table>
+    <table border="1">
         <thead>
             <tr>
                 <th>Idgroupe</th>
                 <th>Titre</th>
                 <th>Description</th>
                 <th>Autorisation</th>
-                <th>Actions</th>
             </tr>
         </thead>
         <tbody>
@@ -24,7 +23,12 @@
                 <td>{{ groupe.idGroupe }}</td>
                 <td>{{ groupe.titre }}</td>
                 <td>{{ groupe.description }}</td>
-                <td>{{ groupe.autorisation }}</td>
+                <td>{% if groupe.autorisation == 1 %}
+                        Ouvert
+                    {% else %}
+                        Fermé
+                    {% endif %}
+                </td>
             </tr>
         {% endfor %}
         </tbody>
