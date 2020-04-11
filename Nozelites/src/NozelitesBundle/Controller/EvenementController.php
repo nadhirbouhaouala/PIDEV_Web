@@ -74,6 +74,7 @@ class EvenementController extends Controller
     }
 
 
+
     public function afficherAction()
     {
         $evenement= $this->getDoctrine()

@@ -34,8 +34,10 @@
                                     <th>Etat</th>
                                     <th>Selecteur</th>
                                     <th>Date de la Réclamation</th>
+
                                     <th>Delete</th>
                                     <th>Update</th>
+                                    <th>Affiche</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -62,12 +64,14 @@
                                         <td data-label="Column 2">{{ rec.etat }}</td>
                                         <td data-label="Column 3">{{ rec.selecteur}}</td>
                                         <td data-label="Column 3"> {{  rec.date|date('Y-m-d H:i:s') }}</td>
+
                                         <td>
                                             <a href="{{ path('Deleteback',{'id':rec.idRecl}) }}" class="btn btn-block btn-danger">Supprimer</a>
                                         </td>
                                         <td>
                                             <a href="{{ path('Traiter',{'id':rec.idRecl}) }}" class="btn btn-block btn-warning">Traiter</a>
                                         </td>
+                                        <td>  <a href="{{ path('AfficherNote',{'id':rec.idRecl}) }}" class="button dark ripple-effect">Note</a></td>
                                     </tr>
                                 {% endfor %}
                                 </tfoot>
