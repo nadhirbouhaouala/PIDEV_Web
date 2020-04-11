@@ -354,26 +354,20 @@ class Evenement
     }
 
     /**
-     * Set idc
-     *
-     * @param \NozelitesBundle\Entity\Membre $idc
-     *
-     * @return Evenement
-     */
-    public function setIdc(\NozelitesBundle\Entity\Membre $idc = null)
-    {
-        $this->idc = $idc;
-
-        return $this;
-    }
-
-    /**
-     * Get idc
-     *
-     * @return \NozelitesBundle\Entity\Membre
+     * @return \Membre
      */
     public function getIdc()
     {
         return $this->idc;
     }
+
+    /**
+     * @param \Membre $idc
+     */
+    public function setIdc($idc)
+    {
+        $this->idc = $idc;
+    }
+
+
 }

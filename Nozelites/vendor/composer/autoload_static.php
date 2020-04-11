@@ -61,7 +61,12 @@ class ComposerStaticInit4442163fad6a07d6fe4e8f13ad82ad92
         ),
         'K' => 
         array (
+<<<<<<< HEAD
             'Knp\\Bundle\\PaginatorBundle\\' => 27,
+=======
+            'Knp\\Snappy\\' => 11,
+            'Knp\\Bundle\\SnappyBundle\\' => 24,
+>>>>>>> fbf676f73d9d0cd870f68b48f964c437d72f971f
         ),
         'I' => 
         array (
@@ -198,9 +203,19 @@ class ComposerStaticInit4442163fad6a07d6fe4e8f13ad82ad92
         array (
             0 => __DIR__ . '/..' . '/monolog/monolog/src/Monolog',
         ),
+<<<<<<< HEAD
         'Knp\\Bundle\\PaginatorBundle\\' => 
         array (
             0 => __DIR__ . '/..' . '/knplabs/knp-paginator-bundle',
+=======
+        'Knp\\Snappy\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/knplabs/knp-snappy/src/Knp/Snappy',
+        ),
+        'Knp\\Bundle\\SnappyBundle\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/knplabs/knp-snappy-bundle',
+>>>>>>> fbf676f73d9d0cd870f68b48f964c437d72f971f
         ),
         'Incenteev\\ParameterHandler\\' => 
         array (

@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Listparticipants list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Ide</th>
+                <th>Idm</th>
+                <th>Etatp</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for listparticipant in listparticipants %}
+            <tr>
+                <td><a href="{{ path('listparticipant_show', { 'ide': listparticipant.ide }) }}">{{ listparticipant.ide }}</a></td>
+                <td>{{ listparticipant.idm }}</td>
+                <td>{{ listparticipant.etatp }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('listparticipant_show', { 'ide': listparticipant.ide }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('listparticipant_edit', { 'ide': listparticipant.ide }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('listparticipant_new') }}">Create a new listparticipant</a>
+        </li>
+    </ul>
+{% endblock %}

@@ -1,6 +1,18 @@
+nozelites_listparticipant:
+    resource: "@NozelitesBundle/Controller/ListparticipantController.php"
+    type:     annotation
+
+nozelites_evenement:
+    resource: "@NozelitesBundle/Controller/EvenementController.php"
+    type:     annotation
+
 offre:
     resource: "@OffreBundle/Resources/config/routing.yml"
     prefix:   /offre
+
+reclamation:
+    resource: "@ReclamationBundle/Resources/config/routing.yml"
+    prefix:   /reclamation
 
 nozelites_groupe_membre:
     resource: "@NozelitesBundle/Controller/GroupeMembreController.php"
