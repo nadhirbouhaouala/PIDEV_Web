@@ -61,8 +61,12 @@ class ComposerStaticInit4442163fad6a07d6fe4e8f13ad82ad92
         ),
         'K' => 
         array (
+<<<<<<< HEAD
+            'Knp\\Bundle\\PaginatorBundle\\' => 27,
+=======
             'Knp\\Snappy\\' => 11,
             'Knp\\Bundle\\SnappyBundle\\' => 24,
+>>>>>>> fbf676f73d9d0cd870f68b48f964c437d72f971f
         ),
         'I' => 
         array (
@@ -86,6 +90,7 @@ class ComposerStaticInit4442163fad6a07d6fe4e8f13ad82ad92
         'C' => 
         array (
             'Composer\\CaBundle\\' => 18,
+            'CMEN\\GoogleChartsBundle\\' => 24,
         ),
     );
 
@@ -198,6 +203,11 @@ class ComposerStaticInit4442163fad6a07d6fe4e8f13ad82ad92
         array (
             0 => __DIR__ . '/..' . '/monolog/monolog/src/Monolog',
         ),
+<<<<<<< HEAD
+        'Knp\\Bundle\\PaginatorBundle\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/knplabs/knp-paginator-bundle',
+=======
         'Knp\\Snappy\\' => 
         array (
             0 => __DIR__ . '/..' . '/knplabs/knp-snappy/src/Knp/Snappy',
@@ -205,6 +215,7 @@ class ComposerStaticInit4442163fad6a07d6fe4e8f13ad82ad92
         'Knp\\Bundle\\SnappyBundle\\' => 
         array (
             0 => __DIR__ . '/..' . '/knplabs/knp-snappy-bundle',
+>>>>>>> fbf676f73d9d0cd870f68b48f964c437d72f971f
         ),
         'Incenteev\\ParameterHandler\\' => 
         array (
@@ -250,6 +261,10 @@ class ComposerStaticInit4442163fad6a07d6fe4e8f13ad82ad92
         array (
             0 => __DIR__ . '/..' . '/composer/ca-bundle/src',
         ),
+        'CMEN\\GoogleChartsBundle\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/cmen/google-charts-bundle',
+        ),
     );
 
     public static $fallbackDirsPsr4 = array (
@@ -262,6 +277,13 @@ class ComposerStaticInit4442163fad6a07d6fe4e8f13ad82ad92
             'Twig_' => 
             array (
                 0 => __DIR__ . '/..' . '/twig/twig/lib',
+            ),
+        ),
+        'K' => 
+        array (
+            'Knp\\Component' => 
+            array (
+                0 => __DIR__ . '/..' . '/knplabs/knp-components/src',
             ),
         ),
         'D' => 
