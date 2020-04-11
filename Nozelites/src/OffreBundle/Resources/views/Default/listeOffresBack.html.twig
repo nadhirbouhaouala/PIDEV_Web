@@ -1,0 +1,81 @@
+{% extends '@Nozelites/baseback.html.twig' %}
+
+{% block titre %}{{ parent() }} - Offres {% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <!-- DataTables -->
+    <link rel="stylesheet" href="{{ asset('plugins/datatables-bs4/css/dataTables.bootstrap4.css') }}">
+{% endblock %}
+
+{% block content %}
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+
+        <!-- Main content -->
+        <section class="content">
+            <div class="row">
+                <div class="col-12">
+
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="card-title">Liste des offres</h3>
+                        </div>
+                        <!-- /.card-header -->
+                        <div class="card-body">
+                            <table id="tableau" class="table table-bordered table-striped">
+                                <thead>
+                                <tr>
+                                    <th>Etat</th>
+                                    <th>Type</th>
+                                    <th>Entreprise</th>
+                                    <th>Chasseur de tête</th>
+                                    <th>Elite</th>
+                                    <th>Date</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {% for offre in offres %}
+                                    <tr>
+                                        <td>{{ offre.etat }}</td>
+                                        <td>{{ offre.type }}</td>
+                                        <td>{{ offre.entreprise }}</td>
+                                        <td>{{ offre.idemetteur.nom~" "~offre.idemetteur.prenom }}</td>
+                                        <td>{{ offre.idrecepteur.nom~" "~offre.idrecepteur.prenom }}</td>
+                                        <td>{{ offre.date }}</td>
+                                    </tr>
+                                {% endfor %}
+                                </tfoot>
+                            </table>
+                        </div>
+                        <!-- /.card-body -->
+                    </div>
+                    <!-- /.card -->
+                </div>
+                <!-- /.col -->
+            </div>
+            <!-- /.row -->
+        </section>
+
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <!-- DataTables -->
+    <script src="{{ asset('plugins/datatables/jquery.dataTables.js') }}"></script>
+    <script src="{{ asset('plugins/datatables-bs4/js/dataTables.bootstrap4.js') }}"></script>
+    <script>
+        $(function () {
+            $('#tableau').DataTable({
+                "paging": true,
+                "lengthChange": true,
+                "searching": true,
+                "ordering": true,
+                "info": true,
+                "autoWidth": false,
+            });
+        });
+    </script>
+{% endblock %}
+

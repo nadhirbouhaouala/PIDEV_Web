@@ -74,7 +74,7 @@ swiftmailer:
 sensio_framework_extra:
    router:
         annotations: false
-
+#pdf
 knp_snappy:
     pdf:
         enabled:    true
@@ -88,3 +88,5 @@ knp_snappy:
         enabled:    true
         binary:     "\"C:\\Program Files\\wkhtmltopdf\\bin\\wkhtmltoimage.exe\""
         options:    []
+ #userbundle
+
