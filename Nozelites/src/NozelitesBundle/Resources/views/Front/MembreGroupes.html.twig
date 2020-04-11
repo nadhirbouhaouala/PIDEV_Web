@@ -23,7 +23,7 @@
                     <div class="dashboard-box" style="overflow-x:auto;">
                         <!-- Headline -->
                         <div class="headline">
-                            <h3><i class="icon-material-outline-face"></i> Mes groupes </h3>
+                            <h3><i class="icon-line-awesome-group"></i> Mes groupes </h3>
                             <input type="text" placeholder="Chercher ici ..." onKeyPress="chercher(this.value);" >
                             <script type="text/javascript">
                                 function chercher(search) {
@@ -61,8 +61,8 @@
 
                                                 <!-- Avatar -->
                                                 <div class="freelancer-avatar">
-                                                    <div class="verified-badge"></div>
-                                                    <a href="#"><img src="{{ asset('images/user-avatar-big-02.jpg') }}" alt=""></a>
+                                                    <div class="{% if gm.etat == "administrateur" %}verified-badge{% endif %}"></div>
+                                                    <a href="#"><img src="{{ asset('images/groupes.png') }}" alt=""></a>
                                                 </div>
 
                                                 <!-- Name -->
@@ -72,7 +72,13 @@
                                                     <span>{{ gm.idGroupe.description }} </span>
                                                     <!-- Rating -->
                                                     <div class="freelancer-rating">
-                                                        <div class="star-rating" data-rating="4.2"></div>
+                                                        <button class="button ripple-effect" style="pointer-events: none;">
+                                                            {% if gm.idGroupe.autorisation == 0 %}
+                                                                Fermé
+                                                            {% else %}
+                                                                Ouvert
+                                                            {% endif %}
+                                                        </button>
                                                     </div>
                                                 </div>
                                             </div>
@@ -80,9 +86,10 @@
 
                                         <!-- Buttons -->
                                         <div class="buttons-to-right">
-                                            <a href="{{ path('nozelites_membregroupesmodifierfront',{'id':gm.idGroupe.idGroupe}) }}" class="button red ripple-effect ico" title="Modifier" data-tippy-placement="left"><i class="icon-feather-edit-2"></i></a>
                                             <a href="{{ path('Ajouter1',{'id':gm.idGroupe.idGroupe,'type':'groupe'}) }}" class="button red ripple-effect ico" title="Ajouter" data-tippy-placement="left"><i class="icon-feather-edit-2"></i></a>
+
                                             {% if gm.etat == "administrateur" %}
+                                                <a href="{{ path('nozelites_membregroupesmodifierfront',{'id':gm.idGroupe.idGroupe}) }}" class="button red ripple-effect ico" title="Modifier" data-tippy-placement="left"><i class="icon-feather-edit-2"></i></a>
                                                 <a href="{{ path('nozelites_membregroupessupprimerfront',{'id':gm.idGroupe.idGroupe}) }}" class="button red ripple-effect ico" title="Supprimer" data-tippy-placement="left"><i class="icon-feather-trash-2"></i></a>
                                             {% endif %}
                                             <!--<a href="#" class="button red ripple-effect ico" title="Accepter" data-tippy-placement="left"><i class="icon-material-outline-check"></i></a>
@@ -126,7 +133,7 @@
 
                                             <!-- Name -->
                                             <div class="freelancer-name">
-                                                <h4><a href="#"> {{ gm.idGroupe.titre }} -
+                                                <h4><a href="#">
                                                         {% if gm.idInvite != -1 %}
                                                             {% for indexmembre in membres %}
                                                                 {% if indexmembre.idUsr == gm.idInvite %}
@@ -135,10 +142,16 @@
                                                             {% endfor %}
                                                         {% endif %}
                                                         <img class="flag" src="images/flags/de.svg" alt="" title="Germany" data-tippy-placement="top"></a></h4>
-                                                <span>iOS Expert + Node Dev</span>
+                                                <span>Vous invite à rejoindre le groupe : {{ gm.idGroupe.titre }}</span>
                                                 <!-- Rating -->
                                                 <div class="freelancer-rating">
-                                                    <div class="star-rating" data-rating="4.2"></div>
+                                                    <button class="button ripple-effect" style="pointer-events: none;">
+                                                        {% if gm.idGroupe.autorisation == 0 %}
+                                                            Fermé
+                                                        {% else %}
+                                                            Ouvert
+                                                        {% endif %}
+                                                    </button>
                                                 </div>
                                             </div>
                                         </div>

@@ -1,0 +1,132 @@
+{% extends '@Nozelites/baseback.html.twig' %}
+
+{% block titre %}{{ parent() }} - Acceuil {% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <!-- DataTables -->
+    <link rel="stylesheet" href="{{ asset('plugins/datatables-bs4/css/dataTables.bootstrap4.css') }}">
+    <link rel="stylesheet" href="../../plugins/fontawesome-free/css/all.min.css">
+    <!-- Ionicons -->
+    <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <!-- overlayScrollbars -->
+    <link rel="stylesheet" href="../../dist/css/adminlte.min.css">
+    <!-- Google Font: Source Sans Pro -->
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+{% endblock %}
+{% block content %}
+    <div class="wrapper">
+    <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+            <div class="container-fluid">
+                <div class="row mb-2">
+                    <div class="col-sm-6">
+                        <h1>Evenements</h1>
+                    </div>
+                    <div class="col-sm-6">
+                        <ol class="breadcrumb float-sm-right">
+                            <li class="breadcrumb-item"><a href="#">Home</a></li>
+                            <li class="breadcrumb-item active">Evenements</li>
+                        </ol>
+                    </div>
+                </div>
+            </div><!-- /.container-fluid -->
+        </section>
+    <section class="content">
+
+        <!-- Default box -->
+        <div class="card">
+            <div class="card-header">
+                <h3 class="card-title"></h3>
+
+
+            </div>
+            <div class="card-body p-0">
+                <table class="table table-striped projects">
+                    <thead>
+                    <tr>
+
+                        <th style="width: 15%">
+                            Evenement
+                        </th>
+                        <th style="width: 15%">
+                            Name
+                        </th>
+                        <th>
+                            participants
+                        </th>
+                        <th style="width: 8%" >
+                            Date
+                        </th>
+                        <th style="width: 8%" >
+                            Heure
+                        </th>
+                        <th style="width: 20%">
+                        </th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for o in evenement %}
+                    <tr>
+
+                        <td>
+                            <ul class="list-inline">
+                                <li class="list-inline-item">
+
+                                    <img class="table-avatar" src="{{ asset('front/images/'~ o.image) }}" alt="image" />
+                                </li>
+                            </ul>
+                        </td>
+                        <td>
+                            <a>
+                                {{ o.nom }}
+                            </a>
+                        </td>
+                        <td class="project_progress">
+                            <div class="progress progress-sm">
+                                {% set pourcent = (o.nbparticipant * 100)/o.nbplace %}
+                                <div class="progress-bar bg-green" role="progressbar" aria-volumenow="10" aria-volumemin="0" aria-volumemax="100" style="width: {{ pourcent }}%">
+                                </div>
+                            </div>
+                            <small>
+                                {{ o.nbparticipant }} / {{ o.nbplace }} participants
+                            </small>
+                        </td>
+                        <td class="project-state">
+                            <a>
+                                {{ o.date|date('d/m/Y') }}
+                            </a>
+                        </td>
+                        <td class="project-state">
+                            <a>
+                                {{ o.date|date('H:II') }}
+                            </a>
+                        </td>
+                        <td class="project-actions text-right">
+                            <a class="btn btn-primary btn-sm" href="#">
+                                <i class="fas fa-folder">
+                                </i>
+                                View
+                            </a>
+
+
+                            <a class="btn btn-danger btn-sm" href="{{ path('nozelites_adminEvenementAllsupprimerback',{'id':o.ide}) }}">
+                                <i class="fas fa-trash">
+                                </i>
+                                Delete
+                            </a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            <!-- /.card-body -->
+        </div>
+        <!-- /.card -->
+
+    </section>
+    </div>
+    </div>
+{% endblock %}

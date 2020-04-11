@@ -150,15 +150,6 @@ class GroupeController extends Controller
     {
         $id_membre_actif = 9;
 
-        //email
-        $mail="nadhir.bouhaouala@esprit.tn";
-        $msg="test";
-        $transport = \Swift_SmtpTransport::newInstance('smtp.gmail.com',465,'ssl');
-        $mailer = \Swift_Mailer::newInstance($transport);
-        $message = \Swift_Message::newInstance()
-            ->setSubject('Validation')->setFrom('nozelitesa3@gmail.com')->setTo($mail)->setBody($msg);
-        $this->get('mailer')->send($message);
-
         $em = $this->getDoctrine()->getManager();
         $groupes = $em->getRepository('NozelitesBundle:Groupe')->findAll();
 
@@ -210,15 +201,6 @@ class GroupeController extends Controller
                 $groupeMembre->setEtat("invitation");
                 $em->persist($groupeMembre);
                 $em->flush();
-                //email
-                $mail="nadhir.bouhaouala@esprit.tn";
-                $msg="test";
-                $transport = \Swift_SmtpTransport::newInstance('smtp.gmail.com',465,'ssl');
-                $mailer = \Swift_Mailer::newInstance($transport);
-                $message = \Swift_Message::newInstance()
-                    ->setSubject('Validation')->setFrom('nozelitesa3@gmail.com')->setTo($mail)->setBody($msg);
-
-                $this->get('mailer')->send($message);
             }
             /*
 
@@ -283,11 +265,26 @@ class GroupeController extends Controller
         $gm = $em->getRepository('NozelitesBundle:GroupeMembre')
             ->findOneBy(array('idGroupe'=>$id,
                 'idMembre'=>$id_membre_actif));
+        $gms = $em->getRepository('NozelitesBundle:GroupeMembre')
+            ->findBy(array('idGroupe'=>$id,));
         if($gm->getEtat()=="administrateur")//que l'admin peut supprimer
         {
             $groupe = $em->getRepository('NozelitesBundle:Groupe')->find($id);
             $em->remove($groupe);
-            $em->remove($gm);
+            //$em->remove($gm);
+            for($i=0;$i<sizeof($gms);$i++)
+            {
+                //email
+                $mail="nadhir.bouhaouala@esprit.tn";
+                $msg="Bonjour Mr/Mme ".$gms[$i]->getIdMembre()->getNom()." ".$gms[$i]->getIdMembre()->getPrenom()
+                    ."Le groupe ".$groupe->getTitre()." : ".$groupe->getDescription()." à été supprimer";
+                $transport = \Swift_SmtpTransport::newInstance('smtp.gmail.com',465,'ssl');
+                $mailer = \Swift_Mailer::newInstance($transport);
+                $message = \Swift_Message::newInstance()
+                    ->setSubject('Validation')->setFrom('nozelitesa3@gmail.com')->setTo($mail)->setBody($msg);
+                $this->get('mailer')->send($message);
+                $em->remove($gms[$i]);
+            }
             $em->flush();
         }
 
@@ -320,11 +317,11 @@ class GroupeController extends Controller
             if($exist==false)$m_autres[sizeof($m_autres)] = $membres[$j];
         }
 
-        $isadmin = false;
+        $isadmin = 0;
         $result = $em->getRepository('NozelitesBundle:GroupeMembre')->findOneBy(array('idGroupe'=>$id,'idMembre'=>$id_membre_actif));
         if($result)
             if($result->getEtat()=="administrateur")
-                $isadmin=true;
+                $isadmin=1;
 
         //var_dump($gm_membres);
         return $this->render('@Nozelites/Front/MembreGroup.html.twig', array(
@@ -333,6 +330,7 @@ class GroupeController extends Controller
             'admins' => $m_admins,
             'membres' => $m_membres,
             'autres' => $m_autres,
+            'membre_actif' => $id_membre_actif,
         ));
     }
 

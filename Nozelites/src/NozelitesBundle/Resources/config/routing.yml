@@ -16,6 +16,28 @@ nozelites_Evenementmodifierfront:
 nozelites_Evenementsupprimerfront:
     path:     /frontEvenementsupprimer/{id}
     defaults: { _controller: NozelitesBundle:Evenement:delete }
+nozelites_EvenementRejoindrefront:
+    path:     /frontEvenementrejoindre/{id}
+    defaults: { _controller: NozelitesBundle:Evenement:rejoindre }
+nozelites_EvenementAccepterfront:
+    path:     /frontEvenementaccepter/{id}/{idm}
+    defaults: { _controller: NozelitesBundle:Evenement:accepterParticipant }
+nozelites_EvenementRefuserfront:
+    path:     /frontEvenementrefuser/{id}/{idm}
+    defaults: { _controller: NozelitesBundle:Evenement:refuserParticipant }
+nozelites_Evenementdisjoindrefront:
+    path:     /frontEvenementdisjoindre/{id}
+    defaults: { _controller: NozelitesBundle:Evenement:disjoindre}
+nozelites_Evenementpagefront:
+    path:     /frontEvenementpage/{id}
+    defaults: { _controller: NozelitesBundle:Evenement:afficherEvent}
+nozelites_EvenementpageMfront:
+    path:     /frontEvenementpageM/{id}
+    defaults: { _controller: NozelitesBundle:Evenement:afficherEventM}
+nozelites_AllEvenementfront:
+    path:     /frontEvenementAfficherall
+    defaults: { _controller: NozelitesBundle:Evenement:afficherAll}
+
 
 
 nozelites_membregroupesfront:
@@ -92,6 +114,12 @@ nozelites_adminpdfgroupesback:
 nozelites_adminEvenementback:
     path:     /backadminEvenement
     defaults: { _controller: NozelitesBundle:Evenement:showEvenementadmin }
+nozelites_adminEvenementAllback:
+    path:     /backadminEvenementall
+    defaults: { _controller: NozelitesBundle:Evenement:afficherEventAll }
+nozelites_adminEvenementAllsupprimerback:
+    path:     /backadminEvenementall/delete/{id}
+    defaults: { _controller: NozelitesBundle:Evenement:supprimerEventAlladmin }
 nozelites_adminEvenementsupprimerback:
     path:     /backadminEvenement/supprimer/{id}
     defaults: { _controller: NozelitesBundle:Evenement:supprimerEvenementadmin}

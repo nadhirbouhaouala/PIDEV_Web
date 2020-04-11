@@ -7,24 +7,27 @@
     <div class="content-wrapper">
 
         <div class="container">
-            <div class="container-fluid">
-                <h1>Groupe edit</h1>
+                <div class="row container-fluid card">
+                    <!-- left column -->
+                    <div class="col-md-12">
+                        <h1>Groupe edit</h1>
 
-                {{ form_start(edit_form) }}
-                {{ form_widget(edit_form) }}
-                <input type="submit" value="Edit" />
-                {{ form_end(edit_form) }}
+                        {{ form_start(edit_form) }}
+                        {{ form_widget(edit_form) }}
+                        <input type="submit" value="Edit" />
+                        {{ form_end(edit_form) }}
 
-                <ul>
-                    <li>
-                        <a href="{{ path('nozelites_admingroupesback') }}">Back to the list</a>
-                    </li>
-                    <li>
+                        <ul>
+                            <li>
+                                <a href="{{ path('nozelites_admingroupesback') }}">Back to the list</a>
+                            </li>
+                            <li>
 
-                    </li>
-                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
             </div>
-
     </div>
 {% endblock %}
 

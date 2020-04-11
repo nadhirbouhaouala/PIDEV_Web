@@ -3,6 +3,8 @@
 namespace NozelitesBundle\Controller;
 
 use NozelitesBundle\Entity\Evenement;
+use NozelitesBundle\Entity\Listparticipant;
+use NozelitesBundle\Entity\Membre;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component\HttpFoundation\Request;
@@ -77,11 +79,80 @@ class EvenementController extends Controller
 
     public function afficherAction()
     {
+        $id_membre_actif = 10;
+        $evenement= $this->getDoctrine()
+            ->getRepository(Evenement::class)->findAll();
+        $participant=$this->getDoctrine()
+            ->getRepository(Listparticipant::class)->findBy(array('idm'=>$id_membre_actif));
+        return $this->render('@Nozelites/Front/EvenementAfficher.html.twig', array(
+            'evenement' => $evenement,'participant'=>$participant));
+    }
+    public function afficherAllAction()
+    {
+        $id_membre_actif = 10;
+        $evenement= $this->getDoctrine()
+            ->getRepository(Evenement::class)->findAll();
+        $participant=$this->getDoctrine()
+            ->getRepository(Listparticipant::class)->findBy(array('idm'=>$id_membre_actif));
+        return $this->render('@Nozelites/Front/AllEvenement.html.twig', array(
+            'evenement' => $evenement,'participant'=>$participant));
+    }
+    public function afficherEventAllAction()
+    {
+        $id_membre_actif = 10;
         $evenement= $this->getDoctrine()
             ->getRepository(Evenement::class)->findAll();
 
-        return $this->render('@Nozelites/Front/EvenementAfficher.html.twig', array(
+        return $this->render('@Nozelites/back/AdminEvenementAll.html.twig', array(
             'evenement' => $evenement));
+    }
+    public function afficherEventAction($id)
+    {
+        $id_membre_actif = 10;
+        $evenement= $this->getDoctrine()
+            ->getRepository(Evenement::class)->find($id);
+        $participant=$this->getDoctrine()
+            ->getRepository(Listparticipant::class)->findBy(array('idm'=>$id_membre_actif,'ide'=>$id));
+        return $this->render('@Nozelites/Front/EvenementPage.html.twig', array(
+            'evenement' => $evenement,'participant'=>$participant));
+    }
+    public function afficherEventMAction($id)
+    {
+        $id_membre_actif = 10;
+        $evenement= $this->getDoctrine()
+            ->getRepository(Evenement::class)->find($id);
+        $participant=$this->getDoctrine()
+            ->getRepository(Listparticipant::class)->findBy(array('ide'=>$id));
+        $membre=[];
+        $part=[];
+        for($i=0 ; $i<sizeof($participant);$i++)
+        {
+            if($participant[$i]->getEtatp()==0)
+            {
+                $membre[$i]=$participant[$i]->getIdm();
+            }
+        }
+        for($i=0 ; $i<sizeof($participant);$i++)
+        {
+            if($participant[$i]->getEtatp()==1)
+            {
+                $part[$i]=$participant[$i]->getIdm();
+            }
+        }
+        $liste=[];
+        $listp=[];
+        for ($i=0 ;$i<sizeof($membre);$i++)
+        {
+            $liste=$this->getDoctrine()
+                ->getRepository(Membre::class)->findBy(array('idusr'=>$membre));
+        }
+        for ($i=0 ;$i<sizeof($part);$i++)
+        {
+            $listp=$this->getDoctrine()
+                ->getRepository(Membre::class)->findBy(array('idusr'=>$part));
+        }
+        return $this->render('@Nozelites/Front/EvenementPageM.html.twig', array(
+            'evenement' => $evenement,'participant'=>$participant,'liste'=>$liste,'listp'=>$listp));
     }
 
 
@@ -125,10 +196,10 @@ class EvenementController extends Controller
             $evenement->setImage($fileName);
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('evenement_edit', array('ide' => $evenement->getIde()));
+            return $this->redirectToRoute('nozelites_Evenementafficherfront');
         }
 
-        return $this->render('evenement/edit.html.twig', array(
+        return $this->render('@Nozelites/Front/EvenementModifier.html.twig', array(
             'evenement' => $evenement,
             'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
@@ -194,6 +265,83 @@ class EvenementController extends Controller
         $em->flush();
         return $this->redirectToRoute('nozelites_adminEvenementback');
     }
+    public function supprimerEventAlladminAction(Request $request,$id)
+    {
+
+        $em = $this->getDoctrine()->getManager();
+        $evenement = $em->getRepository(Evenement::class)->find($id);
+        $em->remove($evenement);
+        $em->flush();
+        return $this->redirectToRoute('nozelites_adminEvenementAllback');
+    }
+    public function RejoindreAction(Request $request,$id)
+    {
+        $id_membre_actif = 10;
+        $em = $this->getDoctrine()->getManager();
+        $evenement = $em->getRepository('NozelitesBundle:Evenement')->find($id);
+
+        $listeparticipant= new Listparticipant();
+        $listeparticipant->setIde($evenement);
+        $membre = $em->getRepository('NozelitesBundle:Membre')->find($id_membre_actif);
+        $listeparticipant->setIdm($membre);
+        $listeparticipant->setEtatp(0);
+        $em->persist($listeparticipant);
+        $em->flush();
+        return $this->redirectToRoute('nozelites_Evenementpagefront',array('id' => $id));
+
+    }
+    public function disjoindreAction(Request $request,$id)
+    {
+        $id_membre_actif = 10;
+        $em = $this->getDoctrine()->getManager();
+        $evenement = $em->getRepository('NozelitesBundle:Evenement')->find($id);
+
+        $listeparticipant= $em->getRepository('NozelitesBundle:Listparticipant')->findOneBy(array('ide'=>$id,'idm'=>$id_membre_actif));
+
+        $old1=$evenement->getNbplace();
+        $old=$evenement->getNbparticipant();
+        $evenement->setNbparticipant($old - 1);
+        $evenement->setNbplace($old1 + 1);
+        $em->remove($listeparticipant);
+        $em->persist($evenement);
+        $em->flush();
+        return $this->redirectToRoute('nozelites_Evenementpagefront',array('id' => $id));
+
+    }
+    public function accepterParticipantAction(Request $request,$id,$idm)
+    {
+
+        $em = $this->getDoctrine()->getManager();
+        $evenement = $em->getRepository('NozelitesBundle:Evenement')->find($id);
+        $old1=$evenement->getNbplace();
+        $old=$evenement->getNbparticipant();
+        if ($old1>$old) {
+            $participant = $em->getRepository('NozelitesBundle:Listparticipant')->findOneBy(array('ide'=>$id,'idm'=>$idm));
+            $participant->setEtatp(1);
+            $em->persist($participant);
+            $em->flush();
+            $evenement->setNbplace($old1 - 1);
+            $evenement->setNbparticipant($old + 1);
+
+            $em->persist($evenement);
+            $em->flush();
+        }
+        return $this->redirectToRoute('nozelites_EvenementpageMfront',array('id' => $id));
+
+    }
+    public function refuserParticipantAction(Request $request,$id,$idm)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $participant = $em->getRepository('NozelitesBundle:Listparticipant')->findOneBy(array('ide'=>$id,'idm'=>$idm));
+        $em->remove($participant);
+        $em->flush();
+        return $this->redirectToRoute('nozelites_EvenementpageMfront',array('id' => $id));
+    }
+    public function afficherInvitationAction()
+    {
+
+    }
+
     private function createDeleteForm(Evenement $evenement)
     {
         return $this->createFormBuilder()
