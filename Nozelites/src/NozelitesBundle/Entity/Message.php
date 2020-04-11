@@ -75,14 +75,6 @@ class Message
     }
 
     /**
-     * @param int $idmessage
-     */
-    public function setIdmessage($idmessage)
-    {
-        $this->idmessage = $idmessage;
-    }
-
-    /**
      * Set objet
      *
      * @param string $objet

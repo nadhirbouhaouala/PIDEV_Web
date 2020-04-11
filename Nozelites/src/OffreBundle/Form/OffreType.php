@@ -7,7 +7,6 @@ use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 
 class OffreType extends AbstractType
 {
@@ -89,7 +88,7 @@ class OffreType extends AbstractType
                 'required'   => true,
                 'attr' => ['class' => 'with-border'],
             ])
-            ->add('description', TextareaType::class, [
+            ->add('description', null, [
                 'required'   => true,
                 'attr' => ['class' => 'with-border'],
             ])

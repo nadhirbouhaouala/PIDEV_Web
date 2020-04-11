@@ -20,12 +20,7 @@ class AppKernel extends Kernel
             new AppBundle\AppBundle(),
             new NozelitesBundle\NozelitesBundle(),
             new OffreBundle\OffreBundle(),
-<<<<<<< HEAD
-            new Knp\Bundle\PaginatorBundle\KnpPaginatorBundle(),
-            new CMEN\GoogleChartsBundle\CMENGoogleChartsBundle(),
-=======
             new ReclamationBundle\ReclamationBundle(),
->>>>>>> fbf676f73d9d0cd870f68b48f964c437d72f971f
         ];
 
         if (in_array($this->getEnvironment(), ['dev', 'test'], true)) {

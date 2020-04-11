@@ -396,14 +396,6 @@ class Membre
     }
 
     /**
-     * @param int $idusr
-     */
-    public function setIdusr($idusr)
-    {
-        $this->idusr = $idusr;
-    }
-
-    /**
      * Get date
      *
      * @return string
