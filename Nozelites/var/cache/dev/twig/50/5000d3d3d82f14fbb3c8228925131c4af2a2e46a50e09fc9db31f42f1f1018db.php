@@ -61,13 +61,13 @@ class __TwigTemplate_6c54327a09cc8e6066611108380322ea6edfc13e09c57bc144d97ab9b6f
 ";
         // line 14
         $this->displayBlock('body', $context, $blocks);
-        // line 451
+        // line 405
         echo "<!-- Scripts
 ================================================== -->
 ";
-        // line 453
+        // line 407
         $this->displayBlock('javascripts', $context, $blocks);
-        // line 509
+        // line 463
         echo "</body>
 </html>
 ";
@@ -141,20 +141,20 @@ class __TwigTemplate_6c54327a09cc8e6066611108380322ea6edfc13e09c57bc144d97ab9b6f
         ";
         // line 20
         $this->displayBlock('header', $context, $blocks);
-        // line 284
+        // line 271
         echo "        <!-- Header Container / End -->
 
         ";
-        // line 286
+        // line 273
         $this->displayBlock('content', $context, $blocks);
-        // line 287
+        // line 274
         echo "
         <!-- Footer
         ================================================== -->
         ";
-        // line 290
+        // line 277
         $this->displayBlock('footer', $context, $blocks);
-        // line 446
+        // line 400
         echo "        <!-- Footer / End -->
 
     </div>
@@ -273,17 +273,24 @@ class __TwigTemplate_6c54327a09cc8e6066611108380322ea6edfc13e09c57bc144d97ab9b6f
                                         </ul>
                                     </li>
 
-                                    <li><a href=\"#\">Evénements</a>
+
+                                    <li><a href=\"";
+        // line 103
+        echo $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("nozelites_AllEvenementfront");
+        echo "\">Evenements</a>
                                         <ul class=\"dropdown-nav\">
-                                            <li><a href=\"pages-blog.html\">Blog</a></li>
-                                            <li><a href=\"pages-pricing-plans.html\">Pricing Plans</a></li>
-                                            <li><a href=\"pages-checkout-page.html\">Checkout Page</a></li>
-                                            <li><a href=\"pages-invoice-template.html\">Invoice Template</a></li>
-                                            <li><a href=\"pages-user-interface-elements.html\">User Interface Elements</a></li>
-                                            <li><a href=\"pages-icons-cheatsheet.html\">Icons Cheatsheet</a></li>
-                                            <li><a href=\"pages-login.html\">Login & Register</a></li>
-                                            <li><a href=\"pages-404.html\">404 Page</a></li>
-                                            <li><a href=\"pages-contact.html\">Contact</a></li>
+                                            <li><a href=\"";
+        // line 105
+        echo $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("nozelites_Evenementajouterfront");
+        echo "\">creer</a></li>
+                                            <li><a href=\"";
+        // line 106
+        echo $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("nozelites_Evenementafficherfront");
+        echo "\">Mes Evenements</a></li>
+                                            <li><a href=\"";
+        // line 107
+        echo $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("nozelites_AllEvenementfront");
+        echo "\">All</a></li>
                                         </ul>
                                     </li>
 
@@ -297,11 +304,14 @@ class __TwigTemplate_6c54327a09cc8e6066611108380322ea6edfc13e09c57bc144d97ab9b6f
 
 
                         <!-- Right Side Content / End -->
+
                         <div class=\"right-side\">
-
-                            <!--  User Notifications -->
+                            ";
+        // line 123
+        if ($this->env->getExtension('Symfony\Bridge\Twig\Extension\SecurityExtension')->isGranted("IS_AUTHENTICATED_FULLY")) {
+            // line 124
+            echo "                            <!--  User Notifications -->
                             <div class=\"header-widget hide-on-mobile\">
-
                                 <!-- Notifications -->
                                 <div class=\"header-notifications\">
 
@@ -309,10 +319,8 @@ class __TwigTemplate_6c54327a09cc8e6066611108380322ea6edfc13e09c57bc144d97ab9b6f
                                     <div class=\"header-notifications-trigger\">
                                         <a href=\"#\"><i class=\"icon-feather-bell\"></i><span>4</span></a>
                                     </div>
-
                                     <!-- Dropdown -->
                                     <div class=\"header-notifications-dropdown\">
-
                                         <div class=\"header-notifications-headline\">
                                             <h4>Notifications</h4>
                                             <button class=\"mark-as-read ripple-effect-dark\" title=\"Mark all as read\" data-tippy-placement=\"left\">
@@ -365,37 +373,27 @@ class __TwigTemplate_6c54327a09cc8e6066611108380322ea6edfc13e09c57bc144d97ab9b6f
                                                 </ul>
                                             </div>
                                         </div>
-
                                     </div>
-
                                 </div>
 
                                 <!-- Messages -->
                                 <div class=\"header-notifications\">
                                     <div class=\"header-notifications-trigger\">
                                         <a href=\"";
-        // line 202
-        echo $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("message_liste");
-        echo "\"><i class=\"icon-feather-mail\"></i></a>
+            // line 193
+            echo $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("message_liste");
+            echo "\"><i class=\"icon-feather-mail\"></i></a>
                                     </div>
-
                                     <!-- Dropdown -->
                                     <div class=\"header-notifications-dropdown\">
-
-                                        <div class=\"header-notifications-headline\">
-                                            <h4>Messages</h4>
-                                        </div>
-
-
-
-                                        <a href=\"";
-        // line 214
-        echo $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("message_liste");
-        echo "\" class=\"header-notifications-button ripple-effect button-sliding-icon\">Voir tous les messages<i class=\"icon-material-outline-arrow-right-alt\"></i></a>
+                                    <a href=\"";
+            // line 197
+            echo $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("message_liste");
+            echo "\" class=\"header-notifications-button ripple-effect button-sliding-icon\">Voir tous les messages<i class=\"icon-material-outline-arrow-right-alt\"></i></a>
                                     </div>
                                 </div>
-
                             </div>
+
                             <!--  User Notifications / End -->
 
                             <!-- User Menu -->
@@ -415,9 +413,9 @@ class __TwigTemplate_6c54327a09cc8e6066611108380322ea6edfc13e09c57bc144d97ab9b6f
 
                                             <!-- User Name / Avatar -->
                                             <div class=\"user-details\">
-                                                <div class=\"user-avatar status-online\"><img src=\"images/user-avatar-small-01.jpg\" alt=\"\"></div>
+                                                <div class=\"user-avatar status-online\"><img src=\"\" alt=\"\"></div>
                                                 <div class=\"user-name\">
-                                                    Tom Smith <span>Freelancer</span>
+
                                                 </div>
                                             </div>
 
@@ -431,9 +429,15 @@ class __TwigTemplate_6c54327a09cc8e6066611108380322ea6edfc13e09c57bc144d97ab9b6f
                                         </div>
 
                                         <ul class=\"user-menu-small-nav\">
-                                            <li><a href=\"dashboard.html\"><i class=\"icon-material-outline-dashboard\"></i> Dashboard</a></li>
+                                            <li><a href=\"";
+            // line 237
+            echo $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("fos_user_profile_show");
+            echo "\"><i class=\"icon-material-outline-dashboard\"></i> Profil</a></li>
                                             <li><a href=\"dashboard-settings.html\"><i class=\"icon-material-outline-settings\"></i> Settings</a></li>
-                                            <li><a href=\"index-logged-out.html\"><i class=\"icon-material-outline-power-settings-new\"></i> Logout</a></li>
+                                            <li><a href=\"";
+            // line 239
+            echo $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("fos_user_security_logout");
+            echo "\"><i class=\"icon-material-outline-power-settings-new\"></i> Logout</a></li>
                                         </ul>
 
                                     </div>
@@ -441,8 +445,19 @@ class __TwigTemplate_6c54327a09cc8e6066611108380322ea6edfc13e09c57bc144d97ab9b6f
 
                             </div>
                             <!-- User Menu / End -->
-
-                            <!-- Mobile Navigation Button -->
+                            ";
+        } elseif ($this->env->getExtension('Symfony\Bridge\Twig\Extension\SecurityExtension')->isGranted("IS_AUTHENTICATED_ANONYMOUSLY")) {
+            // line 248
+            echo "                            <div class=\"header-widget\">
+                                <a href=\"";
+            // line 249
+            echo $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("fos_user_security_login");
+            echo "\" class=\"log-in-button\"><i class=\"icon-feather-log-in\"></i> <span>Se Connecter/S'enregistrer</span></a>
+                            </div>
+                            ";
+        }
+        // line 252
+        echo "                            <!-- Mobile Navigation Button -->
                             <span class=\"mmenu-trigger\">
 \t\t\t\t\t<button class=\"hamburger hamburger--collapse\" type=\"button\">
 \t\t\t\t\t\t<span class=\"hamburger-box\">
@@ -455,9 +470,9 @@ class __TwigTemplate_6c54327a09cc8e6066611108380322ea6edfc13e09c57bc144d97ab9b6f
                         <!-- Right Side Content / End -->
 
                     </div>
-                </div>
-                <!-- Header / End -->
 
+                <!-- Header / End -->
+                </div>
             </header>
             <div class=\"clearfix\"></div>
         ";
@@ -469,7 +484,7 @@ class __TwigTemplate_6c54327a09cc8e6066611108380322ea6edfc13e09c57bc144d97ab9b6f
 
     }
 
-    // line 286
+    // line 273
     public function block_content($context, array $blocks = [])
     {
         $__internal_085b0142806202599c7fe3b329164a92397d8978207a37e79d70b8c52599e33e = $this->env->getExtension("Symfony\\Bundle\\WebProfilerBundle\\Twig\\WebProfilerExtension");
@@ -486,7 +501,7 @@ class __TwigTemplate_6c54327a09cc8e6066611108380322ea6edfc13e09c57bc144d97ab9b6f
 
     }
 
-    // line 290
+    // line 277
     public function block_footer($context, array $blocks = [])
     {
         $__internal_085b0142806202599c7fe3b329164a92397d8978207a37e79d70b8c52599e33e = $this->env->getExtension("Symfony\\Bundle\\WebProfilerBundle\\Twig\\WebProfilerExtension");
@@ -495,7 +510,7 @@ class __TwigTemplate_6c54327a09cc8e6066611108380322ea6edfc13e09c57bc144d97ab9b6f
         $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02 = $this->env->getExtension("Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension");
         $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02->enter($__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "footer"));
 
-        // line 291
+        // line 278
         echo "            <div id=\"footer\">
 
                 <!-- Footer Top Section -->
@@ -521,44 +536,11 @@ class __TwigTemplate_6c54327a09cc8e6066611108380322ea6edfc13e09c57bc144d97ab9b6f
 
                                         <!-- Social Icons -->
                                         <div class=\"footer-row\">
-                                            <div class=\"footer-row-inner\">
-                                                <ul class=\"footer-social-links\">
-                                                    <li>
-                                                        <a href=\"#\" title=\"Facebook\" data-tippy-placement=\"bottom\" data-tippy-theme=\"light\">
-                                                            <i class=\"icon-brand-facebook-f\"></i>
-                                                        </a>
-                                                    </li>
-                                                    <li>
-                                                        <a href=\"#\" title=\"Twitter\" data-tippy-placement=\"bottom\" data-tippy-theme=\"light\">
-                                                            <i class=\"icon-brand-twitter\"></i>
-                                                        </a>
-                                                    </li>
-                                                    <li>
-                                                        <a href=\"#\" title=\"Google Plus\" data-tippy-placement=\"bottom\" data-tippy-theme=\"light\">
-                                                            <i class=\"icon-brand-google-plus-g\"></i>
-                                                        </a>
-                                                    </li>
-                                                    <li>
-                                                        <a href=\"#\" title=\"LinkedIn\" data-tippy-placement=\"bottom\" data-tippy-theme=\"light\">
-                                                            <i class=\"icon-brand-linkedin-in\"></i>
-                                                        </a>
-                                                    </li>
-                                                </ul>
-                                                <div class=\"clearfix\"></div>
-                                            </div>
+
                                         </div>
 
                                         <!-- Language Switcher -->
-                                        <div class=\"footer-row\">
-                                            <div class=\"footer-row-inner\">
-                                                <select class=\"selectpicker language-switcher\" data-selected-text-format=\"count\" data-size=\"5\">
-                                                    <option selected>English</option>
-                                                    <option>Français</option>
-                                                    <option>Español</option>
-                                                    <option>Deutsch</option>
-                                                </select>
-                                            </div>
-                                        </div>
+
                                     </div>
 
                                 </div>
@@ -659,7 +641,7 @@ class __TwigTemplate_6c54327a09cc8e6066611108380322ea6edfc13e09c57bc144d97ab9b6f
 
     }
 
-    // line 453
+    // line 407
     public function block_javascripts($context, array $blocks = [])
     {
         $__internal_085b0142806202599c7fe3b329164a92397d8978207a37e79d70b8c52599e33e = $this->env->getExtension("Symfony\\Bundle\\WebProfilerBundle\\Twig\\WebProfilerExtension");
@@ -668,56 +650,56 @@ class __TwigTemplate_6c54327a09cc8e6066611108380322ea6edfc13e09c57bc144d97ab9b6f
         $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02 = $this->env->getExtension("Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension");
         $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02->enter($__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "javascripts"));
 
-        // line 454
+        // line 408
         echo "    <script src=\"";
         echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\AssetExtension')->getAssetUrl("js/jquery-3.3.1.min.js"), "html", null, true);
         echo "\"></script>
     <script src=\"";
-        // line 455
+        // line 409
         echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\AssetExtension')->getAssetUrl("js/jquery-migrate-3.0.0.min.js"), "html", null, true);
         echo "\"></script>
     <script src=\"";
-        // line 456
+        // line 410
         echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\AssetExtension')->getAssetUrl("js/mmenu.min.js"), "html", null, true);
         echo "\"></script>
     <script src=\"";
-        // line 457
+        // line 411
         echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\AssetExtension')->getAssetUrl("js/tippy.all.min.js"), "html", null, true);
         echo "\"></script>
     <script src=\"";
-        // line 458
+        // line 412
         echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\AssetExtension')->getAssetUrl("js/simplebar.min.js"), "html", null, true);
         echo "\"></script>
     <script src=\"";
-        // line 459
+        // line 413
         echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\AssetExtension')->getAssetUrl("js/bootstrap-slider.min.js"), "html", null, true);
         echo "\"></script>
     <script src=\"";
-        // line 460
+        // line 414
         echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\AssetExtension')->getAssetUrl("js/bootstrap-select.min.js"), "html", null, true);
         echo "\"></script>
     <script src=\"";
-        // line 461
+        // line 415
         echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\AssetExtension')->getAssetUrl("js/snackbar.js"), "html", null, true);
         echo "\"></script>
     <script src=\"";
-        // line 462
+        // line 416
         echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\AssetExtension')->getAssetUrl("js/clipboard.min.js"), "html", null, true);
         echo "\"></script>
     <script src=\"";
-        // line 463
+        // line 417
         echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\AssetExtension')->getAssetUrl("js/counterup.min.js"), "html", null, true);
         echo "\"></script>
     <script src=\"";
-        // line 464
+        // line 418
         echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\AssetExtension')->getAssetUrl("js/magnific-popup.min.js"), "html", null, true);
         echo "\"></script>
     <script src=\"";
-        // line 465
+        // line 419
         echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\AssetExtension')->getAssetUrl("js/slick.min.js"), "html", null, true);
         echo "\"></script>
     <script src=\"";
-        // line 466
+        // line 420
         echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\AssetExtension')->getAssetUrl("js/custom.js"), "html", null, true);
         echo "\"></script>
 
@@ -782,7 +764,7 @@ class __TwigTemplate_6c54327a09cc8e6066611108380322ea6edfc13e09c57bc144d97ab9b6f
 
     public function getDebugInfo()
     {
-        return array (  721 => 466,  717 => 465,  713 => 464,  709 => 463,  705 => 462,  701 => 461,  697 => 460,  693 => 459,  689 => 458,  685 => 457,  681 => 456,  677 => 455,  672 => 454,  663 => 453,  499 => 291,  490 => 290,  473 => 286,  393 => 214,  378 => 202,  271 => 98,  262 => 92,  257 => 90,  195 => 33,  181 => 21,  172 => 20,  158 => 446,  156 => 290,  151 => 287,  149 => 286,  145 => 284,  143 => 20,  136 => 15,  127 => 14,  115 => 9,  110 => 8,  101 => 7,  83 => 6,  71 => 509,  69 => 453,  65 => 451,  63 => 14,  56 => 11,  54 => 7,  50 => 6,  43 => 1,);
+        return array (  703 => 420,  699 => 419,  695 => 418,  691 => 417,  687 => 416,  683 => 415,  679 => 414,  675 => 413,  671 => 412,  667 => 411,  663 => 410,  659 => 409,  654 => 408,  645 => 407,  514 => 278,  505 => 277,  488 => 273,  460 => 252,  454 => 249,  451 => 248,  439 => 239,  434 => 237,  391 => 197,  384 => 193,  313 => 124,  311 => 123,  292 => 107,  288 => 106,  284 => 105,  279 => 103,  271 => 98,  262 => 92,  257 => 90,  195 => 33,  181 => 21,  172 => 20,  158 => 400,  156 => 277,  151 => 274,  149 => 273,  145 => 271,  143 => 20,  136 => 15,  127 => 14,  115 => 9,  110 => 8,  101 => 7,  83 => 6,  71 => 463,  69 => 407,  65 => 405,  63 => 14,  56 => 11,  54 => 7,  50 => 6,  43 => 1,);
     }
 
     /** @deprecated since 1.27 (to be removed in 2.0). Use getSourceContext() instead */
@@ -896,17 +878,12 @@ class __TwigTemplate_6c54327a09cc8e6066611108380322ea6edfc13e09c57bc144d97ab9b6f
                                         </ul>
                                     </li>
 
-                                    <li><a href=\"#\">Evénements</a>
+
+                                    <li><a href=\"{{ path('nozelites_AllEvenementfront')}}\">Evenements</a>
                                         <ul class=\"dropdown-nav\">
-                                            <li><a href=\"pages-blog.html\">Blog</a></li>
-                                            <li><a href=\"pages-pricing-plans.html\">Pricing Plans</a></li>
-                                            <li><a href=\"pages-checkout-page.html\">Checkout Page</a></li>
-                                            <li><a href=\"pages-invoice-template.html\">Invoice Template</a></li>
-                                            <li><a href=\"pages-user-interface-elements.html\">User Interface Elements</a></li>
-                                            <li><a href=\"pages-icons-cheatsheet.html\">Icons Cheatsheet</a></li>
-                                            <li><a href=\"pages-login.html\">Login & Register</a></li>
-                                            <li><a href=\"pages-404.html\">404 Page</a></li>
-                                            <li><a href=\"pages-contact.html\">Contact</a></li>
+                                            <li><a href=\"{{ path('nozelites_Evenementajouterfront')}}\">creer</a></li>
+                                            <li><a href=\"{{ path('nozelites_Evenementafficherfront')}}\">Mes Evenements</a></li>
+                                            <li><a href=\"{{ path('nozelites_AllEvenementfront')}}\">All</a></li>
                                         </ul>
                                     </li>
 
@@ -920,11 +897,11 @@ class __TwigTemplate_6c54327a09cc8e6066611108380322ea6edfc13e09c57bc144d97ab9b6f
 
 
                         <!-- Right Side Content / End -->
-                        <div class=\"right-side\">
 
+                        <div class=\"right-side\">
+                            {% if is_granted('IS_AUTHENTICATED_FULLY') %}
                             <!--  User Notifications -->
                             <div class=\"header-widget hide-on-mobile\">
-
                                 <!-- Notifications -->
                                 <div class=\"header-notifications\">
 
@@ -932,10 +909,8 @@ class __TwigTemplate_6c54327a09cc8e6066611108380322ea6edfc13e09c57bc144d97ab9b6f
                                     <div class=\"header-notifications-trigger\">
                                         <a href=\"#\"><i class=\"icon-feather-bell\"></i><span>4</span></a>
                                     </div>
-
                                     <!-- Dropdown -->
                                     <div class=\"header-notifications-dropdown\">
-
                                         <div class=\"header-notifications-headline\">
                                             <h4>Notifications</h4>
                                             <button class=\"mark-as-read ripple-effect-dark\" title=\"Mark all as read\" data-tippy-placement=\"left\">
@@ -988,9 +963,7 @@ class __TwigTemplate_6c54327a09cc8e6066611108380322ea6edfc13e09c57bc144d97ab9b6f
                                                 </ul>
                                             </div>
                                         </div>
-
                                     </div>
-
                                 </div>
 
                                 <!-- Messages -->
@@ -998,21 +971,13 @@ class __TwigTemplate_6c54327a09cc8e6066611108380322ea6edfc13e09c57bc144d97ab9b6f
                                     <div class=\"header-notifications-trigger\">
                                         <a href=\"{{ path('message_liste')}}\"><i class=\"icon-feather-mail\"></i></a>
                                     </div>
-
                                     <!-- Dropdown -->
                                     <div class=\"header-notifications-dropdown\">
-
-                                        <div class=\"header-notifications-headline\">
-                                            <h4>Messages</h4>
-                                        </div>
-
-
-
-                                        <a href=\"{{ path('message_liste')}}\" class=\"header-notifications-button ripple-effect button-sliding-icon\">Voir tous les messages<i class=\"icon-material-outline-arrow-right-alt\"></i></a>
+                                    <a href=\"{{ path('message_liste')}}\" class=\"header-notifications-button ripple-effect button-sliding-icon\">Voir tous les messages<i class=\"icon-material-outline-arrow-right-alt\"></i></a>
                                     </div>
                                 </div>
-
                             </div>
+
                             <!--  User Notifications / End -->
 
                             <!-- User Menu -->
@@ -1032,9 +997,9 @@ class __TwigTemplate_6c54327a09cc8e6066611108380322ea6edfc13e09c57bc144d97ab9b6f
 
                                             <!-- User Name / Avatar -->
                                             <div class=\"user-details\">
-                                                <div class=\"user-avatar status-online\"><img src=\"images/user-avatar-small-01.jpg\" alt=\"\"></div>
+                                                <div class=\"user-avatar status-online\"><img src=\"\" alt=\"\"></div>
                                                 <div class=\"user-name\">
-                                                    Tom Smith <span>Freelancer</span>
+
                                                 </div>
                                             </div>
 
@@ -1048,9 +1013,9 @@ class __TwigTemplate_6c54327a09cc8e6066611108380322ea6edfc13e09c57bc144d97ab9b6f
                                         </div>
 
                                         <ul class=\"user-menu-small-nav\">
-                                            <li><a href=\"dashboard.html\"><i class=\"icon-material-outline-dashboard\"></i> Dashboard</a></li>
+                                            <li><a href=\"{{ path('fos_user_profile_show') }}\"><i class=\"icon-material-outline-dashboard\"></i> Profil</a></li>
                                             <li><a href=\"dashboard-settings.html\"><i class=\"icon-material-outline-settings\"></i> Settings</a></li>
-                                            <li><a href=\"index-logged-out.html\"><i class=\"icon-material-outline-power-settings-new\"></i> Logout</a></li>
+                                            <li><a href=\"{{ path('fos_user_security_logout') }}\"><i class=\"icon-material-outline-power-settings-new\"></i> Logout</a></li>
                                         </ul>
 
                                     </div>
@@ -1058,7 +1023,11 @@ class __TwigTemplate_6c54327a09cc8e6066611108380322ea6edfc13e09c57bc144d97ab9b6f
 
                             </div>
                             <!-- User Menu / End -->
-
+                            {% elseif is_granted('IS_AUTHENTICATED_ANONYMOUSLY') %}
+                            <div class=\"header-widget\">
+                                <a href=\"{{ path('fos_user_security_login') }}\" class=\"log-in-button\"><i class=\"icon-feather-log-in\"></i> <span>Se Connecter/S'enregistrer</span></a>
+                            </div>
+                            {% endif %}
                             <!-- Mobile Navigation Button -->
                             <span class=\"mmenu-trigger\">
 \t\t\t\t\t<button class=\"hamburger hamburger--collapse\" type=\"button\">
@@ -1072,9 +1041,9 @@ class __TwigTemplate_6c54327a09cc8e6066611108380322ea6edfc13e09c57bc144d97ab9b6f
                         <!-- Right Side Content / End -->
 
                     </div>
-                </div>
-                <!-- Header / End -->
 
+                <!-- Header / End -->
+                </div>
             </header>
             <div class=\"clearfix\"></div>
         {% endblock %}
@@ -1110,44 +1079,11 @@ class __TwigTemplate_6c54327a09cc8e6066611108380322ea6edfc13e09c57bc144d97ab9b6f
 
                                         <!-- Social Icons -->
                                         <div class=\"footer-row\">
-                                            <div class=\"footer-row-inner\">
-                                                <ul class=\"footer-social-links\">
-                                                    <li>
-                                                        <a href=\"#\" title=\"Facebook\" data-tippy-placement=\"bottom\" data-tippy-theme=\"light\">
-                                                            <i class=\"icon-brand-facebook-f\"></i>
-                                                        </a>
-                                                    </li>
-                                                    <li>
-                                                        <a href=\"#\" title=\"Twitter\" data-tippy-placement=\"bottom\" data-tippy-theme=\"light\">
-                                                            <i class=\"icon-brand-twitter\"></i>
-                                                        </a>
-                                                    </li>
-                                                    <li>
-                                                        <a href=\"#\" title=\"Google Plus\" data-tippy-placement=\"bottom\" data-tippy-theme=\"light\">
-                                                            <i class=\"icon-brand-google-plus-g\"></i>
-                                                        </a>
-                                                    </li>
-                                                    <li>
-                                                        <a href=\"#\" title=\"LinkedIn\" data-tippy-placement=\"bottom\" data-tippy-theme=\"light\">
-                                                            <i class=\"icon-brand-linkedin-in\"></i>
-                                                        </a>
-                                                    </li>
-                                                </ul>
-                                                <div class=\"clearfix\"></div>
-                                            </div>
+
                                         </div>
 
                                         <!-- Language Switcher -->
-                                        <div class=\"footer-row\">
-                                            <div class=\"footer-row-inner\">
-                                                <select class=\"selectpicker language-switcher\" data-selected-text-format=\"count\" data-size=\"5\">
-                                                    <option selected>English</option>
-                                                    <option>Français</option>
-                                                    <option>Español</option>
-                                                    <option>Deutsch</option>
-                                                </select>
-                                            </div>
-                                        </div>
+
                                     </div>
 
                                 </div>

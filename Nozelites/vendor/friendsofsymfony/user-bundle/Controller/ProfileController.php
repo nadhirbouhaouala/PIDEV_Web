@@ -18,6 +18,13 @@ use FOS\UserBundle\Form\Factory\FactoryInterface;
 use FOS\UserBundle\FOSUserEvents;
 use FOS\UserBundle\Model\UserInterface;
 use FOS\UserBundle\Model\UserManagerInterface;
+
+
+use NozelitesBundle\Entity\Formation;
+use NozelitesBundle\Entity\Listediplome;
+
+
+
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
@@ -53,8 +60,16 @@ class ProfileController extends Controller
             throw new AccessDeniedException('This user does not have access to this section.');
         }
 
+        $em = $this->getDoctrine()->getManager();
+        $formations = new Formation();
+        $formations = $em->getRepository("NozelitesBundle:Formation")->findby(array('idMembre'=>$user->getId()));
+        $listDiplome = new Listediplome();
+        $listeDiplome = $em->getRepository("NozelitesBundle:Listediplome")->findby(array('idMembre'=>$user->getId()));
         return $this->render('@FOSUser/Profile/show.html.twig', array(
             'user' => $user,
+            'listFormation' => $formations,
+            'listeDiplome' => $listeDiplome
+
         ));
     }
 
@@ -85,6 +100,14 @@ class ProfileController extends Controller
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+
+            $file = $user->getImage();
+            $fileName = md5(uniqid()).'.'.$file->guessExtension();
+            $file->move(
+                $this->getParameter('image_directory'),$fileName
+            );
+            $user->setImage($fileName);
+
             $event = new FormEvent($form, $request);
             $this->eventDispatcher->dispatch(FOSUserEvents::PROFILE_EDIT_SUCCESS, $event);
 

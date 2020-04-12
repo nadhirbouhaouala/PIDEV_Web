@@ -16,12 +16,17 @@ class AppKernel extends Kernel
             new Symfony\Bundle\SwiftmailerBundle\SwiftmailerBundle(),
             new Doctrine\Bundle\DoctrineBundle\DoctrineBundle(),
             new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
+            new Knp\Bundle\SnappyBundle\KnpSnappyBundle(),//snappy bundle
             new AppBundle\AppBundle(),
             new NozelitesBundle\NozelitesBundle(),
-            new Knp\Bundle\SnappyBundle\KnpSnappyBundle(),
             new OffreBundle\OffreBundle(),
             new Knp\Bundle\PaginatorBundle\KnpPaginatorBundle(),
             new CMEN\GoogleChartsBundle\CMENGoogleChartsBundle(),
+            new FOS\UserBundle\FOSUserBundle(),
+            new UserBundle\UserBundle(),
+            new ReclamationBundle\ReclamationBundle(),
+            new PublicationBundle\PublicationBundle(),
+
         ];
 
         if (in_array($this->getEnvironment(), ['dev', 'test'], true)) {

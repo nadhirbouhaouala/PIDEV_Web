@@ -8,6 +8,8 @@ use NozelitesBundle\Entity\Membre;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
+use Knp\Bundle\SnappyBundle\Snappy\Response\PdfResponse;
 
 /**
  * Groupe controller.
@@ -263,11 +265,26 @@ class GroupeController extends Controller
         $gm = $em->getRepository('NozelitesBundle:GroupeMembre')
             ->findOneBy(array('idGroupe'=>$id,
                 'idMembre'=>$id_membre_actif));
+        $gms = $em->getRepository('NozelitesBundle:GroupeMembre')
+            ->findBy(array('idGroupe'=>$id,));
         if($gm->getEtat()=="administrateur")//que l'admin peut supprimer
         {
             $groupe = $em->getRepository('NozelitesBundle:Groupe')->find($id);
             $em->remove($groupe);
-            $em->remove($gm);
+            //$em->remove($gm);
+            for($i=0;$i<sizeof($gms);$i++)
+            {
+                //email
+                $mail="nadhir.bouhaouala@esprit.tn";
+                $msg="Bonjour Mr/Mme ".$gms[$i]->getIdMembre()->getNom()." ".$gms[$i]->getIdMembre()->getPrenom()
+                    ."Le groupe ".$groupe->getTitre()." : ".$groupe->getDescription()." à été supprimer";
+                $transport = \Swift_SmtpTransport::newInstance('smtp.gmail.com',465,'ssl');
+                $mailer = \Swift_Mailer::newInstance($transport);
+                $message = \Swift_Message::newInstance()
+                    ->setSubject('Validation')->setFrom('nozelitesa3@gmail.com')->setTo($mail)->setBody($msg);
+                $this->get('mailer')->send($message);
+                $em->remove($gms[$i]);
+            }
             $em->flush();
         }
 
@@ -300,11 +317,11 @@ class GroupeController extends Controller
             if($exist==false)$m_autres[sizeof($m_autres)] = $membres[$j];
         }
 
-        $isadmin = false;
+        $isadmin = 0;
         $result = $em->getRepository('NozelitesBundle:GroupeMembre')->findOneBy(array('idGroupe'=>$id,'idMembre'=>$id_membre_actif));
         if($result)
             if($result->getEtat()=="administrateur")
-                $isadmin=true;
+                $isadmin=1;
 
         //var_dump($gm_membres);
         return $this->render('@Nozelites/Front/MembreGroup.html.twig', array(
@@ -313,6 +330,7 @@ class GroupeController extends Controller
             'admins' => $m_admins,
             'membres' => $m_membres,
             'autres' => $m_autres,
+            'membre_actif' => $id_membre_actif,
         ));
     }
 
@@ -522,6 +540,38 @@ class GroupeController extends Controller
         return $this->redirectToRoute('nozelites_admingroupeafficherback',array('id'=>$id->getIdGroupe()));
     }
 
+    public function pdfGroupesAction()
+    {
+        //twig
+        $em = $this->getDoctrine()->getManager();
+        $groupes = $em->getRepository('NozelitesBundle:Groupe')->findAll();
+        $snappy = $this->get('knp_snappy.pdf');
+        $html = $this->renderView(
+            '@Nozelites/Default/groupe/index.html.twig', array('groupes' => $groupes)
+        );
+        $filename = 'myFirstSnappyPDF';
+        return new Response(
+            $snappy->getOutputFromHtml($html),
+            200,
+            array(
+                'Content-Type'          => 'application/pdf',
+                'Content-Disposition'   => 'inline; filename="'.$filename.'.pdf"'
+            )
+        );
+
+        /* url
+        $snappy = $this->get('knp_snappy.pdf');
+        $filename = 'myFirstSnappyPDF';
+        $url = 'http://ourcodeworld.com';
+        return new Response(
+            $snappy->getOutput($url),
+            200,
+            array(
+                'Content-Type'          => 'application/pdf',
+                'Content-Disposition'   => 'inline; filename="'.$filename.'.pdf"'
+            )
+        );*/
+    }
 
 
 }

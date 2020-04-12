@@ -61,6 +61,7 @@ class ProfileFormType extends AbstractType
                 'autocomplete' => 'current-password',
             ),
         ));
+
     }
 
     /**
