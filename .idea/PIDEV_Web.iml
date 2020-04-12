@@ -2,10 +2,17 @@
 <module type="WEB_MODULE" version="4">
   <component name="NewModuleRootManager">
     <content url="file://$MODULE_DIR$">
+<<<<<<< HEAD
       <sourceFolder url="file://$MODULE_DIR$/Nozelites/src" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Nozelites/tests" isTestSource="true" packagePrefix="Tests\" />
       <sourceFolder url="file://$MODULE_DIR$/tests" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/spec" isTestSource="true" />
+=======
+      <sourceFolder url="file://$MODULE_DIR$/tests" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/spec" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/Nozelites/tests" isTestSource="true" packagePrefix="Tests\" />
+      <sourceFolder url="file://$MODULE_DIR$/Nozelites/src" isTestSource="false" />
+>>>>>>> 4d0b8d48dda3f80f35525b197af86ab22e6495d9
       <excludeFolder url="file://$MODULE_DIR$/Nozelites/vendor/cmen/google-charts-bundle" />
       <excludeFolder url="file://$MODULE_DIR$/Nozelites/vendor/composer" />
       <excludeFolder url="file://$MODULE_DIR$/Nozelites/vendor/doctrine/annotations" />

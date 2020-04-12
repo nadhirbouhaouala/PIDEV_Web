@@ -19,9 +19,17 @@ class AppKernel extends Kernel
             new Knp\Bundle\SnappyBundle\KnpSnappyBundle(),//snappy bundle
             new AppBundle\AppBundle(),
             new NozelitesBundle\NozelitesBundle(),
+
+            new FOS\UserBundle\FOSUserBundle(),
+            new UserBundle\UserBundle(),
+
             new OffreBundle\OffreBundle(),
             new ReclamationBundle\ReclamationBundle(),
+<<<<<<< HEAD
             new PublicationBundle\PublicationBundle(),
+=======
+
+>>>>>>> 4d0b8d48dda3f80f35525b197af86ab22e6495d9
         ];
 
         if (in_array($this->getEnvironment(), ['dev', 'test'], true)) {

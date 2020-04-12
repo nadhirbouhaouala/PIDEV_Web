@@ -1,0 +1,94 @@
+{% trans_default_domain 'FOSUserBundle' %}
+
+<div id="titlebar" class="gradient">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+
+                <h2>S'enregister</h2>
+
+                <!-- Breadcrumbs -->
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-xl-5 offset-xl-3">
+
+{{ form_start(form, {'method': 'post', 'action': path('fos_user_registration_register'), 'attr': {'class': 'fos_user_registration_register'}}) }}
+
+            <div class="account-type">
+
+                {{form_row(form.roles)}}
+            </div>
+        <div class="input-with-icon-left">
+            <i class="icon-material-outline-account-circle"></i>
+
+            <input type="text" class="input-text with-border" name="{{form.nom.vars.full_name}}" id="{{ form.nom.vars.id }}" placeholder="Nom" value="{{ form.nom.vars.value }}"/>
+        </div>
+            {% do form.nom.setRendered %}
+            <!--prenom-->
+            <div class="input-with-icon-left">
+                <i class="icon-material-outline-account-circle"></i>
+
+                <input type="text" class="input-text with-border" name="{{form.prenom.vars.full_name}}" id="{{ form.prenom.vars.id }}" placeholder="Prenom" value="{{ form.prenom.vars.value }}"/>
+            </div>
+            {% do form.prenom.setRendered %}
+
+            <!--UserName-->
+            <div class="input-with-icon-left">
+                <i class="icon-material-outline-account-circle"></i>
+
+                <input type="text" class="input-text with-border" name="{{form.username.vars.full_name}}" id="{{ form.username.vars.id }}" placeholder="Nom d'utilisateur" value="{{ form.username.vars.value }}"/>
+            </div>
+            {% do form.username.setRendered %}
+
+            <!--Telephone-->
+            <div class="input-with-icon-left">
+                <i class="icon-line-awesome-phone"></i>
+
+                <input type="text" class="input-text with-border" name="{{form.telephone.vars.full_name}}" id="{{ form.telephone.vars.id }}" placeholder="Telephone" value="{{ form.telephone.vars.value }}"/>
+            </div>
+            {% do form.telephone.setRendered %}
+
+            <!--Age-->
+            <div class="input-with-icon-left">
+                <i class="icon-material-outline-cake"></i>
+
+                <input type="text" class="input-text with-border" name="{{form.age.vars.full_name}}" id="{{ form.age.vars.id }}" placeholder="Age" value="{{ form.age.vars.value }}"/>
+            </div>
+            {% do form.age.setRendered %}
+            <!--Email-->
+            <div class="input-with-icon-left">
+                <i class="icon-material-baseline-mail-outline"></i>
+
+                <input type="text" class="input-text with-border" name="{{form.email.vars.full_name}}" id="{{ form.email.vars.id }}" placeholder="Email" value="{{ form.email.vars.value }}"/>
+            </div>
+            {% do form.email.setRendered %}
+            <!--mdp 1 -->
+            <div class="input-with-icon-left">
+                <i class="icon-material-outline-lock"></i>
+
+                <input type="password" class="input-text with-border" name="{{form.plainPassword.first.vars.full_name}}" id="{{ form.plainPassword.first.vars.id }}" placeholder="Mot de passe" />
+            </div>
+            {% do form.plainPassword.first.setRendered %}
+            <!--mdp2-->
+            <div class="input-with-icon-left">
+                <i class="icon-material-outline-lock"></i>
+
+                <input type="password" class="input-text with-border" name="{{form.plainPassword.second.vars.full_name}}" id="{{ form.plainPassword.second.vars.id }}" placeholder="Répeter le mot de passe" />
+            </div>
+            {% do form.plainPassword.second.setRendered %}
+
+
+        <input class="button full-width button-sliding-icon ripple-effect margin-top-10" type="submit" value="{{ 'registration.submit'|trans }}" />
+
+{{ form_end(form) }}
+        </div>
+    </div>
+</div>
+<div class="margin-top-70"></div>
