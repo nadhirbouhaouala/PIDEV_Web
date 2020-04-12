@@ -60,15 +60,13 @@
                     <div class="col-xl-6 col-lg-6 content-left-offset">
                         <h1>Reclamation</h1>
                         <br>
-                        <form action="{{ path('Ajouter1') }}" method="post" id="mainform">
+
+                        <form action="{{ path('Ajouter1',{'id':resultat,'type':type}) }}" method="post" id="mainform">
 
 
                            <label>selecteur</label>
                             <select name="selecteur" class="selectpicker">
-
-
-                                <option value="groupe">Groupe</option>
-                                <option value="event">Event</option>
+                                <option value="{{ type }}" selected>{{ type }}</option>
                             </select>
 
 {#                            <label>Description</label>#}

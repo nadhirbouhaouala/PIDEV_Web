@@ -32,6 +32,7 @@ class EvaluationController extends Controller
 //    }
     public function AjoutNoteAction(Request $request,$id)
     {
+
         $Evaluation = new Evaluation();
         $IdR=$this->getDoctrine()
             ->getRepository(Reclamation::class)
@@ -39,21 +40,46 @@ class EvaluationController extends Controller
         $form = $this->createForm(EvaluationType::class,$Evaluation);
         $form = $form->handleRequest($request);
 
-        if ($request->getMethod() == Request::METHOD_POST) {
-            $Evaluation->setIdR($IdR);
-            $Evaluation->setNote($request->get('note'));
+            if ($request->getMethod() == Request::METHOD_POST) {
+                $Evaluation->setIdR($IdR);
+                $Evaluation->setNote($request->get('note'));
 
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($Evaluation);
-            $em->flush();
+                $em = $this->getDoctrine()->getManager();
+                $em->persist($Evaluation);
+                $em->flush();
 
-            return $this->redirectToRoute('');
-        }
+                return $this->redirectToRoute('');
+            }
 
         return $this->render('@Reclamation/Front/AjoutNote.html.twig',array('R' => $IdR));
     }
 
+    function AjoutNoteTestAction($id)
+    {
+        $reclamation=$this->getDoctrine()->getRepository(Evaluation::class)
+            ->findBy(array('idR'=>$id));
 
+        if(sizeof($reclamation)==0)
+        {
+            return $this->redirectToRoute("AjouterNoteTest");
+        }
+
+        return $this->redirectToRoute("reclamation_show");
+    }
+
+    function AfficherNoteAction($id){
+
+
+        $reclamation=$this->getDoctrine()->getRepository(Reclamation::class)
+            ->find($id);
+
+        $Evaluation=$this->getDoctrine()
+            ->getRepository(Evaluation::class)
+            ->findBy(array('idR'=>$reclamation));
+
+        return $this->render('@Reclamation/Back/AfficherNote.html.twig', array('Eval' => $Evaluation,'r' => $reclamation));
+
+    }
 
 
 }

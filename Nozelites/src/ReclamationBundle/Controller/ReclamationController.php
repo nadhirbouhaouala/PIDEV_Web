@@ -2,6 +2,7 @@
 
 namespace ReclamationBundle\Controller;
 
+use ReclamationBundle\Entity\Evaluation;
 use ReclamationBundle\Entity\Evenement;
 use ReclamationBundle\Entity\Groupe;
 use ReclamationBundle\Entity\Publication;
@@ -143,7 +144,7 @@ $ide=5;
         $ide=5;
         $Reclamations=$this->getDoctrine()->getRepository(Reclamation::class)->findAll();
         $membre=$this->getDoctrine()->getRepository(Membre::class)->findBy(array('idusr'=>$user));
-
+        $evaluation=$this->getDoctrine()->getRepository(Evaluation::class)->findBy(array('id'=>$user));
         $groupes = []; $evenements = []; $pubs = [];
         for($i=0; $i < sizeof($Reclamations); $i++)
         {
@@ -151,9 +152,10 @@ $ide=5;
                 $gr = $this->getDoctrine()->getRepository(Groupe::class)->find($Reclamations[$i]->getIdCible());
                 if(!in_array($gr,$groupes))$groupes[sizeof($groupes)] = $gr;
             }
-            if($Reclamations[$i]->getSelecteur()=="event")
-                $evenements[sizeof($evenements)] =
-                    $this->getDoctrine()->getRepository(Evenement::class)->find($Reclamations[$i]->getIdCible());
+            if($Reclamations[$i]->getSelecteur()=="event") {
+                  $fr =  $this->getDoctrine()->getRepository(Evenement::class)->find($Reclamations[$i]->getIdCible());
+                if(!in_array($fr,$evenements))$evenements[sizeof($evenements)] = $fr;
+            }
             if($Reclamations[$i]->getSelecteur()=="pub")
                 $pubs[sizeof($pubs)] =
                     $this->getDoctrine()->getRepository(Publication::class)->find($Reclamations[$i]->getIdCible());
@@ -162,7 +164,7 @@ $ide=5;
 
 
         return $this->render('@Reclamation/Back/ListReclamation.html.twig',
-            array('R'=>$Reclamations,'IdEmeteur' => $membre,'groupes' => $groupes,'evenements' => $evenements,'pubs' => $pubs));
+            array('R'=>$Reclamations,'IdEmeteur' => $membre,'groupes' => $groupes,'evenements' => $evenements,'pubs' => $pubs,'idrecl' =>$evaluation));
     }
     function UpdateAction($id,Request $request){
 
@@ -194,20 +196,40 @@ $ide=5;
         return $this->render('@Reclamation/Front/ListReclamation.html.twig');
 
     }
-    public function Ajouter1Action(Request $request)
+
+    public function Ajouter1Action(Request $request,$id,$type)
     {
 
       $id_emeteur = 9;
-       $id_cible = 5;
+
         $em = $this->getDoctrine()->getManager();
        $membres = $em->getRepository('ReclamationBundle:Membre')->findAll();
        $membrecn = $em->getRepository('ReclamationBundle:Membre')->find($id_emeteur);
-        $groupe = $em->getRepository('ReclamationBundle:Groupe')->findAll();
-       $groupss = $em->getRepository('ReclamationBundle:Groupe')->find($id_cible);
+        $entity = "";$resultat= 0;
+        if($type=="groupe")
+        {
+            $entity='ReclamationBundle:Groupe';
+            $resultat = $em->getRepository($entity)->find($id);
+            $resultat = $resultat->getIdGroupe();
+        }
+        else if($type=="event")
+        {
+            $entity='ReclamationBundle:Evenement';
+            $resultat = $em->getRepository($entity)->find($id);
+            $resultat = $resultat->getIdE();
+        }
+        else if($type=="pub")
+        {
+            $entity='ReclamationBundle:Publication';
+            $resultat = $em->getRepository($entity)->find($id);
+        }
+
+
+
        if ($request->getMethod() == Request::METHOD_POST) {
 
             $reclamation = new Reclamation();
-            $reclamation->setIdCible($id_cible);
+
             //$reclamation->setIdEmeteur($id_emeteur);
            //$reclamation->setIdEmeteur($membrecn);
             //$reclamation->setIdCible($groupss);//
@@ -216,7 +238,7 @@ $ide=5;
             $reclamation->setEtat(0);
             $reclamation->setDate(new  \DateTime("now + 1 hour"));
             $reclamation->setIdEmeteur($membres[1]);
-            $reclamation->setIdCible(5);
+            $reclamation->setIdCible($id);
             $em->persist($reclamation);
             $em->flush();
            $mail="mohamedkheireddine.bairam@esprit.tn";
@@ -232,7 +254,9 @@ $ide=5;
            return $this->redirectToRoute('reclamation_show');
        }
 
-        return $this->render('@Reclamation/Front/AjouterRec.html.twig');
+       return $this->render('@Reclamation/Front/AjouterRec.html.twig',array('resultat' =>$resultat, "type"=>$type ));
+
+
 
 
     }
