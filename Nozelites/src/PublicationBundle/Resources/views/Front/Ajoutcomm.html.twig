@@ -1,0 +1,58 @@
+{% extends '@Publication/Front/Publication.html.twig' %}
+{% block content %}
+
+
+
+    <!-- Post Content -->
+    <div class="container">
+        <div class="row">
+
+            <!-- Inner Content -->
+            <div class="col-xl-8 col-lg-8">
+
+
+
+
+
+
+
+                <div class="row">
+                    <div class="col-xl-12">
+
+                        <h3 class="margin-top-35 margin-bottom-30">Ajouter un commentaire</h3>
+                        </a>
+
+
+                        <!-- Form -->
+
+
+                        <div class="row">
+
+                            {{ form_start(f) }}
+
+                            {{ form_widget(f) }}
+                            <input type="submit" value="Ajouter" class="uploadButton-button ripple-effect" />
+
+                            {{ form_end(f) }}
+                            <a href="{{ path('Afficher')}}"><input type="submit" value="Retourner" class="uploadButton-button ripple-effect" />
+                            </a>
+
+
+                        </div>
+
+
+
+
+
+                    </div>
+                </div>
+                <!-- Leava a Comment / End -->
+
+            </div>
+
+
+
+
+        </div>
+    </div>
+{% endblock %}

@@ -31,6 +31,10 @@ nozelites:
     resource: "@NozelitesBundle/Resources/config/routing.yml"
     prefix:   /
 
+publication:
+    resource: "@PublicationBundle/Resources/config/routing.yml"
+    prefix:   /publication
+
 app:
     resource: '@AppBundle/Controller/'
     type: annotation

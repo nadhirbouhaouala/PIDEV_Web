@@ -1,0 +1,16 @@
+{% extends '@Publication/Back/Back.html.twig' %}
+{% block content %}
+{{ form_start(f) }}
+
+                    {{ form_widget(f) }}
+<input type="submit" value="Edit" class="uploadButton-button ripple-effect" />
+<div class="uploadButton margin-top-30">
+
+
+
+    <label class="uploadButton-button ripple-effect" for="upload">Upload Files</label>
+    {{ form_widget(f) }}
+    <input type="submit" value="Create" />
+</div>
+{{ form_end(f) }}
+{% endblock %}
