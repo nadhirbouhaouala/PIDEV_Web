@@ -4,7 +4,7 @@ parameters:
     database_port: null
     database_name: nozelites
     database_user: root
-    database_password: 99726135
+    database_password: 
     mailer_transport: gmail
     mailer_host: smtp.gmail.com
     mailer_user: nozelitesa3@gmail.com
