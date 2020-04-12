@@ -1,0 +1,91 @@
+
+    <!DOCTYPE html>
+    <html lang="en">
+
+    <head>
+        <meta charset="utf-8">
+        <title>{% block title %}Hireo Invoice{% endblock %}</title>
+        {% block stylesheets %}
+        <link rel="stylesheet" href="{{ asset('css/invoice.css') }}">
+        {% endblock %}
+    </head>
+
+    <body>
+
+    <!-- Print Button -->
+    <div class="print-button-container">
+        <a href="javascript:window.print()" class="print-button">Print this invoice</a>
+        <a href="{{ path('Afficher')}}" class="print-button">Retourner</a>
+    </div>
+
+    <!-- Invoice -->
+    <div id="invoice">
+
+        <!-- Header -->
+        <div class="row">
+            <div class="col-xl-6">
+                <div id="logo"><img src="{{ asset('images/nozelites.jpg') }}" alt=""></div>
+            </div>
+
+            <div class="col-xl-6">
+
+                <p id="details">
+                    <strong>Date:</strong>  <br>
+                    <strong></strong>  <br>
+
+                </p>
+            </div>
+        </div>
+
+
+        <!-- Client & Supplier -->
+        <div class="row">
+            <div class="col-xl-12">
+                <h2>{{ asset(c.titre) }}</h2>
+            </div>
+
+            <div class="col-xl-6">
+                <strong class="margin-bottom-5"></strong>
+                <p>
+                       Description :  <br>
+                    {{ asset(c.description) }}<br>
+                     <br>
+                </p>
+            </div>
+
+            <div class="col-xl-6">
+                <strong class="margin-bottom-5">Publication</strong>
+                <p>
+                <div >
+                    <img width="400" height="400" src="{{ asset('front/images/'~ c.image) }}" alt="">
+                </div>
+                </p>
+            </div>
+        </div>
+
+
+
+
+
+        </div>
+
+
+        <!-- Footer -->
+        <div class="row">
+            <div class="col-xl-12">
+                <ul id="footer">
+                    <li><span>www.example.com</span></li>
+                    <li>office@example.com</li>
+                    <li>(123) 123-456</li>
+                </ul>
+            </div>
+        </div>
+
+    </div>
+
+
+    </body>
+    </html>
+
+
+
