@@ -59,6 +59,12 @@ class ComposerStaticInit4442163fad6a07d6fe4e8f13ad82ad92
         array (
             'Monolog\\' => 8,
         ),
+        'K' => 
+        array (
+            'Knp\\Snappy\\' => 11,
+            'Knp\\Bundle\\SnappyBundle\\' => 24,
+            'Knp\\Bundle\\PaginatorBundle\\' => 27,
+        ),
         'I' => 
         array (
             'Incenteev\\ParameterHandler\\' => 27,
@@ -66,6 +72,7 @@ class ComposerStaticInit4442163fad6a07d6fe4e8f13ad82ad92
         'F' => 
         array (
             'Fig\\Link\\' => 9,
+            'FOS\\UserBundle\\' => 15,
         ),
         'D' => 
         array (
@@ -80,6 +87,7 @@ class ComposerStaticInit4442163fad6a07d6fe4e8f13ad82ad92
         'C' => 
         array (
             'Composer\\CaBundle\\' => 18,
+            'CMEN\\GoogleChartsBundle\\' => 24,
         ),
     );
 
@@ -192,6 +200,18 @@ class ComposerStaticInit4442163fad6a07d6fe4e8f13ad82ad92
         array (
             0 => __DIR__ . '/..' . '/monolog/monolog/src/Monolog',
         ),
+        'Knp\\Snappy\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/knplabs/knp-snappy/src/Knp/Snappy',
+        ),
+        'Knp\\Bundle\\SnappyBundle\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/knplabs/knp-snappy-bundle',
+        ),
+        'Knp\\Bundle\\PaginatorBundle\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/knplabs/knp-paginator-bundle',
+        ),
         'Incenteev\\ParameterHandler\\' => 
         array (
             0 => __DIR__ . '/..' . '/incenteev/composer-parameter-handler',
@@ -199,6 +219,10 @@ class ComposerStaticInit4442163fad6a07d6fe4e8f13ad82ad92
         'Fig\\Link\\' => 
         array (
             0 => __DIR__ . '/..' . '/fig/link-util/src',
+        ),
+        'FOS\\UserBundle\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/friendsofsymfony/user-bundle',
         ),
         'Doctrine\\Instantiator\\' => 
         array (
@@ -232,6 +256,10 @@ class ComposerStaticInit4442163fad6a07d6fe4e8f13ad82ad92
         array (
             0 => __DIR__ . '/..' . '/composer/ca-bundle/src',
         ),
+        'CMEN\\GoogleChartsBundle\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/cmen/google-charts-bundle',
+        ),
     );
 
     public static $fallbackDirsPsr4 = array (
@@ -244,6 +272,13 @@ class ComposerStaticInit4442163fad6a07d6fe4e8f13ad82ad92
             'Twig_' => 
             array (
                 0 => __DIR__ . '/..' . '/twig/twig/lib',
+            ),
+        ),
+        'K' => 
+        array (
+            'Knp\\Component' => 
+            array (
+                0 => __DIR__ . '/..' . '/knplabs/knp-components/src',
             ),
         ),
         'D' => 
