@@ -61,13 +61,13 @@ class __TwigTemplate_f4551aa65f698cce40b6b81a67d1926a63c34f081a08f6683a52336aed0
         ";
         // line 14
         $this->displayBlock('body', $context, $blocks);
-        // line 508
+        // line 337
         echo "        <!-- Scripts
         ================================================== -->
         ";
-        // line 510
+        // line 339
         $this->displayBlock('javascripts', $context, $blocks);
-        // line 566
+        // line 395
         echo "    </body>
 </html>
 ";
@@ -112,7 +112,7 @@ class __TwigTemplate_f4551aa65f698cce40b6b81a67d1926a63c34f081a08f6683a52336aed0
         echo "\">
             <link rel=\"stylesheet\" href=\"";
         // line 9
-        echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\AssetExtension')->getAssetUrl("css/colors/blue.css"), "html", null, true);
+        echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\AssetExtension')->getAssetUrl("css/colors/red.css"), "html", null, true);
         echo "\">
         ";
         
@@ -141,22 +141,21 @@ class __TwigTemplate_f4551aa65f698cce40b6b81a67d1926a63c34f081a08f6683a52336aed0
                 ";
         // line 20
         $this->displayBlock('header', $context, $blocks);
-        // line 341
-        echo "                <!-- Header Container / End -->
+        // line 165
+        echo "
 
                 ";
-        // line 343
+        // line 167
         $this->displayBlock('content', $context, $blocks);
-        // line 344
+        // line 171
         echo "
                 <!-- Footer
                 ================================================== -->
                 ";
-        // line 347
+        // line 174
         $this->displayBlock('footer', $context, $blocks);
-        // line 503
-        echo "                <!-- Footer / End -->
-
+        // line 333
+        echo "
             </div>
             <!-- Wrapper / End -->
         ";
@@ -178,7 +177,7 @@ class __TwigTemplate_f4551aa65f698cce40b6b81a67d1926a63c34f081a08f6683a52336aed0
         $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02->enter($__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "header"));
 
         // line 21
-        echo "                    <header id=\"header-container\" class=\"fullwidth\">
+        echo "                    <header id=\"header-container\" class=\"fullwidth transparent\">
 
                         <!-- Header -->
                         <div id=\"header\">
@@ -189,11 +188,8 @@ class __TwigTemplate_f4551aa65f698cce40b6b81a67d1926a63c34f081a08f6683a52336aed0
 
                                     <!-- Logo -->
                                     <div id=\"logo\">
-                                        <!--<a href=\"index.html\"><img src=\"images/logo.png\" alt=\"\"></a>-->
-                                        <a href=\"";
-        // line 33
-        echo $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("page2");
-        echo "\"><img src=\"";
+                                        <a href=\"index.html\"><img src=\"";
+        // line 32
         echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\AssetExtension')->getAssetUrl("images/logo.png"), "html", null, true);
         echo "\" alt=\"\"></a>
                                     </div>
@@ -304,197 +300,9 @@ class __TwigTemplate_f4551aa65f698cce40b6b81a67d1926a63c34f081a08f6683a52336aed0
                                 <!-- Right Side Content / End -->
                                 <div class=\"right-side\">
 
-                                    <!--  User Notifications -->
-                                    <div class=\"header-widget hide-on-mobile\">
-
-                                        <!-- Notifications -->
-                                        <div class=\"header-notifications\">
-
-                                            <!-- Trigger -->
-                                            <div class=\"header-notifications-trigger\">
-                                                <a href=\"#\"><i class=\"icon-feather-bell\"></i><span>4</span></a>
-                                            </div>
-
-                                            <!-- Dropdown -->
-                                            <div class=\"header-notifications-dropdown\">
-
-                                                <div class=\"header-notifications-headline\">
-                                                    <h4>Notifications</h4>
-                                                    <button class=\"mark-as-read ripple-effect-dark\" title=\"Mark all as read\" data-tippy-placement=\"left\">
-                                                        <i class=\"icon-feather-check-square\"></i>
-                                                    </button>
-                                                </div>
-
-                                                <div class=\"header-notifications-content\">
-                                                    <div class=\"header-notifications-scroll\" data-simplebar>
-                                                        <ul>
-                                                            <!-- Notification -->
-                                                            <li class=\"notifications-not-read\">
-                                                                <a href=\"dashboard-manage-candidates.html\">
-                                                                    <span class=\"notification-icon\"><i class=\"icon-material-outline-group\"></i></span>
-                                                                    <span class=\"notification-text\">
-\t\t\t\t\t\t\t\t\t\t\t\t\t<strong>Michael Shannah</strong> applied for a job <span class=\"color\">Full Stack Software Engineer</span>
-\t\t\t\t\t\t\t\t\t\t\t\t</span>
-                                                                </a>
-                                                            </li>
-
-                                                            <!-- Notification -->
-                                                            <li>
-                                                                <a href=\"dashboard-manage-bidders.html\">
-                                                                    <span class=\"notification-icon\"><i class=\" icon-material-outline-gavel\"></i></span>
-                                                                    <span class=\"notification-text\">
-\t\t\t\t\t\t\t\t\t\t\t\t\t<strong>Gilbert Allanis</strong> placed a bid on your <span class=\"color\">iOS App Development</span> project
-\t\t\t\t\t\t\t\t\t\t\t\t</span>
-                                                                </a>
-                                                            </li>
-
-                                                            <!-- Notification -->
-                                                            <li>
-                                                                <a href=\"dashboard-manage-jobs.html\">
-                                                                    <span class=\"notification-icon\"><i class=\"icon-material-outline-autorenew\"></i></span>
-                                                                    <span class=\"notification-text\">
-\t\t\t\t\t\t\t\t\t\t\t\t\tYour job listing <span class=\"color\">Full Stack PHP Developer</span> is expiring.
-\t\t\t\t\t\t\t\t\t\t\t\t</span>
-                                                                </a>
-                                                            </li>
-
-                                                            <!-- Notification -->
-                                                            <li>
-                                                                <a href=\"dashboard-manage-candidates.html\">
-                                                                    <span class=\"notification-icon\"><i class=\"icon-material-outline-group\"></i></span>
-                                                                    <span class=\"notification-text\">
-\t\t\t\t\t\t\t\t\t\t\t\t\t<strong>Sindy Forrest</strong> applied for a job <span class=\"color\">Full Stack Software Engineer</span>
-\t\t\t\t\t\t\t\t\t\t\t\t</span>
-                                                                </a>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                </div>
-
-                                            </div>
-
-                                        </div>
-
-                                        <!-- Messages -->
-                                        <div class=\"header-notifications\">
-                                            <div class=\"header-notifications-trigger\">
-                                                <a href=\"#\"><i class=\"icon-feather-mail\"></i><span>3</span></a>
-                                            </div>
-
-                                            <!-- Dropdown -->
-                                            <div class=\"header-notifications-dropdown\">
-
-                                                <div class=\"header-notifications-headline\">
-                                                    <h4>Messages</h4>
-                                                    <button class=\"mark-as-read ripple-effect-dark\" title=\"Mark all as read\" data-tippy-placement=\"left\">
-                                                        <i class=\"icon-feather-check-square\"></i>
-                                                    </button>
-                                                </div>
-
-                                                <div class=\"header-notifications-content\">
-                                                    <div class=\"header-notifications-scroll\" data-simplebar>
-                                                        <ul>
-                                                            <!-- Notification -->
-                                                            <li class=\"notifications-not-read\">
-                                                                <a href=\"dashboard-messages.html\">
-                                                                    <span class=\"notification-avatar status-online\"><img src=\"";
-        // line 235
-        echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\AssetExtension')->getAssetUrl("images/user-avatar-small-03.jpg"), "html", null, true);
-        echo "\" alt=\"\"></span>
-                                                                    <div class=\"notification-text\">
-                                                                        <strong>David Peterson</strong>
-                                                                        <p class=\"notification-msg-text\">Thanks for reaching out. I'm quite busy right now on many...</p>
-                                                                        <span class=\"color\">4 hours ago</span>
-                                                                    </div>
-                                                                </a>
-                                                            </li>
-
-                                                            <!-- Notification -->
-                                                            <li class=\"notifications-not-read\">
-                                                                <a href=\"dashboard-messages.html\">
-                                                                    <span class=\"notification-avatar status-offline\"><img src=\"";
-        // line 247
-        echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\AssetExtension')->getAssetUrl("images/user-avatar-small-02.jpg"), "html", null, true);
-        echo "\" alt=\"\"></span>
-                                                                    <div class=\"notification-text\">
-                                                                        <strong>Sindy Forest</strong>
-                                                                        <p class=\"notification-msg-text\">Hi Tom! Hate to break it to you, but I'm actually on vacation until...</p>
-                                                                        <span class=\"color\">Yesterday</span>
-                                                                    </div>
-                                                                </a>
-                                                            </li>
-
-                                                            <!-- Notification -->
-                                                            <li class=\"notifications-not-read\">
-                                                                <a href=\"dashboard-messages.html\">
-                                                                    <span class=\"notification-avatar status-online\"><img src=\"";
-        // line 259
-        echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\AssetExtension')->getAssetUrl("images/user-avatar-placeholder.png"), "html", null, true);
-        echo "\" alt=\"\"></span>
-                                                                    <div class=\"notification-text\">
-                                                                        <strong>Marcin Kowalski</strong>
-                                                                        <p class=\"notification-msg-text\">I received payment. Thanks for cooperation!</p>
-                                                                        <span class=\"color\">Yesterday</span>
-                                                                    </div>
-                                                                </a>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                </div>
-
-                                                <a href=\"dashboard-messages.html\" class=\"header-notifications-button ripple-effect button-sliding-icon\">View All Messages<i class=\"icon-material-outline-arrow-right-alt\"></i></a>
-                                            </div>
-                                        </div>
-
-                                    </div>
-                                    <!--  User Notifications / End -->
-
-                                    <!-- User Menu -->
                                     <div class=\"header-widget\">
-
-                                        <!-- Messages -->
-                                        <div class=\"header-notifications user-menu\">
-                                            <div class=\"header-notifications-trigger\">
-                                                <a href=\"#\"><div class=\"user-avatar status-online\"><";
-        // line 284
-        echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\AssetExtension')->getAssetUrl("img src=\"images/user-avatar-small-01.jpg"), "html", null, true);
-        echo "\" alt=\"\"></div></a>
-                                            </div>
-
-                                            <!-- Dropdown -->
-                                            <div class=\"header-notifications-dropdown\">
-
-                                                <!-- User Status -->
-                                                <div class=\"user-status\">
-
-                                                    <!-- User Name / Avatar -->
-                                                    <div class=\"user-details\">
-                                                        <div class=\"user-avatar status-online\"><img src=\"images/user-avatar-small-01.jpg\" alt=\"\"></div>
-                                                        <div class=\"user-name\">
-                                                            Tom Smith <span>Freelancer</span>
-                                                        </div>
-                                                    </div>
-
-                                                    <!-- User Status Switcher -->
-                                                    <div class=\"status-switch\" id=\"snackbar-user-status\">
-                                                        <label class=\"user-online current-status\">Online</label>
-                                                        <label class=\"user-invisible\">Invisible</label>
-                                                        <!-- Status Indicator -->
-                                                        <span class=\"status-indicator\" aria-hidden=\"true\"></span>
-                                                    </div>
-                                                </div>
-
-                                                <ul class=\"user-menu-small-nav\">
-                                                    <li><a href=\"dashboard.html\"><i class=\"icon-material-outline-dashboard\"></i> Dashboard</a></li>
-                                                    <li><a href=\"dashboard-settings.html\"><i class=\"icon-material-outline-settings\"></i> Settings</a></li>
-                                                    <li><a href=\"index-logged-out.html\"><i class=\"icon-material-outline-power-settings-new\"></i> Logout</a></li>
-                                                </ul>
-
-                                            </div>
-                                        </div>
-
+                                        <a href=\"#sign-in-dialog\" class=\"popup-with-zoom-anim log-in-button\"><i class=\"icon-feather-log-in\"></i> <span>Log In / Register</span></a>
                                     </div>
-                                    <!-- User Menu / End -->
 
                                     <!-- Mobile Navigation Button -->
                                     <span class=\"mmenu-trigger\">
@@ -514,6 +322,7 @@ class __TwigTemplate_f4551aa65f698cce40b6b81a67d1926a63c34f081a08f6683a52336aed0
 
                     </header>
                     <div class=\"clearfix\"></div>
+                    <!-- Header Container / End -->
                 ";
         
         $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02->leave($__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02_prof);
@@ -523,7 +332,7 @@ class __TwigTemplate_f4551aa65f698cce40b6b81a67d1926a63c34f081a08f6683a52336aed0
 
     }
 
-    // line 343
+    // line 167
     public function block_content($context, array $blocks = [])
     {
         $__internal_085b0142806202599c7fe3b329164a92397d8978207a37e79d70b8c52599e33e = $this->env->getExtension("Symfony\\Bundle\\WebProfilerBundle\\Twig\\WebProfilerExtension");
@@ -532,6 +341,10 @@ class __TwigTemplate_f4551aa65f698cce40b6b81a67d1926a63c34f081a08f6683a52336aed0
         $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02 = $this->env->getExtension("Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension");
         $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02->enter($__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "content"));
 
+        // line 168
+        echo "
+
+                ";
         
         $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02->leave($__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02_prof);
 
@@ -540,7 +353,7 @@ class __TwigTemplate_f4551aa65f698cce40b6b81a67d1926a63c34f081a08f6683a52336aed0
 
     }
 
-    // line 347
+    // line 174
     public function block_footer($context, array $blocks = [])
     {
         $__internal_085b0142806202599c7fe3b329164a92397d8978207a37e79d70b8c52599e33e = $this->env->getExtension("Symfony\\Bundle\\WebProfilerBundle\\Twig\\WebProfilerExtension");
@@ -549,7 +362,7 @@ class __TwigTemplate_f4551aa65f698cce40b6b81a67d1926a63c34f081a08f6683a52336aed0
         $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02 = $this->env->getExtension("Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension");
         $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02->enter($__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "footer"));
 
-        // line 348
+        // line 175
         echo "                    <div id=\"footer\">
 
                         <!-- Footer Top Section -->
@@ -704,6 +517,9 @@ class __TwigTemplate_f4551aa65f698cce40b6b81a67d1926a63c34f081a08f6683a52336aed0
                         <!-- Footer Copyrights / End -->
 
                     </div>
+
+                <!-- Footer / End -->
+
                 ";
         
         $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02->leave($__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02_prof);
@@ -713,7 +529,7 @@ class __TwigTemplate_f4551aa65f698cce40b6b81a67d1926a63c34f081a08f6683a52336aed0
 
     }
 
-    // line 510
+    // line 339
     public function block_javascripts($context, array $blocks = [])
     {
         $__internal_085b0142806202599c7fe3b329164a92397d8978207a37e79d70b8c52599e33e = $this->env->getExtension("Symfony\\Bundle\\WebProfilerBundle\\Twig\\WebProfilerExtension");
@@ -722,56 +538,56 @@ class __TwigTemplate_f4551aa65f698cce40b6b81a67d1926a63c34f081a08f6683a52336aed0
         $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02 = $this->env->getExtension("Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension");
         $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02->enter($__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "javascripts"));
 
-        // line 511
+        // line 340
         echo "            <script src=\"";
         echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\AssetExtension')->getAssetUrl("js/jquery-3.3.1.min.js"), "html", null, true);
         echo "\"></script>
             <script src=\"";
-        // line 512
+        // line 341
         echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\AssetExtension')->getAssetUrl("js/jquery-migrate-3.0.0.min.js"), "html", null, true);
         echo "\"></script>
             <script src=\"";
-        // line 513
+        // line 342
         echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\AssetExtension')->getAssetUrl("js/mmenu.min.js"), "html", null, true);
         echo "\"></script>
             <script src=\"";
-        // line 514
+        // line 343
         echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\AssetExtension')->getAssetUrl("js/tippy.all.min.js"), "html", null, true);
         echo "\"></script>
             <script src=\"";
-        // line 515
+        // line 344
         echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\AssetExtension')->getAssetUrl("js/simplebar.min.js"), "html", null, true);
         echo "\"></script>
             <script src=\"";
-        // line 516
+        // line 345
         echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\AssetExtension')->getAssetUrl("js/bootstrap-slider.min.js"), "html", null, true);
         echo "\"></script>
             <script src=\"";
-        // line 517
+        // line 346
         echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\AssetExtension')->getAssetUrl("js/bootstrap-select.min.js"), "html", null, true);
         echo "\"></script>
             <script src=\"";
-        // line 518
+        // line 347
         echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\AssetExtension')->getAssetUrl("js/snackbar.js"), "html", null, true);
         echo "\"></script>
             <script src=\"";
-        // line 519
+        // line 348
         echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\AssetExtension')->getAssetUrl("js/clipboard.min.js"), "html", null, true);
         echo "\"></script>
             <script src=\"";
-        // line 520
+        // line 349
         echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\AssetExtension')->getAssetUrl("js/counterup.min.js"), "html", null, true);
         echo "\"></script>
             <script src=\"";
-        // line 521
+        // line 350
         echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\AssetExtension')->getAssetUrl("js/magnific-popup.min.js"), "html", null, true);
         echo "\"></script>
             <script src=\"";
-        // line 522
+        // line 351
         echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\AssetExtension')->getAssetUrl("js/slick.min.js"), "html", null, true);
         echo "\"></script>
             <script src=\"";
-        // line 523
+        // line 352
         echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\AssetExtension')->getAssetUrl("js/custom.js"), "html", null, true);
         echo "\"></script>
 
@@ -836,7 +652,7 @@ class __TwigTemplate_f4551aa65f698cce40b6b81a67d1926a63c34f081a08f6683a52336aed0
 
     public function getDebugInfo()
     {
-        return array (  775 => 523,  771 => 522,  767 => 521,  763 => 520,  759 => 519,  755 => 518,  751 => 517,  747 => 516,  743 => 515,  739 => 514,  735 => 513,  731 => 512,  726 => 511,  717 => 510,  553 => 348,  544 => 347,  527 => 343,  460 => 284,  432 => 259,  417 => 247,  402 => 235,  195 => 33,  181 => 21,  172 => 20,  158 => 503,  156 => 347,  151 => 344,  149 => 343,  145 => 341,  143 => 20,  136 => 15,  127 => 14,  115 => 9,  110 => 8,  101 => 7,  83 => 6,  71 => 566,  69 => 510,  65 => 508,  63 => 14,  56 => 11,  54 => 7,  50 => 6,  43 => 1,);
+        return array (  591 => 352,  587 => 351,  583 => 350,  579 => 349,  575 => 348,  571 => 347,  567 => 346,  563 => 345,  559 => 344,  555 => 343,  551 => 342,  547 => 341,  542 => 340,  533 => 339,  366 => 175,  357 => 174,  345 => 168,  336 => 167,  193 => 32,  180 => 21,  171 => 20,  158 => 333,  156 => 174,  151 => 171,  149 => 167,  145 => 165,  143 => 20,  136 => 15,  127 => 14,  115 => 9,  110 => 8,  101 => 7,  83 => 6,  71 => 395,  69 => 339,  65 => 337,  63 => 14,  56 => 11,  54 => 7,  50 => 6,  43 => 1,);
     }
 
     /** @deprecated since 1.27 (to be removed in 2.0). Use getSourceContext() instead */
@@ -857,7 +673,7 @@ class __TwigTemplate_f4551aa65f698cce40b6b81a67d1926a63c34f081a08f6683a52336aed0
         <title>{% block title %}Nozelites - {% endblock %}</title>
         {% block stylesheets %}
             <link rel=\"stylesheet\" href=\"{{ asset('css/style.css') }}\">
-            <link rel=\"stylesheet\" href=\"{{ asset('css/colors/blue.css') }}\">
+            <link rel=\"stylesheet\" href=\"{{ asset('css/colors/red.css') }}\">
         {% endblock %}
         <link rel=\"icon\" type=\"image/x-icon\" href=\"{{ asset('favicon.ico') }}\" />
     </head>
@@ -869,7 +685,7 @@ class __TwigTemplate_f4551aa65f698cce40b6b81a67d1926a63c34f081a08f6683a52336aed0
                 <!-- Header Container
                 ================================================== -->
                 {% block header %}
-                    <header id=\"header-container\" class=\"fullwidth\">
+                    <header id=\"header-container\" class=\"fullwidth transparent\">
 
                         <!-- Header -->
                         <div id=\"header\">
@@ -880,8 +696,7 @@ class __TwigTemplate_f4551aa65f698cce40b6b81a67d1926a63c34f081a08f6683a52336aed0
 
                                     <!-- Logo -->
                                     <div id=\"logo\">
-                                        <!--<a href=\"index.html\"><img src=\"images/logo.png\" alt=\"\"></a>-->
-                                        <a href=\"{{ path('page2') }}\"><img src=\"{{ asset('images/logo.png') }}\" alt=\"\"></a>
+                                        <a href=\"index.html\"><img src=\"{{asset('images/logo.png')}}\" alt=\"\"></a>
                                     </div>
 
                                     <!-- Main Navigation -->
@@ -990,185 +805,9 @@ class __TwigTemplate_f4551aa65f698cce40b6b81a67d1926a63c34f081a08f6683a52336aed0
                                 <!-- Right Side Content / End -->
                                 <div class=\"right-side\">
 
-                                    <!--  User Notifications -->
-                                    <div class=\"header-widget hide-on-mobile\">
-
-                                        <!-- Notifications -->
-                                        <div class=\"header-notifications\">
-
-                                            <!-- Trigger -->
-                                            <div class=\"header-notifications-trigger\">
-                                                <a href=\"#\"><i class=\"icon-feather-bell\"></i><span>4</span></a>
-                                            </div>
-
-                                            <!-- Dropdown -->
-                                            <div class=\"header-notifications-dropdown\">
-
-                                                <div class=\"header-notifications-headline\">
-                                                    <h4>Notifications</h4>
-                                                    <button class=\"mark-as-read ripple-effect-dark\" title=\"Mark all as read\" data-tippy-placement=\"left\">
-                                                        <i class=\"icon-feather-check-square\"></i>
-                                                    </button>
-                                                </div>
-
-                                                <div class=\"header-notifications-content\">
-                                                    <div class=\"header-notifications-scroll\" data-simplebar>
-                                                        <ul>
-                                                            <!-- Notification -->
-                                                            <li class=\"notifications-not-read\">
-                                                                <a href=\"dashboard-manage-candidates.html\">
-                                                                    <span class=\"notification-icon\"><i class=\"icon-material-outline-group\"></i></span>
-                                                                    <span class=\"notification-text\">
-\t\t\t\t\t\t\t\t\t\t\t\t\t<strong>Michael Shannah</strong> applied for a job <span class=\"color\">Full Stack Software Engineer</span>
-\t\t\t\t\t\t\t\t\t\t\t\t</span>
-                                                                </a>
-                                                            </li>
-
-                                                            <!-- Notification -->
-                                                            <li>
-                                                                <a href=\"dashboard-manage-bidders.html\">
-                                                                    <span class=\"notification-icon\"><i class=\" icon-material-outline-gavel\"></i></span>
-                                                                    <span class=\"notification-text\">
-\t\t\t\t\t\t\t\t\t\t\t\t\t<strong>Gilbert Allanis</strong> placed a bid on your <span class=\"color\">iOS App Development</span> project
-\t\t\t\t\t\t\t\t\t\t\t\t</span>
-                                                                </a>
-                                                            </li>
-
-                                                            <!-- Notification -->
-                                                            <li>
-                                                                <a href=\"dashboard-manage-jobs.html\">
-                                                                    <span class=\"notification-icon\"><i class=\"icon-material-outline-autorenew\"></i></span>
-                                                                    <span class=\"notification-text\">
-\t\t\t\t\t\t\t\t\t\t\t\t\tYour job listing <span class=\"color\">Full Stack PHP Developer</span> is expiring.
-\t\t\t\t\t\t\t\t\t\t\t\t</span>
-                                                                </a>
-                                                            </li>
-
-                                                            <!-- Notification -->
-                                                            <li>
-                                                                <a href=\"dashboard-manage-candidates.html\">
-                                                                    <span class=\"notification-icon\"><i class=\"icon-material-outline-group\"></i></span>
-                                                                    <span class=\"notification-text\">
-\t\t\t\t\t\t\t\t\t\t\t\t\t<strong>Sindy Forrest</strong> applied for a job <span class=\"color\">Full Stack Software Engineer</span>
-\t\t\t\t\t\t\t\t\t\t\t\t</span>
-                                                                </a>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                </div>
-
-                                            </div>
-
-                                        </div>
-
-                                        <!-- Messages -->
-                                        <div class=\"header-notifications\">
-                                            <div class=\"header-notifications-trigger\">
-                                                <a href=\"#\"><i class=\"icon-feather-mail\"></i><span>3</span></a>
-                                            </div>
-
-                                            <!-- Dropdown -->
-                                            <div class=\"header-notifications-dropdown\">
-
-                                                <div class=\"header-notifications-headline\">
-                                                    <h4>Messages</h4>
-                                                    <button class=\"mark-as-read ripple-effect-dark\" title=\"Mark all as read\" data-tippy-placement=\"left\">
-                                                        <i class=\"icon-feather-check-square\"></i>
-                                                    </button>
-                                                </div>
-
-                                                <div class=\"header-notifications-content\">
-                                                    <div class=\"header-notifications-scroll\" data-simplebar>
-                                                        <ul>
-                                                            <!-- Notification -->
-                                                            <li class=\"notifications-not-read\">
-                                                                <a href=\"dashboard-messages.html\">
-                                                                    <span class=\"notification-avatar status-online\"><img src=\"{{ asset('images/user-avatar-small-03.jpg') }}\" alt=\"\"></span>
-                                                                    <div class=\"notification-text\">
-                                                                        <strong>David Peterson</strong>
-                                                                        <p class=\"notification-msg-text\">Thanks for reaching out. I'm quite busy right now on many...</p>
-                                                                        <span class=\"color\">4 hours ago</span>
-                                                                    </div>
-                                                                </a>
-                                                            </li>
-
-                                                            <!-- Notification -->
-                                                            <li class=\"notifications-not-read\">
-                                                                <a href=\"dashboard-messages.html\">
-                                                                    <span class=\"notification-avatar status-offline\"><img src=\"{{ asset('images/user-avatar-small-02.jpg') }}\" alt=\"\"></span>
-                                                                    <div class=\"notification-text\">
-                                                                        <strong>Sindy Forest</strong>
-                                                                        <p class=\"notification-msg-text\">Hi Tom! Hate to break it to you, but I'm actually on vacation until...</p>
-                                                                        <span class=\"color\">Yesterday</span>
-                                                                    </div>
-                                                                </a>
-                                                            </li>
-
-                                                            <!-- Notification -->
-                                                            <li class=\"notifications-not-read\">
-                                                                <a href=\"dashboard-messages.html\">
-                                                                    <span class=\"notification-avatar status-online\"><img src=\"{{ asset('images/user-avatar-placeholder.png') }}\" alt=\"\"></span>
-                                                                    <div class=\"notification-text\">
-                                                                        <strong>Marcin Kowalski</strong>
-                                                                        <p class=\"notification-msg-text\">I received payment. Thanks for cooperation!</p>
-                                                                        <span class=\"color\">Yesterday</span>
-                                                                    </div>
-                                                                </a>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                </div>
-
-                                                <a href=\"dashboard-messages.html\" class=\"header-notifications-button ripple-effect button-sliding-icon\">View All Messages<i class=\"icon-material-outline-arrow-right-alt\"></i></a>
-                                            </div>
-                                        </div>
-
-                                    </div>
-                                    <!--  User Notifications / End -->
-
-                                    <!-- User Menu -->
                                     <div class=\"header-widget\">
-
-                                        <!-- Messages -->
-                                        <div class=\"header-notifications user-menu\">
-                                            <div class=\"header-notifications-trigger\">
-                                                <a href=\"#\"><div class=\"user-avatar status-online\"><{{ asset('img src=\"images/user-avatar-small-01.jpg') }}\" alt=\"\"></div></a>
-                                            </div>
-
-                                            <!-- Dropdown -->
-                                            <div class=\"header-notifications-dropdown\">
-
-                                                <!-- User Status -->
-                                                <div class=\"user-status\">
-
-                                                    <!-- User Name / Avatar -->
-                                                    <div class=\"user-details\">
-                                                        <div class=\"user-avatar status-online\"><img src=\"images/user-avatar-small-01.jpg\" alt=\"\"></div>
-                                                        <div class=\"user-name\">
-                                                            Tom Smith <span>Freelancer</span>
-                                                        </div>
-                                                    </div>
-
-                                                    <!-- User Status Switcher -->
-                                                    <div class=\"status-switch\" id=\"snackbar-user-status\">
-                                                        <label class=\"user-online current-status\">Online</label>
-                                                        <label class=\"user-invisible\">Invisible</label>
-                                                        <!-- Status Indicator -->
-                                                        <span class=\"status-indicator\" aria-hidden=\"true\"></span>
-                                                    </div>
-                                                </div>
-
-                                                <ul class=\"user-menu-small-nav\">
-                                                    <li><a href=\"dashboard.html\"><i class=\"icon-material-outline-dashboard\"></i> Dashboard</a></li>
-                                                    <li><a href=\"dashboard-settings.html\"><i class=\"icon-material-outline-settings\"></i> Settings</a></li>
-                                                    <li><a href=\"index-logged-out.html\"><i class=\"icon-material-outline-power-settings-new\"></i> Logout</a></li>
-                                                </ul>
-
-                                            </div>
-                                        </div>
-
+                                        <a href=\"#sign-in-dialog\" class=\"popup-with-zoom-anim log-in-button\"><i class=\"icon-feather-log-in\"></i> <span>Log In / Register</span></a>
                                     </div>
-                                    <!-- User Menu / End -->
 
                                     <!-- Mobile Navigation Button -->
                                     <span class=\"mmenu-trigger\">
@@ -1188,10 +827,14 @@ class __TwigTemplate_f4551aa65f698cce40b6b81a67d1926a63c34f081a08f6683a52336aed0
 
                     </header>
                     <div class=\"clearfix\"></div>
+                    <!-- Header Container / End -->
                 {% endblock %}
-                <!-- Header Container / End -->
 
-                {% block content %}{% endblock %}
+
+                {% block content %}
+
+
+                {% endblock %}
 
                 <!-- Footer
                 ================================================== -->
@@ -1350,8 +993,10 @@ class __TwigTemplate_f4551aa65f698cce40b6b81a67d1926a63c34f081a08f6683a52336aed0
                         <!-- Footer Copyrights / End -->
 
                     </div>
-                {% endblock %}
+
                 <!-- Footer / End -->
+
+                {% endblock %}
 
             </div>
             <!-- Wrapper / End -->
@@ -1416,6 +1061,6 @@ class __TwigTemplate_f4551aa65f698cce40b6b81a67d1926a63c34f081a08f6683a52336aed0
         {% endblock %}
     </body>
 </html>
-", "base.html.twig", "C:\\wamp64\\www\\3.2\\PIDEV_Web\\Nozelites\\app\\Resources\\views\\base.html.twig");
+", "base.html.twig", "D:\\xampp\\htdocs\\PIDEV_Web\\Nozelites\\app\\Resources\\views\\base.html.twig");
     }
 }

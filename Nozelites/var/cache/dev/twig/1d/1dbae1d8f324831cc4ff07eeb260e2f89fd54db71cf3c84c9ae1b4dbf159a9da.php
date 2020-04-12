@@ -66,6 +66,6 @@ class __TwigTemplate_e0b38bd59c9b5abd14e321d3ed37c8a7eb333920c3fa0998aca19659266
     {
         return new Source("<?php
 
-?>", "@Nozelites/Front/inviterbloquer.php", "C:\\wamp64\\www\\3.2\\PIDEV_Web\\Nozelites\\src\\NozelitesBundle\\Resources\\views\\Front\\inviterbloquer.php");
+?>", "@Nozelites/Front/inviterbloquer.php", "D:\\xampp\\htdocs\\PIDEV_Web\\Nozelites\\src\\NozelitesBundle\\Resources\\views\\Front\\inviterbloquer.php");
     }
 }

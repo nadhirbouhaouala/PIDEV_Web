@@ -705,6 +705,6 @@ class __TwigTemplate_b66a7bb17d3e120e449a2d0199e72e86cdf58c8b1e7a67da4e2f4fa8b42
             toastr.success('Bienvenue au groupe', '{{ groupe.titre }}')
         });
     </script>
-{% endblock %}", "@Nozelites/Front/MembreGroup.html.twig", "C:\\wamp64\\www\\3.2\\PIDEV_Web\\Nozelites\\src\\NozelitesBundle\\Resources\\views\\Front\\MembreGroup.html.twig");
+{% endblock %}", "@Nozelites/Front/MembreGroup.html.twig", "D:\\xampp\\htdocs\\PIDEV_Web\\Nozelites\\src\\NozelitesBundle\\Resources\\views\\Front\\MembreGroup.html.twig");
     }
 }
