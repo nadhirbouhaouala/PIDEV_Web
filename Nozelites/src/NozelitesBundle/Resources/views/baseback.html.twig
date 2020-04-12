@@ -228,12 +228,26 @@
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="pages/widgets.html" class="nav-link">
-                                    <i class="nav-icon fas fa-th"></i>
+                                <a href="{{ path("nozelites_adminEvenementback") }}" class="nav-link">
+                                    <i class="nav-icon far fa-calendar-alt"></i>
                                     <p>
                                         Evénements
                                     </p>
                                 </a>
+                                <ul class="nav nav-treeview">
+                                    <li class="nav-item">
+                                        <a href="{{ path("nozelites_adminEvenementback") }}" class="nav-link">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>Les demandes</p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="{{ path("nozelites_adminEvenementAllback") }}" class="nav-link">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>tous les evenements</p>
+                                        </a>
+                                    </li>
+                                </ul>
                             </li>
                             <li class="nav-item">
                                 <a href="pages/widgets.html" class="nav-link">

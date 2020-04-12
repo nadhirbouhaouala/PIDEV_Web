@@ -6,6 +6,7 @@
       <sourceFolder url="file://$MODULE_DIR$/spec" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/Nozelites/tests" isTestSource="true" packagePrefix="Tests\" />
       <sourceFolder url="file://$MODULE_DIR$/Nozelites/src" isTestSource="false" />
+      <excludeFolder url="file://$MODULE_DIR$/Nozelites/vendor/cmen/google-charts-bundle" />
       <excludeFolder url="file://$MODULE_DIR$/Nozelites/vendor/composer" />
       <excludeFolder url="file://$MODULE_DIR$/Nozelites/vendor/doctrine/annotations" />
       <excludeFolder url="file://$MODULE_DIR$/Nozelites/vendor/doctrine/cache" />
@@ -22,6 +23,10 @@
       <excludeFolder url="file://$MODULE_DIR$/Nozelites/vendor/friendsofsymfony/user-bundle" />
       <excludeFolder url="file://$MODULE_DIR$/Nozelites/vendor/incenteev/composer-parameter-handler" />
       <excludeFolder url="file://$MODULE_DIR$/Nozelites/vendor/jdorn/sql-formatter" />
+      <excludeFolder url="file://$MODULE_DIR$/Nozelites/vendor/knplabs/knp-components" />
+      <excludeFolder url="file://$MODULE_DIR$/Nozelites/vendor/knplabs/knp-paginator-bundle" />
+      <excludeFolder url="file://$MODULE_DIR$/Nozelites/vendor/knplabs/knp-snappy" />
+      <excludeFolder url="file://$MODULE_DIR$/Nozelites/vendor/knplabs/knp-snappy-bundle" />
       <excludeFolder url="file://$MODULE_DIR$/Nozelites/vendor/monolog/monolog" />
       <excludeFolder url="file://$MODULE_DIR$/Nozelites/vendor/paragonie/random_compat" />
       <excludeFolder url="file://$MODULE_DIR$/Nozelites/vendor/psr/cache" />

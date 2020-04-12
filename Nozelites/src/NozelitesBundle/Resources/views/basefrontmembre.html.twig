@@ -107,17 +107,11 @@
                                         </ul>
                                     </li>
 
-                                    <li><a href="#">Evenements</a>
+                                    <li><a href="{{ path('nozelites_AllEvenementfront')}}">Evenements</a>
                                         <ul class="dropdown-nav">
-                                            <li><a href="pages-blog.html">Blog</a></li>
-                                            <li><a href="pages-pricing-plans.html">Pricing Plans</a></li>
-                                            <li><a href="pages-checkout-page.html">Checkout Page</a></li>
-                                            <li><a href="pages-invoice-template.html">Invoice Template</a></li>
-                                            <li><a href="pages-user-interface-elements.html">User Interface Elements</a></li>
-                                            <li><a href="pages-icons-cheatsheet.html">Icons Cheatsheet</a></li>
-                                            <li><a href="pages-login.html">Login & Register</a></li>
-                                            <li><a href="pages-404.html">404 Page</a></li>
-                                            <li><a href="pages-contact.html">Contact</a></li>
+                                            <li><a href="{{ path('nozelites_Evenementajouterfront')}}">creer</a></li>
+                                            <li><a href="{{ path('nozelites_Evenementafficherfront')}}">Mes Evenements</a></li>
+                                            <li><a href="{{ path('nozelites_AllEvenementfront')}}">All</a></li>
                                         </ul>
                                     </li>
 
@@ -276,7 +270,7 @@
                                 <!-- Messages -->
                                 <div class="header-notifications user-menu">
                                     <div class="header-notifications-trigger">
-                                        <a href="#"><div class="user-avatar status-online"><img src="{{ asset('images/'~ user.image)}}"  alt=""></div></a>
+                                        <a href="#"><div class="user-avatar status-online"><img src=""  alt=""></div></a>
                                     </div>
 
                                     <!-- Dropdown -->
@@ -287,9 +281,9 @@
 
                                             <!-- User Name / Avatar -->
                                             <div class="user-details">
-                                                <div class="user-avatar status-online"><img src="{{ asset('images/'~ user.image)}}" alt=""></div>
+                                                <div class="user-avatar status-online"><img src="" alt=""></div>
                                                 <div class="user-name">
-                                                   {{ user.prenom }} {{ user.nom }}
+
                                                 </div>
                                             </div>
 

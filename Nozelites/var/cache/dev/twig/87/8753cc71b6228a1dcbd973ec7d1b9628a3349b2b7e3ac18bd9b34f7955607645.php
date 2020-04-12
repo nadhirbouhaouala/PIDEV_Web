@@ -79,33 +79,35 @@ class __TwigTemplate_b6ca0bfd7b4d5b055b2f28a25b73d030e993d307733a68b67acc45682cb
         // line 6
         echo "<div class=\"intro-banner\" data-background-image=\"images/home-background.jpg\">
     <div class=\"container\">
-    <h1>Groupe edit</h1>
+        <h1>Groupe edit</h1>
 
-    ";
+        ";
         // line 10
         echo         $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->renderBlock(($context["edit_form"] ?? $this->getContext($context, "edit_form")), 'form_start');
         echo "
-    ";
+        ";
         // line 11
         echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(($context["edit_form"] ?? $this->getContext($context, "edit_form")), 'widget');
         echo "
-    <input type=\"submit\" value=\"Edit\" />
-    ";
+        <input type=\"submit\" value=\"Edit\" />
+        ";
         // line 13
         echo         $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->renderBlock(($context["edit_form"] ?? $this->getContext($context, "edit_form")), 'form_end');
         echo "
 
-    <ul>
-        <li>
-            <a href=\"";
+        <ul>
+            <li>
+                <a href=\"";
         // line 17
         echo $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("nozelites_membregroupesfront");
         echo "\">Back to the list</a>
-        </li>
-        <li>
+            </li>
+            <li>
 
-        </li>
-    </ul>
+            </li>
+        </ul>
+    </div>
+</div>
 ";
         
         $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02->leave($__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02_prof);
@@ -147,21 +149,23 @@ class __TwigTemplate_b6ca0bfd7b4d5b055b2f28a25b73d030e993d307733a68b67acc45682cb
 {% block content %}
 <div class=\"intro-banner\" data-background-image=\"images/home-background.jpg\">
     <div class=\"container\">
-    <h1>Groupe edit</h1>
+        <h1>Groupe edit</h1>
 
-    {{ form_start(edit_form) }}
-    {{ form_widget(edit_form) }}
-    <input type=\"submit\" value=\"Edit\" />
-    {{ form_end(edit_form) }}
+        {{ form_start(edit_form) }}
+        {{ form_widget(edit_form) }}
+        <input type=\"submit\" value=\"Edit\" />
+        {{ form_end(edit_form) }}
 
-    <ul>
-        <li>
-            <a href=\"{{ path('nozelites_membregroupesfront') }}\">Back to the list</a>
-        </li>
-        <li>
+        <ul>
+            <li>
+                <a href=\"{{ path('nozelites_membregroupesfront') }}\">Back to the list</a>
+            </li>
+            <li>
 
-        </li>
-    </ul>
+            </li>
+        </ul>
+    </div>
+</div>
 {% endblock %}
 ", "@Nozelites/Front/MembreGroupesModifier.html.twig", "D:\\xampp\\htdocs\\PIDEV_Web\\Nozelites\\src\\NozelitesBundle\\Resources\\views\\Front\\MembreGroupesModifier.html.twig");
     }

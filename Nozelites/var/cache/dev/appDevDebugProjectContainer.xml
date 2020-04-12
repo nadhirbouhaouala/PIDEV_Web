@@ -16,10 +16,13 @@
       <parameter key="SwiftmailerBundle">Symfony\Bundle\SwiftmailerBundle\SwiftmailerBundle</parameter>
       <parameter key="DoctrineBundle">Doctrine\Bundle\DoctrineBundle\DoctrineBundle</parameter>
       <parameter key="SensioFrameworkExtraBundle">Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle</parameter>
+      <parameter key="KnpSnappyBundle">Knp\Bundle\SnappyBundle\KnpSnappyBundle</parameter>
       <parameter key="AppBundle">AppBundle\AppBundle</parameter>
       <parameter key="NozelitesBundle">NozelitesBundle\NozelitesBundle</parameter>
       <parameter key="FOSUserBundle">FOS\UserBundle\FOSUserBundle</parameter>
       <parameter key="UserBundle">UserBundle\UserBundle</parameter>
+      <parameter key="OffreBundle">OffreBundle\OffreBundle</parameter>
+      <parameter key="ReclamationBundle">ReclamationBundle\ReclamationBundle</parameter>
       <parameter key="DebugBundle">Symfony\Bundle\DebugBundle\DebugBundle</parameter>
       <parameter key="WebProfilerBundle">Symfony\Bundle\WebProfilerBundle\WebProfilerBundle</parameter>
       <parameter key="SensioDistributionBundle">Sensio\Bundle\DistributionBundle\SensioDistributionBundle</parameter>
@@ -62,6 +65,11 @@
         <parameter key="path">D:\xampp\htdocs\PIDEV_Web\Nozelites\vendor\sensio\framework-extra-bundle</parameter>
         <parameter key="namespace">Sensio\Bundle\FrameworkExtraBundle</parameter>
       </parameter>
+      <parameter key="KnpSnappyBundle" type="collection">
+        <parameter key="parent">null</parameter>
+        <parameter key="path">D:/xampp/htdocs/PIDEV_Web/Nozelites/vendor/knplabs/knp-snappy-bundle</parameter>
+        <parameter key="namespace">Knp\Bundle\SnappyBundle</parameter>
+      </parameter>
       <parameter key="AppBundle" type="collection">
         <parameter key="parent">null</parameter>
         <parameter key="path">D:\xampp\htdocs\PIDEV_Web\Nozelites\src\AppBundle</parameter>
@@ -81,6 +89,16 @@
         <parameter key="parent">null</parameter>
         <parameter key="path">D:\xampp\htdocs\PIDEV_Web\Nozelites\src\UserBundle</parameter>
         <parameter key="namespace">UserBundle</parameter>
+      </parameter>
+      <parameter key="OffreBundle" type="collection">
+        <parameter key="parent">null</parameter>
+        <parameter key="path">D:\xampp\htdocs\PIDEV_Web\Nozelites\src\OffreBundle</parameter>
+        <parameter key="namespace">OffreBundle</parameter>
+      </parameter>
+      <parameter key="ReclamationBundle" type="collection">
+        <parameter key="parent">null</parameter>
+        <parameter key="path">D:\xampp\htdocs\PIDEV_Web\Nozelites\src\ReclamationBundle</parameter>
+        <parameter key="namespace">ReclamationBundle</parameter>
       </parameter>
       <parameter key="DebugBundle" type="collection">
         <parameter key="parent">null</parameter>
@@ -117,13 +135,13 @@
     <parameter key="database_name">nozelites</parameter>
     <parameter key="database_user">root</parameter>
     <parameter key="database_password">null</parameter>
-    <parameter key="mailer_transport">smtp</parameter>
-    <parameter key="mailer_host">127.0.0.1</parameter>
-    <parameter key="mailer_user">null</parameter>
-    <parameter key="mailer_password">null</parameter>
+    <parameter key="mailer_transport">gmail</parameter>
+    <parameter key="mailer_host">smtp.gmail.com</parameter>
+    <parameter key="mailer_user">nozelitesa3@gmail.com</parameter>
+    <parameter key="mailer_password">nozelites123456</parameter>
     <parameter key="secret">ThisTokenIsNotSoSecretChangeIt</parameter>
     <parameter key="locale">fr</parameter>
-    <parameter key="image_directory">D:\xampp\htdocs\PIDEV_Web\Nozelites/web/images</parameter>
+    <parameter key="image_directory">D:\xampp\htdocs\PIDEV_Web\Nozelites/web/front/images</parameter>
     <parameter key="fragment.renderer.hinclude.global_template"></parameter>
     <parameter key="fragment.path">/_fragment</parameter>
     <parameter key="kernel.secret">ThisTokenIsNotSoSecretChangeIt</parameter>
@@ -226,12 +244,12 @@
     <parameter key="swiftmailer.email_sender.listener.class">Symfony\Bundle\SwiftmailerBundle\EventListener\EmailSenderListener</parameter>
     <parameter key="swiftmailer.data_collector.class">Symfony\Bundle\SwiftmailerBundle\DataCollector\MessageDataCollector</parameter>
     <parameter key="swiftmailer.mailer.default.transport.name">smtp</parameter>
-    <parameter key="swiftmailer.mailer.default.transport.smtp.encryption">null</parameter>
-    <parameter key="swiftmailer.mailer.default.transport.smtp.port">25</parameter>
-    <parameter key="swiftmailer.mailer.default.transport.smtp.host">127.0.0.1</parameter>
-    <parameter key="swiftmailer.mailer.default.transport.smtp.username">null</parameter>
-    <parameter key="swiftmailer.mailer.default.transport.smtp.password">null</parameter>
-    <parameter key="swiftmailer.mailer.default.transport.smtp.auth_mode">null</parameter>
+    <parameter key="swiftmailer.mailer.default.transport.smtp.encryption">ssl</parameter>
+    <parameter key="swiftmailer.mailer.default.transport.smtp.port">465</parameter>
+    <parameter key="swiftmailer.mailer.default.transport.smtp.host">smtp.gmail.com</parameter>
+    <parameter key="swiftmailer.mailer.default.transport.smtp.username">nozelitesa3@gmail.com</parameter>
+    <parameter key="swiftmailer.mailer.default.transport.smtp.password">nozelites123456</parameter>
+    <parameter key="swiftmailer.mailer.default.transport.smtp.auth_mode">login</parameter>
     <parameter key="swiftmailer.mailer.default.transport.smtp.timeout">30</parameter>
     <parameter key="swiftmailer.mailer.default.transport.smtp.source_ip">null</parameter>
     <parameter key="swiftmailer.mailer.default.transport.smtp.local_domain">null</parameter>
@@ -356,6 +374,16 @@
     <parameter key="doctrine.orm.auto_generate_proxy_classes">true</parameter>
     <parameter key="doctrine.orm.proxy_dir">D:/xampp/htdocs/PIDEV_Web/Nozelites/var/cache/dev/doctrine/orm/Proxies</parameter>
     <parameter key="doctrine.orm.proxy_namespace">Proxies</parameter>
+    <parameter key="knp_snappy.pdf.binary">"C:\Program Files\wkhtmltopdf\bin\wkhtmltopdf.exe"</parameter>
+    <parameter key="knp_snappy.pdf.options" type="collection">
+      <parameter key="no-outline">true</parameter>
+      <parameter key="page-size">LETTER</parameter>
+      <parameter key="encoding">UTF-8</parameter>
+    </parameter>
+    <parameter key="knp_snappy.pdf.env" type="collection"/>
+    <parameter key="knp_snappy.image.binary">"C:\Program Files\wkhtmltopdf\bin\wkhtmltoimage.exe"</parameter>
+    <parameter key="knp_snappy.image.options" type="collection"/>
+    <parameter key="knp_snappy.image.env" type="collection"/>
     <parameter key="fos_user.backend_type_orm">true</parameter>
     <parameter key="fos_user.security.interactive_login_listener.class">FOS\UserBundle\EventListener\LastLoginListener</parameter>
     <parameter key="fos_user.security.login_manager.class">FOS\UserBundle\Security\LoginManager</parameter>
@@ -1053,8 +1081,6 @@
     </service>
     <service id="session" class="Symfony\Component\HttpFoundation\Session\Session" public="true">
       <argument type="service" id="session.storage.native"/>
-      <argument type="service" id="session.attribute_bag"/>
-      <argument type="service" id="session.flash_bag"/>
     </service>
     <service id="session.storage.metadata_bag" class="Symfony\Component\HttpFoundation\Session\Storage\MetadataBag" public="false">
       <argument>_sf2_meta</argument>
@@ -1069,8 +1095,12 @@
       <argument type="service" id="session.handler.native_file"/>
       <argument type="service" id="session.storage.metadata_bag"/>
     </service>
-    <service id="session.flash_bag" class="Symfony\Component\HttpFoundation\Session\Flash\FlashBag" public="false"/>
-    <service id="session.attribute_bag" class="Symfony\Component\HttpFoundation\Session\Attribute\AttributeBag" public="false"/>
+    <service id="session.flash_bag" class="Symfony\Component\HttpFoundation\Session\Flash\FlashBag" public="false">
+      <factory service="session" method="getFlashBag"/>
+    </service>
+    <service id="session.attribute_bag" class="Symfony\Component\HttpFoundation\Session\Attribute\AttributeBag" public="false">
+      <factory service="session" method="getAttributeBag"/>
+    </service>
     <service id="session.storage.mock_file" class="Symfony\Component\HttpFoundation\Session\Storage\MockFileSessionStorage" public="false">
       <argument>D:/xampp/htdocs/PIDEV_Web/Nozelites/var/cache/dev/sessions</argument>
       <argument>MOCKSESSID</argument>
@@ -3785,6 +3815,22 @@
         <argument>!User</argument>
       </call>
       <call method="addPath">
+        <argument>D:\xampp\htdocs\PIDEV_Web\Nozelites\src\OffreBundle/Resources/views</argument>
+        <argument>Offre</argument>
+      </call>
+      <call method="addPath">
+        <argument>D:\xampp\htdocs\PIDEV_Web\Nozelites\src\OffreBundle/Resources/views</argument>
+        <argument>!Offre</argument>
+      </call>
+      <call method="addPath">
+        <argument>D:\xampp\htdocs\PIDEV_Web\Nozelites\src\ReclamationBundle/Resources/views</argument>
+        <argument>Reclamation</argument>
+      </call>
+      <call method="addPath">
+        <argument>D:\xampp\htdocs\PIDEV_Web\Nozelites\src\ReclamationBundle/Resources/views</argument>
+        <argument>!Reclamation</argument>
+      </call>
+      <call method="addPath">
         <argument>D:\xampp\htdocs\PIDEV_Web\Nozelites\vendor\symfony\symfony\src\Symfony\Bundle\DebugBundle/Resources/views</argument>
         <argument>Debug</argument>
       </call>
@@ -4042,13 +4088,13 @@
         <argument type="service" id="3_Swift_Transport_Esmtp_Auth_PlainAuthenticator~ah9wv1n"/>
       </argument>
       <call method="setUsername">
-        <argument>null</argument>
+        <argument>nozelitesa3@gmail.com</argument>
       </call>
       <call method="setPassword">
-        <argument>null</argument>
+        <argument>nozelites123456</argument>
       </call>
       <call method="setAuthMode">
-        <argument>null</argument>
+        <argument>login</argument>
       </call>
     </service>
     <service id="swiftmailer.mailer.default.transport.buffer" class="Swift_Transport_StreamBuffer" public="false">
@@ -4065,13 +4111,13 @@
       </argument>
       <argument type="service" id="swiftmailer.mailer.default.transport.eventdispatcher"/>
       <call method="setHost">
-        <argument>127.0.0.1</argument>
+        <argument>smtp.gmail.com</argument>
       </call>
       <call method="setPort">
-        <argument>25</argument>
+        <argument>465</argument>
       </call>
       <call method="setEncryption">
-        <argument>null</argument>
+        <argument>ssl</argument>
       </call>
       <call method="setTimeout">
         <argument>30</argument>
@@ -4377,6 +4423,7 @@
         <argument type="collection">
           <argument key="NozelitesBundle">NozelitesBundle\Entity</argument>
           <argument key="UserBundle">UserBundle\Entity</argument>
+          <argument key="ReclamationBundle">ReclamationBundle\Entity</argument>
         </argument>
       </call>
       <call method="setMetadataCacheImpl">
@@ -4424,6 +4471,7 @@
       <argument type="collection">
         <argument>D:\xampp\htdocs\PIDEV_Web\Nozelites\src\NozelitesBundle\Entity</argument>
         <argument>D:\xampp\htdocs\PIDEV_Web\Nozelites\src\UserBundle\Entity</argument>
+        <argument>D:\xampp\htdocs\PIDEV_Web\Nozelites\src\ReclamationBundle\Entity</argument>
       </argument>
     </service>
     <service id="doctrine.orm.default_metadata_driver" class="Doctrine\Common\Persistence\Mapping\Driver\MappingDriverChain" public="false">
@@ -4434,6 +4482,10 @@
       <call method="addDriver">
         <argument type="service" id="doctrine.orm.default_annotation_metadata_driver"/>
         <argument>UserBundle\Entity</argument>
+      </call>
+      <call method="addDriver">
+        <argument type="service" id="doctrine.orm.default_annotation_metadata_driver"/>
+        <argument>ReclamationBundle\Entity</argument>
       </call>
       <call method="addDriver">
         <argument type="service">
@@ -4556,6 +4608,24 @@
     </service>
     <service id="framework_extra_bundle.argument_name_convertor" class="Sensio\Bundle\FrameworkExtraBundle\Request\ArgumentNameConverter" public="false">
       <argument type="service" id="argument_metadata_factory"/>
+    </service>
+    <service id="knp_snappy.pdf" class="Knp\Snappy\Pdf" public="true">
+      <tag name="monolog.logger" channel="snappy"/>
+      <argument>"C:\Program Files\wkhtmltopdf\bin\wkhtmltopdf.exe"</argument>
+      <argument>%knp_snappy.pdf.options%</argument>
+      <argument type="collection"/>
+      <call method="setLogger">
+        <argument type="service" id="monolog.logger.snappy" on-invalid="ignore"/>
+      </call>
+    </service>
+    <service id="knp_snappy.image" class="Knp\Snappy\Image" public="true">
+      <tag name="monolog.logger" channel="snappy"/>
+      <argument>"C:\Program Files\wkhtmltopdf\bin\wkhtmltoimage.exe"</argument>
+      <argument type="collection"/>
+      <argument type="collection"/>
+      <call method="setLogger">
+        <argument type="service" id="monolog.logger.snappy" on-invalid="ignore"/>
+      </call>
     </service>
     <service id="fos_user.user_manager.default" class="FOS\UserBundle\Doctrine\UserManager" public="false">
       <argument type="service" id="fos_user.util.password_updater"/>
@@ -5113,6 +5183,21 @@
         <argument type="service" id="monolog.handler.main"/>
       </call>
     </service>
+    <service id="monolog.logger.snappy" class="Symfony\Bridge\Monolog\Logger">
+      <argument>snappy</argument>
+      <call method="pushProcessor">
+        <argument type="service" id="debug.log_processor"/>
+      </call>
+      <call method="pushHandler">
+        <argument type="service" id="monolog.handler.server_log"/>
+      </call>
+      <call method="pushHandler">
+        <argument type="service" id="monolog.handler.console"/>
+      </call>
+      <call method="pushHandler">
+        <argument type="service" id="monolog.handler.main"/>
+      </call>
+    </service>
     <service id="monolog.handler.null_internal" class="Monolog\Handler\NullHandler"/>
     <service id="service_locator.s.m3yzc" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
       <tag name="container.service_locator"/>
@@ -5449,6 +5534,8 @@
     <service id="doctrine.orm.default_entity_manager.event_manager" alias="doctrine.dbal.default_connection.event_manager" public="false"/>
     <service id="sensio_framework_extra.converter.doctrine.orm.expression_language" alias="sensio_framework_extra.converter.doctrine.orm.expression_language.default" public="false"/>
     <service id="sensio_framework_extra.security.expression_language" alias="sensio_framework_extra.security.expression_language.default" public="false"/>
+    <service id="Knp\Snappy\Pdf" alias="knp_snappy.pdf"/>
+    <service id="Knp\Snappy\Image" alias="knp_snappy.image"/>
     <service id="fos_user.doctrine_registry" alias="doctrine" public="false"/>
     <service id="FOS\UserBundle\Security\LoginManagerInterface" alias="fos_user.security.login_manager" public="false"/>
     <service id="FOS\UserBundle\Util\TokenGeneratorInterface" alias="fos_user.util.token_generator.default" public="false"/>

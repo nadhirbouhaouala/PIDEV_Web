@@ -18,7 +18,10 @@ use FOS\UserBundle\Form\Factory\FactoryInterface;
 use FOS\UserBundle\FOSUserEvents;
 use FOS\UserBundle\Model\UserInterface;
 use FOS\UserBundle\Model\UserManagerInterface;
+
 use NozelitesBundle\Entity\Membre;
+
+
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
@@ -57,9 +60,11 @@ class RegistrationController extends Controller
      */
     public function registerAction(Request $request)
     {
+
         if($this->container->get('security.authorization_checker')->isGranted('IS_AUTHENTICATED_FULLY')){
             return $this->redirectToRoute("nozelites_homepagefront");
         }
+
         $user = $this->userManager->createUser();
         $user->setEnabled(true);
 
@@ -74,13 +79,14 @@ class RegistrationController extends Controller
         $form->setData($user);
 
         $form->handleRequest($request);
-        
+
         if ($form->isSubmitted()) {
             if ($form->isValid()) {
                 $event = new FormEvent($form, $request);
                 $this->eventDispatcher->dispatch(FOSUserEvents::REGISTRATION_SUCCESS, $event);
 
                 $this->userManager->updateUser($user);
+
 
                 $em =$this->getDoctrine()->getManager();
                 $membre = new Membre();
@@ -101,6 +107,7 @@ class RegistrationController extends Controller
 
                 $em->persist($membre);
                 $em->flush();
+
 
 
                 if (null === $response = $event->getResponse()) {

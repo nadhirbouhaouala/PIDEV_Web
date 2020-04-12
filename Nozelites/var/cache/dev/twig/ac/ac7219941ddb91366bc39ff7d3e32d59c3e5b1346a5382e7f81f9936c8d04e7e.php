@@ -83,11 +83,11 @@ class __TwigTemplate_39e355b2e5044091d4ef5a6a133cb1e4d456647243a4c8a45df175119e9
             <div class=\"row\">
 
                 <div class=\"col-xl-6 col-lg-6 content-left-offset\">
-                    <h1>Groupe creation</h1>
+                    <h1>Créer un groupe</h1>
                     <br>
                     <form method=\"post\" id=\"mainform\">
-                        <input type=\"text\" name=\"titre\" class=\"with-border\" value=\"\">
-                        <input type=\"text\" name=\"description\" class=\"with-border\" value=\"\">
+                        <input type=\"text\" name=\"titre\" class=\"with-border\" placeholder=\"Titre du groupe\" value=\"\">
+                        <input type=\"text\" name=\"description\" class=\"with-border\" placeholder=\"Desctiption\" value=\"\">
                         <select name=\"autorisation\" class=\"selectpicker\">
                             <option value=\"1\">Publique</option>
                             <option value=\"2\">Privé</option>
@@ -111,21 +111,20 @@ class __TwigTemplate_39e355b2e5044091d4ef5a6a133cb1e4d456647243a4c8a45df175119e9
                     <div class=\"dashboard-box\" style=\"overflow-x:auto;\">
                         <!-- Headline -->
                         <div class=\"headline\">
-                            <h3><i class=\"icon-material-outline-face\"></i> Mes groupes </h3>
+                            <h3><i class=\"icon-material-outline-face\"></i> Inviter des utilisateurs </h3>
                             <input type=\"text\" placeholder=\"Chercher ici ...\" >
                         </div>
-                        <input type=\"text\" name=\"bouhaouala\">
                         <div class=\"content\">
                             <ul class=\"dashboard-box-list\">
                                 ";
-        // line 43
+        // line 42
         $context['_parent'] = $context;
         $context['_seq'] = twig_ensure_traversable(($context["membres"] ?? $this->getContext($context, "membres")));
         foreach ($context['_seq'] as $context["_key"] => $context["membre"]) {
-            // line 44
+            // line 43
             echo "                                    ";
             if (($context["membre"] != ($context["membrecncte"] ?? $this->getContext($context, "membrecncte")))) {
-                // line 45
+                // line 44
                 echo "                                        <li>
                                             <!-- Overview -->
                                             <div class=\"freelancer-overview\" onclick=\"alert('show');\">
@@ -133,9 +132,8 @@ class __TwigTemplate_39e355b2e5044091d4ef5a6a133cb1e4d456647243a4c8a45df175119e9
 
                                                     <!-- Avatar -->
                                                     <div class=\"freelancer-avatar\">
-                                                        <div class=\"verified-badge\"></div>
                                                         <a href=\"#\"><img src=\"";
-                // line 53
+                // line 51
                 echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\AssetExtension')->getAssetUrl("images/user-avatar-big-02.jpg"), "html", null, true);
                 echo "\" alt=\"\"></a>
                                                     </div>
@@ -143,17 +141,22 @@ class __TwigTemplate_39e355b2e5044091d4ef5a6a133cb1e4d456647243a4c8a45df175119e9
                                                     <!-- Name -->
                                                     <div class=\"freelancer-name\">
                                                         <h4><a href=\"#\"> ";
-                // line 58
+                // line 56
                 echo twig_escape_filter($this->env, $this->getAttribute($context["membre"], "login", []), "html", null, true);
                 echo "
                                                                 <img class=\"flag\" src=\"images/flags/de.svg\" alt=\"\" title=\"Germany\" data-tippy-placement=\"top\"></a></h4>
-                                                        <span>";
-                // line 60
-                echo twig_escape_filter($this->env, $this->getAttribute($context["membre"], "login", []), "html", null, true);
+                                                        <span>Email : ";
+                // line 58
+                echo twig_escape_filter($this->env, $this->getAttribute($context["membre"], "mail", []), "html", null, true);
                 echo " </span>
                                                         <!-- Rating -->
                                                         <div class=\"freelancer-rating\">
-                                                            <div class=\"star-rating\" data-rating=\"4.2\"></div>
+                                                            <button class=\"button ripple-effect\" style=\"pointer-events: none;\">
+                                                                ";
+                // line 62
+                echo twig_escape_filter($this->env, $this->getAttribute($context["membre"], "age", []), "html", null, true);
+                echo " ans
+                                                            </button>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -230,7 +233,7 @@ class __TwigTemplate_39e355b2e5044091d4ef5a6a133cb1e4d456647243a4c8a45df175119e9
 
     public function getDebugInfo()
     {
-        return array (  198 => 93,  192 => 92,  179 => 84,  152 => 60,  147 => 58,  139 => 53,  129 => 45,  126 => 44,  122 => 43,  104 => 28,  80 => 6,  71 => 5,  52 => 3,  30 => 1,);
+        return array (  201 => 93,  195 => 92,  182 => 84,  157 => 62,  150 => 58,  145 => 56,  137 => 51,  128 => 44,  125 => 43,  121 => 42,  104 => 28,  80 => 6,  71 => 5,  52 => 3,  30 => 1,);
     }
 
     /** @deprecated since 1.27 (to be removed in 2.0). Use getSourceContext() instead */
@@ -254,11 +257,11 @@ class __TwigTemplate_39e355b2e5044091d4ef5a6a133cb1e4d456647243a4c8a45df175119e9
             <div class=\"row\">
 
                 <div class=\"col-xl-6 col-lg-6 content-left-offset\">
-                    <h1>Groupe creation</h1>
+                    <h1>Créer un groupe</h1>
                     <br>
                     <form method=\"post\" id=\"mainform\">
-                        <input type=\"text\" name=\"titre\" class=\"with-border\" value=\"\">
-                        <input type=\"text\" name=\"description\" class=\"with-border\" value=\"\">
+                        <input type=\"text\" name=\"titre\" class=\"with-border\" placeholder=\"Titre du groupe\" value=\"\">
+                        <input type=\"text\" name=\"description\" class=\"with-border\" placeholder=\"Desctiption\" value=\"\">
                         <select name=\"autorisation\" class=\"selectpicker\">
                             <option value=\"1\">Publique</option>
                             <option value=\"2\">Privé</option>
@@ -279,10 +282,9 @@ class __TwigTemplate_39e355b2e5044091d4ef5a6a133cb1e4d456647243a4c8a45df175119e9
                     <div class=\"dashboard-box\" style=\"overflow-x:auto;\">
                         <!-- Headline -->
                         <div class=\"headline\">
-                            <h3><i class=\"icon-material-outline-face\"></i> Mes groupes </h3>
+                            <h3><i class=\"icon-material-outline-face\"></i> Inviter des utilisateurs </h3>
                             <input type=\"text\" placeholder=\"Chercher ici ...\" >
                         </div>
-                        <input type=\"text\" name=\"bouhaouala\">
                         <div class=\"content\">
                             <ul class=\"dashboard-box-list\">
                                 {%  for membre in membres %}
@@ -294,7 +296,6 @@ class __TwigTemplate_39e355b2e5044091d4ef5a6a133cb1e4d456647243a4c8a45df175119e9
 
                                                     <!-- Avatar -->
                                                     <div class=\"freelancer-avatar\">
-                                                        <div class=\"verified-badge\"></div>
                                                         <a href=\"#\"><img src=\"{{ asset('images/user-avatar-big-02.jpg') }}\" alt=\"\"></a>
                                                     </div>
 
@@ -302,10 +303,12 @@ class __TwigTemplate_39e355b2e5044091d4ef5a6a133cb1e4d456647243a4c8a45df175119e9
                                                     <div class=\"freelancer-name\">
                                                         <h4><a href=\"#\"> {{ membre.login }}
                                                                 <img class=\"flag\" src=\"images/flags/de.svg\" alt=\"\" title=\"Germany\" data-tippy-placement=\"top\"></a></h4>
-                                                        <span>{{ membre.login }} </span>
+                                                        <span>Email : {{ membre.mail }} </span>
                                                         <!-- Rating -->
                                                         <div class=\"freelancer-rating\">
-                                                            <div class=\"star-rating\" data-rating=\"4.2\"></div>
+                                                            <button class=\"button ripple-effect\" style=\"pointer-events: none;\">
+                                                                {{ membre.age }} ans
+                                                            </button>
                                                         </div>
                                                     </div>
                                                 </div>

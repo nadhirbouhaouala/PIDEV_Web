@@ -15,16 +15,29 @@ class Listparticipant
     /**
      * @var integer
      *
-     * @ORM\Column(name="idE", type="integer", nullable=false)
+     * @ORM\Column(name="idP", type="integer", nullable=false)
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */
-    private $ide;
+    private $idp;
+
 
     /**
-     * @var integer
+     * @var \Evenement
      *
-     * @ORM\Column(name="idm", type="integer", nullable=false)
+     * @ORM\ManyToOne(targetEntity="Evenement")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="ide", referencedColumnName="idE")
+     * })
+     */
+    private $ide;
+    /**
+     * @var \Membre
+     *
+     * @ORM\ManyToOne(targetEntity="Membre")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="idm", referencedColumnName="idUsr")
+     * })
      */
     private $idm;
 
@@ -35,8 +48,6 @@ class Listparticipant
      */
     private $etatp;
 
-
-
     /**
      * Get ide
      *
@@ -46,6 +57,16 @@ class Listparticipant
     {
         return $this->ide;
     }
+
+    /**
+     * @param \Evenement $ide
+     */
+    public function setIde($ide)
+    {
+        $this->ide = $ide;
+    }
+
+
 
     /**
      * Set idm
@@ -94,4 +115,7 @@ class Listparticipant
     {
         return $this->etatp;
     }
+
+
+
 }

@@ -9,11 +9,11 @@
             <div class="row">
 
                 <div class="col-xl-6 col-lg-6 content-left-offset">
-                    <h1>Groupe creation</h1>
+                    <h1>Créer un groupe</h1>
                     <br>
                     <form method="post" id="mainform">
-                        <input type="text" name="titre" class="with-border" value="">
-                        <input type="text" name="description" class="with-border" value="">
+                        <input type="text" name="titre" class="with-border" placeholder="Titre du groupe" value="">
+                        <input type="text" name="description" class="with-border" placeholder="Desctiption" value="">
                         <select name="autorisation" class="selectpicker">
                             <option value="1">Publique</option>
                             <option value="2">Privé</option>
@@ -34,10 +34,9 @@
                     <div class="dashboard-box" style="overflow-x:auto;">
                         <!-- Headline -->
                         <div class="headline">
-                            <h3><i class="icon-material-outline-face"></i> Mes groupes </h3>
+                            <h3><i class="icon-material-outline-face"></i> Inviter des utilisateurs </h3>
                             <input type="text" placeholder="Chercher ici ..." >
                         </div>
-                        <input type="text" name="bouhaouala">
                         <div class="content">
                             <ul class="dashboard-box-list">
                                 {%  for membre in membres %}
@@ -49,7 +48,6 @@
 
                                                     <!-- Avatar -->
                                                     <div class="freelancer-avatar">
-                                                        <div class="verified-badge"></div>
                                                         <a href="#"><img src="{{ asset('images/user-avatar-big-02.jpg') }}" alt=""></a>
                                                     </div>
 
@@ -57,10 +55,12 @@
                                                     <div class="freelancer-name">
                                                         <h4><a href="#"> {{ membre.login }}
                                                                 <img class="flag" src="images/flags/de.svg" alt="" title="Germany" data-tippy-placement="top"></a></h4>
-                                                        <span>{{ membre.login }} </span>
+                                                        <span>Email : {{ membre.mail }} </span>
                                                         <!-- Rating -->
                                                         <div class="freelancer-rating">
-                                                            <div class="star-rating" data-rating="4.2"></div>
+                                                            <button class="button ripple-effect" style="pointer-events: none;">
+                                                                {{ membre.age }} ans
+                                                            </button>
                                                         </div>
                                                     </div>
                                                 </div>

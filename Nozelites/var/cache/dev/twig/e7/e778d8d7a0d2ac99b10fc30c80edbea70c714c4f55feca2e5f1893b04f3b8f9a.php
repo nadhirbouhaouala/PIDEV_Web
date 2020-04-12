@@ -81,36 +81,39 @@ class __TwigTemplate_87c5c6e3fa9b60a898906a1b852ed36b691bbf1172b98f3091066e1b415
     <div class=\"content-wrapper\">
 
         <div class=\"container\">
-            <div class=\"container-fluid\">
-                <h1>Groupe edit</h1>
+                <div class=\"row container-fluid card\">
+                    <!-- left column -->
+                    <div class=\"col-md-12\">
+                        <h1>Groupe edit</h1>
 
-                ";
-        // line 13
+                        ";
+        // line 15
         echo         $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->renderBlock(($context["edit_form"] ?? $this->getContext($context, "edit_form")), 'form_start');
         echo "
-                ";
-        // line 14
+                        ";
+        // line 16
         echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(($context["edit_form"] ?? $this->getContext($context, "edit_form")), 'widget');
         echo "
-                <input type=\"submit\" value=\"Edit\" />
-                ";
-        // line 16
+                        <input type=\"submit\" value=\"Edit\" />
+                        ";
+        // line 18
         echo         $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->renderBlock(($context["edit_form"] ?? $this->getContext($context, "edit_form")), 'form_end');
         echo "
 
-                <ul>
-                    <li>
-                        <a href=\"";
-        // line 20
+                        <ul>
+                            <li>
+                                <a href=\"";
+        // line 22
         echo $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("nozelites_admingroupesback");
         echo "\">Back to the list</a>
-                    </li>
-                    <li>
+                            </li>
+                            <li>
 
-                    </li>
-                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
             </div>
-
     </div>
 ";
         
@@ -133,7 +136,7 @@ class __TwigTemplate_87c5c6e3fa9b60a898906a1b852ed36b691bbf1172b98f3091066e1b415
 
     public function getDebugInfo()
     {
-        return array (  105 => 20,  98 => 16,  93 => 14,  89 => 13,  80 => 6,  71 => 5,  52 => 3,  30 => 1,);
+        return array (  107 => 22,  100 => 18,  95 => 16,  91 => 15,  80 => 6,  71 => 5,  52 => 3,  30 => 1,);
     }
 
     /** @deprecated since 1.27 (to be removed in 2.0). Use getSourceContext() instead */
@@ -155,24 +158,27 @@ class __TwigTemplate_87c5c6e3fa9b60a898906a1b852ed36b691bbf1172b98f3091066e1b415
     <div class=\"content-wrapper\">
 
         <div class=\"container\">
-            <div class=\"container-fluid\">
-                <h1>Groupe edit</h1>
+                <div class=\"row container-fluid card\">
+                    <!-- left column -->
+                    <div class=\"col-md-12\">
+                        <h1>Groupe edit</h1>
 
-                {{ form_start(edit_form) }}
-                {{ form_widget(edit_form) }}
-                <input type=\"submit\" value=\"Edit\" />
-                {{ form_end(edit_form) }}
+                        {{ form_start(edit_form) }}
+                        {{ form_widget(edit_form) }}
+                        <input type=\"submit\" value=\"Edit\" />
+                        {{ form_end(edit_form) }}
 
-                <ul>
-                    <li>
-                        <a href=\"{{ path('nozelites_admingroupesback') }}\">Back to the list</a>
-                    </li>
-                    <li>
+                        <ul>
+                            <li>
+                                <a href=\"{{ path('nozelites_admingroupesback') }}\">Back to the list</a>
+                            </li>
+                            <li>
 
-                    </li>
-                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
             </div>
-
     </div>
 {% endblock %}
 

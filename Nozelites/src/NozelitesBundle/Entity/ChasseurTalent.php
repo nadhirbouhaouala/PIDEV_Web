@@ -104,6 +104,16 @@ class ChasseurTalent
     }
 
     /**
+     * @param int $idusr
+     */
+    public function setIdusr($idusr)
+    {
+        $this->idusr = $idusr;
+    }
+
+
+
+    /**
      * Set nom
      *
      * @param string $nom

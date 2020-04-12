@@ -1,0 +1,47 @@
+reclamation_homepage:
+    path:     /index
+    defaults: { _controller: ReclamationBundle:Default:index }
+
+Ajouter:
+    path:     /AjoutReclamation
+    defaults: { _controller: ReclamationBundle:Reclamation:Ajouter }
+
+reclamation_show:
+    path:     /AfficheReclamation
+    defaults: { _controller: ReclamationBundle:Reclamation:AfficheRec }
+
+Delete:
+    path:     /DeleteReclamation/{id}
+    defaults: { _controller: ReclamationBundle:Reclamation:Delete }
+
+Update:
+    path:     /UpdateReclamation/{id}
+    defaults: { _controller: ReclamationBundle:Reclamation:Update }
+
+nozelites_homepagebac:
+    path:     /back
+    defaults: { _controller: ReclamationBundle:Reclamation:AfficheRec1 }
+
+Ajouter1:
+    path:     /AjoutReclamation1/{id}/{type}
+    defaults: { _controller: ReclamationBundle:Reclamation:Ajouter1 }
+
+
+Traiter:
+    path:     /TraiterReclamation/{id}
+    defaults: { _controller: ReclamationBundle:Reclamation:Traiter }
+
+Deleteback:
+    path:     /DeleteBack/{id}
+    defaults: { _controller: ReclamationBundle:Reclamation:Deleteback }
+
+AjouterNote:
+    path:     /AjoutNote/{id}
+    defaults: { _controller: ReclamationBundle:Evaluation:AjoutNote }
+AjouterNoteTest:
+    path:     /AjoutNoteTest/{id}
+    defaults: { _controller: ReclamationBundle:Evaluation:AjoutNoteTest }
+
+AfficherNote:
+    path:     /AfficherNote/{id}
+    defaults: { _controller: ReclamationBundle:Evaluation:AfficherNote }

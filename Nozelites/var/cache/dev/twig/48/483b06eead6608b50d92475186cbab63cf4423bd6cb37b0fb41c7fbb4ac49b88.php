@@ -61,13 +61,13 @@ class __TwigTemplate_c8618bef3396a84d08526b8319854a8f1ec5e9870d5127608b4386ab78a
 ";
         // line 14
         $this->displayBlock('body', $context, $blocks);
-        // line 474
+        // line 468
         echo "<!-- Scripts
 ================================================== -->
 ";
-        // line 476
+        // line 470
         $this->displayBlock('javascripts', $context, $blocks);
-        // line 532
+        // line 526
         echo "</body>
 </html>
 ";
@@ -141,20 +141,20 @@ class __TwigTemplate_c8618bef3396a84d08526b8319854a8f1ec5e9870d5127608b4386ab78a
         ";
         // line 20
         $this->displayBlock('header', $context, $blocks);
-        // line 340
+        // line 334
         echo "        <!-- Header Container / End -->
 
         ";
-        // line 342
+        // line 336
         $this->displayBlock('content', $context, $blocks);
-        // line 343
+        // line 337
         echo "
         <!-- Footer
         ================================================== -->
         ";
-        // line 346
+        // line 340
         $this->displayBlock('footer', $context, $blocks);
-        // line 469
+        // line 463
         echo "        <!-- Footer / End -->
 
     </div>
@@ -278,17 +278,23 @@ class __TwigTemplate_c8618bef3396a84d08526b8319854a8f1ec5e9870d5127608b4386ab78a
                                         </ul>
                                     </li>
 
-                                    <li><a href=\"#\">Evenements</a>
+                                    <li><a href=\"";
+        // line 110
+        echo $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("nozelites_AllEvenementfront");
+        echo "\">Evenements</a>
                                         <ul class=\"dropdown-nav\">
-                                            <li><a href=\"pages-blog.html\">Blog</a></li>
-                                            <li><a href=\"pages-pricing-plans.html\">Pricing Plans</a></li>
-                                            <li><a href=\"pages-checkout-page.html\">Checkout Page</a></li>
-                                            <li><a href=\"pages-invoice-template.html\">Invoice Template</a></li>
-                                            <li><a href=\"pages-user-interface-elements.html\">User Interface Elements</a></li>
-                                            <li><a href=\"pages-icons-cheatsheet.html\">Icons Cheatsheet</a></li>
-                                            <li><a href=\"pages-login.html\">Login & Register</a></li>
-                                            <li><a href=\"pages-404.html\">404 Page</a></li>
-                                            <li><a href=\"pages-contact.html\">Contact</a></li>
+                                            <li><a href=\"";
+        // line 112
+        echo $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("nozelites_Evenementajouterfront");
+        echo "\">creer</a></li>
+                                            <li><a href=\"";
+        // line 113
+        echo $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("nozelites_Evenementafficherfront");
+        echo "\">Mes Evenements</a></li>
+                                            <li><a href=\"";
+        // line 114
+        echo $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("nozelites_AllEvenementfront");
+        echo "\">All</a></li>
                                         </ul>
                                     </li>
 
@@ -305,9 +311,9 @@ class __TwigTemplate_c8618bef3396a84d08526b8319854a8f1ec5e9870d5127608b4386ab78a
 
                         <div class=\"right-side\">
                             ";
-        // line 136
+        // line 130
         if ($this->env->getExtension('Symfony\Bridge\Twig\Extension\SecurityExtension')->isGranted("IS_AUTHENTICATED_FULLY")) {
-            // line 137
+            // line 131
             echo "                            <!--  User Notifications -->
                             <div class=\"header-widget hide-on-mobile\">
 
@@ -450,10 +456,7 @@ class __TwigTemplate_c8618bef3396a84d08526b8319854a8f1ec5e9870d5127608b4386ab78a
                                 <!-- Messages -->
                                 <div class=\"header-notifications user-menu\">
                                     <div class=\"header-notifications-trigger\">
-                                        <a href=\"#\"><div class=\"user-avatar status-online\"><img src=\"";
-            // line 279
-            echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\AssetExtension')->getAssetUrl(("images/" . $this->getAttribute(($context["user"] ?? $this->getContext($context, "user")), "image", []))), "html", null, true);
-            echo "\"  alt=\"\"></div></a>
+                                        <a href=\"#\"><div class=\"user-avatar status-online\"><img src=\"\"  alt=\"\"></div></a>
                                     </div>
 
                                     <!-- Dropdown -->
@@ -464,17 +467,9 @@ class __TwigTemplate_c8618bef3396a84d08526b8319854a8f1ec5e9870d5127608b4386ab78a
 
                                             <!-- User Name / Avatar -->
                                             <div class=\"user-details\">
-                                                <div class=\"user-avatar status-online\"><img src=\"";
-            // line 290
-            echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\AssetExtension')->getAssetUrl(("images/" . $this->getAttribute(($context["user"] ?? $this->getContext($context, "user")), "image", []))), "html", null, true);
-            echo "\" alt=\"\"></div>
+                                                <div class=\"user-avatar status-online\"><img src=\"\" alt=\"\"></div>
                                                 <div class=\"user-name\">
-                                                   ";
-            // line 292
-            echo twig_escape_filter($this->env, $this->getAttribute(($context["user"] ?? $this->getContext($context, "user")), "prenom", []), "html", null, true);
-            echo " ";
-            echo twig_escape_filter($this->env, $this->getAttribute(($context["user"] ?? $this->getContext($context, "user")), "nom", []), "html", null, true);
-            echo "
+
                                                 </div>
                                             </div>
 
@@ -489,12 +484,12 @@ class __TwigTemplate_c8618bef3396a84d08526b8319854a8f1ec5e9870d5127608b4386ab78a
 
                                         <ul class=\"user-menu-small-nav\">
                                             <li><a href=\"";
-            // line 306
+            // line 300
             echo $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("fos_user_profile_show");
             echo "\"><i class=\"icon-material-outline-dashboard\"></i> Profil</a></li>
                                             <li><a href=\"dashboard-settings.html\"><i class=\"icon-material-outline-settings\"></i> Settings</a></li>
                                             <li><a href=\"";
-            // line 308
+            // line 302
             echo $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("fos_user_security_logout");
             echo "\"><i class=\"icon-material-outline-power-settings-new\"></i> Logout</a></li>
                                         </ul>
@@ -506,16 +501,16 @@ class __TwigTemplate_c8618bef3396a84d08526b8319854a8f1ec5e9870d5127608b4386ab78a
                             <!-- User Menu / End -->
                             ";
         } elseif ($this->env->getExtension('Symfony\Bridge\Twig\Extension\SecurityExtension')->isGranted("IS_AUTHENTICATED_ANONYMOUSLY")) {
-            // line 317
+            // line 311
             echo "                            <div class=\"header-widget\">
                                 <a href=\"";
-            // line 318
+            // line 312
             echo $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("fos_user_security_login");
             echo "\" class=\"log-in-button\"><i class=\"icon-feather-log-in\"></i> <span>Se Connecter/S'enregistrer</span></a>
                             </div>
                             ";
         }
-        // line 321
+        // line 315
         echo "                            <!-- Mobile Navigation Button -->
                             <span class=\"mmenu-trigger\">
 \t\t\t\t\t<button class=\"hamburger hamburger--collapse\" type=\"button\">
@@ -543,7 +538,7 @@ class __TwigTemplate_c8618bef3396a84d08526b8319854a8f1ec5e9870d5127608b4386ab78a
 
     }
 
-    // line 342
+    // line 336
     public function block_content($context, array $blocks = [])
     {
         $__internal_085b0142806202599c7fe3b329164a92397d8978207a37e79d70b8c52599e33e = $this->env->getExtension("Symfony\\Bundle\\WebProfilerBundle\\Twig\\WebProfilerExtension");
@@ -560,7 +555,7 @@ class __TwigTemplate_c8618bef3396a84d08526b8319854a8f1ec5e9870d5127608b4386ab78a
 
     }
 
-    // line 346
+    // line 340
     public function block_footer($context, array $blocks = [])
     {
         $__internal_085b0142806202599c7fe3b329164a92397d8978207a37e79d70b8c52599e33e = $this->env->getExtension("Symfony\\Bundle\\WebProfilerBundle\\Twig\\WebProfilerExtension");
@@ -569,7 +564,7 @@ class __TwigTemplate_c8618bef3396a84d08526b8319854a8f1ec5e9870d5127608b4386ab78a
         $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02 = $this->env->getExtension("Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension");
         $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02->enter($__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "footer"));
 
-        // line 347
+        // line 341
         echo "            <div id=\"footer\">
 
                 <!-- Footer Top Section -->
@@ -700,7 +695,7 @@ class __TwigTemplate_c8618bef3396a84d08526b8319854a8f1ec5e9870d5127608b4386ab78a
 
     }
 
-    // line 476
+    // line 470
     public function block_javascripts($context, array $blocks = [])
     {
         $__internal_085b0142806202599c7fe3b329164a92397d8978207a37e79d70b8c52599e33e = $this->env->getExtension("Symfony\\Bundle\\WebProfilerBundle\\Twig\\WebProfilerExtension");
@@ -709,56 +704,56 @@ class __TwigTemplate_c8618bef3396a84d08526b8319854a8f1ec5e9870d5127608b4386ab78a
         $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02 = $this->env->getExtension("Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension");
         $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02->enter($__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "javascripts"));
 
-        // line 477
+        // line 471
         echo "    <script src=\"";
         echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\AssetExtension')->getAssetUrl("js/jquery-3.3.1.min.js"), "html", null, true);
         echo "\"></script>
     <script src=\"";
-        // line 478
+        // line 472
         echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\AssetExtension')->getAssetUrl("js/jquery-migrate-3.0.0.min.js"), "html", null, true);
         echo "\"></script>
     <script src=\"";
-        // line 479
+        // line 473
         echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\AssetExtension')->getAssetUrl("js/mmenu.min.js"), "html", null, true);
         echo "\"></script>
     <script src=\"";
-        // line 480
+        // line 474
         echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\AssetExtension')->getAssetUrl("js/tippy.all.min.js"), "html", null, true);
         echo "\"></script>
     <script src=\"";
-        // line 481
+        // line 475
         echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\AssetExtension')->getAssetUrl("js/simplebar.min.js"), "html", null, true);
         echo "\"></script>
     <script src=\"";
-        // line 482
+        // line 476
         echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\AssetExtension')->getAssetUrl("js/bootstrap-slider.min.js"), "html", null, true);
         echo "\"></script>
     <script src=\"";
-        // line 483
+        // line 477
         echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\AssetExtension')->getAssetUrl("js/bootstrap-select.min.js"), "html", null, true);
         echo "\"></script>
     <script src=\"";
-        // line 484
+        // line 478
         echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\AssetExtension')->getAssetUrl("js/snackbar.js"), "html", null, true);
         echo "\"></script>
     <script src=\"";
-        // line 485
+        // line 479
         echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\AssetExtension')->getAssetUrl("js/clipboard.min.js"), "html", null, true);
         echo "\"></script>
     <script src=\"";
-        // line 486
+        // line 480
         echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\AssetExtension')->getAssetUrl("js/counterup.min.js"), "html", null, true);
         echo "\"></script>
     <script src=\"";
-        // line 487
+        // line 481
         echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\AssetExtension')->getAssetUrl("js/magnific-popup.min.js"), "html", null, true);
         echo "\"></script>
     <script src=\"";
-        // line 488
+        // line 482
         echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\AssetExtension')->getAssetUrl("js/slick.min.js"), "html", null, true);
         echo "\"></script>
     <script src=\"";
-        // line 489
+        // line 483
         echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\AssetExtension')->getAssetUrl("js/custom.js"), "html", null, true);
         echo "\"></script>
 
@@ -823,7 +818,7 @@ class __TwigTemplate_c8618bef3396a84d08526b8319854a8f1ec5e9870d5127608b4386ab78a
 
     public function getDebugInfo()
     {
-        return array (  762 => 489,  758 => 488,  754 => 487,  750 => 486,  746 => 485,  742 => 484,  738 => 483,  734 => 482,  730 => 481,  726 => 480,  722 => 479,  718 => 478,  713 => 477,  704 => 476,  573 => 347,  564 => 346,  547 => 342,  519 => 321,  513 => 318,  510 => 317,  498 => 308,  493 => 306,  474 => 292,  469 => 290,  455 => 279,  311 => 137,  309 => 136,  262 => 92,  257 => 90,  195 => 33,  181 => 21,  172 => 20,  158 => 469,  156 => 346,  151 => 343,  149 => 342,  145 => 340,  143 => 20,  136 => 15,  127 => 14,  115 => 9,  110 => 8,  101 => 7,  83 => 6,  71 => 532,  69 => 476,  65 => 474,  63 => 14,  56 => 11,  54 => 7,  50 => 6,  43 => 1,);
+        return array (  757 => 483,  753 => 482,  749 => 481,  745 => 480,  741 => 479,  737 => 478,  733 => 477,  729 => 476,  725 => 475,  721 => 474,  717 => 473,  713 => 472,  708 => 471,  699 => 470,  568 => 341,  559 => 340,  542 => 336,  514 => 315,  508 => 312,  505 => 311,  493 => 302,  488 => 300,  317 => 131,  315 => 130,  296 => 114,  292 => 113,  288 => 112,  283 => 110,  262 => 92,  257 => 90,  195 => 33,  181 => 21,  172 => 20,  158 => 463,  156 => 340,  151 => 337,  149 => 336,  145 => 334,  143 => 20,  136 => 15,  127 => 14,  115 => 9,  110 => 8,  101 => 7,  83 => 6,  71 => 526,  69 => 470,  65 => 468,  63 => 14,  56 => 11,  54 => 7,  50 => 6,  43 => 1,);
     }
 
     /** @deprecated since 1.27 (to be removed in 2.0). Use getSourceContext() instead */
@@ -945,17 +940,11 @@ class __TwigTemplate_c8618bef3396a84d08526b8319854a8f1ec5e9870d5127608b4386ab78a
                                         </ul>
                                     </li>
 
-                                    <li><a href=\"#\">Evenements</a>
+                                    <li><a href=\"{{ path('nozelites_AllEvenementfront')}}\">Evenements</a>
                                         <ul class=\"dropdown-nav\">
-                                            <li><a href=\"pages-blog.html\">Blog</a></li>
-                                            <li><a href=\"pages-pricing-plans.html\">Pricing Plans</a></li>
-                                            <li><a href=\"pages-checkout-page.html\">Checkout Page</a></li>
-                                            <li><a href=\"pages-invoice-template.html\">Invoice Template</a></li>
-                                            <li><a href=\"pages-user-interface-elements.html\">User Interface Elements</a></li>
-                                            <li><a href=\"pages-icons-cheatsheet.html\">Icons Cheatsheet</a></li>
-                                            <li><a href=\"pages-login.html\">Login & Register</a></li>
-                                            <li><a href=\"pages-404.html\">404 Page</a></li>
-                                            <li><a href=\"pages-contact.html\">Contact</a></li>
+                                            <li><a href=\"{{ path('nozelites_Evenementajouterfront')}}\">creer</a></li>
+                                            <li><a href=\"{{ path('nozelites_Evenementafficherfront')}}\">Mes Evenements</a></li>
+                                            <li><a href=\"{{ path('nozelites_AllEvenementfront')}}\">All</a></li>
                                         </ul>
                                     </li>
 
@@ -1114,7 +1103,7 @@ class __TwigTemplate_c8618bef3396a84d08526b8319854a8f1ec5e9870d5127608b4386ab78a
                                 <!-- Messages -->
                                 <div class=\"header-notifications user-menu\">
                                     <div class=\"header-notifications-trigger\">
-                                        <a href=\"#\"><div class=\"user-avatar status-online\"><img src=\"{{ asset('images/'~ user.image)}}\"  alt=\"\"></div></a>
+                                        <a href=\"#\"><div class=\"user-avatar status-online\"><img src=\"\"  alt=\"\"></div></a>
                                     </div>
 
                                     <!-- Dropdown -->
@@ -1125,9 +1114,9 @@ class __TwigTemplate_c8618bef3396a84d08526b8319854a8f1ec5e9870d5127608b4386ab78a
 
                                             <!-- User Name / Avatar -->
                                             <div class=\"user-details\">
-                                                <div class=\"user-avatar status-online\"><img src=\"{{ asset('images/'~ user.image)}}\" alt=\"\"></div>
+                                                <div class=\"user-avatar status-online\"><img src=\"\" alt=\"\"></div>
                                                 <div class=\"user-name\">
-                                                   {{ user.prenom }} {{ user.nom }}
+
                                                 </div>
                                             </div>
 

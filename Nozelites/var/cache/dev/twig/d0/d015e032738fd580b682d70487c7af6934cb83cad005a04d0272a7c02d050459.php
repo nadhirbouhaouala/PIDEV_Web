@@ -61,13 +61,13 @@ class __TwigTemplate_b874a0316e79bd9ede2de5039958c7ba43fa9cff7b3102373ed89c00dbf
 ";
         // line 14
         $this->displayBlock('body', $context, $blocks);
-        // line 507
+        // line 475
         echo "<!-- Scripts
 ================================================== -->
 ";
-        // line 509
+        // line 477
         $this->displayBlock('javascripts', $context, $blocks);
-        // line 565
+        // line 533
         echo "</body>
 </html>
 ";
@@ -141,20 +141,20 @@ class __TwigTemplate_b874a0316e79bd9ede2de5039958c7ba43fa9cff7b3102373ed89c00dbf
         ";
         // line 20
         $this->displayBlock('header', $context, $blocks);
-        // line 340
+        // line 308
         echo "        <!-- Header Container / End -->
 
         ";
-        // line 342
+        // line 310
         $this->displayBlock('content', $context, $blocks);
-        // line 343
+        // line 311
         echo "
         <!-- Footer
         ================================================== -->
         ";
-        // line 346
+        // line 314
         $this->displayBlock('footer', $context, $blocks);
-        // line 502
+        // line 470
         echo "        <!-- Footer / End -->
 
     </div>
@@ -209,7 +209,7 @@ class __TwigTemplate_b874a0316e79bd9ede2de5039958c7ba43fa9cff7b3102373ed89c00dbf
                                         </ul>
                                     </li>
 
-                                    <li><a href=\"#\">Find Work</a>
+                                    <li><a href=\"#\">Profil</a>
                                         <ul class=\"dropdown-nav\">
                                             <li><a href=\"#\">Browse Jobs</a>
                                                 <ul class=\"dropdown-nav\">
@@ -236,7 +236,7 @@ class __TwigTemplate_b874a0316e79bd9ede2de5039958c7ba43fa9cff7b3102373ed89c00dbf
                                         </ul>
                                     </li>
 
-                                    <li><a href=\"#\">For Employers</a>
+                                    <li><a href=\"#\">Elites</a>
                                         <ul class=\"dropdown-nav\">
                                             <li><a href=\"#\">Find a Freelancer</a>
                                                 <ul class=\"dropdown-nav\">
@@ -252,42 +252,16 @@ class __TwigTemplate_b874a0316e79bd9ede2de5039958c7ba43fa9cff7b3102373ed89c00dbf
                                         </ul>
                                     </li>
 
-                                    <li><a href=\"#\">Dashboard</a>
+                                    <li><a href=\"#\">Offres</a>
                                         <ul class=\"dropdown-nav\">
-                                            <li><a href=\"dashboard.html\">Dashboard</a></li>
-                                            <li><a href=\"dashboard-messages.html\">Messages</a></li>
-                                            <li><a href=\"dashboard-bookmarks.html\">Bookmarks</a></li>
-                                            <li><a href=\"dashboard-reviews.html\">Reviews</a></li>
-                                            <li><a href=\"dashboard-manage-jobs.html\">Jobs</a>
-                                                <ul class=\"dropdown-nav\">
-                                                    <li><a href=\"dashboard-manage-jobs.html\">Manage Jobs</a></li>
-                                                    <li><a href=\"dashboard-manage-candidates.html\">Manage Candidates</a></li>
-                                                    <li><a href=\"dashboard-post-a-job.html\">Post a Job</a></li>
-                                                </ul>
-                                            </li>
-                                            <li><a href=\"dashboard-manage-tasks.html\">Tasks</a>
-                                                <ul class=\"dropdown-nav\">
-                                                    <li><a href=\"dashboard-manage-tasks.html\">Manage Tasks</a></li>
-                                                    <li><a href=\"dashboard-manage-bidders.html\">Manage Bidders</a></li>
-                                                    <li><a href=\"dashboard-my-active-bids.html\">My Active Bids</a></li>
-                                                    <li><a href=\"dashboard-post-a-task.html\">Post a Task</a></li>
-                                                </ul>
-                                            </li>
-                                            <li><a href=\"dashboard-settings.html\">Settings</a></li>
-                                        </ul>
-                                    </li>
-
-                                    <li><a href=\"#\">Pages</a>
-                                        <ul class=\"dropdown-nav\">
-                                            <li><a href=\"pages-blog.html\">Blog</a></li>
-                                            <li><a href=\"pages-pricing-plans.html\">Pricing Plans</a></li>
-                                            <li><a href=\"pages-checkout-page.html\">Checkout Page</a></li>
-                                            <li><a href=\"pages-invoice-template.html\">Invoice Template</a></li>
-                                            <li><a href=\"pages-user-interface-elements.html\">User Interface Elements</a></li>
-                                            <li><a href=\"pages-icons-cheatsheet.html\">Icons Cheatsheet</a></li>
-                                            <li><a href=\"pages-login.html\">Login & Register</a></li>
-                                            <li><a href=\"pages-404.html\">404 Page</a></li>
-                                            <li><a href=\"pages-contact.html\">Contact</a></li>
+                                            <li><a href=\"";
+        // line 92
+        echo $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("offre_ajouter");
+        echo "\">Envoyer une offre</a></li>
+                                            <li><a href=\"";
+        // line 93
+        echo $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("offre_liste");
+        echo "\">Consulter mes offres</a></li>
                                         </ul>
                                     </li>
 
@@ -510,7 +484,7 @@ class __TwigTemplate_b874a0316e79bd9ede2de5039958c7ba43fa9cff7b3102373ed89c00dbf
 
     }
 
-    // line 342
+    // line 310
     public function block_content($context, array $blocks = [])
     {
         $__internal_085b0142806202599c7fe3b329164a92397d8978207a37e79d70b8c52599e33e = $this->env->getExtension("Symfony\\Bundle\\WebProfilerBundle\\Twig\\WebProfilerExtension");
@@ -527,7 +501,7 @@ class __TwigTemplate_b874a0316e79bd9ede2de5039958c7ba43fa9cff7b3102373ed89c00dbf
 
     }
 
-    // line 346
+    // line 314
     public function block_footer($context, array $blocks = [])
     {
         $__internal_085b0142806202599c7fe3b329164a92397d8978207a37e79d70b8c52599e33e = $this->env->getExtension("Symfony\\Bundle\\WebProfilerBundle\\Twig\\WebProfilerExtension");
@@ -536,7 +510,7 @@ class __TwigTemplate_b874a0316e79bd9ede2de5039958c7ba43fa9cff7b3102373ed89c00dbf
         $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02 = $this->env->getExtension("Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension");
         $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02->enter($__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "footer"));
 
-        // line 347
+        // line 315
         echo "            <div id=\"footer\">
 
                 <!-- Footer Top Section -->
@@ -700,7 +674,7 @@ class __TwigTemplate_b874a0316e79bd9ede2de5039958c7ba43fa9cff7b3102373ed89c00dbf
 
     }
 
-    // line 509
+    // line 477
     public function block_javascripts($context, array $blocks = [])
     {
         $__internal_085b0142806202599c7fe3b329164a92397d8978207a37e79d70b8c52599e33e = $this->env->getExtension("Symfony\\Bundle\\WebProfilerBundle\\Twig\\WebProfilerExtension");
@@ -709,56 +683,56 @@ class __TwigTemplate_b874a0316e79bd9ede2de5039958c7ba43fa9cff7b3102373ed89c00dbf
         $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02 = $this->env->getExtension("Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension");
         $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02->enter($__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "javascripts"));
 
-        // line 510
+        // line 478
         echo "    <script src=\"";
         echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\AssetExtension')->getAssetUrl("js/jquery-3.3.1.min.js"), "html", null, true);
         echo "\"></script>
     <script src=\"";
-        // line 511
+        // line 479
         echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\AssetExtension')->getAssetUrl("js/jquery-migrate-3.0.0.min.js"), "html", null, true);
         echo "\"></script>
     <script src=\"";
-        // line 512
+        // line 480
         echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\AssetExtension')->getAssetUrl("js/mmenu.min.js"), "html", null, true);
         echo "\"></script>
     <script src=\"";
-        // line 513
+        // line 481
         echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\AssetExtension')->getAssetUrl("js/tippy.all.min.js"), "html", null, true);
         echo "\"></script>
     <script src=\"";
-        // line 514
+        // line 482
         echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\AssetExtension')->getAssetUrl("js/simplebar.min.js"), "html", null, true);
         echo "\"></script>
     <script src=\"";
-        // line 515
+        // line 483
         echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\AssetExtension')->getAssetUrl("js/bootstrap-slider.min.js"), "html", null, true);
         echo "\"></script>
     <script src=\"";
-        // line 516
+        // line 484
         echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\AssetExtension')->getAssetUrl("js/bootstrap-select.min.js"), "html", null, true);
         echo "\"></script>
     <script src=\"";
-        // line 517
+        // line 485
         echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\AssetExtension')->getAssetUrl("js/snackbar.js"), "html", null, true);
         echo "\"></script>
     <script src=\"";
-        // line 518
+        // line 486
         echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\AssetExtension')->getAssetUrl("js/clipboard.min.js"), "html", null, true);
         echo "\"></script>
     <script src=\"";
-        // line 519
+        // line 487
         echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\AssetExtension')->getAssetUrl("js/counterup.min.js"), "html", null, true);
         echo "\"></script>
     <script src=\"";
-        // line 520
+        // line 488
         echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\AssetExtension')->getAssetUrl("js/magnific-popup.min.js"), "html", null, true);
         echo "\"></script>
     <script src=\"";
-        // line 521
+        // line 489
         echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\AssetExtension')->getAssetUrl("js/slick.min.js"), "html", null, true);
         echo "\"></script>
     <script src=\"";
-        // line 522
+        // line 490
         echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\AssetExtension')->getAssetUrl("js/custom.js"), "html", null, true);
         echo "\"></script>
 
@@ -823,7 +797,7 @@ class __TwigTemplate_b874a0316e79bd9ede2de5039958c7ba43fa9cff7b3102373ed89c00dbf
 
     public function getDebugInfo()
     {
-        return array (  762 => 522,  758 => 521,  754 => 520,  750 => 519,  746 => 518,  742 => 517,  738 => 516,  734 => 515,  730 => 514,  726 => 513,  722 => 512,  718 => 511,  713 => 510,  704 => 509,  540 => 347,  531 => 346,  514 => 342,  195 => 33,  181 => 21,  172 => 20,  158 => 502,  156 => 346,  151 => 343,  149 => 342,  145 => 340,  143 => 20,  136 => 15,  127 => 14,  115 => 9,  110 => 8,  101 => 7,  83 => 6,  71 => 565,  69 => 509,  65 => 507,  63 => 14,  56 => 11,  54 => 7,  50 => 6,  43 => 1,);
+        return array (  736 => 490,  732 => 489,  728 => 488,  724 => 487,  720 => 486,  716 => 485,  712 => 484,  708 => 483,  704 => 482,  700 => 481,  696 => 480,  692 => 479,  687 => 478,  678 => 477,  514 => 315,  505 => 314,  488 => 310,  263 => 93,  259 => 92,  195 => 33,  181 => 21,  172 => 20,  158 => 470,  156 => 314,  151 => 311,  149 => 310,  145 => 308,  143 => 20,  136 => 15,  127 => 14,  115 => 9,  110 => 8,  101 => 7,  83 => 6,  71 => 533,  69 => 477,  65 => 475,  63 => 14,  56 => 11,  54 => 7,  50 => 6,  43 => 1,);
     }
 
     /** @deprecated since 1.27 (to be removed in 2.0). Use getSourceContext() instead */
@@ -882,7 +856,7 @@ class __TwigTemplate_b874a0316e79bd9ede2de5039958c7ba43fa9cff7b3102373ed89c00dbf
                                         </ul>
                                     </li>
 
-                                    <li><a href=\"#\">Find Work</a>
+                                    <li><a href=\"#\">Profil</a>
                                         <ul class=\"dropdown-nav\">
                                             <li><a href=\"#\">Browse Jobs</a>
                                                 <ul class=\"dropdown-nav\">
@@ -909,7 +883,7 @@ class __TwigTemplate_b874a0316e79bd9ede2de5039958c7ba43fa9cff7b3102373ed89c00dbf
                                         </ul>
                                     </li>
 
-                                    <li><a href=\"#\">For Employers</a>
+                                    <li><a href=\"#\">Elites</a>
                                         <ul class=\"dropdown-nav\">
                                             <li><a href=\"#\">Find a Freelancer</a>
                                                 <ul class=\"dropdown-nav\">
@@ -925,42 +899,10 @@ class __TwigTemplate_b874a0316e79bd9ede2de5039958c7ba43fa9cff7b3102373ed89c00dbf
                                         </ul>
                                     </li>
 
-                                    <li><a href=\"#\">Dashboard</a>
+                                    <li><a href=\"#\">Offres</a>
                                         <ul class=\"dropdown-nav\">
-                                            <li><a href=\"dashboard.html\">Dashboard</a></li>
-                                            <li><a href=\"dashboard-messages.html\">Messages</a></li>
-                                            <li><a href=\"dashboard-bookmarks.html\">Bookmarks</a></li>
-                                            <li><a href=\"dashboard-reviews.html\">Reviews</a></li>
-                                            <li><a href=\"dashboard-manage-jobs.html\">Jobs</a>
-                                                <ul class=\"dropdown-nav\">
-                                                    <li><a href=\"dashboard-manage-jobs.html\">Manage Jobs</a></li>
-                                                    <li><a href=\"dashboard-manage-candidates.html\">Manage Candidates</a></li>
-                                                    <li><a href=\"dashboard-post-a-job.html\">Post a Job</a></li>
-                                                </ul>
-                                            </li>
-                                            <li><a href=\"dashboard-manage-tasks.html\">Tasks</a>
-                                                <ul class=\"dropdown-nav\">
-                                                    <li><a href=\"dashboard-manage-tasks.html\">Manage Tasks</a></li>
-                                                    <li><a href=\"dashboard-manage-bidders.html\">Manage Bidders</a></li>
-                                                    <li><a href=\"dashboard-my-active-bids.html\">My Active Bids</a></li>
-                                                    <li><a href=\"dashboard-post-a-task.html\">Post a Task</a></li>
-                                                </ul>
-                                            </li>
-                                            <li><a href=\"dashboard-settings.html\">Settings</a></li>
-                                        </ul>
-                                    </li>
-
-                                    <li><a href=\"#\">Pages</a>
-                                        <ul class=\"dropdown-nav\">
-                                            <li><a href=\"pages-blog.html\">Blog</a></li>
-                                            <li><a href=\"pages-pricing-plans.html\">Pricing Plans</a></li>
-                                            <li><a href=\"pages-checkout-page.html\">Checkout Page</a></li>
-                                            <li><a href=\"pages-invoice-template.html\">Invoice Template</a></li>
-                                            <li><a href=\"pages-user-interface-elements.html\">User Interface Elements</a></li>
-                                            <li><a href=\"pages-icons-cheatsheet.html\">Icons Cheatsheet</a></li>
-                                            <li><a href=\"pages-login.html\">Login & Register</a></li>
-                                            <li><a href=\"pages-404.html\">404 Page</a></li>
-                                            <li><a href=\"pages-contact.html\">Contact</a></li>
+                                            <li><a href=\"{{ path('offre_ajouter') }}\">Envoyer une offre</a></li>
+                                            <li><a href=\"{{ path('offre_liste') }}\">Consulter mes offres</a></li>
                                         </ul>
                                     </li>
 

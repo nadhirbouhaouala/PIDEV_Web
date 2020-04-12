@@ -117,10 +117,15 @@ class __TwigTemplate_b66a7bb17d3e120e449a2d0199e72e86cdf58c8b1e7a67da4e2f4fa8b42
 
                 <!-- Avatar -->
                 <div class=\"freelancer-avatar\">
-                    <div class=\"verified-badge\"></div>
+                    <div class=\"";
+        // line 25
+        if ((($context["isadmin"] ?? $this->getContext($context, "isadmin")) == 1)) {
+            echo "verified-badge";
+        }
+        echo "\"></div>
                     <a href=\"#\"><img src=\"";
         // line 26
-        echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\AssetExtension')->getAssetUrl("images/user-avatar-big-02.jpg"), "html", null, true);
+        echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\AssetExtension')->getAssetUrl("images/groupes.png"), "html", null, true);
         echo "\" alt=\"\"></a>
                 </div>
 
@@ -139,7 +144,7 @@ class __TwigTemplate_b66a7bb17d3e120e449a2d0199e72e86cdf58c8b1e7a67da4e2f4fa8b42
                     <div class=\"freelancer-rating\">
                         <div class=\"star-rating\" data-rating=\"";
         // line 36
-        if (($this->getAttribute(($context["groupe"] ?? $this->getContext($context, "groupe")), "autorisation", []) == 1)) {
+        if (($this->getAttribute(($context["groupe"] ?? $this->getContext($context, "groupe")), "autorisation", []) == 0)) {
             echo "fermé";
         } else {
             echo "ouvert";
@@ -163,7 +168,7 @@ class __TwigTemplate_b66a7bb17d3e120e449a2d0199e72e86cdf58c8b1e7a67da4e2f4fa8b42
 
                     <!-- Headline -->
                     <div class=\"headline\">
-                        <h3><i class=\"icon-material-outline-face\"></i> Membres </h3>
+                        <h3><i class=\"icon-material-outline-face\"></i> Membres du groupe </h3>
                     </div>
 
                     <div class=\"content\">
@@ -238,9 +243,8 @@ class __TwigTemplate_b66a7bb17d3e120e449a2d0199e72e86cdf58c8b1e7a67da4e2f4fa8b42
 
                                             <!-- Avatar -->
                                             <div class=\"freelancer-avatar\">
-                                                <div class=\"verified-badge\"></div>
                                                 <a href=\"#\"><img src=\"";
-            // line 107
+            // line 106
             echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\AssetExtension')->getAssetUrl("images/user-avatar-big-02.jpg"), "html", null, true);
             echo "\" alt=\"\"></a>
                                             </div>
@@ -248,7 +252,7 @@ class __TwigTemplate_b66a7bb17d3e120e449a2d0199e72e86cdf58c8b1e7a67da4e2f4fa8b42
                                             <!-- Name -->
                                             <div class=\"freelancer-name\">
                                                 <h4><a href=\"#\"> ";
-            // line 112
+            // line 111
             echo twig_escape_filter($this->env, $this->getAttribute($context["membre"], "login", []), "html", null, true);
             echo " -
                                                         <img class=\"flag\" src=\"images/flags/de.svg\" alt=\"\" title=\"Germany\" data-tippy-placement=\"top\"></a></h4>
@@ -268,13 +272,13 @@ class __TwigTemplate_b66a7bb17d3e120e449a2d0199e72e86cdf58c8b1e7a67da4e2f4fa8b42
                                         <a href=\"\" onclick=\"alert('')\" class=\"button red ripple-effect ico\" title=\"Accepter\" data-tippy-placement=\"left\"><i class=\"icon-material-outline-check\"></i></a>
                                         <a href=\"\" class=\"button red ripple-effect ico\" title=\"Refuser\" data-tippy-placement=\"left\"><i class=\"icon-feather-x\"></i></a>-->
                                         ";
-            // line 129
-            if ((($context["isadmin"] ?? $this->getContext($context, "isadmin")) == true)) {
-                // line 130
+            // line 128
+            if ((($context["isadmin"] ?? $this->getContext($context, "isadmin")) == 1)) {
+                // line 129
                 echo "                                        <button onclick=\"
                                                 \$.ajax(
                                                     {url: '";
-                // line 132
+                // line 131
                 echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("nozelites_membreretirerfront", ["id" => $this->getAttribute(($context["groupe"] ?? $this->getContext($context, "groupe")), "idGroupe", []), "idmembre" => $this->getAttribute($context["membre"], "idusr", [])]), "html", null, true);
                 echo "', //This is the current doc
                                                     //type: 'POST',
@@ -285,13 +289,13 @@ class __TwigTemplate_b66a7bb17d3e120e449a2d0199e72e86cdf58c8b1e7a67da4e2f4fa8b42
                                                     }
                                                 });
                                                 document.getElementById('";
-                // line 140
+                // line 139
                 echo twig_escape_filter($this->env, ("membre_" . $this->getAttribute($context["membre"], "idusr", [])), "html", null, true);
                 echo "').style.display = 'none';
-                                                \" class=\"button red ripple-effect ico\" title=\"Retirer\" data-tippy-placement=\"left\"><i class=\"icon-feather-x\"></i></button>
+                                                \" class=\"button red ripple-effect ico\" title=\"Bloquer\" data-tippy-placement=\"left\"><i class=\"icon-feather-x\"></i></button>
                                         ";
             }
-            // line 143
+            // line 142
             echo "                                    </div>
                                 </li>
 
@@ -300,105 +304,113 @@ class __TwigTemplate_b66a7bb17d3e120e449a2d0199e72e86cdf58c8b1e7a67da4e2f4fa8b42
         $_parent = $context['_parent'];
         unset($context['_seq'], $context['_iterated'], $context['_key'], $context['membre'], $context['_parent'], $context['loop']);
         $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 147
+        // line 146
         echo "
                         </ul>
                     </div>
                 </div>
             </div>
 
-            <div class=\"col-xl-6 col-lg-6\">
-                <div class=\"dashboard-box\">
 
-                    <!-- Headline -->
-                    <div class=\"headline\">
-                        <h3><i class=\"icon-material-outline-face\"></i> Invitations </h3>
-                    </div>
+            ";
+        // line 153
+        if ((($this->getAttribute(($context["groupe"] ?? $this->getContext($context, "groupe")), "autorisation", []) == 1) || (($context["isadmin"] ?? $this->getContext($context, "isadmin")) == 1))) {
+            // line 154
+            echo "                
+                <div class=\"col-xl-6 col-lg-6\">
+                    <div class=\"dashboard-box\">
 
-                    <div class=\"content\">
-                        <ul class=\"dashboard-box-list\">
-                            ";
-        // line 163
-        $context['_parent'] = $context;
-        $context['_seq'] = twig_ensure_traversable(($context["autres"] ?? $this->getContext($context, "autres")));
-        foreach ($context['_seq'] as $context["_key"] => $context["autre"]) {
-            // line 164
-            echo "
-                                <li id=\"";
+                        <!-- Headline -->
+                        <div class=\"headline\">
+                            <h3><i class=\"icon-material-outline-face\"></i> Inviter des membres </h3>
+                        </div>
+
+                        <div class=\"content\">
+                            <ul class=\"dashboard-box-list\">
+                                ";
             // line 165
-            echo twig_escape_filter($this->env, ("autre_" . $this->getAttribute($context["autre"], "idusr", [])), "html", null, true);
-            echo "\">
-                                    <!-- Overview -->
-                                    <div class=\"freelancer-overview\" onclick=\"alert('show')\">
-                                        <div class=\"freelancer-overview-inner\">
+            $context['_parent'] = $context;
+            $context['_seq'] = twig_ensure_traversable(($context["autres"] ?? $this->getContext($context, "autres")));
+            foreach ($context['_seq'] as $context["_key"] => $context["autre"]) {
+                // line 166
+                echo "
+                                    <li id=\"";
+                // line 167
+                echo twig_escape_filter($this->env, ("autre_" . $this->getAttribute($context["autre"], "idusr", [])), "html", null, true);
+                echo "\">
+                                        <!-- Overview -->
+                                        <div class=\"freelancer-overview\" onclick=\"alert('show')\">
+                                            <div class=\"freelancer-overview-inner\">
 
-                                            <!-- Avatar -->
-                                            <div class=\"freelancer-avatar\">
-                                                <div class=\"verified-badge\"></div>
-                                                <a href=\"#\"><img src=\"";
-            // line 173
-            echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\AssetExtension')->getAssetUrl("images/user-avatar-big-02.jpg"), "html", null, true);
-            echo "\" alt=\"\"></a>
-                                            </div>
+                                                <!-- Avatar -->
+                                                <div class=\"freelancer-avatar\">
+                                                    <div class=\"verified-badge\"></div>
+                                                    <a href=\"#\"><img src=\"";
+                // line 175
+                echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\AssetExtension')->getAssetUrl("images/user-avatar-big-02.jpg"), "html", null, true);
+                echo "\" alt=\"\"></a>
+                                                </div>
 
-                                            <!-- Name -->
-                                            <div class=\"freelancer-name\">
-                                                <h4><a href=\"#\"> ";
-            // line 178
-            echo twig_escape_filter($this->env, $this->getAttribute($context["autre"], "login", []), "html", null, true);
-            echo " -
-                                                        <img class=\"flag\" src=\"images/flags/de.svg\" alt=\"\" title=\"Germany\" data-tippy-placement=\"top\"></a></h4>
-                                                <span>autre.mail - autre.tel</span>
-                                                <!-- Rating -->
-                                                <div class=\"freelancer-rating\">
-                                                    <div class=\"star-rating\" data-rating=\"";
-            // line 183
-            echo twig_escape_filter($this->env, $this->getAttribute($context["autre"], "experience", []), "html", null, true);
-            echo "\"></div>
+                                                <!-- Name -->
+                                                <div class=\"freelancer-name\">
+                                                    <h4><a href=\"#\"> ";
+                // line 180
+                echo twig_escape_filter($this->env, $this->getAttribute($context["autre"], "login", []), "html", null, true);
+                echo " -
+                                                            <img class=\"flag\" src=\"images/flags/de.svg\" alt=\"\" title=\"Germany\" data-tippy-placement=\"top\"></a></h4>
+                                                    <span>autre.mail - autre.tel</span>
+                                                    <!-- Rating -->
+                                                    <div class=\"freelancer-rating\">
+                                                        <div class=\"star-rating\" data-rating=\"";
+                // line 185
+                echo twig_escape_filter($this->env, $this->getAttribute($context["autre"], "experience", []), "html", null, true);
+                echo "\"></div>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
 
-                                    <!-- Buttons -->
-                                    <div class=\"buttons-to-right\">
-                                        <!--<a href=\"#\" class=\"button red ripple-effect ico\" title=\"Remove\" data-tippy-placement=\"left\"><i class=\"icon-feather-trash-2\"></i></a>
-                                        <a href=\"#\" class=\"button red ripple-effect ico\" title=\"edit\" data-tippy-placement=\"left\"><i class=\"icon-feather-edit-2\"></i></a>
-                                        <a href=\"\" onclick=\"alert('')\" class=\"button red ripple-effect ico\" title=\"Accepter\" data-tippy-placement=\"left\"><i class=\"icon-material-outline-check\"></i></a>-->
-                                        <button onclick=\"
-                                                \$.ajax(
-                                                {url: '";
-            // line 196
-            echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("nozelites_membreinviterfront", ["id" => $this->getAttribute(($context["groupe"] ?? $this->getContext($context, "groupe")), "idGroupe", []), "idmembre" => $this->getAttribute($context["autre"], "idusr", [])]), "html", null, true);
-            echo "', //This is the current doc
-                                                //type: 'POST',
-                                                //dataType:'json', // add json datatype to get json
-                                                //data: ({retirer: idmembre }),
-                                                success: function(data){
-                                                console.log(data);
-                                                }
-                                                });
-                                                document.getElementById('";
-            // line 204
-            echo twig_escape_filter($this->env, ("autre_" . $this->getAttribute($context["autre"], "idusr", [])), "html", null, true);
-            echo "').style.display = 'none';
-                                                \" class=\"button red ripple-effect ico\" title=\"Inviter\" data-tippy-placement=\"left\"><i class=\"icon-feather-plus\"></i></button>
-                                    </div>
-                                </li>
+                                        <!-- Buttons -->
+                                        <div class=\"buttons-to-right\">
+                                            <!--<a href=\"#\" class=\"button red ripple-effect ico\" title=\"Remove\" data-tippy-placement=\"left\"><i class=\"icon-feather-trash-2\"></i></a>
+                                            <a href=\"#\" class=\"button red ripple-effect ico\" title=\"edit\" data-tippy-placement=\"left\"><i class=\"icon-feather-edit-2\"></i></a>
+                                            <a href=\"\" onclick=\"alert('')\" class=\"button red ripple-effect ico\" title=\"Accepter\" data-tippy-placement=\"left\"><i class=\"icon-material-outline-check\"></i></a>-->
+                                            <button onclick=\"
+                                                    \$.ajax(
+                                                    {url: '";
+                // line 198
+                echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("nozelites_membreinviterfront", ["id" => $this->getAttribute(($context["groupe"] ?? $this->getContext($context, "groupe")), "idGroupe", []), "idmembre" => $this->getAttribute($context["autre"], "idusr", [])]), "html", null, true);
+                echo "', //This is the current doc
+                                                    //type: 'POST',
+                                                    //dataType:'json', // add json datatype to get json
+                                                    //data: ({retirer: idmembre }),
+                                                    success: function(data){
+                                                    console.log(data);
+                                                    }
+                                                    });
+                                                    document.getElementById('";
+                // line 206
+                echo twig_escape_filter($this->env, ("autre_" . $this->getAttribute($context["autre"], "idusr", [])), "html", null, true);
+                echo "').style.display = 'none';
+                                                    \" class=\"button red ripple-effect ico\" title=\"Inviter\" data-tippy-placement=\"left\"><i class=\"icon-feather-plus\"></i></button>
+                                        </div>
+                                    </li>
 
-                            ";
-        }
-        $_parent = $context['_parent'];
-        unset($context['_seq'], $context['_iterated'], $context['_key'], $context['autre'], $context['_parent'], $context['loop']);
-        $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 210
-        echo "                        </ul>
+                                ";
+            }
+            $_parent = $context['_parent'];
+            unset($context['_seq'], $context['_iterated'], $context['_key'], $context['autre'], $context['_parent'], $context['loop']);
+            $context = array_intersect_key($context, $_parent) + $_parent;
+            // line 212
+            echo "                            </ul>
+                        </div>
                     </div>
                 </div>
-            </div>
 
-
-
+            ";
+        }
+        // line 218
+        echo "
         </div>
 
     </div>
@@ -413,7 +425,7 @@ class __TwigTemplate_b66a7bb17d3e120e449a2d0199e72e86cdf58c8b1e7a67da4e2f4fa8b42
 
     }
 
-    // line 224
+    // line 226
     public function block_javascripts($context, array $blocks = [])
     {
         $__internal_085b0142806202599c7fe3b329164a92397d8978207a37e79d70b8c52599e33e = $this->env->getExtension("Symfony\\Bundle\\WebProfilerBundle\\Twig\\WebProfilerExtension");
@@ -422,19 +434,19 @@ class __TwigTemplate_b66a7bb17d3e120e449a2d0199e72e86cdf58c8b1e7a67da4e2f4fa8b42
         $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02 = $this->env->getExtension("Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension");
         $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02->enter($__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "javascripts"));
 
-        // line 225
+        // line 227
         echo "    ";
         $this->displayParentBlock("javascripts", $context, $blocks);
         echo "
     <!-- Toastr script -->
     <script src=\"";
-        // line 227
+        // line 229
         echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\AssetExtension')->getAssetUrl("js/toastr.min.js"), "html", null, true);
         echo "\"></script>
     <script>
         \$(function () {
             toastr.success('Bienvenue au groupe', '";
-        // line 230
+        // line 232
         echo twig_escape_filter($this->env, $this->getAttribute(($context["groupe"] ?? $this->getContext($context, "groupe")), "titre", []), "html", null, true);
         echo "')
         });
@@ -460,7 +472,7 @@ class __TwigTemplate_b66a7bb17d3e120e449a2d0199e72e86cdf58c8b1e7a67da4e2f4fa8b42
 
     public function getDebugInfo()
     {
-        return array (  438 => 230,  432 => 227,  426 => 225,  417 => 224,  395 => 210,  383 => 204,  372 => 196,  356 => 183,  348 => 178,  340 => 173,  329 => 165,  326 => 164,  322 => 163,  304 => 147,  295 => 143,  289 => 140,  278 => 132,  274 => 130,  272 => 129,  252 => 112,  244 => 107,  233 => 99,  230 => 98,  226 => 97,  223 => 96,  196 => 75,  188 => 70,  177 => 61,  173 => 60,  142 => 36,  136 => 33,  131 => 31,  123 => 26,  108 => 13,  99 => 12,  87 => 9,  82 => 7,  73 => 6,  54 => 4,  32 => 1,);
+        return array (  450 => 232,  444 => 229,  438 => 227,  429 => 226,  413 => 218,  405 => 212,  393 => 206,  382 => 198,  366 => 185,  358 => 180,  350 => 175,  339 => 167,  336 => 166,  332 => 165,  319 => 154,  317 => 153,  308 => 146,  299 => 142,  293 => 139,  282 => 131,  278 => 129,  276 => 128,  256 => 111,  248 => 106,  238 => 99,  235 => 98,  231 => 97,  228 => 96,  201 => 75,  193 => 70,  182 => 61,  178 => 60,  147 => 36,  141 => 33,  136 => 31,  128 => 26,  122 => 25,  108 => 13,  99 => 12,  87 => 9,  82 => 7,  73 => 6,  54 => 4,  32 => 1,);
     }
 
     /** @deprecated since 1.27 (to be removed in 2.0). Use getSourceContext() instead */
@@ -497,8 +509,8 @@ class __TwigTemplate_b66a7bb17d3e120e449a2d0199e72e86cdf58c8b1e7a67da4e2f4fa8b42
 
                 <!-- Avatar -->
                 <div class=\"freelancer-avatar\">
-                    <div class=\"verified-badge\"></div>
-                    <a href=\"#\"><img src=\"{{ asset('images/user-avatar-big-02.jpg') }}\" alt=\"\"></a>
+                    <div class=\"{% if isadmin == 1 %}verified-badge{% endif %}\"></div>
+                    <a href=\"#\"><img src=\"{{ asset('images/groupes.png') }}\" alt=\"\"></a>
                 </div>
 
                 <!-- Name -->
@@ -508,7 +520,7 @@ class __TwigTemplate_b66a7bb17d3e120e449a2d0199e72e86cdf58c8b1e7a67da4e2f4fa8b42
                     <span>{{ groupe.description }} </span>
                     <!-- Rating -->
                     <div class=\"freelancer-rating\">
-                        <div class=\"star-rating\" data-rating=\"{% if groupe.autorisation == 1 %}fermé{%  else %}ouvert{%  endif %}\"></div>
+                        <div class=\"star-rating\" data-rating=\"{% if groupe.autorisation == 0 %}fermé{%  else %}ouvert{%  endif %}\"></div>
                     </div>
                 </div>
             </div>
@@ -527,7 +539,7 @@ class __TwigTemplate_b66a7bb17d3e120e449a2d0199e72e86cdf58c8b1e7a67da4e2f4fa8b42
 
                     <!-- Headline -->
                     <div class=\"headline\">
-                        <h3><i class=\"icon-material-outline-face\"></i> Membres </h3>
+                        <h3><i class=\"icon-material-outline-face\"></i> Membres du groupe </h3>
                     </div>
 
                     <div class=\"content\">
@@ -578,7 +590,6 @@ class __TwigTemplate_b66a7bb17d3e120e449a2d0199e72e86cdf58c8b1e7a67da4e2f4fa8b42
 
                                             <!-- Avatar -->
                                             <div class=\"freelancer-avatar\">
-                                                <div class=\"verified-badge\"></div>
                                                 <a href=\"#\"><img src=\"{{ asset('images/user-avatar-big-02.jpg') }}\" alt=\"\"></a>
                                             </div>
 
@@ -601,7 +612,7 @@ class __TwigTemplate_b66a7bb17d3e120e449a2d0199e72e86cdf58c8b1e7a67da4e2f4fa8b42
                                         <a href=\"#\" class=\"button red ripple-effect ico\" title=\"edit\" data-tippy-placement=\"left\"><i class=\"icon-feather-edit-2\"></i></a>
                                         <a href=\"\" onclick=\"alert('')\" class=\"button red ripple-effect ico\" title=\"Accepter\" data-tippy-placement=\"left\"><i class=\"icon-material-outline-check\"></i></a>
                                         <a href=\"\" class=\"button red ripple-effect ico\" title=\"Refuser\" data-tippy-placement=\"left\"><i class=\"icon-feather-x\"></i></a>-->
-                                        {% if isadmin == true %}
+                                        {% if isadmin == 1 %}
                                         <button onclick=\"
                                                 \$.ajax(
                                                     {url: '{{ path('nozelites_membreretirerfront',{'id':groupe.idGroupe,'idmembre':membre.idusr}) }}', //This is the current doc
@@ -613,7 +624,7 @@ class __TwigTemplate_b66a7bb17d3e120e449a2d0199e72e86cdf58c8b1e7a67da4e2f4fa8b42
                                                     }
                                                 });
                                                 document.getElementById('{{ \"membre_\"~membre.idusr }}').style.display = 'none';
-                                                \" class=\"button red ripple-effect ico\" title=\"Retirer\" data-tippy-placement=\"left\"><i class=\"icon-feather-x\"></i></button>
+                                                \" class=\"button red ripple-effect ico\" title=\"Bloquer\" data-tippy-placement=\"left\"><i class=\"icon-feather-x\"></i></button>
                                         {% endif %}
                                     </div>
                                 </li>
@@ -625,69 +636,72 @@ class __TwigTemplate_b66a7bb17d3e120e449a2d0199e72e86cdf58c8b1e7a67da4e2f4fa8b42
                 </div>
             </div>
 
-            <div class=\"col-xl-6 col-lg-6\">
-                <div class=\"dashboard-box\">
 
-                    <!-- Headline -->
-                    <div class=\"headline\">
-                        <h3><i class=\"icon-material-outline-face\"></i> Invitations </h3>
-                    </div>
+            {% if groupe.autorisation == 1 or isadmin == 1  %}
+                
+                <div class=\"col-xl-6 col-lg-6\">
+                    <div class=\"dashboard-box\">
 
-                    <div class=\"content\">
-                        <ul class=\"dashboard-box-list\">
-                            {%  for autre in autres %}
+                        <!-- Headline -->
+                        <div class=\"headline\">
+                            <h3><i class=\"icon-material-outline-face\"></i> Inviter des membres </h3>
+                        </div>
 
-                                <li id=\"{{ \"autre_\"~autre.idusr }}\">
-                                    <!-- Overview -->
-                                    <div class=\"freelancer-overview\" onclick=\"alert('show')\">
-                                        <div class=\"freelancer-overview-inner\">
+                        <div class=\"content\">
+                            <ul class=\"dashboard-box-list\">
+                                {%  for autre in autres %}
 
-                                            <!-- Avatar -->
-                                            <div class=\"freelancer-avatar\">
-                                                <div class=\"verified-badge\"></div>
-                                                <a href=\"#\"><img src=\"{{ asset('images/user-avatar-big-02.jpg') }}\" alt=\"\"></a>
-                                            </div>
+                                    <li id=\"{{ \"autre_\"~autre.idusr }}\">
+                                        <!-- Overview -->
+                                        <div class=\"freelancer-overview\" onclick=\"alert('show')\">
+                                            <div class=\"freelancer-overview-inner\">
 
-                                            <!-- Name -->
-                                            <div class=\"freelancer-name\">
-                                                <h4><a href=\"#\"> {{ autre.login }} -
-                                                        <img class=\"flag\" src=\"images/flags/de.svg\" alt=\"\" title=\"Germany\" data-tippy-placement=\"top\"></a></h4>
-                                                <span>autre.mail - autre.tel</span>
-                                                <!-- Rating -->
-                                                <div class=\"freelancer-rating\">
-                                                    <div class=\"star-rating\" data-rating=\"{{ autre.experience }}\"></div>
+                                                <!-- Avatar -->
+                                                <div class=\"freelancer-avatar\">
+                                                    <div class=\"verified-badge\"></div>
+                                                    <a href=\"#\"><img src=\"{{ asset('images/user-avatar-big-02.jpg') }}\" alt=\"\"></a>
+                                                </div>
+
+                                                <!-- Name -->
+                                                <div class=\"freelancer-name\">
+                                                    <h4><a href=\"#\"> {{ autre.login }} -
+                                                            <img class=\"flag\" src=\"images/flags/de.svg\" alt=\"\" title=\"Germany\" data-tippy-placement=\"top\"></a></h4>
+                                                    <span>autre.mail - autre.tel</span>
+                                                    <!-- Rating -->
+                                                    <div class=\"freelancer-rating\">
+                                                        <div class=\"star-rating\" data-rating=\"{{ autre.experience }}\"></div>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
 
-                                    <!-- Buttons -->
-                                    <div class=\"buttons-to-right\">
-                                        <!--<a href=\"#\" class=\"button red ripple-effect ico\" title=\"Remove\" data-tippy-placement=\"left\"><i class=\"icon-feather-trash-2\"></i></a>
-                                        <a href=\"#\" class=\"button red ripple-effect ico\" title=\"edit\" data-tippy-placement=\"left\"><i class=\"icon-feather-edit-2\"></i></a>
-                                        <a href=\"\" onclick=\"alert('')\" class=\"button red ripple-effect ico\" title=\"Accepter\" data-tippy-placement=\"left\"><i class=\"icon-material-outline-check\"></i></a>-->
-                                        <button onclick=\"
-                                                \$.ajax(
-                                                {url: '{{ path('nozelites_membreinviterfront',{'id':groupe.idGroupe,'idmembre':autre.idusr}) }}', //This is the current doc
-                                                //type: 'POST',
-                                                //dataType:'json', // add json datatype to get json
-                                                //data: ({retirer: idmembre }),
-                                                success: function(data){
-                                                console.log(data);
-                                                }
-                                                });
-                                                document.getElementById('{{ \"autre_\"~autre.idusr }}').style.display = 'none';
-                                                \" class=\"button red ripple-effect ico\" title=\"Inviter\" data-tippy-placement=\"left\"><i class=\"icon-feather-plus\"></i></button>
-                                    </div>
-                                </li>
+                                        <!-- Buttons -->
+                                        <div class=\"buttons-to-right\">
+                                            <!--<a href=\"#\" class=\"button red ripple-effect ico\" title=\"Remove\" data-tippy-placement=\"left\"><i class=\"icon-feather-trash-2\"></i></a>
+                                            <a href=\"#\" class=\"button red ripple-effect ico\" title=\"edit\" data-tippy-placement=\"left\"><i class=\"icon-feather-edit-2\"></i></a>
+                                            <a href=\"\" onclick=\"alert('')\" class=\"button red ripple-effect ico\" title=\"Accepter\" data-tippy-placement=\"left\"><i class=\"icon-material-outline-check\"></i></a>-->
+                                            <button onclick=\"
+                                                    \$.ajax(
+                                                    {url: '{{ path('nozelites_membreinviterfront',{'id':groupe.idGroupe,'idmembre':autre.idusr}) }}', //This is the current doc
+                                                    //type: 'POST',
+                                                    //dataType:'json', // add json datatype to get json
+                                                    //data: ({retirer: idmembre }),
+                                                    success: function(data){
+                                                    console.log(data);
+                                                    }
+                                                    });
+                                                    document.getElementById('{{ \"autre_\"~autre.idusr }}').style.display = 'none';
+                                                    \" class=\"button red ripple-effect ico\" title=\"Inviter\" data-tippy-placement=\"left\"><i class=\"icon-feather-plus\"></i></button>
+                                        </div>
+                                    </li>
 
-                            {%  endfor %}
-                        </ul>
+                                {%  endfor %}
+                            </ul>
+                        </div>
                     </div>
                 </div>
-            </div>
 
-
+            {% endif %}
 
         </div>
 
