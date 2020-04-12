@@ -1,3 +1,7 @@
+user:
+    resource: "@UserBundle/Resources/config/routing.yml"
+    prefix:   /user
+
 nozelites_listparticipant:
     resource: "@NozelitesBundle/Controller/ListparticipantController.php"
     type:     annotation
@@ -14,6 +18,7 @@ reclamation:
     resource: "@ReclamationBundle/Resources/config/routing.yml"
     prefix:   /reclamation
 
+
 nozelites_groupe_membre:
     resource: "@NozelitesBundle/Controller/GroupeMembreController.php"
     type:     annotation
@@ -29,3 +34,6 @@ nozelites:
 app:
     resource: '@AppBundle/Controller/'
     type: annotation
+
+fos_user:
+    resource: "@FOSUserBundle/Resources/config/routing/all.xml"

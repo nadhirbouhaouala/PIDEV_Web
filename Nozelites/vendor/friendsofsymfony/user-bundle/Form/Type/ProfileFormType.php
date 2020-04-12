@@ -41,6 +41,9 @@ class ProfileFormType extends AbstractType
     {
         $this->buildUserForm($builder, $options);
 
+
+        ;
+
         $constraintsOptions = array(
             'message' => 'fos_user.current_password.invalid',
         );
@@ -61,6 +64,7 @@ class ProfileFormType extends AbstractType
                 'autocomplete' => 'current-password',
             ),
         ));
+
     }
 
     /**

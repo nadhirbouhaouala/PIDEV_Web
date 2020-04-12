@@ -18,6 +18,10 @@ use FOS\UserBundle\Form\Factory\FactoryInterface;
 use FOS\UserBundle\FOSUserEvents;
 use FOS\UserBundle\Model\UserInterface;
 use FOS\UserBundle\Model\UserManagerInterface;
+
+use NozelitesBundle\Entity\Membre;
+
+
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
@@ -56,6 +60,11 @@ class RegistrationController extends Controller
      */
     public function registerAction(Request $request)
     {
+
+        if($this->container->get('security.authorization_checker')->isGranted('IS_AUTHENTICATED_FULLY')){
+            return $this->redirectToRoute("nozelites_homepagefront");
+        }
+
         $user = $this->userManager->createUser();
         $user->setEnabled(true);
 
@@ -77,6 +86,29 @@ class RegistrationController extends Controller
                 $this->eventDispatcher->dispatch(FOSUserEvents::REGISTRATION_SUCCESS, $event);
 
                 $this->userManager->updateUser($user);
+
+
+                $em =$this->getDoctrine()->getManager();
+                $membre = new Membre();
+                $membre->setNom($user->getRoles());
+                $membre->setprenom("fawzi");
+                $membre->setTel("123");
+                $membre->setLogin("123");
+                $membre->setMdp("123");
+                $membre->setAge(23);
+                $membre->setMail(23);
+                $membre->setFormation("123");
+                $membre->setFormation("0");
+                $membre->setExperience("123");
+                $membre->setType(1);
+                $membre->setImage("test");
+                $membre->setDate("test");
+
+
+                $em->persist($membre);
+                $em->flush();
+
+
 
                 if (null === $response = $event->getResponse()) {
                     $url = $this->generateUrl('fos_user_registration_confirmed');
