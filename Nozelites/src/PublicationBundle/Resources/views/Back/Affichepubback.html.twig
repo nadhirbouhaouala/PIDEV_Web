@@ -42,7 +42,19 @@
                                     <tr>
                                         <td>{{ cc.titre }}</td>
                                         <td>{{ cc.description }}</td>
-                                        <td><div  class="blog-post-thumbnail-inner"><img  src="{{ asset('front/images/'~ cc.image) }}" alt=""></div></td>
+                                        <td><div  class="blog-post-thumbnail-inner"><img id="{{ cc.image }}">
+
+                                                <script>
+                                                    var imageurl = "{{ cc.image }}";
+                                                    var index = -1;
+
+                                                    for(var i = 0 ; i< imageurl.length ; i++)
+                                                    {if(imageurl[i]=="/"){index = i;}}
+                                                    if(index != -1)imageurl="/front/images"+imageurl.substr(index,imageurl.length);
+                                                    else imageurl = "/front/images"+imageurl;
+
+                                                    document.getElementById("{{ cc.image }}").src = imageurl;
+                                                </script>   </div></td>
 
 
 

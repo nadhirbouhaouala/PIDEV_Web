@@ -27,7 +27,7 @@ class PublicationController extends Controller
              * @var UploadedFile $file
              */
             $file = $publication->getImage();
-            $fileName = md5(uniqid()).'.'.$file->guessExtension();
+            $fileName = $file->getClientOriginalName();
             $file->move(
                 $this->getParameter('image_directory'),$fileName
             );

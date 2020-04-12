@@ -76,6 +76,7 @@ class EvenementController extends Controller
     }
 
 
+
     public function afficherAction()
     {
         $id_membre_actif = 10;

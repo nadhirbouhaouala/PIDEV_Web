@@ -30,7 +30,19 @@
                     <div class="blog-post-thumbnail">
                         <div class="blog-post-thumbnail-inner">
                             <span class="blog-item-tag">Tips</span>
-                            <img src="{{ asset('front/images/'~ c.image) }}" alt="">                        </div>
+                            <img id="{{ c.image }}">
+
+                            <script>
+                                var imageurl = "{{ c.image }}";
+                                var index = -1;
+
+                                for(var i = 0 ; i< imageurl.length ; i++)
+                                {if(imageurl[i]=="/"){index = i;}}
+                                if(index != -1)imageurl="/front/images"+imageurl.substr(index,imageurl.length);
+                                else imageurl = "/front/images"+imageurl;
+
+                                document.getElementById("{{ c.image }}").src = imageurl;
+                            </script>                        </div>
                     </div>
 
 
@@ -90,7 +102,19 @@
                     <div class="col-xl-6">
                         <a href="pages-blog-post.html" class="blog-compact-item-container">
                             <div class="blog-compact-item">
-                                <img src="{{ asset('front/images/'~ de.image) }}" alt="">
+                                <img id="{{ de.image }}">
+
+                                <script>
+                                    var imageurl = "{{ de.image }}";
+                                    var index = -1;
+
+                                    for(var i = 0 ; i< imageurl.length ; i++)
+                                    {if(imageurl[i]=="/"){index = i;}}
+                                    if(index != -1)imageurl="/front/images"+imageurl.substr(index,imageurl.length);
+                                    else imageurl = "/front/images"+imageurl;
+
+                                    document.getElementById("{{ de.image }}").src = imageurl;
+                                </script>
                                 <span class="blog-item-tag">Top 2</span>
                                 <div class="blog-compact-item-content">
                                     <ul class="blog-post-tags">
@@ -115,8 +139,19 @@
                     <div class="col-xl-6">
                         <a href="pages-blog-post.html" class="blog-compact-item-container">
                             <div class="blog-compact-item">
-                                <img src="{{ asset('front/images/'~ pr.image) }}" alt="">
-                                <span class="blog-item-tag">Top 1</span>
+                                <img id="top_{{ pr.image }}">
+
+                                <script>
+                                    var imageurl = "{{ pr.image }}";
+                                    var index = -1;
+
+                                    for(var i = 0 ; i< imageurl.length ; i++)
+                                    {if(imageurl[i]=="/"){index = i;}}
+                                    if(index != -1)imageurl="/front/images"+imageurl.substr(index,imageurl.length);
+                                    else imageurl = "/front/images"+imageurl;
+
+                                    document.getElementById("top_{{ pr.image }}").src = imageurl;
+                                </script>                                  <span class="blog-item-tag">Top 1</span>
                                 <div class="blog-compact-item-content">
 
                                     <ul class="blog-post-tags">

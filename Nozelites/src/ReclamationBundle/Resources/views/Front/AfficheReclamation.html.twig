@@ -44,7 +44,7 @@
                        <td> <a href="{{ path('Delete',{'id':rec.idRecl}) }}" class="button ripple-effect">Delete</a></td>
                        <td> <a href="{{ path('Update',{'id':rec.idRecl}) }}" class="button dark ripple-effect">Update</a></td>
                         {% if rec.etat == 1 %}
-                        <td>  <a href="{{ path('AjouterNote',{'id':rec.idRecl}) }}" class="button dark ripple-effect">Note</a></td>
+                        <td>  <a href="{{ path('AjouterNoteTest',{'id':rec.idRecl}) }}" class="button dark ripple-effect">Note</a></td>
                         {% endif %}
                     </tr>
                     {% endfor %}

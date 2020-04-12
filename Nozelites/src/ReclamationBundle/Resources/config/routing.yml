@@ -23,8 +23,9 @@ nozelites_homepagebac:
     defaults: { _controller: ReclamationBundle:Reclamation:AfficheRec1 }
 
 Ajouter1:
-    path:     /AjoutReclamation1
+    path:     /AjoutReclamation1/{id}/{type}
     defaults: { _controller: ReclamationBundle:Reclamation:Ajouter1 }
+
 
 Traiter:
     path:     /TraiterReclamation/{id}
@@ -37,3 +38,10 @@ Deleteback:
 AjouterNote:
     path:     /AjoutNote/{id}
     defaults: { _controller: ReclamationBundle:Evaluation:AjoutNote }
+AjouterNoteTest:
+    path:     /AjoutNoteTest/{id}
+    defaults: { _controller: ReclamationBundle:Evaluation:AjoutNoteTest }
+
+AfficherNote:
+    path:     /AfficherNote/{id}
+    defaults: { _controller: ReclamationBundle:Evaluation:AfficherNote }
