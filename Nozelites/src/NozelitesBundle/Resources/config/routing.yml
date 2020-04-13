@@ -39,7 +39,6 @@ nozelites_AllEvenementfront:
     defaults: { _controller: NozelitesBundle:Evenement:afficherAll}
 
 
-
 nozelites_membregroupesfront:
     path:     /frontmembregroupes
     defaults: { _controller: NozelitesBundle:Groupe:showGroupesInvitations }
@@ -126,3 +125,6 @@ nozelites_adminEvenementsupprimerback:
 nozelites_adminEvenementAccepterback:
     path:       /backadminEvenement/accepter/{id}
     defaults: { _controller: NozelitesBundle:Evenement:accepterEvent}
+nozelites_adminEvenementPageback:
+    path:       /backadminEvenement/page/{id}
+    defaults: { _controller: NozelitesBundle:Evenement:afficherEventadmin}

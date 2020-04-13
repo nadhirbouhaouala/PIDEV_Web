@@ -7,7 +7,13 @@ use NozelitesBundle\Entity\Listparticipant;
 use NozelitesBundle\Entity\Membre;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component\HttpFoundation\Request;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\HttpFoundation\Request;
+use Ivory\GoogleMap\Map;
+use Ivory\GoogleMap\Base\Coordinate;
+use Ivory\GoogleMap\Overlay\Marker;
+use Symfony\Component\HttpFoundation\File\Exception\FileException;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 /**
  * Evenement controller.
@@ -51,15 +57,18 @@ class EvenementController extends Controller
              * @var UploadedFile $file
              */
             $file = $evenement->getImage();
-            $fileName = md5(uniqid()).'.'.$file->guessExtension();
+            $fileName = $file->getClientOriginalName();
             $file->move(
                 $this->getParameter('image_directory'),$fileName
             );
 
+            $imagePath = $this->getParameter('image_directory').'/'.$file->getClientOriginalName();
+            $imagePath = str_replace("\\","/",$imagePath);
+            $evenement->setImage($imagePath);
             $em = $this->getDoctrine()->getManager();
             $evenement->setEtat(0);
             $evenement->setNbparticipant(0);
-            $evenement->setImage($fileName);
+
 
             $membre = $em->getRepository('NozelitesBundle:Membre')->find(10);
             $evenement->setIdc($membre);
@@ -74,7 +83,6 @@ class EvenementController extends Controller
             'form' => $form->createView(),
         ));
     }
-
 
 
     public function afficherAction()
@@ -106,23 +114,47 @@ class EvenementController extends Controller
         return $this->render('@Nozelites/back/AdminEvenementAll.html.twig', array(
             'evenement' => $evenement));
     }
+
     public function afficherEventAction($id)
     {
+
+        // $map->getOverlayManager()->addMarker(new Marker(new Coordinate(4.4705, 54.6548)));
         $id_membre_actif = 10;
         $evenement= $this->getDoctrine()
             ->getRepository(Evenement::class)->find($id);
+        $var=explode("/",$evenement->getLieu());
         $participant=$this->getDoctrine()
-            ->getRepository(Listparticipant::class)->findBy(array('idm'=>$id_membre_actif,'ide'=>$id));
+            ->getRepository(Listparticipant::class)->findBy(array('ide'=>$id));
+        $map = new Map();
+        $map->getOverlayManager()->addMarker(new Marker(new Coordinate($var[0], $var[1])));
+        $map->setCenter(new Coordinate($var[0], $var[1]));
+        for($i=0 ; $i<sizeof($participant);$i++)
+        {
+            if($participant[$i]->getEtatp()==1)
+            {
+                $part[$i]=$participant[$i]->getIdm();
+            }
+        }
+        $listp=[];
+        for ($i=0 ;$i<sizeof($part);$i++)
+        {
+            $listp=$this->getDoctrine()
+                ->getRepository(Membre::class)->findBy(array('idusr'=>$part));
+        }
         return $this->render('@Nozelites/Front/EvenementPage.html.twig', array(
-            'evenement' => $evenement,'participant'=>$participant));
+            'evenement' => $evenement,'participant'=>$participant,'listp'=>$listp,'map'=>$map));
     }
     public function afficherEventMAction($id)
     {
         $id_membre_actif = 10;
+        $map = new Map();
         $evenement= $this->getDoctrine()
             ->getRepository(Evenement::class)->find($id);
         $participant=$this->getDoctrine()
             ->getRepository(Listparticipant::class)->findBy(array('ide'=>$id));
+        $var=explode("/",$evenement->getLieu());
+        $map->getOverlayManager()->addMarker(new Marker(new Coordinate($var[0], $var[1])));
+        $map->setCenter(new Coordinate($var[0], $var[1]));
         $membre=[];
         $part=[];
         for($i=0 ; $i<sizeof($participant);$i++)
@@ -152,7 +184,7 @@ class EvenementController extends Controller
                 ->getRepository(Membre::class)->findBy(array('idusr'=>$part));
         }
         return $this->render('@Nozelites/Front/EvenementPageM.html.twig', array(
-            'evenement' => $evenement,'participant'=>$participant,'liste'=>$liste,'listp'=>$listp));
+            'evenement' => $evenement,'participant'=>$participant,'liste'=>$liste,'listp'=>$listp,'map'=>$map));
     }
 
 
@@ -189,11 +221,22 @@ class EvenementController extends Controller
              * @var UploadedFile $file
              */
             $file = $evenement->getImage();
+            $fileName = $file->getClientOriginalName();
+            $file->move(
+                $this->getParameter('image_directory'),$fileName
+            );
+
+            $imagePath = $this->getParameter('image_directory').'/'.$file->getClientOriginalName();
+            $imagePath = str_replace("\\","/",$imagePath);
+            $evenement->setImage($imagePath);
+            /*$file = $evenement->getImage();
             $fileName = md5(uniqid()).'.'.$file->guessExtension();
             $file->move(
                 $this->getParameter('image_directory'),$fileName
             );
-            $evenement->setImage($fileName);
+            $imagePath = $this->getParameter('image_directory').'/'.$file->getClientOriginalName();
+            $imagePath = str_replace("\\","/",$imagePath);*/
+
             $this->getDoctrine()->getManager()->flush();
 
             return $this->redirectToRoute('nozelites_Evenementafficherfront');
@@ -341,6 +384,32 @@ class EvenementController extends Controller
     {
 
     }
+    public function afficherEventadminAction($id)
+    {
+
+        // $map->getOverlayManager()->addMarker(new Marker(new Coordinate(4.4705, 54.6548)));
+        $id_membre_actif = 10;
+        $evenement= $this->getDoctrine()
+            ->getRepository(Evenement::class)->find($id);
+        $var=explode("/",$evenement->getLieu());
+        $participant=$this->getDoctrine()
+            ->getRepository(Listparticipant::class)->findBy(array('ide'=>$id));
+        for($i=0 ; $i<sizeof($participant);$i++)
+        {
+            if($participant[$i]->getEtatp()==1)
+            {
+                $part[$i]=$participant[$i]->getIdm();
+            }
+        }
+        $listp=[];
+        for ($i=0 ;$i<sizeof($part);$i++)
+        {
+            $listp=$this->getDoctrine()
+                ->getRepository(Membre::class)->findBy(array('idusr'=>$part));
+        }
+        return $this->render('@Nozelites/back/AdminEvenementPage.html.twig', array(
+            'evenement' => $evenement,'participant'=>$participant,'listp'=>$listp));
+    }
 
     private function createDeleteForm(Evenement $evenement)
     {
@@ -348,6 +417,6 @@ class EvenementController extends Controller
             ->setAction($this->generateUrl('evenement_delete', array('ide' => $evenement->getIde())))
             ->setMethod('DELETE')
             ->getForm()
-        ;
+            ;
     }
 }
