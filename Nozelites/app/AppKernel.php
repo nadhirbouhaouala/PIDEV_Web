@@ -26,6 +26,9 @@ class AppKernel extends Kernel
             new UserBundle\UserBundle(),
             new ReclamationBundle\ReclamationBundle(),
             new PublicationBundle\PublicationBundle(),
+            new Ivory\GoogleMapBundle\IvoryGoogleMapBundle(),
+            new Ivory\SerializerBundle\IvorySerializerBundle(),
+            new Http\HttplugBundle\HttplugBundle(),
 
         ];
 
