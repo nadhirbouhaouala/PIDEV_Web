@@ -42,19 +42,14 @@
                                     <tr>
                                         <td>{{ cc.titre }}</td>
                                         <td>{{ cc.description }}</td>
-                                        <td><div  class="blog-post-thumbnail-inner"><img id="{{ cc.image }}">
+                                        <td><div  class="blog-post-thumbnail-inner">
+                                                {% set imageur = cc.image|split('/')  %}
+                                                {%  set imageur = imageur[imageur|length-1] %}
+                                                {% set imageurl = "front/images/"~imageur %}
 
-                                                <script>
-                                                    var imageurl = "{{ cc.image }}";
-                                                    var index = -1;
+                                                <img src="{{ asset(imageurl) }}">
 
-                                                    for(var i = 0 ; i< imageurl.length ; i++)
-                                                    {if(imageurl[i]=="/"){index = i;}}
-                                                    if(index != -1)imageurl="/front/images"+imageurl.substr(index,imageurl.length);
-                                                    else imageurl = "/front/images"+imageurl;
-
-                                                    document.getElementById("{{ cc.image }}").src = imageurl;
-                                                </script>   </div></td>
+                                                </div></td>
 
 
 
