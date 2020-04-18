@@ -21,10 +21,8 @@
 
 {{ form_start(form, {'method': 'post', 'action': path('fos_user_registration_register'), 'attr': {'class': 'fos_user_registration_register'}}) }}
 
-            <div class="account-type">
+            {{ form_widget(form.roles) }}
 
-                {{form_row(form.roles)}}
-            </div>
         <div class="input-with-icon-left">
             <i class="icon-material-outline-account-circle"></i>
 

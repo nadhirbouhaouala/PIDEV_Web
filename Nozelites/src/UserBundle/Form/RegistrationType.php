@@ -15,10 +15,15 @@ class RegistrationType extends AbstractType
     {
         $builder->add('nom')
                 ->add('prenom')
-                ->add('roles', ChoiceType::class, array('label' => 'Type ',
-                'choices' => array(' MEMBRE' => 'ROLE_MEMBRE',
+                ->add('roles', ChoiceType::class, array(
+                    'multiple' => true,
+
+                    'required' => true,
+                    'label' => 'Compte',
+                    'choices' => array(' MEMBRE' => 'ROLE_MEMBRE',
                     'CHASSEUR' => 'ROLE_CHASSEUR'),
-                'required' => true, 'multiple' => true,))
+
+                 ))
                 ->add('telephone')
                 ->add('age')
             ->add('imageFile', VichImageType::class);
