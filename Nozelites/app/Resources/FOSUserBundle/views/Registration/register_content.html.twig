@@ -83,7 +83,7 @@
                 <input type="password" class="input-text with-border" name="{{form.plainPassword.second.vars.full_name}}" id="{{ form.plainPassword.second.vars.id }}" placeholder="Répeter le mot de passe" />
             </div>
             {% do form.plainPassword.second.setRendered %}
-
+            {{ form_widget(form.imageFile) }}
 
         <input class="button full-width button-sliding-icon ripple-effect margin-top-10" type="submit" value="{{ 'registration.submit'|trans }}" />
 

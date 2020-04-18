@@ -34,7 +34,7 @@ class Reclamation
     /**
      * @var \Membre
      *
-     * @ORM\ManyToOne(targetEntity="Membre")
+     * @ORM\ManyToOne(targetEntity="\NozelitesBundle\Entity\Membre")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="id_emeteur", referencedColumnName="idUsr")
      * })

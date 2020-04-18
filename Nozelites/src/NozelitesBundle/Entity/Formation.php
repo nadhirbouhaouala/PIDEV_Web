@@ -22,6 +22,22 @@ class Formation
     private $idFormation;
 
     /**
+     * @return \Membre
+     */
+    public function getMembre()
+    {
+        return $this->Membre;
+    }
+
+    /**
+     * @param \Membre $Membre
+     */
+    public function setMembre($Membre)
+    {
+        $this->Membre = $Membre;
+    }
+
+    /**
      * @var string
      *
      * @ORM\Column(name="titre", type="string", length=255, nullable=false)

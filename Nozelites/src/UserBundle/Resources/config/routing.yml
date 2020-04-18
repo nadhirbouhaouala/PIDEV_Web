@@ -1,4 +1,7 @@
 user_homepage:
     path:     /homepage
     defaults: { _controller: UserBundle:Default:index }
+formation_supp:
+    path:     /supprimerFormation/{id}
+    defaults: { _controller: UserBundle:Formation:supprimerFormation }
 

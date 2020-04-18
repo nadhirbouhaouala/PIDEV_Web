@@ -80,34 +80,31 @@ class RegistrationController extends Controller
 
         $form->handleRequest($request);
 
+        $membre = new Membre();
+        $em = $this->getDoctrine()->getManager();
+        if(in_array("ROLE_MEMBRE",$user->getRoles())){
+
+            $membre->setNom($user->getNom());
+            $membre->setPrenom($user->getPrenom());
+            $membre->setMail($user->getEmail());
+            $membre->setLogin($user->getUsername());
+            $membre->setTel($user->getTelephone());
+            $membre->setDate(date("y-m-d"));
+            $membre->setType(1);
+            $membre->setMdp($user->getPlainPassword());
+            $membre->setAge($user->getAge());
+            $membre->setImage("D:/xampp/htdocs/PIDEV_Web/Nozelites/web/images". $user->getImageName());
+        }
+
         if ($form->isSubmitted()) {
             if ($form->isValid()) {
                 $event = new FormEvent($form, $request);
                 $this->eventDispatcher->dispatch(FOSUserEvents::REGISTRATION_SUCCESS, $event);
 
-                $this->userManager->updateUser($user);
-
-
-                $em =$this->getDoctrine()->getManager();
-                $membre = new Membre();
-                $membre->setNom($user->getRoles());
-                $membre->setprenom("fawzi");
-                $membre->setTel("123");
-                $membre->setLogin("123");
-                $membre->setMdp("123");
-                $membre->setAge(23);
-                $membre->setMail(23);
-                $membre->setFormation("123");
-                $membre->setFormation("0");
-                $membre->setExperience("123");
-                $membre->setType(1);
-                $membre->setImage("test");
-                $membre->setDate("test");
-
-
                 $em->persist($membre);
                 $em->flush();
 
+                $this->userManager->updateUser($user);
 
 
                 if (null === $response = $event->getResponse()) {

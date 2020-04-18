@@ -19,7 +19,7 @@ class AppKernel extends Kernel
             new Knp\Bundle\SnappyBundle\KnpSnappyBundle(),//snappy bundle
             new AppBundle\AppBundle(),
             new NozelitesBundle\NozelitesBundle(),
-
+            new Vich\UploaderBundle\VichUploaderBundle(),
             new FOS\UserBundle\FOSUserBundle(),
             new UserBundle\UserBundle(),
 
