@@ -1,0 +1,113 @@
+{% extends '@Publication/Front/Publication.html.twig' %}
+{% block content %}
+
+    <!-- Section -->
+
+
+    <div class="section gray">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-8 col-lg-8">
+
+                    <!-- Section Headline -->
+                    <div class="section-headline margin-top-60 margin-bottom-35">
+                        <h4>Publication recente</h4>
+
+
+                    </div>
+
+                    {% for cc in c %}
+                    <!-- Blog Post -->
+                    <a href="{{ path('Commentaire',{'id':cc.id})}}" class="blog-post">
+                        <!-- Blog Post Thumbnail -->
+                        <div class="blog-post-thumbnail">
+                            <div  class="blog-post-thumbnail-inner">
+
+
+
+                                <img id="{{ cc.image }}">
+
+                                <script>
+                                    var imageurl = "{{ cc.image }}";
+                                    var index = -1;
+
+                                    for(var i = 0 ; i< imageurl.length ; i++)
+                                    {if(imageurl[i]=="/"){index = i;}}
+                                    if(index != -1)imageurl="/front/images"+imageurl.substr(index,imageurl.length);
+                                    else imageurl = "/front/images"+imageurl;
+
+                                    document.getElementById("{{ cc.image }}").src = imageurl;
+                                </script>
+
+
+                            </div>
+                        </div>
+                        <!-- Blog Post Content -->
+                        <div class="blog-post-content">
+                            <!--  <span class="blog-post-date">{{ cc.titre }}</span>  -->
+                            <h3>{{ cc.titre }}</h3>
+                            <p>{{ cc.description }}</p>
+
+
+                        </div>
+
+
+
+
+
+                        <!-- Icon -->
+                        <div class="entry-icon"></div>
+
+
+                            <a href="{{  path('Delete',{'id':cc.id}) }}" class="button red ripple-effect ico"  title="Modifier" data-tippy-placement="left"><i class="icon-feather-trash-2"></i></a>
+
+                            <a href="{{  path('Update',{'id':cc.id}) }}" class="button red ripple-effect ico" title="Supprimer" data-tippy-placement="left"><i class="icon-feather-edit-2"></i></a>
+
+                        <a href="{{  path('jaime',{'id':cc.id}) }}" class="button white ripple-effect ico" title="J aime" data-tippy-placement="left"><i class="icon-feather-heart"></i></a>
+
+                        <a href="{{  path('Imprimer',{'id':cc.id}) }}" class="button white ripple-effect ico" title="Imprimer   " data-tippy-placement="left"><i class="icon-material-outline-print"></i></a>
+
+                    </a>
+                    {% endfor %}
+
+
+
+
+                    <!-- Pagination -->
+                    <div class="clearfix"></div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <!-- Pagination -->
+
+                        </div>
+                    </div>
+                    <!-- Pagination / End -->
+
+                </div>
+
+
+                <div class="col-xl-4 col-lg-4 content-left-offset">
+                    <div class="sidebar-container margin-top-65">
+
+                        <!-- Location -->
+
+
+
+
+
+
+
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Spacer -->
+        <div class="padding-top-40"></div>
+        <!-- Spacer -->
+
+    </div>
+    <!-- Section / End -->
+{% endblock %}

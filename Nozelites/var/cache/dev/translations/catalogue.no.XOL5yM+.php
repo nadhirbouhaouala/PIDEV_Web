@@ -119,6 +119,11 @@ $catalogue = new MessageCatalogue('no', array (
     'Account is disabled.' => 'Brukerkonto er deaktivert.',
     'Account is locked.' => 'Brukerkonto er sperret.',
   ),
+  'KnpPaginatorBundle' => 
+  array (
+    'label_previous' => 'Forrige',
+    'label_next' => 'Neste',
+  ),
 ));
 
 $catalogueFr = new MessageCatalogue('fr', array (
@@ -265,6 +270,11 @@ $catalogueFr = new MessageCatalogue('fr', array (
   array (
     'download' => 'Télécharger',
     'form.label.delete' => 'Supprimer ?',
+  ),
+  'KnpPaginatorBundle' => 
+  array (
+    'label_previous' => 'Précédent',
+    'label_next' => 'Suivant',
   ),
   'FOSUserBundle' => 
   array (

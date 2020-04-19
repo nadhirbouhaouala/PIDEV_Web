@@ -147,6 +147,11 @@ $catalogue = new MessageCatalogue('en', array (
     'download' => 'Download',
     'form.label.delete' => 'Delete?',
   ),
+  'KnpPaginatorBundle' => 
+  array (
+    'label_previous' => 'Previous',
+    'label_next' => 'Next',
+  ),
   'FOSUserBundle' => 
   array (
     'group.edit.submit' => 'Update group',
@@ -357,6 +362,11 @@ $catalogueFr = new MessageCatalogue('fr', array (
   array (
     'download' => 'Télécharger',
     'form.label.delete' => 'Supprimer ?',
+  ),
+  'KnpPaginatorBundle' => 
+  array (
+    'label_previous' => 'Précédent',
+    'label_next' => 'Suivant',
   ),
   'FOSUserBundle' => 
   array (

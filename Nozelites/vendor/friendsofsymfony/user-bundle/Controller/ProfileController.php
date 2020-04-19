@@ -19,12 +19,17 @@ use FOS\UserBundle\FOSUserEvents;
 use FOS\UserBundle\Model\UserInterface;
 use FOS\UserBundle\Model\UserManagerInterface;
 
+
 use NozelitesBundle\Entity\Formation;
 use NozelitesBundle\Entity\Listediplome;
 
 
+
 use NozelitesBundle\Form\FormationType;
 use NozelitesBundle\NozelitesBundle;
+
+
+
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
@@ -120,6 +125,7 @@ class ProfileController extends Controller
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+
 
 
             $event = new FormEvent($form, $request);

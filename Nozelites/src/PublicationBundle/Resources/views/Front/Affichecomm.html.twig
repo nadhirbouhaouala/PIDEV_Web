@@ -1,0 +1,41 @@
+{% extends '@Publication/Front/Publication.html.twig' %}
+{% block content %}
+    <!-- Comments -->
+    <div class="row">
+        <div class="col-xl-12">
+            <section class="comments">
+                <h3 class="margin-top-45 margin-bottom-0">Comments <span class="comments-amount">(5)</span></h3>
+                <a href="{{ path('Afficher')}}"><input type="submit" value="Retourner" class="uploadButton-button ripple-effect" />
+                </a>
+                {% for cp in cc %}
+                    <ul>
+                        <li>
+                            <div class="avatar"><img src="images/user-avatar-placeholder.png" alt=""></div>
+                            <div class="comment-content"><div class="arrow-comment"></div>
+                                <div class="comment-by">Kathy Brown <span class="date"> </span>
+                                    <p> {{ cp.commentaire }} </p>
+                                    <a href="{{  path('Updatecomm',{'idCommentaire':cp.idCommentaire}) }}" class="button red ripple-effect ico"  title="Modifier" data-tippy-placement="left"><i class="icon-feather-edit-2"></i></a>
+                                    <a href="{{  path('Deletecomm',{'idCommentaire':cp.idCommentaire}) }}" class="button red ripple-effect ico"  title="supprimer" data-tippy-placement="left"><i class="icon-feather-trash-2"></i></a>
+
+
+
+
+                                </div>
+                            </div>
+
+
+
+                    </ul>
+                {% endfor %}
+                </li>
+                </ul>
+
+                </li>
+
+
+                </ul>
+
+            </section>
+        </div>
+    </div>
+{% endblock %}

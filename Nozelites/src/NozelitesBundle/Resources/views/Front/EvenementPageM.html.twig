@@ -30,7 +30,11 @@
                     <div class="blog-post-thumbnail">
                         <div class="blog-post-thumbnail-inner">
 
-                            <img src="{{ asset('front/images/'~ evenement.image) }}" alt="image" />
+                            {% set imageur = evenement.image|split('/')  %}
+                            {%  set imageur = imageur[imageur|length-1] %}
+                            {% set imageurl = "front/images/"~imageur %}
+
+                            <img src="{{ asset(imageurl) }}">
                         </div>
                     </div>
 
@@ -65,41 +69,47 @@
                             <div class="content">
                                 <ul class="dashboard-box-list">
                                     {% for pe in liste %}
-                                    <li>
-                                        <!-- Overview -->
-                                        <div class="freelancer-overview manage-candidates">
-                                            <div class="freelancer-overview-inner">
+                                        <li>
+                                            <!-- Overview -->
+                                            <div class="freelancer-overview manage-candidates">
+                                                <div class="freelancer-overview-inner">
 
-                                                <!-- Avatar -->
-                                                <div class="freelancer-avatar">
-                                                    <div class="verified-badge"></div>
+                                                    <!-- Avatar -->
+                                                    <div class="freelancer-avatar">
+                                                        <div class="verified-badge"></div>
 
-                                                    <img src="{{ asset('front/images/'~ pe.image) }}" alt="image" />
-                                                </div>
+                                                        {% set imageur = pe.image|split('/')  %}
+                                                        {%  set imageur = imageur[imageur|length-1] %}
+                                                        {% set imageurl = "front/images/"~imageur %}
 
-                                                <!-- Name -->
-                                                <div class="freelancer-name">
-                                                    <h4><a href="#">{{ pe.login }} <img class="flag" src="images/flags/au.svg" alt="" title="Australia" data-tippy-placement="top"></a></h4>
+                                                        <img src="{{ asset(imageurl) }}">
 
-                                                    <!-- Details -->
-                                                    <span class="freelancer-detail-item"><i class="icon-feather-mail"></i> {{ pe.mail }}</span>
-                                                    <span class="freelancer-detail-item"><i class="icon-feather-phone"></i> (+216) {{ pe.tel }}</span>
 
-                                                    <!-- Rating --
-                                                    <div class="freelancer-rating">
-                                                        <div class="star-rating" data-rating="5.0"></div>
                                                     </div>
 
-                                                 Buttons -->
-                                                    <div class="buttons-to-right always-visible margin-top-25 margin-bottom-5">
-                                                        <a href="{{ path('nozelites_EvenementAccepterfront',{'id':evenement.ide,'idm':pe.idusr}) }}" class="button ripple-effect"><i class="icon-feather-check-square"></i> Accepter</a>
+                                                    <!-- Name -->
+                                                    <div class="freelancer-name">
+                                                        <h4><a href="#">{{ pe.login }} <img class="flag" src="images/flags/au.svg" alt="" title="Australia" data-tippy-placement="top"></a></h4>
 
-                                                        <a href="{{ path('nozelites_EvenementRefuserfront',{'id':evenement.ide,'idm':pe.idusr}) }}"  class="button ripple-effect"><i class="icon-feather-trash-2"></i> Refuser</a>
+                                                        <!-- Details -->
+                                                        <span class="freelancer-detail-item"><i class="icon-feather-mail"></i> {{ pe.mail }}</span>
+                                                        <span class="freelancer-detail-item"><i class="icon-feather-phone"></i> (+216) {{ pe.tel }}</span>
+
+                                                        <!-- Rating --
+                                                        <div class="freelancer-rating">
+                                                            <div class="star-rating" data-rating="5.0"></div>
                                                         </div>
+
+                                                     Buttons -->
+                                                        <div class="buttons-to-right always-visible margin-top-25 margin-bottom-5">
+                                                            <a href="{{ path('nozelites_EvenementAccepterfront',{'id':evenement.ide,'idm':pe.idusr}) }}" class="button ripple-effect"><i class="icon-feather-check-square"></i> Accepter</a>
+
+                                                            <a href="{{ path('nozelites_EvenementRefuserfront',{'id':evenement.ide,'idm':pe.idusr}) }}"  class="button ripple-effect"><i class="icon-feather-trash-2"></i> Refuser</a>
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                    </li>
+                                        </li>
 
 
                                     {% endfor %}
@@ -113,56 +123,61 @@
 
 
 
-    <div class="col-xl-4 col-lg-4 content-left-offset">
-        <div class="sidebar-container">
-            <div class="sidebar-widget margin-bottom-40">
-                <div class="input-with-icon">
-                    <input id="autocomplete-input" type="text" placeholder="Search">
-                    <i class="icon-material-outline-search"></i>
+            <div class="col-xl-4 col-lg-4 content-left-offset">
+                <div class="sidebar-container">
+                    <div class="sidebar-widget margin-bottom-40">
+                        <div class="input-with-icon">
+                            <input id="autocomplete-input" type="text" placeholder="Search">
+                            <i class="icon-material-outline-search"></i>
+                        </div>
+                    </div>
+                    {{ ivory_google_map(map) }}
+                    {{ ivory_google_api([map]) }}
+
+
+                </div>
+                <h3>{{ evenement.nbparticipant }} participants</h3>
+                <div class="listings-container compact-list-layout margin-top-35">
+
+                    {% for pt in listp %}
+                        <!-- Job Listing -->
+                        <a  class="job-listing">
+
+                            <!-- Job Listing Details -->
+                            <div class="job-listing-details">
+
+                                <!-- Logo -->
+                                <div class="job-listing-company-logo">
+
+                                    <img src="{{ asset('front/images/'~ pt.image) }}" alt="image" />
+                                </div>
+
+                                <!-- Details -->
+                                <div class="job-listing-description">
+                                    <h3 class="job-listing-title">{{ pt.login }} </h3>
+
+                                    <!-- Job Listing Footer -->
+                                    <div class="job-listing-footer">
+                                        <ul>
+                                            <li>{{ pt.mail }} </li>
+                                            <li><i class="icon-feather-phone"></i> {{ pt.tel }}</li>
+                                        </ul>
+                                    </div>
+                                </div>
+
+                                <!-- Bookmark -->
+
+                            </div>
+                        </a>
+                    {% endfor %}
                 </div>
             </div>
-            <h3>{{ evenement.nbparticipant }} participants</h3>
-
-            <div class="listings-container compact-list-layout margin-top-35">
-                {% for pt in listp %}
-                <!-- Job Listing -->
-                <a  class="job-listing">
-
-                    <!-- Job Listing Details -->
-                    <div class="job-listing-details">
-
-                        <!-- Logo -->
-                        <div class="job-listing-company-logo">
-
-                            <img src="{{ asset('front/images/'~ pt.image) }}" alt="image" />
-                        </div>
-
-                        <!-- Details -->
-                        <div class="job-listing-description">
-                            <h3 class="job-listing-title">{{ pt.login }} </h3>
-
-                            <!-- Job Listing Footer -->
-                            <div class="job-listing-footer">
-                                <ul>
-                                    <li>{{ pt.mail }} </li>
-                                    <li><i class="icon-feather-phone"></i> {{ pt.tel }}</li>
-                                </ul>
-                            </div>
-                        </div>
-
-                        <!-- Bookmark -->
-
-                    </div>
-                </a>
-                {% endfor %}
-            </div>
-            </div>
-            </div>
-
-
-
         </div>
-        </div>
+
+
+
+    </div>
+    </div>
 
 
 

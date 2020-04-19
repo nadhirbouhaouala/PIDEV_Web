@@ -251,24 +251,94 @@ class appDevDebugProjectContainerUrlMatcher extends Symfony\Bundle\FrameworkBund
             }
             not_offre_homepage:
 
-            // offre_liste
-            if ('/offre/showoffres' === $pathinfo) {
-                return array (  '_controller' => 'OffreBundle\\Controller\\OffreController::consulterOffresAction',  '_route' => 'offre_liste',);
+            if (0 === strpos($pathinfo, '/offre/s')) {
+                if (0 === strpos($pathinfo, '/offre/show')) {
+                    if (0 === strpos($pathinfo, '/offre/showoffres')) {
+                        // offre_liste
+                        if ('/offre/showoffres' === $pathinfo) {
+                            return array (  '_controller' => 'OffreBundle\\Controller\\OffreController::consulterOffresAction',  '_route' => 'offre_liste',);
+                        }
+
+                        // offre_liste_back
+                        if ('/offre/showoffresback' === $pathinfo) {
+                            return array (  '_controller' => 'OffreBundle\\Controller\\OffreController::consulterOffresBackAction',  '_route' => 'offre_liste_back',);
+                        }
+
+                        // offre_liste_membre
+                        if ('/offre/showoffresmembre' === $pathinfo) {
+                            return array (  '_controller' => 'OffreBundle\\Controller\\OffreController::consulterOffresMembreAction',  '_route' => 'offre_liste_membre',);
+                        }
+
+                    }
+
+                    // message_showone
+                    if (0 === strpos($pathinfo, '/offre/showonemessage') && preg_match('#^/offre/showonemessage(?P<id>[^/]++)$#sD', $pathinfo, $matches)) {
+                        return $this->mergeDefaults(array_replace($matches, ['_route' => 'message_showone']), array (  '_controller' => 'OffreBundle\\Controller\\MessageController::consulterOneMessageAction',));
+                    }
+
+                    if (0 === strpos($pathinfo, '/offre/showmessages')) {
+                        // message_liste
+                        if ('/offre/showmessages' === $pathinfo) {
+                            return array (  '_controller' => 'OffreBundle\\Controller\\MessageController::consulterMessagesAction',  '_route' => 'message_liste',);
+                        }
+
+                        // message_liste_envoyes
+                        if ('/offre/showmessagesenvoyes' === $pathinfo) {
+                            return array (  '_controller' => 'OffreBundle\\Controller\\MessageController::consulterMessagesEnvoyesAction',  '_route' => 'message_liste_envoyes',);
+                        }
+
+                    }
+
+                }
+
+                // offre_supprimer
+                if (0 === strpos($pathinfo, '/offre/supprimeroffre') && preg_match('#^/offre/supprimeroffre/(?P<id>[^/]++)$#sD', $pathinfo, $matches)) {
+                    return $this->mergeDefaults(array_replace($matches, ['_route' => 'offre_supprimer']), array (  '_controller' => 'OffreBundle\\Controller\\OffreController::deleteAction',));
+                }
+
+                // message_supprimer
+                if (0 === strpos($pathinfo, '/offre/supprimermessage') && preg_match('#^/offre/supprimermessage/(?P<id>[^/]++)$#sD', $pathinfo, $matches)) {
+                    return $this->mergeDefaults(array_replace($matches, ['_route' => 'message_supprimer']), array (  '_controller' => 'OffreBundle\\Controller\\MessageController::deleteAction',));
+                }
+
             }
 
-            // offre_supprimer
-            if (0 === strpos($pathinfo, '/offre/supprimeroffre') && preg_match('#^/offre/supprimeroffre/(?P<id>[^/]++)$#sD', $pathinfo, $matches)) {
-                return $this->mergeDefaults(array_replace($matches, ['_route' => 'offre_supprimer']), array (  '_controller' => 'OffreBundle\\Controller\\OffreController::deleteAction',));
+            elseif (0 === strpos($pathinfo, '/offre/a')) {
+                // offre_accepter
+                if (0 === strpos($pathinfo, '/offre/accepterOffre') && preg_match('#^/offre/accepterOffre/(?P<id>[^/]++)$#sD', $pathinfo, $matches)) {
+                    return $this->mergeDefaults(array_replace($matches, ['_route' => 'offre_accepter']), array (  '_controller' => 'OffreBundle\\Controller\\OffreController::accepterOffreAction',));
+                }
+
+                // offre_ajouter
+                if ('/offre/ajouteroffre' === $pathinfo) {
+                    return array (  '_controller' => 'OffreBundle\\Controller\\OffreController::newAction',  '_route' => 'offre_ajouter',);
+                }
+
+                // message_ajouter
+                if ('/offre/ajoutermessage' === $pathinfo) {
+                    return array (  '_controller' => 'OffreBundle\\Controller\\MessageController::newAction',  '_route' => 'message_ajouter',);
+                }
+
             }
 
-            // offre_ajouter
-            if ('/offre/ajouteroffre' === $pathinfo) {
-                return array (  '_controller' => 'OffreBundle\\Controller\\OffreController::newAction',  '_route' => 'offre_ajouter',);
+            // offre_refuser
+            if (0 === strpos($pathinfo, '/offre/refuserOffre') && preg_match('#^/offre/refuserOffre/(?P<id>[^/]++)$#sD', $pathinfo, $matches)) {
+                return $this->mergeDefaults(array_replace($matches, ['_route' => 'offre_refuser']), array (  '_controller' => 'OffreBundle\\Controller\\OffreController::refuserOffreAction',));
+            }
+
+            // message_repondre
+            if (0 === strpos($pathinfo, '/offre/repondremessage') && preg_match('#^/offre/repondremessage(?P<id>[^/]++)$#sD', $pathinfo, $matches)) {
+                return $this->mergeDefaults(array_replace($matches, ['_route' => 'message_repondre']), array (  '_controller' => 'OffreBundle\\Controller\\MessageController::repondreAction',));
             }
 
             // offre_modifier
             if (0 === strpos($pathinfo, '/offre/modifieroffre') && preg_match('#^/offre/modifieroffre/(?P<id>[^/]++)$#sD', $pathinfo, $matches)) {
                 return $this->mergeDefaults(array_replace($matches, ['_route' => 'offre_modifier']), array (  '_controller' => 'OffreBundle\\Controller\\OffreController::updateAction',));
+            }
+
+            // message_transferer
+            if (0 === strpos($pathinfo, '/offre/transferermessage') && preg_match('#^/offre/transferermessage(?P<id>[^/]++)$#sD', $pathinfo, $matches)) {
+                return $this->mergeDefaults(array_replace($matches, ['_route' => 'message_transferer']), array (  '_controller' => 'OffreBundle\\Controller\\MessageController::transfererAction',));
             }
 
         }
@@ -281,20 +351,22 @@ class appDevDebugProjectContainerUrlMatcher extends Symfony\Bundle\FrameworkBund
                 }
 
                 if (0 === strpos($pathinfo, '/reclamation/A')) {
-                    if (0 === strpos($pathinfo, '/reclamation/AjoutReclamation')) {
-                        // Ajouter
-                        if ('/reclamation/AjoutReclamation' === $pathinfo) {
-                            return array (  '_controller' => 'ReclamationBundle\\Controller\\ReclamationController::AjouterAction',  '_route' => 'Ajouter',);
-                        }
-
-                        // Ajouter1
-                        if (0 === strpos($pathinfo, '/reclamation/AjoutReclamation1') && preg_match('#^/reclamation/AjoutReclamation1/(?P<id>[^/]++)/(?P<type>[^/]++)$#sD', $pathinfo, $matches)) {
-                            return $this->mergeDefaults(array_replace($matches, ['_route' => 'Ajouter1']), array (  '_controller' => 'ReclamationBundle\\Controller\\ReclamationController::Ajouter1Action',));
-                        }
-
+                    // reclamation_show
+                    if ('/reclamation/AfficheReclamation' === $pathinfo) {
+                        return array (  '_controller' => 'ReclamationBundle\\Controller\\ReclamationController::AfficheRecAction',  '_route' => 'reclamation_show',);
                     }
 
-                    elseif (0 === strpos($pathinfo, '/reclamation/AjoutNote')) {
+                    // AfficherNote
+                    if (0 === strpos($pathinfo, '/reclamation/AfficherNote') && preg_match('#^/reclamation/AfficherNote/(?P<id>[^/]++)$#sD', $pathinfo, $matches)) {
+                        return $this->mergeDefaults(array_replace($matches, ['_route' => 'AfficherNote']), array (  '_controller' => 'ReclamationBundle\\Controller\\EvaluationController::AfficherNoteAction',));
+                    }
+
+                    // Ajouter1
+                    if (0 === strpos($pathinfo, '/reclamation/AjoutReclamation1') && preg_match('#^/reclamation/AjoutReclamation1/(?P<id>[^/]++)/(?P<type>[^/]++)$#sD', $pathinfo, $matches)) {
+                        return $this->mergeDefaults(array_replace($matches, ['_route' => 'Ajouter1']), array (  '_controller' => 'ReclamationBundle\\Controller\\ReclamationController::Ajouter1Action',));
+                    }
+
+                    if (0 === strpos($pathinfo, '/reclamation/AjoutNote')) {
                         // AjouterNote
                         if (preg_match('#^/reclamation/AjoutNote/(?P<id>[^/]++)$#sD', $pathinfo, $matches)) {
                             return $this->mergeDefaults(array_replace($matches, ['_route' => 'AjouterNote']), array (  '_controller' => 'ReclamationBundle\\Controller\\EvaluationController::AjoutNoteAction',));
@@ -307,31 +379,6 @@ class appDevDebugProjectContainerUrlMatcher extends Symfony\Bundle\FrameworkBund
 
                     }
 
-                    // reclamation_show
-                    if ('/reclamation/AfficheReclamation' === $pathinfo) {
-                        return array (  '_controller' => 'ReclamationBundle\\Controller\\ReclamationController::AfficheRecAction',  '_route' => 'reclamation_show',);
-                    }
-
-                    // AfficherNote
-                    if (0 === strpos($pathinfo, '/reclamation/AfficherNote') && preg_match('#^/reclamation/AfficherNote/(?P<id>[^/]++)$#sD', $pathinfo, $matches)) {
-                        return $this->mergeDefaults(array_replace($matches, ['_route' => 'AfficherNote']), array (  '_controller' => 'ReclamationBundle\\Controller\\EvaluationController::AfficherNoteAction',));
-                    }
-
-                }
-
-                // Delete
-                if (0 === strpos($pathinfo, '/reclamation/DeleteReclamation') && preg_match('#^/reclamation/DeleteReclamation/(?P<id>[^/]++)$#sD', $pathinfo, $matches)) {
-                    return $this->mergeDefaults(array_replace($matches, ['_route' => 'Delete']), array (  '_controller' => 'ReclamationBundle\\Controller\\ReclamationController::DeleteAction',));
-                }
-
-                // Deleteback
-                if (0 === strpos($pathinfo, '/reclamation/DeleteBack') && preg_match('#^/reclamation/DeleteBack/(?P<id>[^/]++)$#sD', $pathinfo, $matches)) {
-                    return $this->mergeDefaults(array_replace($matches, ['_route' => 'Deleteback']), array (  '_controller' => 'ReclamationBundle\\Controller\\ReclamationController::DeletebackAction',));
-                }
-
-                // Update
-                if (0 === strpos($pathinfo, '/reclamation/UpdateReclamation') && preg_match('#^/reclamation/UpdateReclamation/(?P<id>[^/]++)$#sD', $pathinfo, $matches)) {
-                    return $this->mergeDefaults(array_replace($matches, ['_route' => 'Update']), array (  '_controller' => 'ReclamationBundle\\Controller\\ReclamationController::UpdateAction',));
                 }
 
                 // nozelites_homepagebac
@@ -711,6 +758,11 @@ class appDevDebugProjectContainerUrlMatcher extends Symfony\Bundle\FrameworkBund
                     return $this->mergeDefaults(array_replace($matches, ['_route' => 'nozelites_adminEvenementAccepterback']), array (  '_controller' => 'NozelitesBundle\\Controller\\EvenementController::accepterEventAction',));
                 }
 
+                // nozelites_adminEvenementPageback
+                if (0 === strpos($pathinfo, '/backadminEvenement/page') && preg_match('#^/backadminEvenement/page/(?P<id>[^/]++)$#sD', $pathinfo, $matches)) {
+                    return $this->mergeDefaults(array_replace($matches, ['_route' => 'nozelites_adminEvenementPageback']), array (  '_controller' => 'NozelitesBundle\\Controller\\EvenementController::afficherEventadminAction',));
+                }
+
             }
 
             // nozelites_adminbloquermembreback
@@ -730,12 +782,131 @@ class appDevDebugProjectContainerUrlMatcher extends Symfony\Bundle\FrameworkBund
 
         }
 
-        // homepage
-        if ('/test' === $pathinfo) {
-            return array (  '_controller' => 'AppBundle\\Controller\\DefaultController::indexAction',  '_route' => 'homepage',);
+        elseif (0 === strpos($pathinfo, '/publication')) {
+            // publication_homepage
+            if ('/publication/index' === $pathinfo) {
+                return array (  '_controller' => 'PublicationBundle\\Controller\\DefaultController::indexAction',  '_route' => 'publication_homepage',);
+            }
+
+            if (0 === strpos($pathinfo, '/publication/A')) {
+                // Ajouter
+                if ('/publication/AjoutPublication' === $pathinfo) {
+                    return array (  '_controller' => 'PublicationBundle\\Controller\\PublicationController::AjouterAction',  '_route' => 'Ajouter',);
+                }
+
+                // AjouterComm
+                if (0 === strpos($pathinfo, '/publication/AjoutCommentaire') && preg_match('#^/publication/AjoutCommentaire/(?P<id>[^/]++)$#sD', $pathinfo, $matches)) {
+                    return $this->mergeDefaults(array_replace($matches, ['_route' => 'AjouterComm']), array (  '_controller' => 'PublicationBundle\\Controller\\PublicationController::AjouterCommAction',));
+                }
+
+                if (0 === strpos($pathinfo, '/publication/Affiche')) {
+                    if (0 === strpos($pathinfo, '/publication/AffichePublication')) {
+                        // Afficher
+                        if ('/publication/AffichePublication' === $pathinfo) {
+                            return array (  '_controller' => 'PublicationBundle\\Controller\\PublicationController::AffichepubAction',  '_route' => 'Afficher',);
+                        }
+
+                        // Afficherback
+                        if ('/publication/AffichePublicationback' === $pathinfo) {
+                            return array (  '_controller' => 'PublicationBundle\\Controller\\PublicationController::AffichepubbackAction',  '_route' => 'Afficherback',);
+                        }
+
+                    }
+
+                    // AfficherComm
+                    if ('/publication/AfficherCommentaire' === $pathinfo) {
+                        return array (  '_controller' => 'PublicationBundle\\Controller\\PublicationController::AfficheCommAction',  '_route' => 'AfficherComm',);
+                    }
+
+                    if (0 === strpos($pathinfo, '/publication/Affichecommentaire')) {
+                        // Affichercommentaire
+                        if ('/publication/Affichecommentaire' === $pathinfo) {
+                            return array (  '_controller' => 'PublicationBundle\\Controller\\PublicationController::AffichecommentaireAction',  '_route' => 'Affichercommentaire',);
+                        }
+
+                        // Affichercommback
+                        if ('/publication/Affichecommentaireback' === $pathinfo) {
+                            return array (  '_controller' => 'PublicationBundle\\Controller\\PublicationController::AffichecommbackAction',  '_route' => 'Affichercommback',);
+                        }
+
+                    }
+
+                }
+
+            }
+
+            elseif (0 === strpos($pathinfo, '/publication/DeletePublication')) {
+                // Delete
+                if (preg_match('#^/publication/DeletePublication/(?P<id>[^/]++)$#sD', $pathinfo, $matches)) {
+                    return $this->mergeDefaults(array_replace($matches, ['_route' => 'Delete']), array (  '_controller' => 'PublicationBundle\\Controller\\PublicationController::DeleteAction',));
+                }
+
+                // Deleteback
+                if (0 === strpos($pathinfo, '/publication/DeletePublicationback') && preg_match('#^/publication/DeletePublicationback/(?P<id>[^/]++)$#sD', $pathinfo, $matches)) {
+                    return $this->mergeDefaults(array_replace($matches, ['_route' => 'Deleteback']), array (  '_controller' => 'PublicationBundle\\Controller\\PublicationController::DeletebackAction',));
+                }
+
+            }
+
+            elseif (0 === strpos($pathinfo, '/publication/Deletecommentaire')) {
+                // Deletecomm
+                if (preg_match('#^/publication/Deletecommentaire/(?P<idCommentaire>[^/]++)$#sD', $pathinfo, $matches)) {
+                    return $this->mergeDefaults(array_replace($matches, ['_route' => 'Deletecomm']), array (  '_controller' => 'PublicationBundle\\Controller\\PublicationController::DeletecommAction',));
+                }
+
+                // Deletecommback
+                if (0 === strpos($pathinfo, '/publication/Deletecommentaireback') && preg_match('#^/publication/Deletecommentaireback/(?P<id>[^/]++)$#sD', $pathinfo, $matches)) {
+                    return $this->mergeDefaults(array_replace($matches, ['_route' => 'Deletecommback']), array (  '_controller' => 'PublicationBundle\\Controller\\PublicationController::DeletecommbackAction',));
+                }
+
+            }
+
+            elseif (0 === strpos($pathinfo, '/publication/UpdatePublication')) {
+                // Update
+                if (preg_match('#^/publication/UpdatePublication/(?P<id>[^/]++)$#sD', $pathinfo, $matches)) {
+                    return $this->mergeDefaults(array_replace($matches, ['_route' => 'Update']), array (  '_controller' => 'PublicationBundle\\Controller\\PublicationController::UpdateAction',));
+                }
+
+                // Updateback
+                if (0 === strpos($pathinfo, '/publication/UpdatePublicationback') && preg_match('#^/publication/UpdatePublicationback/(?P<id>[^/]++)$#sD', $pathinfo, $matches)) {
+                    return $this->mergeDefaults(array_replace($matches, ['_route' => 'Updateback']), array (  '_controller' => 'PublicationBundle\\Controller\\PublicationController::UpdatebackAction',));
+                }
+
+            }
+
+            // Updatecomm
+            if (0 === strpos($pathinfo, '/publication/Updatecommentaire') && preg_match('#^/publication/Updatecommentaire/(?P<idCommentaire>[^/]++)$#sD', $pathinfo, $matches)) {
+                return $this->mergeDefaults(array_replace($matches, ['_route' => 'Updatecomm']), array (  '_controller' => 'PublicationBundle\\Controller\\PublicationController::UpdatecommAction',));
+            }
+
+            // Commentaire
+            if (0 === strpos($pathinfo, '/publication/Commentaire') && preg_match('#^/publication/Commentaire/(?P<id>[^/]++)$#sD', $pathinfo, $matches)) {
+                return $this->mergeDefaults(array_replace($matches, ['_route' => 'Commentaire']), array (  '_controller' => 'PublicationBundle\\Controller\\PublicationController::CommentaireAction',));
+            }
+
+            // jaime
+            if (0 === strpos($pathinfo, '/publication/jaime') && preg_match('#^/publication/jaime/(?P<id>[^/]++)$#sD', $pathinfo, $matches)) {
+                return $this->mergeDefaults(array_replace($matches, ['_route' => 'jaime']), array (  '_controller' => 'PublicationBundle\\Controller\\PublicationController::jaimeAction',));
+            }
+
+            // Imprimer
+            if (0 === strpos($pathinfo, '/publication/Imprimer') && preg_match('#^/publication/Imprimer/(?P<id>[^/]++)$#sD', $pathinfo, $matches)) {
+                return $this->mergeDefaults(array_replace($matches, ['_route' => 'Imprimer']), array (  '_controller' => 'PublicationBundle\\Controller\\PublicationController::ImprimerAction',));
+            }
+
+            // Topone
+            if ('/publication/Topone' === $pathinfo) {
+                return array (  '_controller' => 'PublicationBundle\\Controller\\PublicationController::TopeoneAction',  '_route' => 'Topone',);
+            }
+
+            // map
+            if ('/publication/map' === $pathinfo) {
+                return array (  '_controller' => 'PublicationBundle\\Controller\\PublicationController::mapAction',  '_route' => 'map',);
+            }
+
         }
 
-        if (0 === strpos($pathinfo, '/profile')) {
+        elseif (0 === strpos($pathinfo, '/profile')) {
             // fos_user_profile_show
             if ('/profile' === $trimmedPathinfo) {
                 $ret = array (  '_controller' => 'fos_user.profile.controller:showAction',  '_route' => 'fos_user_profile_show',);
@@ -780,6 +951,11 @@ class appDevDebugProjectContainerUrlMatcher extends Symfony\Bundle\FrameworkBund
             }
             not_fos_user_change_password:
 
+        }
+
+        // homepage
+        if ('/test' === $pathinfo) {
+            return array (  '_controller' => 'AppBundle\\Controller\\DefaultController::indexAction',  '_route' => 'homepage',);
         }
 
         if ('/' === $pathinfo && !$allow) {

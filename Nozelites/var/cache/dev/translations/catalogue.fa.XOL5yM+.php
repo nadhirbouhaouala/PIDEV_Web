@@ -129,6 +129,11 @@ $catalogue = new MessageCatalogue('fa', array (
     'Account is disabled.' => 'حساب کاربری غیرفعال می باشد.',
     'Account is locked.' => 'حساب کاربری قفل گردیده است.',
   ),
+  'KnpPaginatorBundle' => 
+  array (
+    'label_previous' => 'قبلی',
+    'label_next' => 'بعدی',
+  ),
   'FOSUserBundle' => 
   array (
     'group.edit.submit' => 'به‌روزرسانی',
@@ -339,6 +344,11 @@ $catalogueFr = new MessageCatalogue('fr', array (
   array (
     'download' => 'Télécharger',
     'form.label.delete' => 'Supprimer ?',
+  ),
+  'KnpPaginatorBundle' => 
+  array (
+    'label_previous' => 'Précédent',
+    'label_next' => 'Suivant',
   ),
   'FOSUserBundle' => 
   array (

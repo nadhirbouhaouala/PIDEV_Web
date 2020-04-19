@@ -147,6 +147,11 @@ $catalogue = new MessageCatalogue('hu', array (
     'download' => 'Jelenlegi fájl letöltése',
     'form.label.delete' => 'Korábban feltöltött fájl törlése?',
   ),
+  'KnpPaginatorBundle' => 
+  array (
+    'label_previous' => 'Előző',
+    'label_next' => 'Következő',
+  ),
   'FOSUserBundle' => 
   array (
     'group.edit.submit' => 'Csoport frissítése',
@@ -356,6 +361,11 @@ $catalogueFr = new MessageCatalogue('fr', array (
   array (
     'download' => 'Télécharger',
     'form.label.delete' => 'Supprimer ?',
+  ),
+  'KnpPaginatorBundle' => 
+  array (
+    'label_previous' => 'Précédent',
+    'label_next' => 'Suivant',
   ),
   'FOSUserBundle' => 
   array (

@@ -138,6 +138,11 @@ $catalogue = new MessageCatalogue('sv', array (
     'Account is disabled.' => 'Kontot är inaktiverat.',
     'Account is locked.' => 'Kontot är låst.',
   ),
+  'KnpPaginatorBundle' => 
+  array (
+    'label_previous' => 'Föregående',
+    'label_next' => 'Nästa',
+  ),
   'FOSUserBundle' => 
   array (
     'group.edit.submit' => 'Uppdatera gruppen',
@@ -343,6 +348,11 @@ $catalogueFr = new MessageCatalogue('fr', array (
   array (
     'download' => 'Télécharger',
     'form.label.delete' => 'Supprimer ?',
+  ),
+  'KnpPaginatorBundle' => 
+  array (
+    'label_previous' => 'Précédent',
+    'label_next' => 'Suivant',
   ),
   'FOSUserBundle' => 
   array (

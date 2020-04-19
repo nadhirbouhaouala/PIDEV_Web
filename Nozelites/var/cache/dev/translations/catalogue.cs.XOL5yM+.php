@@ -129,6 +129,11 @@ $catalogue = new MessageCatalogue('cs', array (
     'Account is disabled.' => 'Účet je zakázaný.',
     'Account is locked.' => 'Účet je zablokovaný.',
   ),
+  'KnpPaginatorBundle' => 
+  array (
+    'label_previous' => 'Předchozí',
+    'label_next' => 'Další',
+  ),
   'FOSUserBundle' => 
   array (
     'group.edit.submit' => 'Upravit skupinu',
@@ -336,6 +341,11 @@ $catalogueFr = new MessageCatalogue('fr', array (
   array (
     'download' => 'Télécharger',
     'form.label.delete' => 'Supprimer ?',
+  ),
+  'KnpPaginatorBundle' => 
+  array (
+    'label_previous' => 'Précédent',
+    'label_next' => 'Suivant',
   ),
   'FOSUserBundle' => 
   array (

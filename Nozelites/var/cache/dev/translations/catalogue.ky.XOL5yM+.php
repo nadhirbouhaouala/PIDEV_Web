@@ -3,6 +3,11 @@
 use Symfony\Component\Translation\MessageCatalogue;
 
 $catalogue = new MessageCatalogue('ky', array (
+  'KnpPaginatorBundle' => 
+  array (
+    'label_previous' => 'Мурунку',
+    'label_next' => 'Кийинки',
+  ),
   'FOSUserBundle' => 
   array (
     'group.edit.submit' => 'Группаны жаңылоо',
@@ -224,6 +229,11 @@ $catalogueFr = new MessageCatalogue('fr', array (
   array (
     'download' => 'Télécharger',
     'form.label.delete' => 'Supprimer ?',
+  ),
+  'KnpPaginatorBundle' => 
+  array (
+    'label_previous' => 'Précédent',
+    'label_next' => 'Suivant',
   ),
   'FOSUserBundle' => 
   array (

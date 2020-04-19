@@ -129,6 +129,11 @@ $catalogue = new MessageCatalogue('pt_BR', array (
     'Account is disabled.' => 'Conta desativada.',
     'Account is locked.' => 'A conta está travada.',
   ),
+  'KnpPaginatorBundle' => 
+  array (
+    'label_previous' => 'Anterior',
+    'label_next' => 'Próximo',
+  ),
   'FOSUserBundle' => 
   array (
     'group.edit.submit' => 'Atualizar Grupo',
@@ -511,6 +516,11 @@ $catalogueFr = new MessageCatalogue('fr', array (
   array (
     'download' => 'Télécharger',
     'form.label.delete' => 'Supprimer ?',
+  ),
+  'KnpPaginatorBundle' => 
+  array (
+    'label_previous' => 'Précédent',
+    'label_next' => 'Suivant',
   ),
   'FOSUserBundle' => 
   array (

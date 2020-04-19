@@ -119,7 +119,7 @@ vich_uploader:
             uri_prefix: /images/profile
             upload_destination: '%kernel.project_dir%/web/images/profile'
 
-            inject_on_load: false
+            inject_on_load: true
             delete_on_update: true
             delete_on_remove: true
 

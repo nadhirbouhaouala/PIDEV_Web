@@ -129,6 +129,11 @@ $catalogue = new MessageCatalogue('id', array (
     'Account is disabled.' => 'Akun dinonaktifkan.',
     'Account is locked.' => 'Akun terkunci.',
   ),
+  'KnpPaginatorBundle' => 
+  array (
+    'label_previous' => 'Sebelumnya',
+    'label_next' => 'Berikutnya',
+  ),
   'FOSUserBundle' => 
   array (
     'group.edit.submit' => 'Memperbaharui Grup',
@@ -338,6 +343,11 @@ $catalogueFr = new MessageCatalogue('fr', array (
   array (
     'download' => 'Télécharger',
     'form.label.delete' => 'Supprimer ?',
+  ),
+  'KnpPaginatorBundle' => 
+  array (
+    'label_previous' => 'Précédent',
+    'label_next' => 'Suivant',
   ),
   'FOSUserBundle' => 
   array (

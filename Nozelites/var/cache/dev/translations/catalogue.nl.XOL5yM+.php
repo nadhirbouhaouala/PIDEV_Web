@@ -137,6 +137,11 @@ $catalogue = new MessageCatalogue('nl', array (
     'Account is disabled.' => 'Account is gedeactiveerd.',
     'Account is locked.' => 'Account is geblokkeerd.',
   ),
+  'KnpPaginatorBundle' => 
+  array (
+    'label_previous' => 'Vorige',
+    'label_next' => 'Volgende',
+  ),
   'FOSUserBundle' => 
   array (
     'group.edit.submit' => 'Groep bijwerken',
@@ -344,6 +349,11 @@ $catalogueFr = new MessageCatalogue('fr', array (
   array (
     'download' => 'Télécharger',
     'form.label.delete' => 'Supprimer ?',
+  ),
+  'KnpPaginatorBundle' => 
+  array (
+    'label_previous' => 'Précédent',
+    'label_next' => 'Suivant',
   ),
   'FOSUserBundle' => 
   array (

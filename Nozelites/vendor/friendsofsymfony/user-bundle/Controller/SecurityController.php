@@ -12,10 +12,7 @@
 namespace FOS\UserBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-
 use Symfony\Component\HttpFoundation\RedirectResponse;
-
-
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Session\Session;
@@ -45,10 +42,10 @@ class SecurityController extends Controller
      */
     public function loginAction(Request $request)
     {
-
         if($this->container->get('security.authorization_checker')->isGranted('IS_AUTHENTICATED_FULLY')){
             return $this->redirectToRoute("nozelites_homepagefront");
         }
+
 
         /** @var $session Session */
         $session = $request->getSession();

@@ -18,9 +18,10 @@ use FOS\UserBundle\Form\Factory\FactoryInterface;
 use FOS\UserBundle\FOSUserEvents;
 use FOS\UserBundle\Model\UserInterface;
 use FOS\UserBundle\Model\UserManagerInterface;
-
 use NozelitesBundle\Entity\Membre;
+
 use NozelitesBundle\Entity\ChasseurTalent;
+
 
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -124,6 +125,7 @@ class RegistrationController extends Controller
 
                 $this->userManager->updateUser($user);
 
+
                 if($case === 1){
                     $membre->setImage("D:/xampp/htdocs/PIDEV_Web/Nozelites/web/images/".$user->getImageName());
                     $em->persist($membre);
@@ -134,6 +136,7 @@ class RegistrationController extends Controller
                     $em->persist($chasseur);
                     $em->flush();
                 }
+
                 if (null === $response = $event->getResponse()) {
                     $url = $this->generateUrl('nozelites_homepagefront');
                     $response = new RedirectResponse($url);

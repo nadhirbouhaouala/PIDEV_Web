@@ -142,6 +142,11 @@ $catalogue = new MessageCatalogue('lt', array (
     'Account is disabled.' => 'Paskyra yra išjungta.',
     'Account is locked.' => 'Paskyra yra užblokuota.',
   ),
+  'KnpPaginatorBundle' => 
+  array (
+    'label_previous' => 'Ankstesnis',
+    'label_next' => 'Sekantis',
+  ),
   'FOSUserBundle' => 
   array (
     'group.edit.submit' => 'Atnaujinti grupę',
@@ -344,6 +349,11 @@ $catalogueFr = new MessageCatalogue('fr', array (
   array (
     'download' => 'Télécharger',
     'form.label.delete' => 'Supprimer ?',
+  ),
+  'KnpPaginatorBundle' => 
+  array (
+    'label_previous' => 'Précédent',
+    'label_next' => 'Suivant',
   ),
   'FOSUserBundle' => 
   array (

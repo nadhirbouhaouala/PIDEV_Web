@@ -130,6 +130,11 @@ $catalogue = new MessageCatalogue('ro', array (
     'Account is disabled.' => 'Contul este dezactivat.',
     'Account is locked.' => 'Contul este blocat.',
   ),
+  'KnpPaginatorBundle' => 
+  array (
+    'Previous' => 'Pagina anterioara',
+    'Next' => 'Pagina urmatoare',
+  ),
   'FOSUserBundle' => 
   array (
     'group.edit.submit' => 'Actualizează grupul',
@@ -340,6 +345,11 @@ $catalogueFr = new MessageCatalogue('fr', array (
   array (
     'download' => 'Télécharger',
     'form.label.delete' => 'Supprimer ?',
+  ),
+  'KnpPaginatorBundle' => 
+  array (
+    'label_previous' => 'Précédent',
+    'label_next' => 'Suivant',
   ),
   'FOSUserBundle' => 
   array (

@@ -140,6 +140,11 @@ $catalogue = new MessageCatalogue('ja', array (
     'Account is disabled.' => 'アカウントが無効です。',
     'Account is locked.' => 'アカウントはロックされています。',
   ),
+  'KnpPaginatorBundle' => 
+  array (
+    'label_previous' => '前へ',
+    'label_next' => '次へ',
+  ),
   'FOSUserBundle' => 
   array (
     'group.edit.submit' => 'グループの更新',
@@ -348,6 +353,11 @@ $catalogueFr = new MessageCatalogue('fr', array (
   array (
     'download' => 'Télécharger',
     'form.label.delete' => 'Supprimer ?',
+  ),
+  'KnpPaginatorBundle' => 
+  array (
+    'label_previous' => 'Précédent',
+    'label_next' => 'Suivant',
   ),
   'FOSUserBundle' => 
   array (
