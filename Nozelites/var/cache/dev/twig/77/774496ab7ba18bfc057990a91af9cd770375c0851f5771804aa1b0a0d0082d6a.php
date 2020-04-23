@@ -92,6 +92,8 @@ class __TwigTemplate_1bd560517cd8e04fb658c3546f7b83fa6bc452ff41acf32a22124aec3dd
     <link rel=\"stylesheet\" href=\"../../dist/css/adminlte.min.css\">
     <!-- Google Font: Source Sans Pro -->
     <link href=\"https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700\" rel=\"stylesheet\">
+
+
 </head>
 <body class=\"hold-transition sidebar-mini\">
 <div class=\"wrapper\">
@@ -120,7 +122,7 @@ class __TwigTemplate_1bd560517cd8e04fb658c3546f7b83fa6bc452ff41acf32a22124aec3dd
                 <div class=\"row\">
                     <div class=\"col-md-3\">
                         <a href=\"";
-        // line 48
+        // line 50
         echo $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("message_ajouter");
         echo "\" class=\"btn btn-primary btn-block mb-3\">Envoyer un message</a>
 
@@ -137,7 +139,7 @@ class __TwigTemplate_1bd560517cd8e04fb658c3546f7b83fa6bc452ff41acf32a22124aec3dd
                                 <ul class=\"nav nav-pills flex-column\">
                                     <li class=\"nav-item active\">
                                         <a href=\"";
-        // line 62
+        // line 64
         echo $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("message_liste");
         echo "\" class=\"nav-link\">
                                             <i class=\"fas fa-inbox\"></i> Messages reçus
@@ -145,7 +147,7 @@ class __TwigTemplate_1bd560517cd8e04fb658c3546f7b83fa6bc452ff41acf32a22124aec3dd
                                     </li>
                                     <li class=\"nav-item\">
                                         <a href=\"";
-        // line 67
+        // line 69
         echo $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("message_liste_envoyes");
         echo "\" class=\"nav-link\">
                                             <i class=\"far fa-envelope\"></i> Messages envoyés
@@ -167,20 +169,20 @@ class __TwigTemplate_1bd560517cd8e04fb658c3546f7b83fa6bc452ff41acf32a22124aec3dd
                             <div class=\"card-body p-0\">
                                 <div class=\"mailbox-read-info\">
                                     <h5>Objet :    ";
-        // line 86
+        // line 88
         echo twig_escape_filter($this->env, $this->getAttribute(($context["message"] ?? $this->getContext($context, "message")), "objet", []), "html", null, true);
         echo "</h5>
                                     <h6>De :              ";
-        // line 87
+        // line 89
         echo twig_escape_filter($this->env, (($this->getAttribute($this->getAttribute(($context["message"] ?? $this->getContext($context, "message")), "idEmeteur", []), "nom", []) . " ") . $this->getAttribute($this->getAttribute(($context["message"] ?? $this->getContext($context, "message")), "idEmeteur", []), "prenom", [])), "html", null, true);
         echo "
                                         <span class=\"mailbox-read-time float-right\">";
-        // line 88
+        // line 90
         echo twig_escape_filter($this->env, $this->getAttribute(($context["message"] ?? $this->getContext($context, "message")), "date", []), "html", null, true);
         echo "</span>
                                         <br>
                                         À    :              ";
-        // line 90
+        // line 92
         echo twig_escape_filter($this->env, (($this->getAttribute($this->getAttribute(($context["message"] ?? $this->getContext($context, "message")), "idDestinataire", []), "nom", []) . " ") . $this->getAttribute($this->getAttribute(($context["message"] ?? $this->getContext($context, "message")), "idDestinataire", []), "prenom", [])), "html", null, true);
         echo "
                                     </h6>
@@ -189,7 +191,7 @@ class __TwigTemplate_1bd560517cd8e04fb658c3546f7b83fa6bc452ff41acf32a22124aec3dd
                                 <!-- /.mailbox-controls -->
                                 <div class=\"mailbox-read-message\">
                                     <p>";
-        // line 96
+        // line 98
         echo twig_escape_filter($this->env, $this->getAttribute(($context["message"] ?? $this->getContext($context, "message")), "texte", []), "html", null, true);
         echo "</p>
                                 </div>
@@ -206,11 +208,11 @@ class __TwigTemplate_1bd560517cd8e04fb658c3546f7b83fa6bc452ff41acf32a22124aec3dd
                             <div class=\"card-footer\">
                                 <div class=\"float-right\">
                                     <a href=\"";
-        // line 110
+        // line 112
         echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("message_repondre", ["id" => $this->getAttribute(($context["message"] ?? $this->getContext($context, "message")), "idmessage", [])]), "html", null, true);
         echo "\"><button type=\"button\" class=\"btn btn-default\"><i class=\"fas fa-reply\"></i> Répondre</button></a>
                                     <a href=\"";
-        // line 111
+        // line 113
         echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("message_transferer", ["id" => $this->getAttribute(($context["message"] ?? $this->getContext($context, "message")), "idmessage", [])]), "html", null, true);
         echo "\"><button type=\"button\" class=\"btn btn-default\"><i class=\"fas fa-share\"></i> Transférer</button></a>
                                 </div>
@@ -222,6 +224,7 @@ class __TwigTemplate_1bd560517cd8e04fb658c3546f7b83fa6bc452ff41acf32a22124aec3dd
                     <!-- /.col -->
                 </div>
                 <!-- /.row -->
+            </div>
         </section>
         <!-- /.content -->
     </div>
@@ -262,7 +265,7 @@ class __TwigTemplate_1bd560517cd8e04fb658c3546f7b83fa6bc452ff41acf32a22124aec3dd
 
     public function getDebugInfo()
     {
-        return array (  214 => 111,  210 => 110,  193 => 96,  184 => 90,  179 => 88,  175 => 87,  171 => 86,  149 => 67,  141 => 62,  124 => 48,  80 => 6,  71 => 5,  52 => 3,  30 => 1,);
+        return array (  216 => 113,  212 => 112,  195 => 98,  186 => 92,  181 => 90,  177 => 89,  173 => 88,  151 => 69,  143 => 64,  126 => 50,  80 => 6,  71 => 5,  52 => 3,  30 => 1,);
     }
 
     /** @deprecated since 1.27 (to be removed in 2.0). Use getSourceContext() instead */
@@ -295,6 +298,8 @@ class __TwigTemplate_1bd560517cd8e04fb658c3546f7b83fa6bc452ff41acf32a22124aec3dd
     <link rel=\"stylesheet\" href=\"../../dist/css/adminlte.min.css\">
     <!-- Google Font: Source Sans Pro -->
     <link href=\"https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700\" rel=\"stylesheet\">
+
+
 </head>
 <body class=\"hold-transition sidebar-mini\">
 <div class=\"wrapper\">
@@ -395,6 +400,7 @@ class __TwigTemplate_1bd560517cd8e04fb658c3546f7b83fa6bc452ff41acf32a22124aec3dd
                     <!-- /.col -->
                 </div>
                 <!-- /.row -->
+            </div>
         </section>
         <!-- /.content -->
     </div>

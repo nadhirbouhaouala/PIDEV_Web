@@ -82,19 +82,21 @@ class RegistrationController extends Controller
                 $event = new FormEvent($form, $request);
                 $this->eventDispatcher->dispatch(FOSUserEvents::REGISTRATION_SUCCESS, $event);
 
+                $membre = new Membre();
+                $membre->setMdp($user->getPlainPassword());
+
                 $this->userManager->updateUser($user);
 
                 $em =$this->getDoctrine()->getManager();
-                $membre = new Membre();
-                $membre->setNom($user->getRoles());
+
+                $membre->setNom("lasaad");
                 $membre->setprenom("fawzi");
-                $membre->setTel("123");
+                $membre->setTel(123);
                 $membre->setLogin("123");
-                $membre->setMdp("123");
+
                 $membre->setAge(23);
-                $membre->setMail(23);
+                $membre->setMail("23");
                 $membre->setFormation("123");
-                $membre->setFormation("0");
                 $membre->setExperience("123");
                 $membre->setType(1);
                 $membre->setImage("test");

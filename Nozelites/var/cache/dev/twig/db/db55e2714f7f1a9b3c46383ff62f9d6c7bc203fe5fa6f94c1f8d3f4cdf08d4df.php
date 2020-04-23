@@ -319,6 +319,7 @@ class __TwigTemplate_a0f7d8a8a0278599fa2c3ed0659cf9d051f6d785e139eda5589819edbce
       <!-- /.row -->
 
       </div>
+      </div>
     </section>
     <!-- /.content -->
   </div>
@@ -562,6 +563,7 @@ class __TwigTemplate_a0f7d8a8a0278599fa2c3ed0659cf9d051f6d785e139eda5589819edbce
       </div>
       <!-- /.row -->
 
+      </div>
       </div>
     </section>
     <!-- /.content -->
