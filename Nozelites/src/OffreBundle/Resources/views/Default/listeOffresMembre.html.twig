@@ -6,7 +6,7 @@
     <div class="content">
         <ul class="dashboard-box-list">
             {%  for offre in offres %}
-                {% if offre.idRecepteur.idUsr == 3 %} {#Id du membre connecté#}
+                {% if offre.idRecepteur.idUsr == id %} {#Id du membre connecté#}
                     <li id="{{ offre.id }}">
                         <!-- Overview -->
                         <div class="freelancer-overview" onclick="document.getElementById('{{ 'show_'~offre.id }}').click();">

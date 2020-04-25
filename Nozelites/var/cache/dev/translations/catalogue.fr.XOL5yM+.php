@@ -142,6 +142,11 @@ $catalogue = new MessageCatalogue('fr', array (
     'Account is disabled.' => 'Le compte est désactivé.',
     'Account is locked.' => 'Le compte est bloqué.',
   ),
+  'VichUploaderBundle' => 
+  array (
+    'download' => 'Télécharger',
+    'form.label.delete' => 'Supprimer ?',
+  ),
   'KnpPaginatorBundle' => 
   array (
     'label_previous' => 'Précédent',

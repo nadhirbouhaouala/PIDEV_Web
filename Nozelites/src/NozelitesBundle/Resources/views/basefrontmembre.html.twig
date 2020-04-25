@@ -30,9 +30,10 @@
                             <!-- Logo -->
                             <div id="logo">
                                 <!--<a href="index.html"><img src="images/logo.png" alt=""></a>-->
-                                <a href="{{ path('nozelites_homepagefront') }}"><img src="{{ asset('images/logo.png') }}" alt=""></a>
+                                <a href="{{ path('nozelites_homepagefront') }}"><img src="{{ asset('images/logoo.jpg') }}" alt=""></a>
                             </div>
 
+                            {% if is_granted('ROLE_MEMBRE')%}
                             <!-- Main Navigation -->
                             <nav id="navigation">
                                 <ul id="responsive">
@@ -110,6 +111,71 @@
 
                                 </ul>
                             </nav>
+                            {% elseif  is_granted('ROLE_CHASSEUR')%}
+                            <nav id="navigation">
+                                <ul id="responsive">
+
+                                    <li><a href="#" class="current">Acceuil</a>
+                                        <ul class="dropdown-nav">
+                                            <li><a href="index.html">Categorie</a></li>
+                                            <li><a href="index-2.html">Elites</a></li>
+                                        </ul>
+                                    </li>
+
+                                    <li><a href="#">Profil</a>
+                                        <ul class="dropdown-nav">
+                                            <li><a href="#">Browse Jobs</a>
+                                                <ul class="dropdown-nav">
+                                                    <li><a href="jobs-list-layout-full-page-map.html">Full Page List + Map</a></li>
+                                                    <li><a href="jobs-grid-layout-full-page-map.html">Full Page Grid + Map</a></li>
+                                                    <li><a href="jobs-grid-layout-full-page.html">Full Page Grid</a></li>
+                                                    <li><a href="jobs-list-layout-1.html">List Layout 1</a></li>
+                                                    <li><a href="jobs-list-layout-2.html">List Layout 2</a></li>
+                                                    <li><a href="jobs-grid-layout.html">Grid Layout</a></li>
+                                                </ul>
+                                            </li>
+                                            <li><a href="#">Browse Tasks</a>
+                                                <ul class="dropdown-nav">
+                                                    <li><a href="tasks-list-layout-1.html">List Layout 1</a></li>
+                                                    <li><a href="tasks-list-layout-2.html">List Layout 2</a></li>
+                                                    <li><a href="tasks-grid-layout.html">Grid Layout</a></li>
+                                                    <li><a href="tasks-grid-layout-full-page.html">Full Page Grid</a></li>
+                                                </ul>
+                                            </li>
+                                            <li><a href="browse-companies.html">Browse Companies</a></li>
+                                            <li><a href="single-job-page.html">Job Page</a></li>
+                                            <li><a href="single-task-page.html">Task Page</a></li>
+                                            <li><a href="single-company-profile.html">Company Profile</a></li>
+                                        </ul>
+                                    </li>
+
+                                    <li><a href="#">Elites</a>
+                                        <ul class="dropdown-nav">
+                                            <li><a href="#">Find a Freelancer</a>
+                                                <ul class="dropdown-nav">
+                                                    <li><a href="freelancers-grid-layout-full-page.html">Full Page Grid</a></li>
+                                                    <li><a href="freelancers-grid-layout.html">Grid Layout</a></li>
+                                                    <li><a href="freelancers-list-layout-1.html">List Layout 1</a></li>
+                                                    <li><a href="freelancers-list-layout-2.html">List Layout 2</a></li>
+                                                </ul>
+                                            </li>
+                                            <li><a href="single-freelancer-profile.html">Freelancer Profile</a></li>
+                                            <li><a href="dashboard-post-a-job.html">Post a Job</a></li>
+                                            <li><a href="dashboard-post-a-task.html">Post a Task</a></li>
+                                        </ul>
+                                    </li>
+
+                                    <li><a href="#">Offres</a>
+                                        <ul class="dropdown-nav">
+                                            <li><a href="{{ path('offre_ajouter') }}">Envoyer une offre</a></li>
+                                            <li><a href="{{ path('offre_liste') }}">Consulter mes offres</a></li>
+                                        </ul>
+                                    </li>
+
+                                </ul>
+                            </nav>
+                            {% endif %}
+
                             <div class="clearfix"></div>
                             <!-- Main Navigation / End -->
 
@@ -188,6 +254,7 @@
                                 </div>
 
                                 <!-- Messages -->
+                                {% if is_granted('ROLE_MEMBRE')%}
                                 <div class="header-notifications">
                                     <div class="header-notifications-trigger">
                                         <a href="{{ path('message_liste')}}"><i class="icon-feather-mail"></i></a>
@@ -197,6 +264,7 @@
                                     <a href="{{ path('message_liste')}}" class="header-notifications-button ripple-effect button-sliding-icon">Voir tous les messages<i class="icon-material-outline-arrow-right-alt"></i></a>
                                     </div>
                                 </div>
+                                {% endif %}
                             </div>
 
                             <!--  User Notifications / End -->
@@ -207,7 +275,10 @@
                                 <!-- Messages -->
                                 <div class="header-notifications user-menu">
                                     <div class="header-notifications-trigger">
-                                        <a href=""><div class="user-avatar status-online"><img src="images/user-avatar-small-01.jpg" alt=""></div></a>
+
+                                        <a href="#"><div class="user-avatar status-online"><img src="{{ asset('images/profile/'~app.user.imageName) }}"  alt=""></div></a>
+
+
                                     </div>
 
                                     <!-- Dropdown -->
@@ -218,9 +289,9 @@
 
                                             <!-- User Name / Avatar -->
                                             <div class="user-details">
-                                                <div class="user-avatar status-online"><img src="" alt=""></div>
+                                                <div class="user-avatar status-online"><img src="{{ asset('images/profile/'~app.user.imageName) }}" alt=""></div>
                                                 <div class="user-name">
-
+                                                    {{ app.user.prenom }} {{ app.user.nom }}
                                                 </div>
                                             </div>
 

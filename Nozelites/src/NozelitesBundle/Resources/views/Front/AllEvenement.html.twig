@@ -23,7 +23,13 @@
                                             <div class="blog-post-thumbnail">
                                                 <div class="blog-post-thumbnail-inner">
 
-                                                    <img src="{{ asset('front/images/'~ cc.image) }}" alt="image" />
+
+
+                                                    {% set imageur = cc.image|split('/')  %}
+                                                    {%  set imageur = imageur[imageur|length-1] %}
+                                                    {% set imageurl = "front/images/"~imageur %}
+
+                                                    <img src="{{ asset(imageurl) }}">
 
                                                 </div>
                                             </div>

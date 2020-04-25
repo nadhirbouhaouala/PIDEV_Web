@@ -107,12 +107,30 @@ class appDevDebugProjectContainerUrlMatcher extends Symfony\Bundle\FrameworkBund
 
         }
 
-        // user_homepage
-        if ('/user/homepage' === $pathinfo) {
-            return array (  '_controller' => 'UserBundle\\Controller\\DefaultController::indexAction',  '_route' => 'user_homepage',);
+        elseif (0 === strpos($pathinfo, '/user')) {
+            // user_homepage
+            if ('/user/homepage' === $pathinfo) {
+                return array (  '_controller' => 'UserBundle\\Controller\\DefaultController::indexAction',  '_route' => 'user_homepage',);
+            }
+
+            // formation_supp
+            if (0 === strpos($pathinfo, '/user/supprimerFormation') && preg_match('#^/user/supprimerFormation/(?P<id>[^/]++)$#sD', $pathinfo, $matches)) {
+                return $this->mergeDefaults(array_replace($matches, ['_route' => 'formation_supp']), array (  '_controller' => 'UserBundle\\Controller\\FormationController::supprimerFormationAction',));
+            }
+
+            // user_single
+            if (0 === strpos($pathinfo, '/user/singleUser') && preg_match('#^/user/singleUser/(?P<id>[^/]++)$#sD', $pathinfo, $matches)) {
+                return $this->mergeDefaults(array_replace($matches, ['_route' => 'user_single']), array (  '_controller' => 'UserBundle\\Controller\\UserController::afficherUnUserAction',));
+            }
+
+            // user_list
+            if ('/user/listUser' === $pathinfo) {
+                return array (  '_controller' => 'UserBundle\\Controller\\UserController::ShowUserAction',  '_route' => 'user_list',);
+            }
+
         }
 
-        if (0 === strpos($pathinfo, '/l')) {
+        elseif (0 === strpos($pathinfo, '/l')) {
             if (0 === strpos($pathinfo, '/listparticipant')) {
                 // listparticipant_index
                 if ('/listparticipant' === $trimmedPathinfo) {
@@ -751,6 +769,11 @@ class appDevDebugProjectContainerUrlMatcher extends Symfony\Bundle\FrameworkBund
                 // nozelites_adminEvenementAccepterback
                 if (0 === strpos($pathinfo, '/backadminEvenement/accepter') && preg_match('#^/backadminEvenement/accepter/(?P<id>[^/]++)$#sD', $pathinfo, $matches)) {
                     return $this->mergeDefaults(array_replace($matches, ['_route' => 'nozelites_adminEvenementAccepterback']), array (  '_controller' => 'NozelitesBundle\\Controller\\EvenementController::accepterEventAction',));
+                }
+
+                // nozelites_adminEvenementPageback
+                if (0 === strpos($pathinfo, '/backadminEvenement/page') && preg_match('#^/backadminEvenement/page/(?P<id>[^/]++)$#sD', $pathinfo, $matches)) {
+                    return $this->mergeDefaults(array_replace($matches, ['_route' => 'nozelites_adminEvenementPageback']), array (  '_controller' => 'NozelitesBundle\\Controller\\EvenementController::afficherEventadminAction',));
                 }
 
             }

@@ -7,6 +7,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Vich\UploaderBundle\Form\Type\VichImageType;
 
 class RegistrationType extends AbstractType
 {
@@ -14,13 +15,18 @@ class RegistrationType extends AbstractType
     {
         $builder->add('nom')
                 ->add('prenom')
-                ->add('roles', ChoiceType::class, array('label' => 'Type ',
-                'choices' => array(' MEMBRE' => 'ROLE_MEMBRE',
+                ->add('roles', ChoiceType::class, array(
+                    'multiple' => true,
+
+                    'required' => true,
+                    'label' => 'Compte',
+                    'choices' => array(' MEMBRE' => 'ROLE_MEMBRE',
                     'CHASSEUR' => 'ROLE_CHASSEUR'),
-                'required' => true, 'multiple' => true,))
+
+                 ))
                 ->add('telephone')
                 ->add('age')
-                ->add('image',FileType::class)
+            ->add('imageFile', VichImageType::class);
             ;
 
     }

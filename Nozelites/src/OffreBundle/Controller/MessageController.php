@@ -4,24 +4,52 @@ namespace OffreBundle\Controller;
 
 use NozelitesBundle\Entity\Membre;
 use NozelitesBundle\Entity\Message;
+use NozelitesBundle\Entity\Offre;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 
 class MessageController extends Controller
 {
+
+    /**
+     * @return integer
+     */
+    public function getRealIdAction()
+    {
+        $user = $this->getUser();
+        $mail = $user->getEmail();
+
+        if (in_array("ROLE_MEMBRE", $user->getRoles())) {
+
+            $em = $this->getDoctrine()->getManager();
+            $membre = $em->getRepository('NozelitesBundle:Membre')->findOneBymail($mail);
+            return $membre->getIdusr();
+
+        }
+        elseif (in_array("ROLE_CHASSEUR", $user->getRoles())) {
+
+            $em = $this->getDoctrine()->getManager();
+            $chasseur = $em->getRepository('NozelitesBundle:ChasseurTalent')->findOneBymail($mail);
+            return $chasseur->getIdusr();
+        }
+    }
+
     public function consulterMessagesAction(Request $request)
     {
         $em = $this->getDoctrine()->getManager();
 
-        $listeMessages = $em->getRepository('NozelitesBundle:Message')->findAll();
+        $listeMessages = $em->getRepository('NozelitesBundle:Message')->findByIdDestinataire($this->getRealIdAction());
         $messages  = $this->get('knp_paginator')->paginate(
             $listeMessages,
             $request->query->get('page', 1)/*le numéro de la page à afficher*/,
             8/*nbre d'éléments par page*/
         );
 
+        $id = $this->getRealIdAction();
+
         return $this->render('@Offre/Default/listeMessages.html.twig', array(
             'messages' => $messages,
+            'id' => $id,
         ));
     }
 
@@ -29,16 +57,18 @@ class MessageController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $listeMessages = $em->getRepository('NozelitesBundle:Message')->findAll();
+        $listeMessages = $em->getRepository('NozelitesBundle:Message')->findByIdEmeteur($this->getRealIdAction());
         $messages  = $this->get('knp_paginator')->paginate(
             $listeMessages,
             $request->query->get('page', 1)/*le numéro de la page à afficher*/,
             8/*nbre d'éléments par page*/
         );
 
+        $id = $this->getRealIdAction();
 
         return $this->render('@Offre/Default/listeMessagesEnvoyes.html.twig', array(
             'messages' => $messages,
+            'id' => $id,
         ));
     }
 
@@ -61,7 +91,8 @@ class MessageController extends Controller
 
         if ($form->isSubmitted() && $form->isValid()) {
             $m = new Membre();
-            $m->setIdusr(2); //Id du membre connecté
+            $id = $this->getRealIdAction();
+            $m->setIdusr($id); //Id du membre connecté
             $message->setIdemeteur($m);
             $message->setDate(date('Y-m-d'));
 

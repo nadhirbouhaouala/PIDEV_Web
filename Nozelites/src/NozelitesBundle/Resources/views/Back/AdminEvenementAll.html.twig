@@ -16,117 +16,122 @@
 {% endblock %}
 {% block content %}
     <div class="wrapper">
-    <div class="content-wrapper">
-        <!-- Content Header (Page header) -->
-        <section class="content-header">
-            <div class="container-fluid">
-                <div class="row mb-2">
-                    <div class="col-sm-6">
-                        <h1>Evenements</h1>
+        <div class="content-wrapper">
+            <!-- Content Header (Page header) -->
+            <section class="content-header">
+                <div class="container-fluid">
+                    <div class="row mb-2">
+                        <div class="col-sm-6">
+                            <h1>Evenements</h1>
+                        </div>
+                        <div class="col-sm-6">
+                            <ol class="breadcrumb float-sm-right">
+                                <li class="breadcrumb-item"><a href="#">Home</a></li>
+                                <li class="breadcrumb-item active">Evenements</li>
+                            </ol>
+                        </div>
                     </div>
-                    <div class="col-sm-6">
-                        <ol class="breadcrumb float-sm-right">
-                            <li class="breadcrumb-item"><a href="#">Home</a></li>
-                            <li class="breadcrumb-item active">Evenements</li>
-                        </ol>
+                </div><!-- /.container-fluid -->
+            </section>
+            <section class="content">
+
+                <!-- Default box -->
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title"></h3>
+
+
                     </div>
+                    <div class="card-body p-0">
+                        <table class="table table-striped projects">
+                            <thead>
+                            <tr>
+
+                                <th style="width: 15%">
+                                    Evenement
+                                </th>
+                                <th style="width: 15%">
+                                    Name
+                                </th>
+                                <th>
+                                    participants
+                                </th>
+                                <th style="width: 8%" >
+                                    Date
+                                </th>
+                                <th style="width: 8%" >
+                                    Heure
+                                </th>
+                                <th style="width: 20%">
+                                </th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for o in evenement %}
+                                <tr>
+
+                                    <td>
+                                        <ul class="list-inline">
+                                            <li class="list-inline-item">
+                                                {% set imageur = o.image|split('/')  %}
+                                                {%  set imageur = imageur[imageur|length-1] %}
+                                                {% set imageurl = "front/images/"~imageur %}
+
+
+
+                                                <img class="table-avatar" src="{{ asset(imageurl) }}" alt="image" />
+                                            </li>
+                                        </ul>
+                                    </td>
+                                    <td>
+                                        <a>
+                                            {{ o.nom }}
+                                        </a>
+                                    </td>
+                                    <td class="project_progress">
+                                        <div class="progress progress-sm">
+                                            {% set pourcent = (o.nbparticipant * 100)/o.nbplace %}
+                                            <div class="progress-bar bg-green" role="progressbar" aria-volumenow="10" aria-volumemin="0" aria-volumemax="100" style="width: {{ pourcent }}%">
+                                            </div>
+                                        </div>
+                                        <small>
+                                            {{ o.nbparticipant }} / {{ o.nbplace }} participants
+                                        </small>
+                                    </td>
+                                    <td class="project-state">
+                                        <a>
+                                            {{ o.date|date('d/m/Y') }}
+                                        </a>
+                                    </td>
+                                    <td class="project-state">
+                                        <a>
+                                            {{ o.date|date('H:II') }}
+                                        </a>
+                                    </td>
+                                    <td class="project-actions text-right">
+                                        <a class="btn btn-primary btn-sm" href="{{ path('nozelites_adminEvenementPageback',{'id':o.ide}) }}">
+                                            <i class="fas fa-folder">
+                                            </i>
+                                            View
+                                        </a>
+
+
+                                        <a class="btn btn-danger btn-sm" href="{{ path('nozelites_adminEvenementAllsupprimerback',{'id':o.ide}) }}">
+                                            <i class="fas fa-trash">
+                                            </i>
+                                            Delete
+                                        </a>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                    <!-- /.card-body -->
                 </div>
-            </div><!-- /.container-fluid -->
-        </section>
-    <section class="content">
+                <!-- /.card -->
 
-        <!-- Default box -->
-        <div class="card">
-            <div class="card-header">
-                <h3 class="card-title"></h3>
-
-
-            </div>
-            <div class="card-body p-0">
-                <table class="table table-striped projects">
-                    <thead>
-                    <tr>
-
-                        <th style="width: 15%">
-                            Evenement
-                        </th>
-                        <th style="width: 15%">
-                            Name
-                        </th>
-                        <th>
-                            participants
-                        </th>
-                        <th style="width: 8%" >
-                            Date
-                        </th>
-                        <th style="width: 8%" >
-                            Heure
-                        </th>
-                        <th style="width: 20%">
-                        </th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    {% for o in evenement %}
-                    <tr>
-
-                        <td>
-                            <ul class="list-inline">
-                                <li class="list-inline-item">
-
-                                    <img class="table-avatar" src="{{ asset('front/images/'~ o.image) }}" alt="image" />
-                                </li>
-                            </ul>
-                        </td>
-                        <td>
-                            <a>
-                                {{ o.nom }}
-                            </a>
-                        </td>
-                        <td class="project_progress">
-                            <div class="progress progress-sm">
-                                {% set pourcent = (o.nbparticipant * 100)/o.nbplace %}
-                                <div class="progress-bar bg-green" role="progressbar" aria-volumenow="10" aria-volumemin="0" aria-volumemax="100" style="width: {{ pourcent }}%">
-                                </div>
-                            </div>
-                            <small>
-                                {{ o.nbparticipant }} / {{ o.nbplace }} participants
-                            </small>
-                        </td>
-                        <td class="project-state">
-                            <a>
-                                {{ o.date|date('d/m/Y') }}
-                            </a>
-                        </td>
-                        <td class="project-state">
-                            <a>
-                                {{ o.date|date('H:II') }}
-                            </a>
-                        </td>
-                        <td class="project-actions text-right">
-                            <a class="btn btn-primary btn-sm" href="#">
-                                <i class="fas fa-folder">
-                                </i>
-                                View
-                            </a>
-
-
-                            <a class="btn btn-danger btn-sm" href="{{ path('nozelites_adminEvenementAllsupprimerback',{'id':o.ide}) }}">
-                                <i class="fas fa-trash">
-                                </i>
-                                Delete
-                            </a>
-                        </td>
-                    </tr>
-                    {% endfor %}
-                    </tbody>
-                </table>
-            </div>
-            <!-- /.card-body -->
+            </section>
         </div>
-        <!-- /.card -->
-
-    </section>
-    </div>
     </div>
 {% endblock %}

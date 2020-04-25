@@ -30,6 +30,7 @@
       <excludeFolder url="file://$MODULE_DIR$/Nozelites/vendor/friendsofsymfony/user-bundle" />
       <excludeFolder url="file://$MODULE_DIR$/Nozelites/vendor/incenteev/composer-parameter-handler" />
       <excludeFolder url="file://$MODULE_DIR$/Nozelites/vendor/jdorn/sql-formatter" />
+      <excludeFolder url="file://$MODULE_DIR$/Nozelites/vendor/jms/metadata" />
       <excludeFolder url="file://$MODULE_DIR$/Nozelites/vendor/knplabs/knp-components" />
       <excludeFolder url="file://$MODULE_DIR$/Nozelites/vendor/knplabs/knp-paginator-bundle" />
       <excludeFolder url="file://$MODULE_DIR$/Nozelites/vendor/knplabs/knp-snappy" />
@@ -58,6 +59,7 @@
       <excludeFolder url="file://$MODULE_DIR$/Nozelites/vendor/symfony/swiftmailer-bundle" />
       <excludeFolder url="file://$MODULE_DIR$/Nozelites/vendor/symfony/symfony" />
       <excludeFolder url="file://$MODULE_DIR$/Nozelites/vendor/twig/twig" />
+      <excludeFolder url="file://$MODULE_DIR$/Nozelites/vendor/vich/uploader-bundle" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
