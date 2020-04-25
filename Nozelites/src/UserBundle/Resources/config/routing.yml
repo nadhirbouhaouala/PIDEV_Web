@@ -1,4 +1,14 @@
 user_homepage:
     path:     /homepage
     defaults: { _controller: UserBundle:Default:index }
+formation_supp:
+    path:     /supprimerFormation/{id}
+    defaults: { _controller: UserBundle:Formation:supprimerFormation }
 
+user_list:
+    path:     /listUser
+    defaults: { _controller: UserBundle:User:ShowUser }
+
+user_single:
+    path:     /singleUser/{id}
+    defaults: { _controller: UserBundle:User:afficherUnUser }

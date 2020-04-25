@@ -5,7 +5,7 @@ namespace NozelitesBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Listparticipant
+ * listparticipant
  *
  * @ORM\Table(name="listparticipant", indexes={@ORM\Index(name="fk_ide", columns={"idE"}), @ORM\Index(name="id_m", columns={"idm"})})
  * @ORM\Entity
@@ -20,6 +20,22 @@ class Listparticipant
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     private $idp;
+
+    /**
+     * @return int
+     */
+    public function getIdp()
+    {
+        return $this->idp;
+    }
+
+    /**
+     * @param int $idp
+     */
+    public function setIdp($idp)
+    {
+        $this->idp = $idp;
+    }
 
 
     /**

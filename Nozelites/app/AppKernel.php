@@ -19,9 +19,13 @@ class AppKernel extends Kernel
             new Knp\Bundle\SnappyBundle\KnpSnappyBundle(),//snappy bundle
             new AppBundle\AppBundle(),
             new NozelitesBundle\NozelitesBundle(),
+
+            new Vich\UploaderBundle\VichUploaderBundle(),
+
             new OffreBundle\OffreBundle(),
             new Knp\Bundle\PaginatorBundle\KnpPaginatorBundle(),
             new CMEN\GoogleChartsBundle\CMENGoogleChartsBundle(),
+
             new FOS\UserBundle\FOSUserBundle(),
             new UserBundle\UserBundle(),
             new ReclamationBundle\ReclamationBundle(),

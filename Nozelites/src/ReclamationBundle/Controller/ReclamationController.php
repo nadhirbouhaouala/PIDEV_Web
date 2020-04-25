@@ -32,7 +32,7 @@ class ReclamationController extends Controller
           //  $groups = $em->getRepository('ReclamationBundle:Groupe')
            //     ->find($idcible);
             $idmemb=$reclamation->getIdEmeteur();
-            $membres = $em->getRepository('ReclamationBundle:Membre')
+            $membres = $em->getRepository('NozelitesBundle:Membre')
                ->find($idmemb);
            // $groups = $em->getRepository('ReclamationBundle:Evenement')
               //  ->find($idcible);

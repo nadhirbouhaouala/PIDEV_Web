@@ -41,4 +41,4 @@ services:
     app.form.profile:
         class: UserBundle\Form\ProfilType
         tags:
-            - { name: form.type , alias: app_user_profil }
+            - { name: form.type , alias: app_user_profil     }

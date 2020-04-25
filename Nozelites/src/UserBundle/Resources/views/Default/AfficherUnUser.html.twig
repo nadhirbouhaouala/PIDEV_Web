@@ -1,0 +1,167 @@
+{%  extends '@Nozelites/basefrontmembre.html.twig' %}
+
+{% block content %}
+    <div class="single-page-header freelancer-header" data-background-image="images/single-freelancer.jpg">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="single-page-header-inner">
+                        <div class="left-side">
+                            <div class="header-image freelancer-avatar"><img src="{{ asset('images/profile/'~ membre.imageName)}}" alt=""></div>
+                            <div class="header-details">
+                                <h3>{{ membre.prenom }} {{membre.nom}} <span></span></h3>
+                                <ul>
+                                    <li><div class=> # {{membre.username}}</div></li>
+                                    <li><img class="flag" src="images/flags/de.svg" alt=""> {{membre.age}} ans</li>
+                                    <li><div class="verified-badge-with-title">Verified</div></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Page Content
+    ================================================== -->
+    <div class="container">
+        <div class="row">
+
+            <!-- Content -->
+            <div class="col-xl-8 col-lg-8 content-right-offset">
+
+                <!-- Page Content -->
+
+
+                <!-- Boxed List -->
+                <div class="boxed-list margin-bottom-60">
+                    <div class="boxed-list-headline">
+                        <h3><i class="icon-material-outline-thumb-up"></i> Portfolio</h3>
+                    </div>
+                    <ul class="boxed-list-ul">
+                        <li>
+                            <div class="boxed-list-item">
+                                <!-- Content -->
+                                <div class="item-content">
+                                    <h4>Web, Database and API Developer <span>Rated as Freelancer</span></h4>
+                                    <div class="item-details margin-top-10">
+                                        <div class="star-rating" data-rating="5.0"></div>
+                                        <div class="detail-item"><i class="icon-material-outline-date-range"></i> August 2018</div>
+                                    </div>
+                                    <div class="item-description">
+                                        <p>Excellent programmer - fully carried out my project in a very professional manner. </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+
+                    </ul>
+
+                    <!-- Pagination -->
+                    <div class="clearfix"></div>
+                    <div class="pagination-container margin-top-40 margin-bottom-10">
+                        <nav class="pagination">
+                            <ul>
+                                <li><a href="#" class="ripple-effect current-page">1</a></li>
+                                <li><a href="#" class="ripple-effect">2</a></li>
+                                <li class="pagination-arrow"><a href="#" class="ripple-effect"><i class="icon-material-outline-keyboard-arrow-right"></i></a></li>
+                            </ul>
+                        </nav>
+                    </div>
+                    <div class="clearfix"></div>
+                    <!-- Pagination / End -->
+
+                </div>
+                <!-- Boxed List / End -->
+
+                <!-- Boxed List -->
+                <div class="boxed-list margin-bottom-60">
+                    <div class="boxed-list-headline">
+                        <h3><i class="icon-material-outline-business"></i> Diplomes</h3>
+                    </div>
+                    <ul class="boxed-list-ul">
+                        {% for diplome in diplomes %}
+                        <li>
+                            <div class="boxed-list-item">
+                                <!-- Avatar -->
+
+
+                                <!-- Content -->
+                                <div class="item-content">
+                                    <i class="icon-feather-book-open"></i>
+                                    <h4>{{diplome.domaine}}</h4>
+                                    <div class="item-details margin-top-7">
+                                        <div class="detail-item"><i class="icon-material-outline-business"></i>{{ diplome.organisation }}</div>
+                                        <div class="detail-item"><i class="icon-material-outline-date-range"></i> {{ diplome.date }}</div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                <!-- Boxed List / End -->
+
+            </div>
+
+
+            <!-- Sidebar -->
+            <div class="col-xl-4 col-lg-4">
+                <div class="sidebar-container">
+
+                    <!-- Profile Overview -->
+
+
+                    <!-- Button -->
+                    <a href="#small-dialog" class="apply-now-button popup-with-zoom-anim margin-bottom-50">Envoyer Une Offre <i class="icon-material-outline-arrow-right-alt"></i></a>
+
+                    <!-- Freelancer Indicators -->
+                    <div class="sidebar-widget">
+
+                    </div>
+
+                    <!-- Widget -->
+
+
+                    <!-- Widget -->
+                    <div class="sidebar-widget">
+                        <h3>Formations</h3>
+                        <div class="task-tags">
+
+                            {% for formation in formations %}
+
+                                    <span>{{ formation.titre }}</span>
+
+                            {% endfor %}
+                        </div>
+                    </div>
+
+                    <!-- Widget -->
+                    <div class="sidebar-widget">
+
+                        <h3>Contact</h3>
+                        <div class="freelancer-socials margin-top-25">
+
+                            <i class = "icon-material-outline-email"></i> Email : {{ membre.email }}<br>
+                            <i class =" icon-feather-phone"></i> Téléphone : {{ membre.telephone }}
+
+                        </div>
+
+                    </div>
+
+                    <!-- Sidebar Widget -->
+
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+    <!-- Spacer -->
+    <div class="margin-top-15"></div>
+{% endblock %}
