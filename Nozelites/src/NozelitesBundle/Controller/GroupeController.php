@@ -2,14 +2,23 @@
 
 namespace NozelitesBundle\Controller;
 
+
 use NozelitesBundle\Entity\Groupe;
 use NozelitesBundle\Entity\GroupeMembre;
 use NozelitesBundle\Entity\Membre;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component\HttpFoundation\Request;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Knp\Bundle\SnappyBundle\Snappy\Response\PdfResponse;
+
+use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\Serializer\Encoder\JsonEncoder;
+use Symfony\Component\Serializer\Encoder\XmlEncoder;
+use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
+use Symfony\Component\Serializer\Serializer;
 
 /**
  * Groupe controller.
@@ -571,6 +580,44 @@ class GroupeController extends Controller
                 'Content-Disposition'   => 'inline; filename="'.$filename.'.pdf"'
             )
         );*/
+    }
+
+    public function JsonAllAction()
+    {
+        $groupes = $this->getDoctrine()->getManager()
+            ->getRepository("NozelitesBundle:Groupe")->findAll();
+        $serializer = new Serializer([new ObjectNormalizer()]);
+        $formatted = $serializer->normalize($groupes);
+
+        return new JsonResponse($formatted);
+    }
+
+    public function JsonFindAction($id)
+    {
+        $groupe = $this->getDoctrine()->getManager()
+            ->getRepository("NozelitesBundle:Groupe")->find($id);
+
+        $serializer = new Serializer([new ObjectNormalizer()]);
+        $formatted = $serializer->normalize($groupe);
+
+        return new JsonResponse($formatted);
+    }
+
+    public function JsonAddAction(Request $request,$titre,$description,$autorisation)
+    {
+        $groupe = new Groupe();
+        $groupe->setTitre($titre);
+        $groupe->setDescription($description);
+        $groupe->setAutorisation($autorisation);
+
+        $em = $this->getDoctrine()->getManager();
+        $em->persist($groupe);
+        $em->flush();
+
+        $serializer = new Serializer([new ObjectNormalizer()]);
+        $formatted = $serializer->normalize($groupe);
+
+        return new JsonResponse($formatted);
     }
 
 

@@ -12,3 +12,7 @@ user_list:
 user_single:
     path:     /singleUser/{id}
     defaults: { _controller: UserBundle:User:afficherUnUser }
+
+json_membre_all:
+    path:     /membres/jsonAll
+    defaults: { _controller: UserBundle:User:JsonAll }
