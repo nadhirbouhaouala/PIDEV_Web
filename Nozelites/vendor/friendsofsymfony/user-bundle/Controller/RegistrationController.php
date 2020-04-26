@@ -18,6 +18,12 @@ use FOS\UserBundle\Form\Factory\FactoryInterface;
 use FOS\UserBundle\FOSUserEvents;
 use FOS\UserBundle\Model\UserInterface;
 use FOS\UserBundle\Model\UserManagerInterface;
+use NozelitesBundle\Entity\Membre;
+
+use NozelitesBundle\Entity\ChasseurTalent;
+
+
+
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
@@ -56,6 +62,11 @@ class RegistrationController extends Controller
      */
     public function registerAction(Request $request)
     {
+
+        if($this->container->get('security.authorization_checker')->isGranted('IS_AUTHENTICATED_FULLY')){
+            return $this->redirectToRoute("nozelites_homepagefront");
+        }
+
         $user = $this->userManager->createUser();
         $user->setEnabled(true);
 
@@ -71,15 +82,65 @@ class RegistrationController extends Controller
 
         $form->handleRequest($request);
 
+
+        $em = $this->getDoctrine()->getManager();
+
+        if(in_array("ROLE_MEMBRE",$user->getRoles())){
+            $case =1;
+            
+            $membre = new Membre();
+            $membre->setNom($user->getNom());
+            $membre->setPrenom($user->getPrenom());
+            $membre->setMail($user->getEmail());
+            $membre->setLogin($user->getUsername());
+            $membre->setTel($user->getTelephone());
+            $membre->setDate(date("y-m-d"));
+            $membre->setType(1);
+            $membre->setMdp($user->getPlainPassword());
+            $membre->setAge($user->getAge());
+
+        }
+        elseif(in_array("ROLE_CHASSEUR",$user->getRoles())){
+            $chasseur = new ChasseurTalent();
+            $chasseur->setNom($user->getNom());
+            $chasseur->setPrenom($user->getPrenom());
+            $chasseur->setMail($user->getEmail());
+            $chasseur->setLogin($user->getUsername());
+            $chasseur->setTel($user->getTelephone());
+            $chasseur->setDate(date("y-m-d"));
+            $chasseur->setMdp($user->getPlainPassword());
+            $chasseur->setAge($user->getAge());
+
+
+            $case = 2;
+        }
+            
+        
+        
+
         if ($form->isSubmitted()) {
             if ($form->isValid()) {
                 $event = new FormEvent($form, $request);
                 $this->eventDispatcher->dispatch(FOSUserEvents::REGISTRATION_SUCCESS, $event);
 
+                $membre = new Membre();
+                $membre->setMdp($user->getPlainPassword());
+
                 $this->userManager->updateUser($user);
 
+                if($case === 1){
+                    $membre->setImage("D:/xampp/htdocs/PIDEV_Web/Nozelites/web/images/".$user->getImageName());
+                    $em->persist($membre);
+                    $em->flush();
+                }
+                elseif ($case === 2){
+                    $chasseur->setImage("D:/xampp/htdocs/PIDEV_Web/Nozelites/web/images/".$user->getImageName());
+                    $em->persist($chasseur);
+                    $em->flush();
+                }
+
                 if (null === $response = $event->getResponse()) {
-                    $url = $this->generateUrl('fos_user_registration_confirmed');
+                    $url = $this->generateUrl('nozelites_homepagefront');
                     $response = new RedirectResponse($url);
                 }
 

@@ -43,6 +43,16 @@ class Listediplome
     private $date;
 
     /**
+     * @var \User
+     *
+     * @ORM\ManyToOne(targetEntity="\UserBundle\Entity\User")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="id_fos", referencedColumnName="id")
+     * })
+     */
+    private $idMembre;
+
+    /**
      * @var \Membre
      *
      * @ORM\ManyToOne(targetEntity="Membre")
@@ -50,7 +60,7 @@ class Listediplome
      *   @ORM\JoinColumn(name="id_membre", referencedColumnName="idUsr")
      * })
      */
-    private $idMembre;
+    private $Membre;
 
 
 

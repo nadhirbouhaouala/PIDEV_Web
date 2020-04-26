@@ -1,0 +1,9 @@
+{{ form_start(formSearch, {
+    'attr': {'action' : path ('user_list'),'placeholder': "Saisissez un nom"}
+}) }}
+
+{{ form_widget(formSearch.search, {
+    'attr': {'placeholder': "Saisissez un nom"}
+} )}}
+
+{{ form_end(formSearch) }}

@@ -22,11 +22,37 @@ class Formation
     private $idFormation;
 
     /**
+     * @return \Membre
+     */
+    public function getMembre()
+    {
+        return $this->Membre;
+    }
+
+    /**
+     * @param \Membre $Membre
+     */
+    public function setMembre($Membre)
+    {
+        $this->Membre = $Membre;
+    }
+
+    /**
      * @var string
      *
      * @ORM\Column(name="titre", type="string", length=255, nullable=false)
      */
     private $titre;
+
+    /**
+     * @var \User
+     *
+     * @ORM\ManyToOne(targetEntity="\UserBundle\Entity\User")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="id_fos", referencedColumnName="id")
+     * })
+     */
+    private $idMembre;
 
     /**
      * @var \Membre
@@ -36,9 +62,7 @@ class Formation
      *   @ORM\JoinColumn(name="id_membre", referencedColumnName="idUsr")
      * })
      */
-    private $idMembre;
-
-
+    private $Membre;
 
     /**
      * Get idFormation
@@ -75,26 +99,21 @@ class Formation
     }
 
     /**
-     * Set idMembre
-     *
-     * @param \NozelitesBundle\Entity\Membre $idMembre
-     *
-     * @return Formation
-     */
-    public function setIdMembre(\NozelitesBundle\Entity\Membre $idMembre = null)
-    {
-        $this->idMembre = $idMembre;
-
-        return $this;
-    }
-
-    /**
-     * Get idMembre
-     *
-     * @return \NozelitesBundle\Entity\Membre
+     * @return \Membre
      */
     public function getIdMembre()
     {
         return $this->idMembre;
     }
+
+    /**
+     * @param \Membre $idMembre
+     */
+    public function setIdMembre($idMembre)
+    {
+        $this->idMembre = $idMembre;
+    }
+
+
+
 }

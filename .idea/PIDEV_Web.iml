@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module type="WEB_MODULE" version="4">
+  <component name="NewModuleRootManager">
+    <content url="file://$MODULE_DIR$">
+<<<<<<< HEAD
+      <sourceFolder url="file://$MODULE_DIR$/Nozelites/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Nozelites/tests" isTestSource="true" packagePrefix="Tests\" />
+      <sourceFolder url="file://$MODULE_DIR$/tests" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/spec" isTestSource="true" />
+=======
+      <sourceFolder url="file://$MODULE_DIR$/tests" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/spec" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/Nozelites/tests" isTestSource="true" packagePrefix="Tests\" />
+      <sourceFolder url="file://$MODULE_DIR$/Nozelites/src" isTestSource="false" />
+>>>>>>> 4d0b8d48dda3f80f35525b197af86ab22e6495d9
+      <excludeFolder url="file://$MODULE_DIR$/Nozelites/vendor/cmen/google-charts-bundle" />
+      <excludeFolder url="file://$MODULE_DIR$/Nozelites/vendor/composer" />
+      <excludeFolder url="file://$MODULE_DIR$/Nozelites/vendor/doctrine/annotations" />
+      <excludeFolder url="file://$MODULE_DIR$/Nozelites/vendor/doctrine/cache" />
+      <excludeFolder url="file://$MODULE_DIR$/Nozelites/vendor/doctrine/collections" />
+      <excludeFolder url="file://$MODULE_DIR$/Nozelites/vendor/doctrine/common" />
+      <excludeFolder url="file://$MODULE_DIR$/Nozelites/vendor/doctrine/dbal" />
+      <excludeFolder url="file://$MODULE_DIR$/Nozelites/vendor/doctrine/doctrine-bundle" />
+      <excludeFolder url="file://$MODULE_DIR$/Nozelites/vendor/doctrine/doctrine-cache-bundle" />
+      <excludeFolder url="file://$MODULE_DIR$/Nozelites/vendor/doctrine/inflector" />
+      <excludeFolder url="file://$MODULE_DIR$/Nozelites/vendor/doctrine/instantiator" />
+      <excludeFolder url="file://$MODULE_DIR$/Nozelites/vendor/doctrine/lexer" />
+      <excludeFolder url="file://$MODULE_DIR$/Nozelites/vendor/doctrine/orm" />
+      <excludeFolder url="file://$MODULE_DIR$/Nozelites/vendor/fig/link-util" />
+      <excludeFolder url="file://$MODULE_DIR$/Nozelites/vendor/friendsofsymfony/user-bundle" />
+      <excludeFolder url="file://$MODULE_DIR$/Nozelites/vendor/incenteev/composer-parameter-handler" />
+      <excludeFolder url="file://$MODULE_DIR$/Nozelites/vendor/jdorn/sql-formatter" />
+      <excludeFolder url="file://$MODULE_DIR$/Nozelites/vendor/jms/metadata" />
+      <excludeFolder url="file://$MODULE_DIR$/Nozelites/vendor/knplabs/knp-components" />
+      <excludeFolder url="file://$MODULE_DIR$/Nozelites/vendor/knplabs/knp-paginator-bundle" />
+      <excludeFolder url="file://$MODULE_DIR$/Nozelites/vendor/knplabs/knp-snappy" />
+      <excludeFolder url="file://$MODULE_DIR$/Nozelites/vendor/knplabs/knp-snappy-bundle" />
+      <excludeFolder url="file://$MODULE_DIR$/Nozelites/vendor/monolog/monolog" />
+      <excludeFolder url="file://$MODULE_DIR$/Nozelites/vendor/paragonie/random_compat" />
+      <excludeFolder url="file://$MODULE_DIR$/Nozelites/vendor/psr/cache" />
+      <excludeFolder url="file://$MODULE_DIR$/Nozelites/vendor/psr/container" />
+      <excludeFolder url="file://$MODULE_DIR$/Nozelites/vendor/psr/link" />
+      <excludeFolder url="file://$MODULE_DIR$/Nozelites/vendor/psr/log" />
+      <excludeFolder url="file://$MODULE_DIR$/Nozelites/vendor/psr/simple-cache" />
+      <excludeFolder url="file://$MODULE_DIR$/Nozelites/vendor/sensio/distribution-bundle" />
+      <excludeFolder url="file://$MODULE_DIR$/Nozelites/vendor/sensio/framework-extra-bundle" />
+      <excludeFolder url="file://$MODULE_DIR$/Nozelites/vendor/sensio/generator-bundle" />
+      <excludeFolder url="file://$MODULE_DIR$/Nozelites/vendor/sensiolabs/security-checker" />
+      <excludeFolder url="file://$MODULE_DIR$/Nozelites/vendor/swiftmailer/swiftmailer" />
+      <excludeFolder url="file://$MODULE_DIR$/Nozelites/vendor/symfony/monolog-bundle" />
+      <excludeFolder url="file://$MODULE_DIR$/Nozelites/vendor/symfony/phpunit-bridge" />
+      <excludeFolder url="file://$MODULE_DIR$/Nozelites/vendor/symfony/polyfill-apcu" />
+      <excludeFolder url="file://$MODULE_DIR$/Nozelites/vendor/symfony/polyfill-ctype" />
+      <excludeFolder url="file://$MODULE_DIR$/Nozelites/vendor/symfony/polyfill-intl-icu" />
+      <excludeFolder url="file://$MODULE_DIR$/Nozelites/vendor/symfony/polyfill-mbstring" />
+      <excludeFolder url="file://$MODULE_DIR$/Nozelites/vendor/symfony/polyfill-php56" />
+      <excludeFolder url="file://$MODULE_DIR$/Nozelites/vendor/symfony/polyfill-php70" />
+      <excludeFolder url="file://$MODULE_DIR$/Nozelites/vendor/symfony/polyfill-util" />
+      <excludeFolder url="file://$MODULE_DIR$/Nozelites/vendor/symfony/swiftmailer-bundle" />
+      <excludeFolder url="file://$MODULE_DIR$/Nozelites/vendor/symfony/symfony" />
+      <excludeFolder url="file://$MODULE_DIR$/Nozelites/vendor/twig/twig" />
+      <excludeFolder url="file://$MODULE_DIR$/Nozelites/vendor/vich/uploader-bundle" />
+    </content>
+    <orderEntry type="inheritedJdk" />
+    <orderEntry type="sourceFolder" forTests="false" />
+  </component>
+</module>

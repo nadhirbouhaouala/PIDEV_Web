@@ -1,0 +1,79 @@
+publication_homepage:
+    path:     /index
+    defaults: { _controller: PublicationBundle:Default:index }
+
+Ajouter:
+    path:     /AjoutPublication
+    defaults: { _controller: PublicationBundle:Publication:Ajouter }
+
+Afficher:
+    path:     /AffichePublication
+    defaults: { _controller: PublicationBundle:Publication:Affichepub }
+
+Delete:
+    path:     /DeletePublication/{id}
+    defaults: { _controller: PublicationBundle:Publication:Delete }
+
+Update:
+    path:     /UpdatePublication/{id}
+    defaults: { _controller: PublicationBundle:Publication:Update }
+
+Commentaire:
+    path:     /Commentaire/{id}
+    defaults: { _controller: PublicationBundle:Publication:Commentaire }
+
+AfficherComm:
+    path:     /AfficherCommentaire
+    defaults: { _controller: PublicationBundle:Publication:AfficheComm }
+
+AjouterComm:
+    path:     /AjoutCommentaire/{id}
+    defaults: { _controller: PublicationBundle:Publication:AjouterComm }
+
+jaime:
+    path:     /jaime/{id}
+    defaults: { _controller: PublicationBundle:Publication:jaime }
+
+Imprimer:
+    path:     /Imprimer/{id}
+    defaults: { _controller: PublicationBundle:Publication:Imprimer }
+
+Topone:
+    path:     /Topone
+    defaults: { _controller: PublicationBundle:Publication:Topeone }
+
+Affichercommentaire:
+    path:     /Affichecommentaire
+    defaults: { _controller: PublicationBundle:Publication:Affichecommentaire }
+
+Updatecomm:
+    path:     /Updatecommentaire/{idCommentaire}
+    defaults: { _controller: PublicationBundle:Publication:Updatecomm }
+
+Deletecomm:
+    path:     /Deletecommentaire/{idCommentaire}
+    defaults: { _controller: PublicationBundle:Publication:Deletecomm }
+
+map:
+    path:     /map
+    defaults: { _controller: PublicationBundle:Publication:map }
+
+Afficherback:
+    path:     /AffichePublicationback
+    defaults: { _controller: PublicationBundle:Publication:Affichepubback }
+
+Deleteback:
+    path:     /DeletePublicationback/{id}
+    defaults: { _controller: PublicationBundle:Publication:Deleteback }
+
+Updateback:
+    path:     /UpdatePublicationback/{id}
+    defaults: { _controller: PublicationBundle:Publication:Updateback }
+
+Affichercommback:
+    path:     /Affichecommentaireback
+    defaults: { _controller: PublicationBundle:Publication:Affichecommback }
+
+Deletecommback:
+    path:     /Deletecommentaireback/{id}
+    defaults: { _controller: PublicationBundle:Publication:Deletecommback }

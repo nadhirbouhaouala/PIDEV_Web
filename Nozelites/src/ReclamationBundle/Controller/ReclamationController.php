@@ -3,18 +3,38 @@
 namespace ReclamationBundle\Controller;
 
 use ReclamationBundle\Entity\Evaluation;
-use ReclamationBundle\Entity\Evenement;
-use ReclamationBundle\Entity\Groupe;
-use ReclamationBundle\Entity\Publication;
-use ReclamationBundle\Entity\Membre;
+use NozelitesBundle\Entity\Evenement;
+use NozelitesBundle\Entity\Groupe;
+use NozelitesBundle\Entity\Publication;
+use NozelitesBundle\Entity\Membre;
 use ReclamationBundle\Entity\Reclamation;
 use ReclamationBundle\Form\ReclamationType;
 use ReclamationBundle\Form\UpdateType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 
+
 class ReclamationController extends Controller
 {
+    public function getRealIdAction()
+    {
+        $user = $this->getUser();
+        $mail = $user->getEmail();
+
+        if (in_array("ROLE_MEMBRE", $user->getRoles())) {
+
+            $em = $this->getDoctrine()->getManager();
+            $membre = $em->getRepository('NozelitesBundle:Membre')->findOneBymail($mail);
+            return $membre->getIdusr();
+
+        }
+        elseif (in_array("ROLE_CHASSEUR", $user->getRoles())) {
+
+            $em = $this->getDoctrine()->getManager();
+            $chasseur = $em->getRepository('NozelitesBundle:ChasseurTalent')->findOneBymail($mail);
+            return $chasseur->getIdusr();
+        }
+    }
 
     public function AjouterAction(Request $request)
     { // $id_membre_actif = 9;
@@ -32,7 +52,7 @@ class ReclamationController extends Controller
           //  $groups = $em->getRepository('ReclamationBundle:Groupe')
            //     ->find($idcible);
             $idmemb=$reclamation->getIdEmeteur();
-            $membres = $em->getRepository('ReclamationBundle:Membre')
+            $membres = $em->getRepository('NozelitesBundle:Membre')
                ->find($idmemb);
            // $groups = $em->getRepository('ReclamationBundle:Evenement')
               //  ->find($idcible);
@@ -113,31 +133,6 @@ $mail="mohamedkheireddine.bairam@esprit.tn";
     }
 
 
-    /* function AfficheRecAction(){
-        $user = $this->get('security.token_storage')->getToken()->getUser();
-     //   $Reclamation=$this->getDoctrine()
-          //  ->getRepository(Reclamation::class)
-          //  ->findAll();
-$ide=5;
-        $Reclamation=$this->getDoctrine()
-            ->getRepository(Reclamation::class)
-            ->findAll();
-
-        $membre=$this->getDoctrine()
-            ->getRepository(Membre::class)
-            ->findBy(array('idusr'=>$user));
-
-        $groups=$this->getDoctrine()
-
-            ->getRepository(Groupe::class)
-            ->findBy(array('idGroupe'=>$user));
-        $event=$this->getDoctrine()
-            ->getRepository(Reclamation::class)
-            ->findBy(array('idCible'=>$ide));
-        return $this->render('@Reclamation/Front/AfficheReclamation.html.twig',
-            array('R'=>$Reclamation,'IdEmeteur' => $membre,'idCible' => $groups,'idCible' => $event));
-    }*/
-
 
     function AfficheRec1Action(){
         $user = $this->get('security.token_storage')->getToken()->getUser();
@@ -200,27 +195,27 @@ $ide=5;
     public function Ajouter1Action(Request $request,$id,$type)
     {
 
-      $id_emeteur = 9;
+      $id_emeteur = $this->getRealIdAction();
 
         $em = $this->getDoctrine()->getManager();
-       $membres = $em->getRepository('ReclamationBundle:Membre')->findAll();
-       $membrecn = $em->getRepository('ReclamationBundle:Membre')->find($id_emeteur);
+       $membres = $em->getRepository('NozelitesBundle:Membre')->findAll();
+       $membrecn = $em->getRepository('NozelitesBundle:Membre')->find($id_emeteur);
         $entity = "";$resultat= 0;
         if($type=="groupe")
         {
-            $entity='ReclamationBundle:Groupe';
+            $entity='NozelitesBundle:Groupe';
             $resultat = $em->getRepository($entity)->find($id);
             $resultat = $resultat->getIdGroupe();
         }
         else if($type=="evenement")
         {
-            $entity='ReclamationBundle:Evenement';
+            $entity='NozelitesBundle:Evenement';
             $resultat = $em->getRepository($entity)->find($id);
             $resultat = $resultat->getIdE();
         }
         else if($type=="pub")
         {
-            $entity='ReclamationBundle:Publication';
+            $entity='NozelitesBundle:Publication';
             $resultat = $em->getRepository($entity)->find($id);
         }
 
@@ -230,14 +225,18 @@ $ide=5;
 
             $reclamation = new Reclamation();
 
-            //$reclamation->setIdEmeteur($id_emeteur);
-           //$reclamation->setIdEmeteur($membrecn);
-            //$reclamation->setIdCible($groupss);//
+
+           $c = new Membre();
+           $id = $this->getRealIdAction();
+           $c->setIdusr($id); //Id du chasseur connecté
+           $reclamation->setIdEmeteur($c);
+
             $reclamation->setDescription($request->get('description'));
             $reclamation->setSelecteur($request->get('selecteur'));
             $reclamation->setEtat(0);
             $reclamation->setDate(new  \DateTime("now + 1 hour"));
-            $reclamation->setIdEmeteur($membres[1]);
+
+           // $reclamation->setIdEmeteur($membres[1]);
             $reclamation->setIdCible($id);
             $em->persist($reclamation);
             $em->flush();

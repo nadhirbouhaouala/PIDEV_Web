@@ -1,0 +1,87 @@
+{% extends '@Publication/Back/Back.html.twig' %}
+{% block titre %}{{ parent() }} - Acceuil {% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <!-- DataTables -->
+    <link rel="stylesheet" href="{{ asset('plugins/datatables-bs4/css/dataTables.bootstrap4.css') }}">
+{% endblock %}
+
+{% block content %}
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+
+        <!-- Main content -->
+        <section class="content">
+            <div class="row">
+                <div class="col-12">
+
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="card-title">Commmentaire</h3>
+                        </div>
+                        <!-- /.card-header -->
+                        <div class="card-body">
+                            <table id="tableau" class="table table-bordered table-striped">
+                                <thead>
+                                <tr>
+                                    <th>commentaire</th>
+
+
+
+
+
+                                    <th>Delete</th>
+
+
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {% for cc in c %}
+                                    <tr>
+                                        <td>{{ cc.commentaire }}</td>
+
+
+
+
+                                        <td>
+                                            <a href="{{ path('Deletecommback',{'id':cc.idCommentaire}) }}" class="btn btn-block btn-danger">Supprimer</a>
+                                        </td>
+                                        <td>
+
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+                                </tfoot>
+                            </table>
+                        </div>
+                        <!-- /.card-body -->
+                    </div>
+                    <!-- /.card -->
+                </div>
+                <!-- /.col -->
+            </div>
+            <!-- /.row -->
+        </section>
+
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <!-- DataTables -->
+    <script src="{{ asset('plugins/datatables/jquery.dataTables.js') }}"></script>
+    <script src="{{ asset('plugins/datatables-bs4/js/dataTables.bootstrap4.js') }}"></script>
+    <script>
+        $(function () {
+            $('#tableau').DataTable({
+                "paging": true,
+                "lengthChange": true,
+                "searching": true,
+                "ordering": true,
+                "info": true,
+                "autoWidth": false,
+            });
+        });
+    </script>
+{% endblock %}
