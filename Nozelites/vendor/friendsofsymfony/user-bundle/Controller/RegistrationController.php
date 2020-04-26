@@ -122,9 +122,7 @@ class RegistrationController extends Controller
             if ($form->isValid()) {
                 $event = new FormEvent($form, $request);
                 $this->eventDispatcher->dispatch(FOSUserEvents::REGISTRATION_SUCCESS, $event);
-
-                $membre = new Membre();
-                $membre->setMdp($user->getPlainPassword());
+                
 
                 $this->userManager->updateUser($user);
 
