@@ -160,7 +160,7 @@ class GroupeMembreController extends Controller
         return new JsonResponse($formatted);
     }
 
-    public function JsonAddAction(Request $request,$id_groupe,$id_membre,$id_invite,$etat)
+    public function JsonAddAction($id_groupe,$id_membre,$id_invite,$etat)
     {
         $em = $this->getDoctrine()->getManager();
 
@@ -171,6 +171,39 @@ class GroupeMembreController extends Controller
         $groupemembre->setEtat($etat);
 
         $em->persist($groupemembre);
+        $em->flush();
+
+        $serializer = new Serializer([new ObjectNormalizer()]);
+        $formatted = $serializer->normalize($groupemembre);
+
+        return new JsonResponse($formatted);
+    }
+
+    public function JsonEditAction($idGm,$id_groupe,$id_membre,$id_invite,$etat)
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $groupemembre = $em->getRepository("NozelitesBundle:GroupeMembre")->find($idGm);
+        $groupemembre->setIdGroupe($em->getRepository("NozelitesBundle:Groupe")->find($id_groupe));
+        $groupemembre->setIdMembre($em->getRepository("NozelitesBundle:Membre")->find($id_membre));
+        $groupemembre->setIdInvite($id_invite);
+        $groupemembre->setEtat($etat);
+
+        $em->persist($groupemembre);
+        $em->flush();
+
+        $serializer = new Serializer([new ObjectNormalizer()]);
+        $formatted = $serializer->normalize($groupemembre);
+
+        return new JsonResponse($formatted);
+    }
+
+    public function JsonDeleteAction($id)
+    {
+        $groupemembre = $this->getDoctrine()->getManager()
+            ->getRepository("NozelitesBundle:GroupeMembre")->find($id);
+        $em = $this->getDoctrine()->getManager();
+        $em->remove($groupemembre);
         $em->flush();
 
         $serializer = new Serializer([new ObjectNormalizer()]);

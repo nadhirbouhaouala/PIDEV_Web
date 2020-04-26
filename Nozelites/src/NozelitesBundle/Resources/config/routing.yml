@@ -74,8 +74,17 @@ json_groupe_find:
     path:     /groupes/jsonFind/{id}
     defaults: { _controller: NozelitesBundle:Groupe:JsonFind }
 json_groupe_add:
-    path:     /groupes/jsonadd/{titre}/{descprition}/{autorisation}
+    path:     /groupes/jsonadd/{titre}/{description}/{autorisation}
     defaults: { _controller: NozelitesBundle:Groupe:JsonAdd }
+json_groupe_lastid:
+    path:     /groupes/jsonlastid
+    defaults: { _controller: NozelitesBundle:Groupe:Jsonlastid }
+json_groupe_edit:
+    path:     /groupes/jsonedit/{id}/{titre}/{description}/{autorisation}
+    defaults: { _controller: NozelitesBundle:Groupe:JsonEdit }
+json_groupe_delete:
+    path:     /groupes/jsondelete/{id}
+    defaults: { _controller: NozelitesBundle:Groupe:JsonDelete }
 
 groupe_index:
     path:     /groupe/acceuil
@@ -128,7 +137,12 @@ json_groupemembre_find:
 json_groupemembre_add:
     path:     /groupesmembres/jsonadd/{id_groupe}/{id_membre}/{id_invite}/{etat}
     defaults: { _controller: NozelitesBundle:GroupeMembre:JsonAdd }
-
+json_groupemembre_edit:
+    path:     /groupesmembres/jsonedit/{idGm}/{id_groupe}/{id_membre}/{id_invite}/{etat}
+    defaults: { _controller: NozelitesBundle:GroupeMembre:JsonEdit }
+json_groupemembre_delete:
+    path:     /groupesmembres/jsondelete/{id}
+    defaults: { _controller: NozelitesBundle:GroupeMembre:JsonDelete }
 
 nozelites_adminEvenementback:
     path:     /backadminEvenement

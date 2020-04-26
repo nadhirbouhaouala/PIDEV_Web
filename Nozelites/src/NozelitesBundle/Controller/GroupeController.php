@@ -627,7 +627,7 @@ class GroupeController extends Controller
         return new JsonResponse($formatted);
     }
 
-    public function JsonAddAction(Request $request,$titre,$description,$autorisation)
+    public function JsonAddAction($titre,$description,$autorisation)
     {
         $groupe = new Groupe();
         $groupe->setTitre($titre);
@@ -636,6 +636,50 @@ class GroupeController extends Controller
 
         $em = $this->getDoctrine()->getManager();
         $em->persist($groupe);
+        $em->flush();
+
+        $serializer = new Serializer([new ObjectNormalizer()]);
+        $formatted = $serializer->normalize($groupe);
+
+        return new JsonResponse($formatted);
+    }
+
+    public function JsonlastidAction()
+    {
+        $em = $this->getDoctrine()->getManager();
+        $lastid = $em->getRepository('NozelitesBundle:Groupe')->findOneBy([], ['idGroupe' => 'desc'])->getIdGroupe();
+
+        $serializer = new Serializer([new ObjectNormalizer()]);
+        $formatted = $serializer->normalize($lastid);
+
+        return new JsonResponse($formatted);
+    }
+
+    public function JsonEditAction($id,$titre,$description,$autorisation)
+    {
+        $groupe = $this->getDoctrine()->getManager()
+            ->getRepository("NozelitesBundle:Groupe")->find($id);
+        $groupe->setTitre($titre);
+        $groupe->setDescription($description);
+        $groupe->setAutorisation($autorisation);
+
+        $em = $this->getDoctrine()->getManager();
+        $em->persist($groupe);
+        $em->flush();
+
+        $serializer = new Serializer([new ObjectNormalizer()]);
+        $formatted = $serializer->normalize($groupe);
+
+        return new JsonResponse($formatted);
+    }
+
+    public function JsonDeleteAction($id)
+    {
+        $groupe = $this->getDoctrine()->getManager()
+            ->getRepository("NozelitesBundle:Groupe")->find($id);
+
+        $em = $this->getDoctrine()->getManager();
+        $em->remove($groupe);
         $em->flush();
 
         $serializer = new Serializer([new ObjectNormalizer()]);
