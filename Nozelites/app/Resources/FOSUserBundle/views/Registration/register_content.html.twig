@@ -21,10 +21,8 @@
 
 {{ form_start(form, {'method': 'post', 'action': path('fos_user_registration_register'), 'attr': {'class': 'fos_user_registration_register'}}) }}
 
-            <div class="account-type">
+            {{ form_widget(form.roles) }}
 
-                {{form_row(form.roles)}}
-            </div>
         <div class="input-with-icon-left">
             <i class="icon-material-outline-account-circle"></i>
 
@@ -83,7 +81,7 @@
                 <input type="password" class="input-text with-border" name="{{form.plainPassword.second.vars.full_name}}" id="{{ form.plainPassword.second.vars.id }}" placeholder="Répeter le mot de passe" />
             </div>
             {% do form.plainPassword.second.setRendered %}
-
+            {{ form_widget(form.imageFile) }}
 
         <input class="button full-width button-sliding-icon ripple-effect margin-top-10" type="submit" value="{{ 'registration.submit'|trans }}" />
 

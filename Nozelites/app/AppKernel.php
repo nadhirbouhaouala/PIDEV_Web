@@ -20,16 +20,20 @@ class AppKernel extends Kernel
             new AppBundle\AppBundle(),
             new NozelitesBundle\NozelitesBundle(),
 
-            new FOS\UserBundle\FOSUserBundle(),
-            new UserBundle\UserBundle(),
+            new Vich\UploaderBundle\VichUploaderBundle(),
 
             new OffreBundle\OffreBundle(),
-            new ReclamationBundle\ReclamationBundle(),
-<<<<<<< HEAD
-            new PublicationBundle\PublicationBundle(),
-=======
+            new Knp\Bundle\PaginatorBundle\KnpPaginatorBundle(),
+            new CMEN\GoogleChartsBundle\CMENGoogleChartsBundle(),
 
->>>>>>> 4d0b8d48dda3f80f35525b197af86ab22e6495d9
+            new FOS\UserBundle\FOSUserBundle(),
+            new UserBundle\UserBundle(),
+            new ReclamationBundle\ReclamationBundle(),
+            new PublicationBundle\PublicationBundle(),
+            new Ivory\GoogleMapBundle\IvoryGoogleMapBundle(),
+            new Ivory\SerializerBundle\IvorySerializerBundle(),
+            new Http\HttplugBundle\HttplugBundle(),
+
         ];
 
         if (in_array($this->getEnvironment(), ['dev', 'test'], true)) {

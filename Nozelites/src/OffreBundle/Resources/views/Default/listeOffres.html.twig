@@ -1,4 +1,4 @@
-{% extends '@Nozelites/basefrontchasseur.html.twig' %}
+{% extends '@Nozelites/basefrontmembre.html.twig' %}
 
 {% block title %}{{ parent() }} - Offres {% endblock %}
 
@@ -6,7 +6,7 @@
     <div class="content">
         <ul class="dashboard-box-list">
             {%  for offre in offres %}
-                {% if offre.idEmetteur.idUsr == 2 %} {#Id du chasseur connecté#}
+                {% if offre.idEmetteur.idUsr == id %} {#Id du chasseur connecté#}
                     <li id="{{ offre.id }}">
                         <!-- Overview -->
                         <div class="freelancer-overview" onclick="document.getElementById('{{ 'show_'~offre.id }}').click();">

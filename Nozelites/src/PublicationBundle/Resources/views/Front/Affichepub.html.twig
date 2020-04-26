@@ -25,19 +25,11 @@
 
 
 
-                                <img id="{{ cc.image }}">
+                                {% set imageur = cc.image|split('/')  %}
+                                {%  set imageur = imageur[imageur|length-1] %}
+                                {% set imageurl = "front/images/"~imageur %}
 
-                                <script>
-                                    var imageurl = "{{ cc.image }}";
-                                    var index = -1;
-
-                                    for(var i = 0 ; i< imageurl.length ; i++)
-                                    {if(imageurl[i]=="/"){index = i;}}
-                                    if(index != -1)imageurl="/front/images"+imageurl.substr(index,imageurl.length);
-                                    else imageurl = "/front/images"+imageurl;
-
-                                    document.getElementById("{{ cc.image }}").src = imageurl;
-                                </script>
+                                <img src="{{ asset(imageurl) }}">
 
 
                             </div>

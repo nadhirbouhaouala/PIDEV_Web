@@ -1,0 +1,97 @@
+{%  extends '@Nozelites/basefrontmembre.html.twig' %}
+
+{% block content %}
+    <div class="container">
+        <div class="row">
+
+            <div class="col-xl-9 col-lg-8 content-left-offset">
+
+                <h3 class="page-title">Résultat de la recherche</h3>
+
+
+
+                <!-- Freelancers List Container -->
+                <div class="freelancers-container freelancers-list-layout margin-top-35">
+                {% for membre in membres %}
+                    <!--Freelancer -->
+                    <div class="freelancer">
+
+                        <!-- Overview -->
+                        <div class="freelancer-overview">
+                            <div class="freelancer-overview-inner">
+
+                                <!-- Bookmark Icon -->
+                                <span class="bookmark-icon"></span>
+
+                                <!-- Avatar -->
+                                <div class="freelancer-avatar">
+                                    <div class="verified-badge"></div>
+                                    <a href="{{ path('user_single',{id: membre.id }) }}"><img src="{{ asset('images/profile/'~ membre.imageName)}}" alt=""></a>
+                                </div>
+
+                                <!-- Name -->
+                                <div class="freelancer-name">
+                                    <h4><a href="#">{{ membre.prenom }} {{ membre.nom }} {{ membre.age }} ans<img class="flag" src="images/flags/gb.svg" alt="" title="United Kingdom" data-tippy-placement="top"></a></h4>
+                                    <span># {{membre.username}}</span>
+                                    <!-- Rating -->
+                                    <div class="freelancer-rating">
+                                        <div> email : {{ membre.email }}</div>
+                                        <div> Telephone : {{ membre.telephone }}</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Details -->
+                        <div class="freelancer-details">
+                            <div class="freelancer-details-list">
+                                <ul>
+                                    <li>
+                                        <div class="task-tags">
+                                            {% for formation in formations %}
+                                                {% if formation.idMembre == membre %}
+                                                <span>{{ formation.titre }}</span>
+                                                {% endif %}
+                                            {% endfor %}
+                                        </div>
+                                    </li>
+
+                                </ul>
+                            </div>
+                            <a href="{{ path('user_single',{id: membre.id }) }}" class="button button-sliding-icon ripple-effect">Consulter Profil<i class="icon-material-outline-arrow-right-alt"></i></a>
+                        </div>
+                    </div>
+                    <!-- Freelancer / End -->
+
+                    {% endfor %}
+
+
+                </div>
+                <!-- Tasks Container / End -->
+
+
+                <!-- Pagination -->
+                <div class="clearfix"></div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <!-- Pagination -->
+                        <div class="pagination-container margin-top-40 margin-bottom-60">
+                            <nav class="pagination">
+                                <ul>
+                                    <li class="pagination-arrow"><a href="#" class="ripple-effect"><i class="icon-material-outline-keyboard-arrow-left"></i></a></li>
+                                    <li><a href="#" class="ripple-effect">1</a></li>
+                                    <li><a href="#" class="current-page ripple-effect">2</a></li>
+                                    <li><a href="#" class="ripple-effect">3</a></li>
+                                    <li><a href="#" class="ripple-effect">4</a></li>
+                                    <li class="pagination-arrow"><a href="#" class="ripple-effect"><i class="icon-material-outline-keyboard-arrow-right"></i></a></li>
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+                <!-- Pagination / End -->
+
+            </div>
+        </div>
+    </div>
+{% endblock %}

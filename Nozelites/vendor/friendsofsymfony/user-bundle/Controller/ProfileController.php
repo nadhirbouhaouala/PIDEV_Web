@@ -19,8 +19,15 @@ use FOS\UserBundle\FOSUserEvents;
 use FOS\UserBundle\Model\UserInterface;
 use FOS\UserBundle\Model\UserManagerInterface;
 
+
 use NozelitesBundle\Entity\Formation;
 use NozelitesBundle\Entity\Listediplome;
+
+
+
+use NozelitesBundle\Form\FormationType;
+use NozelitesBundle\NozelitesBundle;
+
 
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -63,6 +70,7 @@ class ProfileController extends Controller
         $formations = $em->getRepository("NozelitesBundle:Formation")->findby(array('idMembre'=>$user->getId()));
         $listDiplome = new Listediplome();
         $listeDiplome = $em->getRepository("NozelitesBundle:Listediplome")->findby(array('idMembre'=>$user->getId()));
+
         return $this->render('@FOSUser/Profile/show.html.twig', array(
             'user' => $user,
             'listFormation' => $formations,
@@ -91,7 +99,26 @@ class ProfileController extends Controller
         if (null !== $event->getResponse()) {
             return $event->getResponse();
         }
+//Formulaire de la fomation
+        $formation = new Formation();
+        $formF = $this->createForm(FormationType::class, $formation);
+        $formF->handleRequest($request);
+        $formation->setIdMembre($user);
+        
+        
+        if ($formF->isSubmitted()) {
 
+
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($formation);
+            $em->flush();
+            return $this->redirectToRoute('fos_user_profile_show');
+
+        }
+
+
+
+//Formulaire du User
         $form = $this->formFactory->createForm();
         $form->setData($user);
 
@@ -99,13 +126,6 @@ class ProfileController extends Controller
 
         if ($form->isSubmitted() && $form->isValid()) {
 
-
-            $file = $user->getImage();
-            $fileName = md5(uniqid()).'.'.$file->guessExtension();
-            $file->move(
-                $this->getParameter('image_directory'),$fileName
-            );
-            $user->setImage($fileName);
 
 
             $event = new FormEvent($form, $request);
@@ -122,9 +142,15 @@ class ProfileController extends Controller
 
             return $response;
         }
+        $em = $this->getDoctrine()->getManager();
+        $formations = new Formation();
+        $formations = $em->getRepository("NozelitesBundle:Formation")->findby(array('idMembre'=>$user->getId()));
 
         return $this->render('@FOSUser/Profile/edit.html.twig', array(
             'form' => $form->createView(),
+            'formulaire' => $formF->createView(),
+            'listFormation' => $formations,
+            'user'=>$user,
         ));
     }
 }

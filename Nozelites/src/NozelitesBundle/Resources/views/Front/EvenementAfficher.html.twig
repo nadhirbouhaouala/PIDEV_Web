@@ -2,132 +2,130 @@
 {% block titre %}{{ parent() }} - MGroupes {% endblock %}
 {% block content %}
     <div class="intro-banner" data-background-image="images/home-background.jpg">
-    <div class="container">
-    <!-- Section -->
-
-    <div class="section gray">
         <div class="container">
-            <div class="row">
-                <div class="col-xl-8 col-lg-8">
+            <!-- Section -->
 
-                    <!-- Section Headline -->
-                    <div class="section-headline margin-top-60 margin-bottom-35">
-                        <h4>Mes evenements</h4>
-                    </div>
-                    {% for cc in evenement %}
-                    {% if cc.etat==1 %}
-                        <li>
-                        <!-- Blog Post -->
-                            <a href="{{ path('nozelites_EvenementpageMfront',{'id':cc.idE})}}" class="blog-post">
-                            <!-- Blog Post Thumbnail -->
-                            <div class="blog-post-thumbnail">
-                                <div class="blog-post-thumbnail-inner">
+            <div class="section gray">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-xl-8 col-lg-8">
 
-                                    <img src="{{ asset('front/images/'~ cc.image) }}" alt="image" />
+                            <!-- Section Headline -->
+                            <div class="section-headline margin-top-60 margin-bottom-35">
+                                <h4>Mes evenements</h4>
+                            </div>
+                            {% for cc in evenement %}
+                                {% if cc.etat==1 %}
+                                    <li>
+                                        <!-- Blog Post -->
+                                        <a href="{{ path('nozelites_EvenementpageMfront',{'id':cc.idE})}}" class="blog-post">
+                                            <!-- Blog Post Thumbnail -->
+                                            <div class="blog-post-thumbnail">
+                                                <div class="blog-post-thumbnail-inner">
 
+
+                                                    {% set imageur = cc.image|split('/')  %}
+                                                    {%  set imageur = imageur[imageur|length-1] %}
+                                                    {% set imageurl = "front/images/"~imageur %}
+
+                                                    <img src="{{ asset(imageurl) }}">
+                                                </div>
+                                            </div>
+                                            <!-- Blog Post Content -->
+                                            <div class="blog-post-content">
+                                                <!--  <span class="blog-post-date">{{ cc.nom }}</span>  -->
+                                                <h3>{{ cc.nom }}</h3>
+                                                <p>{{ cc.date|date('d/m/Y') }}</p>
+                                            </div>
+
+
+                                            <a href="{{ path('nozelites_Evenementmodifierfront',{'id':cc.idE}) }}" class="button red ripple-effect ico"  title="Modifier" data-tippy-placement="left"><i class="icon-feather-edit-2"></i></a>
+
+                                            <a href="{{ path('nozelites_Evenementsupprimerfront',{'id':cc.idE}) }}" class="button red ripple-effect ico" title="Supprimer" data-tippy-placement="left"><i class="icon-feather-trash-2"></i></a>
+
+                                            <!--<a href="#" class="button red ripple-effect ico" title="Accepter" data-tippy-placement="left"><i class="icon-material-outline-check"></i></a>
+                                            <a href="#" class="button red ripple-effect ico" title="Refuser" data-tippy-placement="left"><i class="icon-feather-trash-2"></i></a>-->
+
+                                            <!-- Icon -->
+                                            <div class="entry-icon"></div>
+                                        </a>
+                                    </li>
+                                {% endif %}
+                            {% endfor %}
+
+
+
+
+                            <!-- Pagination -->
+                            <div class="clearfix"></div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <!-- Pagination -->
+                                    <div class="pagination-container margin-top-10 margin-bottom-20">
+                                        <nav class="pagination">
+                                            <ul>
+                                                <li><a href="#" class="current-page ripple-effect">1</a></li>
+                                                <li><a href="#" class="ripple-effect">2</a></li>
+                                                <li><a href="#" class="ripple-effect">3</a></li>
+                                                <li class="pagination-arrow"><a href="#" class="ripple-effect"><i class="icon-material-outline-keyboard-arrow-right"></i></a></li>
+                                            </ul>
+                                        </nav>
+                                    </div>
                                 </div>
                             </div>
-                            <!-- Blog Post Content -->
-                            <div class="blog-post-content">
-                                <!--  <span class="blog-post-date">{{ cc.nom }}</span>  -->
-                                <h3>{{ cc.nom }}</h3>
-                                <p>{{ cc.date|date('d/m/Y') }}</p>
-                            </div>
+                            <!-- Pagination / End -->
 
-
-<<<<<<< HEAD
-
-                            <a href="{{ path('Ajouter1',{'id':cc.idE,'type':'event'}) }}" class="button red ripple-effect ico" title="Ajouter" data-tippy-placement="left"><i class="icon-feather-edit-2"></i></a>
-                                <a href="{{ path('nozelites_Evenementmodifierfront',{'id':cc.idE}) }}" class="button red ripple-effect ico"  title="Modifier" data-tippy-placement="left"><i class="icon-feather-edit-2"></i></a>
-=======
-                            <a href="{{ path('nozelites_Evenementmodifierfront',{'id':cc.idE}) }}" class="button red ripple-effect ico"  title="Modifier" data-tippy-placement="left"><i class="icon-feather-edit-2"></i></a>
->>>>>>> 373bba4396f6239dc2d21e7ce39e8b45ffbe5d4c
-
-                                <a href="{{ path('nozelites_Evenementsupprimerfront',{'id':cc.idE}) }}" class="button red ripple-effect ico" title="Supprimer" data-tippy-placement="left"><i class="icon-feather-trash-2"></i></a>
-
-                                <!--<a href="#" class="button red ripple-effect ico" title="Accepter" data-tippy-placement="left"><i class="icon-material-outline-check"></i></a>
-                                <a href="#" class="button red ripple-effect ico" title="Refuser" data-tippy-placement="left"><i class="icon-feather-trash-2"></i></a>-->
-
-                            <!-- Icon -->
-                            <div class="entry-icon"></div>
-                        </a>
-                        </li>
-                    {% endif %}
-                    {% endfor %}
-
-
-
-
-                    <!-- Pagination -->
-                    <div class="clearfix"></div>
-                    <div class="row">
-                        <div class="col-md-12">
-                            <!-- Pagination -->
-                            <div class="pagination-container margin-top-10 margin-bottom-20">
-                                <nav class="pagination">
-                                    <ul>
-                                        <li><a href="#" class="current-page ripple-effect">1</a></li>
-                                        <li><a href="#" class="ripple-effect">2</a></li>
-                                        <li><a href="#" class="ripple-effect">3</a></li>
-                                        <li class="pagination-arrow"><a href="#" class="ripple-effect"><i class="icon-material-outline-keyboard-arrow-right"></i></a></li>
-                                    </ul>
-                                </nav>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Pagination / End -->
-
-                </div>
-
-
-                <div class="col-xl-4 col-lg-4 content-left-offset">
-                    <div class="sidebar-container margin-top-65">
-
-                        <!-- Location -->
-
-
-
-
-
-                        <!-- Widget -->
-                        <div class="sidebar-widget">
-                            <h3>Social Profiles</h3>
-                            <div class="freelancer-socials margin-top-25">
-                                <ul>
-                                    <li><a href="#" title="Dribbble" data-tippy-placement="top"><i class="icon-brand-dribbble"></i></a></li>
-                                    <li><a href="#" title="Twitter" data-tippy-placement="top"><i class="icon-brand-twitter"></i></a></li>
-                                    <li><a href="#" title="Behance" data-tippy-placement="top"><i class="icon-brand-behance"></i></a></li>
-                                    <li><a href="#" title="GitHub" data-tippy-placement="top"><i class="icon-brand-github"></i></a></li>
-                                </ul>
-                            </div>
                         </div>
 
-                        <!-- Widget -->
-                        <div cl ass="sidebar-widget">
-                            <h3>Tags</h3>
-                            <div class="task-tags">
-                                <a href="#"><span>employer</span></a>
-                                <a href="#"><span>recruiting</span></a>
-                                <a href="#"><span>work</span></a>
-                                <a href="#"><span>salary</span></a>
-                                <a href="#"><span>tips</span></a>
-                                <a href="#"><span>income</span></a>
-                                <a href="#"><span>application</span></a>
+
+                        <div class="col-xl-4 col-lg-4 content-left-offset">
+                            <div class="sidebar-container margin-top-65">
+
+                                <!-- Location -->
+
+
+
+
+
+                                <!-- Widget -->
+                                <div class="sidebar-widget">
+                                    <h3>Social Profiles</h3>
+                                    <div class="freelancer-socials margin-top-25">
+                                        <ul>
+                                            <li><a href="#" title="Dribbble" data-tippy-placement="top"><i class="icon-brand-dribbble"></i></a></li>
+                                            <li><a href="#" title="Twitter" data-tippy-placement="top"><i class="icon-brand-twitter"></i></a></li>
+                                            <li><a href="#" title="Behance" data-tippy-placement="top"><i class="icon-brand-behance"></i></a></li>
+                                            <li><a href="#" title="GitHub" data-tippy-placement="top"><i class="icon-brand-github"></i></a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+
+                                <!-- Widget -->
+                                <div cl ass="sidebar-widget">
+                                    <h3>Tags</h3>
+                                    <div class="task-tags">
+                                        <a href="#"><span>employer</span></a>
+                                        <a href="#"><span>recruiting</span></a>
+                                        <a href="#"><span>work</span></a>
+                                        <a href="#"><span>salary</span></a>
+                                        <a href="#"><span>tips</span></a>
+                                        <a href="#"><span>income</span></a>
+                                        <a href="#"><span>application</span></a>
+                                    </div>
+                                </div>
+
                             </div>
                         </div>
 
                     </div>
                 </div>
+
+                <!-- Spacer -->
+                <div class="padding-top-40"></div>
+                <!-- Spacer -->
 
             </div>
+            <!-- Section / End -->
         </div>
-
-        <!-- Spacer -->
-        <div class="padding-top-40"></div>
-        <!-- Spacer -->
-
-    </div>
-    <!-- Section / End -->
-    </div>
     </div>
 {% endblock %}

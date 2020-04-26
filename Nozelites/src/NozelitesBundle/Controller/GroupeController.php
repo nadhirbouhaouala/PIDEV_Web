@@ -2,14 +2,23 @@
 
 namespace NozelitesBundle\Controller;
 
+
 use NozelitesBundle\Entity\Groupe;
 use NozelitesBundle\Entity\GroupeMembre;
 use NozelitesBundle\Entity\Membre;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component\HttpFoundation\Request;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Knp\Bundle\SnappyBundle\Snappy\Response\PdfResponse;
+
+use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\Serializer\Encoder\JsonEncoder;
+use Symfony\Component\Serializer\Encoder\XmlEncoder;
+use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
+use Symfony\Component\Serializer\Serializer;
 
 /**
  * Groupe controller.
@@ -18,6 +27,30 @@ use Knp\Bundle\SnappyBundle\Snappy\Response\PdfResponse;
  */
 class GroupeController extends Controller
 {
+
+    /**
+     * @return integer
+     */
+    public function getRealIdAction()
+    {
+        $user = $this->getUser();
+        $mail = $user->getEmail();
+
+        if (in_array("ROLE_MEMBRE", $user->getRoles())) {
+
+            $em = $this->getDoctrine()->getManager();
+            $membre = $em->getRepository('NozelitesBundle:Membre')->findOneBymail($mail);
+            return $membre->getIdusr();
+
+        }
+        elseif (in_array("ROLE_CHASSEUR", $user->getRoles())) {
+
+            $em = $this->getDoctrine()->getManager();
+            $chasseur = $em->getRepository('NozelitesBundle:ChasseurTalent')->findOneBymail($mail);
+            return $chasseur->getIdusr();
+        }
+    }
+
     /**
      * Lists all groupe entities.
      *
@@ -148,7 +181,7 @@ class GroupeController extends Controller
 
     public function showGroupesInvitationsAction()
     {
-        $id_membre_actif = 9;
+        $id_membre_actif = $this->getRealIdAction();
 
         $em = $this->getDoctrine()->getManager();
         $groupes = $em->getRepository('NozelitesBundle:Groupe')->findAll();
@@ -164,7 +197,7 @@ class GroupeController extends Controller
 
     public function newgroupeInvitationAction(Request $request)
     {
-        $id_membre_actif = 9;
+        $id_membre_actif = $this->getRealIdAction();
 
         $groupe = new Groupe();
         $form = $this->createForm('NozelitesBundle\Form\GroupeType', $groupe);
@@ -259,7 +292,7 @@ class GroupeController extends Controller
 
     public function supprimergroupeAction(Request $request, Groupe $id)
     {
-        $id_membre_actif = 9;
+        $id_membre_actif = $this->getRealIdAction();
 
         $em = $this->getDoctrine()->getManager();
         $gm = $em->getRepository('NozelitesBundle:GroupeMembre')
@@ -294,7 +327,7 @@ class GroupeController extends Controller
 
     public function affichergroupeAction(Groupe $id)
     {
-        $id_membre_actif = 9;
+        $id_membre_actif = $this->getRealIdAction();
 
         $em = $this->getDoctrine()->getManager();
         $groupe = $em->getRepository('NozelitesBundle:Groupe')->find($id);
@@ -336,7 +369,7 @@ class GroupeController extends Controller
 
     public function invitermembreAction(Groupe $id,Membre $idmembre)
     {
-        $id_membre_actif = 9;
+        $id_membre_actif = $this->getRealIdAction();
 
         $em = $this->getDoctrine()->getManager();
 
@@ -389,7 +422,7 @@ class GroupeController extends Controller
 
     public function retirermembreAction(Groupe $id,Membre $idmembre)
     {
-        $id_membre_actif = 9;
+        $id_membre_actif = $this->getRealIdAction();
 
         $em = $this->getDoctrine()->getManager();
 
@@ -571,6 +604,44 @@ class GroupeController extends Controller
                 'Content-Disposition'   => 'inline; filename="'.$filename.'.pdf"'
             )
         );*/
+    }
+
+    public function JsonAllAction()
+    {
+        $groupes = $this->getDoctrine()->getManager()
+            ->getRepository("NozelitesBundle:Groupe")->findAll();
+        $serializer = new Serializer([new ObjectNormalizer()]);
+        $formatted = $serializer->normalize($groupes);
+
+        return new JsonResponse($formatted);
+    }
+
+    public function JsonFindAction($id)
+    {
+        $groupe = $this->getDoctrine()->getManager()
+            ->getRepository("NozelitesBundle:Groupe")->find($id);
+
+        $serializer = new Serializer([new ObjectNormalizer()]);
+        $formatted = $serializer->normalize($groupe);
+
+        return new JsonResponse($formatted);
+    }
+
+    public function JsonAddAction(Request $request,$titre,$description,$autorisation)
+    {
+        $groupe = new Groupe();
+        $groupe->setTitre($titre);
+        $groupe->setDescription($description);
+        $groupe->setAutorisation($autorisation);
+
+        $em = $this->getDoctrine()->getManager();
+        $em->persist($groupe);
+        $em->flush();
+
+        $serializer = new Serializer([new ObjectNormalizer()]);
+        $formatted = $serializer->normalize($groupe);
+
+        return new JsonResponse($formatted);
     }
 
 

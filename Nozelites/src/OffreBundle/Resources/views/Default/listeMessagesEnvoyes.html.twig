@@ -88,14 +88,14 @@
                                             function chercher(search) {
                                                 if(search==""){
                                                     {% for message in messages %}
-                                                    {% if message.idEmeteur.idUsr == 2 %} {#Id du membre connecté#}
+                                                    {% if message.idEmeteur.idUsr == id %} {#Id du membre connecté#}
                                                     document.getElementById('{{ 'show_'~message.idmessage }}').style.display="block";
                                                     {% endif %}
                                                     {% endfor %}
                                                 }
                                                 else{
                                                     {% for message in messages %}
-                                                    {% if message.idEmeteur.idUsr == 2 %} {#Id du membre connecté#}
+                                                    {% if message.idEmeteur.idUsr == id %} {#Id du membre connecté#}
                                                     if('{{ message.objet }}'.toUpperCase().includes(search.toUpperCase()) || '{{ message.texte }}'.toUpperCase().includes(search.toUpperCase()) || '{{ message.idDestinataire.nom }}'.toUpperCase().includes(search.toUpperCase()) || '{{ message.idDestinataire.prenom }}'.toUpperCase().includes(search.toUpperCase()) || '{{ message.date }}'.toUpperCase().includes(search.toUpperCase()))
                                                         document.getElementById('{{ 'show_'~message.idmessage }}').style.display="block";
                                                     else
@@ -129,7 +129,7 @@
                                     <table class="table table-hover table-striped">
                                         <tbody>
                                         {% for message in messages %}
-                                            {% if message.idEmeteur.idUsr == 2 %} {#Id du membre connecté#}
+                                            {% if message.idEmeteur.idUsr == id %} {#Id du membre connecté#}
                                                 <tr id="{{ 'show_'~message.idmessage }}">
                                                     <td class="mailbox-name"><a href="{{ path('message_showone',{'id':message.idmessage}) }}">{{ message.idDestinataire.nom~" "~message.idDestinataire.prenom }}</a></td>
                                                     <td class="mailbox-subject"><b>{{ message.objet }}</b>{{ " - "~message.texte|slice(0, 45) }}{% if message.texte|length > 45 %}...{% endif %}
@@ -154,6 +154,7 @@
                 </div>
                 <!-- /.row -->
 
+                </div>
                 </div>
             </section>
 
