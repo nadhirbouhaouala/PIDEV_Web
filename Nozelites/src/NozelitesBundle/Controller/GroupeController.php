@@ -27,6 +27,30 @@ use Symfony\Component\Serializer\Serializer;
  */
 class GroupeController extends Controller
 {
+
+    /**
+     * @return integer
+     */
+    public function getRealIdAction()
+    {
+        $user = $this->getUser();
+        $mail = $user->getEmail();
+
+        if (in_array("ROLE_MEMBRE", $user->getRoles())) {
+
+            $em = $this->getDoctrine()->getManager();
+            $membre = $em->getRepository('NozelitesBundle:Membre')->findOneBymail($mail);
+            return $membre->getIdusr();
+
+        }
+        elseif (in_array("ROLE_CHASSEUR", $user->getRoles())) {
+
+            $em = $this->getDoctrine()->getManager();
+            $chasseur = $em->getRepository('NozelitesBundle:ChasseurTalent')->findOneBymail($mail);
+            return $chasseur->getIdusr();
+        }
+    }
+
     /**
      * Lists all groupe entities.
      *
@@ -157,7 +181,7 @@ class GroupeController extends Controller
 
     public function showGroupesInvitationsAction()
     {
-        $id_membre_actif = 9;
+        $id_membre_actif = $this->getRealIdAction();
 
         $em = $this->getDoctrine()->getManager();
         $groupes = $em->getRepository('NozelitesBundle:Groupe')->findAll();
@@ -173,7 +197,7 @@ class GroupeController extends Controller
 
     public function newgroupeInvitationAction(Request $request)
     {
-        $id_membre_actif = 9;
+        $id_membre_actif = $this->getRealIdAction();
 
         $groupe = new Groupe();
         $form = $this->createForm('NozelitesBundle\Form\GroupeType', $groupe);
@@ -268,7 +292,7 @@ class GroupeController extends Controller
 
     public function supprimergroupeAction(Request $request, Groupe $id)
     {
-        $id_membre_actif = 9;
+        $id_membre_actif = $this->getRealIdAction();
 
         $em = $this->getDoctrine()->getManager();
         $gm = $em->getRepository('NozelitesBundle:GroupeMembre')
@@ -303,7 +327,7 @@ class GroupeController extends Controller
 
     public function affichergroupeAction(Groupe $id)
     {
-        $id_membre_actif = 9;
+        $id_membre_actif = $this->getRealIdAction();
 
         $em = $this->getDoctrine()->getManager();
         $groupe = $em->getRepository('NozelitesBundle:Groupe')->find($id);
@@ -345,7 +369,7 @@ class GroupeController extends Controller
 
     public function invitermembreAction(Groupe $id,Membre $idmembre)
     {
-        $id_membre_actif = 9;
+        $id_membre_actif = $this->getRealIdAction();
 
         $em = $this->getDoctrine()->getManager();
 
@@ -398,7 +422,7 @@ class GroupeController extends Controller
 
     public function retirermembreAction(Groupe $id,Membre $idmembre)
     {
-        $id_membre_actif = 9;
+        $id_membre_actif = $this->getRealIdAction();
 
         $em = $this->getDoctrine()->getManager();
 

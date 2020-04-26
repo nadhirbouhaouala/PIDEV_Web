@@ -9,14 +9,41 @@ use Symfony\Component\HttpFoundation\Request;
 
 class OffreController extends Controller
 {
+
+    /**
+     * @return integer
+     */
+    public function getRealIdAction()
+    {
+        $user = $this->getUser();
+        $mail = $user->getEmail();
+
+        if (in_array("ROLE_MEMBRE", $user->getRoles())) {
+
+            $em = $this->getDoctrine()->getManager();
+            $membre = $em->getRepository('NozelitesBundle:Membre')->findOneBymail($mail);
+            return $membre->getIdusr();
+
+        }
+        elseif (in_array("ROLE_CHASSEUR", $user->getRoles())) {
+
+            $em = $this->getDoctrine()->getManager();
+            $chasseur = $em->getRepository('NozelitesBundle:ChasseurTalent')->findOneBymail($mail);
+            return $chasseur->getIdusr();
+        }
+    }
+
     public function consulterOffresAction()
     {
         $em = $this->getDoctrine()->getManager();
 
-        $offres = $em->getRepository('NozelitesBundle:Offre')->findAll();
+        $offres = $em->getRepository('NozelitesBundle:Offre')->findByIdemetteur($this->getRealIdAction());
+
+        $id = $this->getRealIdAction();
 
         return $this->render('@Offre/Default/listeOffres.html.twig', array(
             'offres' => $offres,
+            'id' => $id,
         ));
     }
 
@@ -35,10 +62,13 @@ class OffreController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $offres = $em->getRepository('NozelitesBundle:Offre')->findAll();
+        $offres = $em->getRepository('NozelitesBundle:Offre')->findByIdrecepteur($this->getRealIdAction());
+
+        $id = $this->getRealIdAction();
 
         return $this->render('@Offre/Default/listeOffresMembre.html.twig', array(
             'offres' => $offres,
+            'id' => $id,
         ));
     }
 
@@ -61,7 +91,8 @@ class OffreController extends Controller
 
         if ($form->isSubmitted() && $form->isValid()) {
             $c = new ChasseurTalent();
-            $c->setIdusr(2); //Id du chasseur connecté
+            $id = $this->getRealIdAction();
+            $c->setIdusr($id); //Id du chasseur connecté
             $offre->setIdemetteur($c);
             $offre->setEtat("En attente");
             $offre->setDate(date('Y-m-d'));

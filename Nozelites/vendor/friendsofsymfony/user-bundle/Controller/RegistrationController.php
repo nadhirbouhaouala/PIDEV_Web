@@ -123,8 +123,10 @@ class RegistrationController extends Controller
                 $event = new FormEvent($form, $request);
                 $this->eventDispatcher->dispatch(FOSUserEvents::REGISTRATION_SUCCESS, $event);
 
-                $this->userManager->updateUser($user);
+                $membre = new Membre();
+                $membre->setMdp($user->getPlainPassword());
 
+                $this->userManager->updateUser($user);
 
                 if($case === 1){
                     $membre->setImage("D:/xampp/htdocs/PIDEV_Web/Nozelites/web/images/".$user->getImageName());
