@@ -16,6 +16,9 @@ use Symfony\Component\HttpFoundation\Request;
 
 class ReclamationController extends Controller
 {
+    /**
+     * @return integer
+     */
     public function getRealIdAction()
     {
         $user = $this->getUser();
@@ -226,10 +229,10 @@ $mail="mohamedkheireddine.bairam@esprit.tn";
             $reclamation = new Reclamation();
 
 
-           $c = new Membre();
-           $id = $this->getRealIdAction();
-           $c->setIdusr($id); //Id du chasseur connecté
-           $reclamation->setIdEmeteur($c);
+           //$c = new Membre();
+          // $id = $this->getRealIdAction();
+          // $c->setIdusr($id); //Id du chasseur connecté
+           $reclamation->setIdEmeteur($membrecn);
 
             $reclamation->setDescription($request->get('description'));
             $reclamation->setSelecteur($request->get('selecteur'));

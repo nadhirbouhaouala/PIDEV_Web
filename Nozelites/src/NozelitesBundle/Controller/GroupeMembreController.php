@@ -2,10 +2,15 @@
 
 namespace NozelitesBundle\Controller;
 
+use NozelitesBundle\Entity\Groupe;
 use NozelitesBundle\Entity\GroupeMembre;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component\HttpFoundation\Request;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
+use Symfony\Component\Serializer\Serializer;
 
 /**
  * Groupemembre controller.
@@ -132,5 +137,45 @@ class GroupeMembreController extends Controller
             ->setMethod('DELETE')
             ->getForm()
         ;
+    }
+
+    public function JsonAllAction()
+    {
+        $groupesmembres = $this->getDoctrine()->getManager()
+            ->getRepository("NozelitesBundle:GroupeMembre")->findAll();
+        $serializer = new Serializer([new ObjectNormalizer()]);
+        $formatted = $serializer->normalize($groupesmembres);
+
+        return new JsonResponse($formatted);
+    }
+
+    public function JsonFindAction($id)
+    {
+        $groupemembre = $this->getDoctrine()->getManager()
+            ->getRepository("NozelitesBundle:GroupeMembre")->find($id);
+
+        $serializer = new Serializer([new ObjectNormalizer()]);
+        $formatted = $serializer->normalize($groupemembre);
+
+        return new JsonResponse($formatted);
+    }
+
+    public function JsonAddAction(Request $request,$id_groupe,$id_membre,$id_invite,$etat)
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $groupemembre = new GroupeMembre();
+        $groupemembre->setIdGroupe($em->getRepository("NozelitesBundle:Groupe")->find($id_groupe));
+        $groupemembre->setIdMembre($em->getRepository("NozelitesBundle:Membre")->find($id_membre));
+        $groupemembre->setIdInvite($id_invite);
+        $groupemembre->setEtat($etat);
+
+        $em->persist($groupemembre);
+        $em->flush();
+
+        $serializer = new Serializer([new ObjectNormalizer()]);
+        $formatted = $serializer->normalize($groupemembre);
+
+        return new JsonResponse($formatted);
     }
 }

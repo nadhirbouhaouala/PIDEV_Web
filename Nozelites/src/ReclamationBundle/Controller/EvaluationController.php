@@ -80,6 +80,7 @@ class EvaluationController extends Controller
             }
 
             return $this->render('@Reclamation/Front/AjoutNote.html.twig',array('R' => $IdR));
+
         }
 
         return $this->redirectToRoute("reclamation_show");

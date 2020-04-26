@@ -38,6 +38,9 @@ class PublicationController extends Controller
             $publication->setImage($imagePath);
             $publication->setNbJaime(0);
 
+            $publication->setIdGroupe(1);
+            $publication->setIdPublicateur(10);
+
 
 
             $em->persist($publication);

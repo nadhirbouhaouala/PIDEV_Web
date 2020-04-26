@@ -30,25 +30,17 @@
                     <div class="blog-post-thumbnail">
                         <div class="blog-post-thumbnail-inner">
                             <span class="blog-item-tag">Tips</span>
-                            <img id="{{ c.image }}">
+                            {% set imageur = c.image|split('/')  %}
+                            {%  set imageur = imageur[imageur|length-1] %}
+                            {% set imageurl = "front/images/"~imageur %}
 
-                            <script>
-                                var imageurl = "{{ c.image }}";
-                                var index = -1;
-
-                                for(var i = 0 ; i< imageurl.length ; i++)
-                                {if(imageurl[i]=="/"){index = i;}}
-                                if(index != -1)imageurl="/front/images"+imageurl.substr(index,imageurl.length);
-                                else imageurl = "/front/images"+imageurl;
-
-                                document.getElementById("{{ c.image }}").src = imageurl;
-                            </script>                        </div>
+                            <img src="{{ asset(imageurl) }}">              </div>
                     </div>
 
 
                     <!-- Blog Post Content -->
                     <div class="blog-post-content">
-                        <h3 class="margin-bottom-10">{{ asset(c.titre) }}</h3>
+                        <h3 class="margin-bottom-10">{{ c.titre }}</h3>
 
                         <div class="blog-post-info-list margin-bottom-20">
                             <a href="#" class="blog-post-info"></a>
@@ -62,7 +54,7 @@
 
                         </blockquote>
 
-                        <p>{{ asset(c.description) }}</p>
+                        <p>{{ c.description }}</p>
                         <p></p>
 
 
@@ -102,19 +94,11 @@
                     <div class="col-xl-6">
                         <a href="pages-blog-post.html" class="blog-compact-item-container">
                             <div class="blog-compact-item">
-                                <img id="{{ de.image }}">
+                                {% set imageur = de.image|split('/')  %}
+                                {%  set imageur = imageur[imageur|length-1] %}
+                                {% set imageurl = "front/images/"~imageur %}
 
-                                <script>
-                                    var imageurl = "{{ de.image }}";
-                                    var index = -1;
-
-                                    for(var i = 0 ; i< imageurl.length ; i++)
-                                    {if(imageurl[i]=="/"){index = i;}}
-                                    if(index != -1)imageurl="/front/images"+imageurl.substr(index,imageurl.length);
-                                    else imageurl = "/front/images"+imageurl;
-
-                                    document.getElementById("{{ de.image }}").src = imageurl;
-                                </script>
+                                <img src="{{ asset(imageurl) }}">
                                 <span class="blog-item-tag">Top 2</span>
                                 <div class="blog-compact-item-content">
                                     <ul class="blog-post-tags">
@@ -122,8 +106,8 @@
                                         <li>eazeaeazeaze</li>
 
                                     </ul>
-                                    <h3>{{ asset(de.titre) }}</h3>
-                                    <p>{{ asset(de.description) }}</p>
+                                    <h3>{{ de.titre }}</h3>
+                                    <p>{{ de.description }}</p>
                                 </div>
                             </div>
                         </a>
@@ -139,29 +123,22 @@
                     <div class="col-xl-6">
                         <a href="pages-blog-post.html" class="blog-compact-item-container">
                             <div class="blog-compact-item">
-                                <img id="top_{{ pr.image }}">
+                                {% set imageur = pr.image|split('/')  %}
+                                {%  set imageur = imageur[imageur|length-1] %}
+                                {% set imageurl = "front/images/"~imageur %}
 
-                                <script>
-                                    var imageurl = "{{ pr.image }}";
-                                    var index = -1;
-
-                                    for(var i = 0 ; i< imageurl.length ; i++)
-                                    {if(imageurl[i]=="/"){index = i;}}
-                                    if(index != -1)imageurl="/front/images"+imageurl.substr(index,imageurl.length);
-                                    else imageurl = "/front/images"+imageurl;
-
-                                    document.getElementById("top_{{ pr.image }}").src = imageurl;
-                                </script>                                  <span class="blog-item-tag">Top 1</span>
+                                <img src="{{ asset(imageurl) }}">
+                                                                 <span class="blog-item-tag">Top 1</span>
                                 <div class="blog-compact-item-content">
 
                                     <ul class="blog-post-tags">
                                         <li>10 June 2018</li>
                                     </ul>
 
-                                    <h3>{{ asset(pr.titre) }}</h3>
+                                    <h3>{{ pr.titre }}</h3>
 
 
-                                    <p>{{ asset(pr.description) }}</p>
+                                    <p>{{ pr.description }}</p>
                                 </div>
                             </div>
                         </a>
@@ -178,7 +155,7 @@
                     <div class="col-xl-12">
                         <section class="comments">
                             <h3 class="margin-top-45 margin-bottom-0">Comments <span class="comments-amount">(5)</span></h3>
-                            <a href="{{ path('Affichercommentaire') }}" ><button class="button button-sliding-icon ripple-effect margin-bottom-40" type="submit" form="add-comment">Modifier ou supprimer mes commentaires <i class="icon-material-outline-arrow-right-alt"></i></button>
+                            <a href="{{ path('Affichercommentaire') }}" ><button class="button button-sliding-icon ripple-effect margin-bottom-40" type="submit" form="add-comment">Modifier ou supprimer mes commentaires <i class="icon-material-outline-arrow-right-alt"></i></button></a>
 
                                 {% for cp in p %}
                             <ul>

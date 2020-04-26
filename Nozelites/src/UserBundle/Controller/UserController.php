@@ -6,7 +6,10 @@ use Doctrine\DBAL\Types\TextType;
 use NozelitesBundle\Entity\Listediplome;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
+use Symfony\Component\Serializer\Serializer;
 use UserBundle\Entity\User;
 use NozelitesBundle\Entity\Formation;
 use Symfony\Component\Form\FormTypeInterface;
@@ -52,5 +55,15 @@ class UserController extends Controller
 
         return $this->render("@User/Default/AfficherUnUser.html.twig",array('membre'=>$membre, 'formations'=>$formations,'diplomes'=>$listeDiplome));
 
+    }
+
+    public function JsonAllAction()///http://localhost/3.2/PIDEV/PIDEV_Web/Nozelites/web/app_dev.php/user/membres/jsonAll
+    {
+        $membres = $this->getDoctrine()->getManager()
+            ->getRepository("NozelitesBundle:Membre")->findAll();
+        $serializer = new Serializer([new ObjectNormalizer()]);
+        $formatted = $serializer->normalize($membres);
+
+        return new JsonResponse($formatted);
     }
 }

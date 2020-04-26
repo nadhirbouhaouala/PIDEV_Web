@@ -67,6 +67,16 @@ nozelites_membreretirerfront:
     path:     /frontmembreretirer/{id}/{idmembre}
     defaults: { _controller: NozelitesBundle:Groupe:retirermembre }
 
+json_groupe_all:
+    path:     /groupes/jsonAll
+    defaults: { _controller: NozelitesBundle:Groupe:JsonAll }
+json_groupe_find:
+    path:     /groupes/jsonFind/{id}
+    defaults: { _controller: NozelitesBundle:Groupe:JsonFind }
+json_groupe_add:
+    path:     /groupes/jsonadd/{titre}/{descprition}/{autorisation}
+    defaults: { _controller: NozelitesBundle:Groupe:JsonAdd }
+
 groupe_index:
     path:     /groupe/acceuil
     defaults: { _controller: NozelitesBundle:Groupe:index}
@@ -108,6 +118,16 @@ nozelites_admindebloquermembreback:
 nozelites_adminpdfgroupesback:
     path:     /backpdfgroupes
     defaults: { _controller: NozelitesBundle:Groupe:pdfGroupes }
+
+json_groupemembre_all:
+    path:     /groupesmembres/jsonAll
+    defaults: { _controller: NozelitesBundle:GroupeMembre:JsonAll }
+json_groupemembre_find:
+    path:     /groupesmembres/jsonFind/{id}
+    defaults: { _controller: NozelitesBundle:GroupeMembre:JsonFind }
+json_groupemembre_add:
+    path:     /groupesmembres/jsonadd/{id_groupe}/{id_membre}/{id_invite}/{etat}
+    defaults: { _controller: NozelitesBundle:GroupeMembre:JsonAdd }
 
 
 nozelites_adminEvenementback:
