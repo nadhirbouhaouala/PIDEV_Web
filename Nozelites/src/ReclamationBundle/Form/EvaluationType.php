@@ -5,6 +5,7 @@ namespace ReclamationBundle\Form;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use blackknight467\StarRatingBundle\Form\RatingType;
 
 class EvaluationType extends AbstractType
 {

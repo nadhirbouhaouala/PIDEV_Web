@@ -48,20 +48,38 @@ class EvaluationController extends Controller
                 $em->persist($Evaluation);
                 $em->flush();
 
-                return $this->redirectToRoute('');
+                return $this->redirectToRoute('reclamation_show');
             }
 
         return $this->render('@Reclamation/Front/AjoutNote.html.twig',array('R' => $IdR));
     }
 
-    function AjoutNoteTestAction($id)
+    function AjoutNoteTestAction(Request $request,$id)
     {
         $reclamation=$this->getDoctrine()->getRepository(Evaluation::class)
             ->findBy(array('idR'=>$id));
 
         if(sizeof($reclamation)==0)
         {
-            return $this->redirectToRoute("AjouterNoteTest");
+            $Evaluation = new Evaluation();
+            $IdR=$this->getDoctrine()
+                ->getRepository(Reclamation::class)
+                ->find($id);
+            $form = $this->createForm(EvaluationType::class,$Evaluation);
+            $form = $form->handleRequest($request);
+
+            if ($request->getMethod() == Request::METHOD_POST) {
+                $Evaluation->setIdR($IdR);
+                $Evaluation->setNote($request->get('note'));
+
+                $em = $this->getDoctrine()->getManager();
+                $em->persist($Evaluation);
+                $em->flush();
+
+                return $this->redirectToRoute('reclamation_show');
+            }
+
+            return $this->render('@Reclamation/Front/AjoutNote.html.twig',array('R' => $IdR));
         }
 
         return $this->redirectToRoute("reclamation_show");

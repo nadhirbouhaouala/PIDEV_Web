@@ -51,7 +51,7 @@
                                             {% for groupe in groupes if groupe.idGroupe ==  rec.idCible %}
                                                 <td data-label="Column 1">{{ groupe.titre }}</td>
                                             {% endfor %}
-                                        {% elseif rec.selecteur == "event"  %}
+                                        {% elseif rec.selecteur == "evenement"  %}
                                             {% for event in evenements if event.ide ==  rec.idCible %}
                                                 <td data-label="Column 1">{{ event.nom }}</td>
                                             {% endfor %}
@@ -71,7 +71,7 @@
                                         <td>
                                             <a href="{{ path('Traiter',{'id':rec.idRecl}) }}" class="btn btn-block btn-warning">Traiter</a>
                                         </td>
-                                        <td>  <a href="{{ path('AfficherNote',{'id':rec.idRecl}) }}" class="button dark ripple-effect">Note</a></td>
+                                        <td>  <a href="{{ path('AfficherNote',{'id':rec.idRecl}) }}" class="btn btn-block btn-danger">Note</a></td>
                                     </tr>
                                 {% endfor %}
                                 </tfoot>

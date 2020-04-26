@@ -35,6 +35,7 @@ framework:
     php_errors:
         log: true
 
+
 # Twig Configuration
 twig:
     debug: '%kernel.debug%'

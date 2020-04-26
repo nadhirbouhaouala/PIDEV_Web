@@ -95,15 +95,15 @@ $mail="mohamedkheireddine.bairam@esprit.tn";
         $membre=$this->getDoctrine()->getRepository(Membre::class)->findBy(array('idusr'=>$user));
 
         $groupes = []; $evenements = [];
-        for($i=0; $i < sizeof($Reclamations); $i++)
-        {
-            if($Reclamations[$i]->getSelecteur()=="groupe") {
+        for($i=0; $i < sizeof($Reclamations); $i++) {
+            if ($Reclamations[$i]->getSelecteur() == "groupe") {
                 $gr = $this->getDoctrine()->getRepository(Groupe::class)->find($Reclamations[$i]->getIdCible());
-                if(!in_array($gr,$groupes))$groupes[sizeof($groupes)] = $gr;
+                if (!in_array($gr, $groupes)) $groupes[sizeof($groupes)] = $gr;
             }
-            if($Reclamations[$i]->getSelecteur()=="event")
-                $evenements[sizeof($evenements)] =
-                    $this->getDoctrine()->getRepository(Evenement::class)->find($Reclamations[$i]->getIdCible());
+            if ($Reclamations[$i]->getSelecteur() == "evenement") {
+                $fr = $this->getDoctrine()->getRepository(Evenement::class)->find($Reclamations[$i]->getIdCible());
+                if (!in_array($fr, $evenements)) $evenements[sizeof($evenements)] = $fr;
+            }
         }
 
 
@@ -152,7 +152,7 @@ $ide=5;
                 $gr = $this->getDoctrine()->getRepository(Groupe::class)->find($Reclamations[$i]->getIdCible());
                 if(!in_array($gr,$groupes))$groupes[sizeof($groupes)] = $gr;
             }
-            if($Reclamations[$i]->getSelecteur()=="event") {
+            if($Reclamations[$i]->getSelecteur()=="evenement") {
                   $fr =  $this->getDoctrine()->getRepository(Evenement::class)->find($Reclamations[$i]->getIdCible());
                 if(!in_array($fr,$evenements))$evenements[sizeof($evenements)] = $fr;
             }
@@ -212,7 +212,7 @@ $ide=5;
             $resultat = $em->getRepository($entity)->find($id);
             $resultat = $resultat->getIdGroupe();
         }
-        else if($type=="event")
+        else if($type=="evenement")
         {
             $entity='ReclamationBundle:Evenement';
             $resultat = $em->getRepository($entity)->find($id);
