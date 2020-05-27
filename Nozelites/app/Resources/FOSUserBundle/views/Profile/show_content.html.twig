@@ -151,19 +151,20 @@
                             </div>
                             <div class="content">
                                 <ul class="dashboard-box-list">
+                                    {% for diplome in listeDiplome %}
                                     <li>
                                         <span class="notification-icon"><i class="icon-material-outline-group"></i></span>
                                         <span class="notification-text">
-                                            {% for diplome in listeDiplome %}
+
                                                 <strong>Domaine : </strong> {{ diplome.domaine }} <strong> <br>Institut : </strong>{{ diplome.organisation }}<br>
                                                 <strong> Date : </strong>{{ diplome.date }}
-                                            {% endfor %}
+
 
 									</span>
                                         <!-- Buttons -->
 
                                     </li>
-
+                                    {% endfor %}
                                 </ul>
                             </div>
                         </div>

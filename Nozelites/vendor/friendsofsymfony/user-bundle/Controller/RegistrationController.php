@@ -127,12 +127,12 @@ class RegistrationController extends Controller
                 $this->userManager->updateUser($user);
 
                 if($case === 1){
-                    $membre->setImage("D:/xampp/htdocs/PIDEV_Web/Nozelites/web/images/".$user->getImageName());
+                    $membre->setImage("D:/xampp/htdocs/PIDEV_Web/Nozelites/web/images/profile".$user->getImageName());
                     $em->persist($membre);
                     $em->flush();
                 }
                 elseif ($case === 2){
-                    $chasseur->setImage("D:/xampp/htdocs/PIDEV_Web/Nozelites/web/images/".$user->getImageName());
+                    $chasseur->setImage("D:/xampp/htdocs/PIDEV_Web/Nozelites/web/images/profile".$user->getImageName());
                     $em->persist($chasseur);
                     $em->flush();
                 }

@@ -13,6 +13,7 @@
                 <!-- Freelancers List Container -->
                 <div class="freelancers-container freelancers-list-layout margin-top-35">
                 {% for membre in membres %}
+                    {% if "ROLE_MEMBRE" in membre.roles %}
                     <!--Freelancer -->
                     <div class="freelancer">
 
@@ -45,8 +46,7 @@
                         <!-- Details -->
                         <div class="freelancer-details">
                             <div class="freelancer-details-list">
-                                <ul>
-                                    <li>
+
                                         <div class="task-tags">
                                             {% for formation in formations %}
                                                 {% if formation.idMembre == membre %}
@@ -54,15 +54,13 @@
                                                 {% endif %}
                                             {% endfor %}
                                         </div>
-                                    </li>
 
-                                </ul>
                             </div>
                             <a href="{{ path('user_single',{id: membre.id }) }}" class="button button-sliding-icon ripple-effect">Consulter Profil<i class="icon-material-outline-arrow-right-alt"></i></a>
                         </div>
                     </div>
                     <!-- Freelancer / End -->
-
+                    {% endif %}
                     {% endfor %}
 
 

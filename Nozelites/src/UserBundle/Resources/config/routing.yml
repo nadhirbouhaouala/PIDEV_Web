@@ -9,6 +9,11 @@ user_list:
     path:     /listUser
     defaults: { _controller: UserBundle:User:ShowUser }
 
+
+user_rechFormation:
+    path:    /userFormation
+    defaults: { _controller: UserBundle:User:showUserFormation}
+
 user_single:
     path:     /singleUser/{id}
     defaults: { _controller: UserBundle:User:afficherUnUser }
@@ -16,3 +21,15 @@ user_single:
 json_membre_all:
     path:     /membres/jsonAll
     defaults: { _controller: UserBundle:User:JsonAll }
+
+json_membre_add:
+    path:     /membres/jsonAdd/{nom}/{prenom}/{age}/{tel}/{login}/{mdp}/{email}
+    defaults: { _controller: UserBundle:User:JsonAdd }
+
+json_membre_show:
+    path:     /membres/jsonShow/{id}
+    defaults: { _controller: UserBundle:User:JsonShow }
+
+json_membre_edit:
+    path:     /membres/jsonEdit/{id}/{nom}/{prenom}/{age}/{email}/{tel}
+    defaults: { _controller: UserBundle:User:JsonEdit }
