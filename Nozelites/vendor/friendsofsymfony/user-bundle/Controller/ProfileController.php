@@ -20,11 +20,12 @@ use FOS\UserBundle\Model\UserInterface;
 use FOS\UserBundle\Model\UserManagerInterface;
 
 
+use NozelitesBundle\Entity\ChasseurTalent;
 use NozelitesBundle\Entity\Formation;
 use NozelitesBundle\Entity\Listediplome;
 
 
-
+use NozelitesBundle\Entity\Membre;
 use NozelitesBundle\Form\FormationType;
 use NozelitesBundle\Form\ListediplomeType;
 use NozelitesBundle\NozelitesBundle;
@@ -145,8 +146,11 @@ class ProfileController extends Controller
         $form->setData($user);
 
         $form->handleRequest($request);
+        $em = $this->getDoctrine()->getManager();
+
 
         if ($form->isSubmitted() && $form->isValid()) {
+
 
 
 
@@ -154,7 +158,7 @@ class ProfileController extends Controller
             $this->eventDispatcher->dispatch(FOSUserEvents::PROFILE_EDIT_SUCCESS, $event);
 
             $this->userManager->updateUser($user);
-
+            
             if (null === $response = $event->getResponse()) {
                 $url = $this->generateUrl('fos_user_profile_show');
                 $response = new RedirectResponse($url);

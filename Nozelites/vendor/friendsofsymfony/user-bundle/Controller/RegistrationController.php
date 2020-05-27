@@ -89,6 +89,7 @@ class RegistrationController extends Controller
             $case =1;
             
             $membre = new Membre();
+            $membre->setIdusr($user->getId());
             $membre->setNom($user->getNom());
             $membre->setPrenom($user->getPrenom());
             $membre->setMail($user->getEmail());

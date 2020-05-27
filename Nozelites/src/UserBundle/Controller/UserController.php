@@ -51,7 +51,7 @@ class UserController extends Controller
             'formations'=>$formations));
     }
 
-    /
+
 
     public function searchBarAction(){
         $form = $this->createFormBuilder(null)
@@ -89,6 +89,28 @@ class UserController extends Controller
 
     }
 
+    public function showUserBackAction(){
+        $membres = $this->getDoctrine()->getManager()
+            ->getRepository("UserBundle:User")->findAll();
+        #ar_dump($membres[1]->getRoles()[0]);
+        #die;
+        return $this->render("@User/default/afficherUserBack.html.twig",array('membres'=>$membres));
+
+    }
+    public function blockUserAction($id){
+        $em = $this->getDoctrine()->getManager();
+        $membres = $em->getRepository("UserBundle:User")->find($id);
+        if($membres->isEnabled()){
+            $membres->setEnabled(0);
+        }
+        else{
+            $membres->setEnabled(1);
+        }
+
+        $em->flush();
+        return $this->redirectToRoute('user_adminUserBack');
+
+    }
     public function JsonAllAction()///http://localhost/3.2/PIDEV/PIDEV_Web/Nozelites/web/app_dev.php/user/membres/jsonAll
     {
         $membres = $this->getDoctrine()->getManager()
@@ -126,11 +148,11 @@ class UserController extends Controller
 
     public function JsonShowAction($id)
     {
-        $groupe = $this->getDoctrine()->getManager()
+        $membre = $this->getDoctrine()->getManager()
             ->getRepository("NozelitesBundle:Membre")->find($id);
 
         $serializer = new Serializer([new ObjectNormalizer()]);
-        $formatted = $serializer->normalize($groupe);
+        $formatted = $serializer->normalize($membre);
 
         return new JsonResponse($formatted);
     }

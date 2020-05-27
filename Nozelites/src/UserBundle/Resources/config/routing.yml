@@ -9,6 +9,12 @@ user_list:
     path:     /listUser
     defaults: { _controller: UserBundle:User:ShowUser }
 
+user_adminUserBack:
+    path:     /listUserBack
+    defaults: { _controller: UserBundle:User:ShowUserBack }
+user_blockUser:
+    path:     /blockUser/{id}
+    defaults: { _controller: UserBundle:User:blockUser }
 
 user_rechFormation:
     path:    /userFormation

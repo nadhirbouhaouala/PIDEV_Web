@@ -116,8 +116,9 @@
 
 
                     <!-- Button -->
+                    {% if is_granted('ROLE_CHASSEUR')%}
                     <a href="#small-dialog" class="apply-now-button popup-with-zoom-anim margin-bottom-50">Envoyer Une Offre <i class="icon-material-outline-arrow-right-alt"></i></a>
-
+                    {% endif %}
                     <!-- Freelancer Indicators -->
                     <div class="sidebar-widget">
 

@@ -21,26 +21,39 @@ class User extends BaseUser
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     protected $id;
+
     /**
-     *
+     *@Assert\NotBlank(message="Entrez un nom")
      * @ORM\Column(type="string",length=255)
      *
      */
     protected $nom;
     /**
-     *
+     * @Assert\NotBlank(message="Entrez un prenom")
      * @ORM\Column(type="string",length =255)
      *
      */
     protected $prenom;
+
     /**
-     *
+     * @Assert\Length(
+     *     min = 8,
+     *     max = 8,
+     *     exactMessage="Entrer un numero de telephone valide"
+     * )
+     * @Assert\NotBlank(message="Entrez un numero de telephone")
      * @ORM\Column(type="integer")
      *
      */
     protected $telephone;
+
     /**
      *
+     * @Assert\GreaterThan(
+     *     value = 17,
+     *     message="Vous devez avoir au moins 18 ans"
+     * )
+     * @Assert\NotBlank(message="Entrez votre Age")
      * @ORM\Column(type="integer")
      *
      */
@@ -83,7 +96,7 @@ class User extends BaseUser
 
     /**
      * NOTE: This is not a mapped field of entity metadata, just a simple property.
-     *
+     * @Assert\NotBlank(message="Selectionner une Image")
      * @Vich\UploadableField(mapping="profile_image", fileNameProperty="imageName")
      *
      * @var File|null
@@ -91,6 +104,7 @@ class User extends BaseUser
     private $imageFile;
 
     /**
+     *
      * @ORM\Column(type="string")
      *
      * @var string|null

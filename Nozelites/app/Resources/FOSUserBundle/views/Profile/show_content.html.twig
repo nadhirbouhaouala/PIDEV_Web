@@ -28,9 +28,10 @@
                             <ul data-submenu-title="Start">
                                 <li class="active"><a href="{{ path("fos_user_profile_show") }}"><i class="icon-material-outline-dashboard"></i> Tableau de bord</a></li>
                                 <li><a href="dashboard-messages.html"><i class="icon-material-outline-question-answer"></i> Messages <span class="nav-tag">2</span></a></li>
+                                {% if is_granted('ROLE_MEMBRE')%}
                                 <li><a href="dashboard-bookmarks.html"><i class="icon-material-outline-star-border"></i> Mes Groupes</a></li>
                                 <li><a href="dashboard-reviews.html"><i class="icon-material-outline-rate-review"></i> Portfolio</a></li>
-
+                                {% endif %}
                             </ul>
 
 
