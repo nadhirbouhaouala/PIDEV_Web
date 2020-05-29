@@ -3940,6 +3940,11 @@
             "portable",
             "shim"
         ],
+
+        "support": {
+            "source": "https://github.com/symfony/polyfill-intl-idn/tree/v1.15.0"
+        },
+
         "funding": [
             {
                 "url": "https://symfony.com/sponsor",
@@ -4233,6 +4238,11 @@
             "portable",
             "shim"
         ],
+
+        "support": {
+            "source": "https://github.com/symfony/polyfill-php72/tree/v1.15.0"
+        },
+
         "funding": [
             {
                 "url": "https://symfony.com/sponsor",
