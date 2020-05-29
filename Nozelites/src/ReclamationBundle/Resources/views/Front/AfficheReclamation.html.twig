@@ -1,4 +1,6 @@
-{% extends '@Reclamation/Front/table.html.twig' %}
+{#{% extends '@Reclamation/Front/table.html.twig' %}#}
+
+{% extends '@Nozelites/basefrontmembre.html.twig' %}
 {% block content %}
     <div class="container">
         <div class="row">
@@ -6,27 +8,31 @@
             <div class="col-xl-6 col-md-6">
 
                 <div class="section-headline margin-bottom-30">
-                    <h4>Table</h4>
+                    <h4>Mes Reclamations</h4>
                 </div>
-                <table class="basic-table">
+                <table class="basic-table" >
 
                     <tr>
-                        <th>Nom</th>
-                        <th>Prenom</th>
+                        {#<th>Nom</th>
+                        <th>Prenom</th>#}
                         <th>Titre</th>
                         <th>Description</th>
-                        <th>Etat</th>
+                        <th>
+                            Etat
+                            0:en cours
+                            1:Validé
+                        </th>
                         <th>Selecteur</th>
                         <th>Date de la Réclamation</th>
                         <th>Delete</th>
                         <th>Update</th>
-                        <th>Note</th>
+                        <th>Noté la Reclamation </th>
 
                     </tr>
                     {% for rec in R %}
                     <tr>
-                        <td>{{ rec.IdEmeteur.nom }}</td>
-                        <td>{{ rec.IdEmeteur.prenom}}</td>
+{#                        <td>{{ rec.IdEmeteur.nom }}</td>#}
+{#                        <td>{{ rec.IdEmeteur.prenom}}</td>#}
 
                         {% if rec.selecteur == "groupe" %}
                             {% for groupe in groupes if groupe.idGroupe ==  rec.idCible %}
@@ -41,8 +47,8 @@
                         <td data-label="Column 2">{{ rec.etat }}</td>
                         <td data-label="Column 3">{{ rec.selecteur}}</td>
                         <td data-label="Column 3"> {{  rec.date|date('Y-m-d H:i:s') }}</td>
-                       <td> <a href="{{ path('Delete',{'id':rec.idRecl}) }}" class="button ripple-effect">Delete</a></td>
-                       <td> <a href="{{ path('Update',{'id':rec.idRecl}) }}" class="button dark ripple-effect">Update</a></td>
+                       <td> <a href="{{ path('DeleteREC',{'id':rec.idRecl}) }}" class="button ripple-effect">Delete</a></td>
+                       <td> <a href="{{ path('UpdateREC',{'id':rec.idRecl}) }}" class="button dark ripple-effect">Update</a></td>
                         {% if rec.etat == 1 %}
                         <td>  <a href="{{ path('AjouterNoteTest',{'id':rec.idRecl}) }}" class="button dark ripple-effect">Note</a></td>
                         {% endif %}

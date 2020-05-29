@@ -19,6 +19,9 @@ parameters:
 
 
 framework:
+    templating:
+        engines: ['twig']
+
     #esi: ~
     translator: { fallbacks: ['%locale%'] }
     secret: '%secret%'

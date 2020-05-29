@@ -30,6 +30,7 @@
       <parameter key="IvoryGoogleMapBundle">Ivory\GoogleMapBundle\IvoryGoogleMapBundle</parameter>
       <parameter key="IvorySerializerBundle">Ivory\SerializerBundle\IvorySerializerBundle</parameter>
       <parameter key="HttplugBundle">Http\HttplugBundle\HttplugBundle</parameter>
+      <parameter key="StarRatingBundle">blackknight467\StarRatingBundle\StarRatingBundle</parameter>
       <parameter key="DebugBundle">Symfony\Bundle\DebugBundle\DebugBundle</parameter>
       <parameter key="WebProfilerBundle">Symfony\Bundle\WebProfilerBundle\WebProfilerBundle</parameter>
       <parameter key="SensioDistributionBundle">Sensio\Bundle\DistributionBundle\SensioDistributionBundle</parameter>
@@ -142,6 +143,11 @@
         <parameter key="path">C:\wamp64\www\PIDEV_Web\Nozelites\vendor\php-http\httplug-bundle\src</parameter>
         <parameter key="namespace">Http\HttplugBundle</parameter>
       </parameter>
+      <parameter key="StarRatingBundle" type="collection">
+        <parameter key="parent">null</parameter>
+        <parameter key="path">C:\wamp64\www\PIDEV_Web\Nozelites\vendor\blackknight467\star-rating-bundle\blackknight467\StarRatingBundle</parameter>
+        <parameter key="namespace">blackknight467\StarRatingBundle</parameter>
+      </parameter>
       <parameter key="DebugBundle" type="collection">
         <parameter key="parent">null</parameter>
         <parameter key="path">C:\wamp64\www\PIDEV_Web\Nozelites\vendor\symfony\symfony\src\Symfony\Bundle\DebugBundle</parameter>
@@ -184,7 +190,7 @@
     <parameter key="secret">ThisTokenIsNotSoSecretChangeIt</parameter>
     <parameter key="locale">fr</parameter>
     <parameter key="image_directory">C:\wamp64\www\PIDEV_Web\Nozelites/web/front/images</parameter>
-    <parameter key="fragment.renderer.hinclude.global_template"></parameter>
+    <parameter key="fragment.renderer.hinclude.global_template">null</parameter>
     <parameter key="fragment.path">/_fragment</parameter>
     <parameter key="kernel.secret">ThisTokenIsNotSoSecretChangeIt</parameter>
     <parameter key="kernel.http_method_override">true</parameter>
@@ -204,6 +210,10 @@
     <parameter key="form.type_extension.csrf.field_name">_token</parameter>
     <parameter key="asset.request_context.base_path"></parameter>
     <parameter key="asset.request_context.secure">false</parameter>
+    <parameter key="templating.loader.cache.path">null</parameter>
+    <parameter key="templating.engines" type="collection">
+      <parameter>twig</parameter>
+    </parameter>
     <parameter key="validator.mapping.cache.prefix"></parameter>
     <parameter key="validator.mapping.cache.file">C:\wamp64\www\PIDEV_Web\Nozelites\var\cache\dev/validation.php</parameter>
     <parameter key="validator.translation_domain">validators</parameter>
@@ -250,6 +260,7 @@
     <parameter key="twig.exception_listener.controller">twig.controller.exception:showAction</parameter>
     <parameter key="twig.form.resources" type="collection">
       <parameter>@IvoryGoogleMap/Form/place_autocomplete_widget.html.twig</parameter>
+      <parameter>StarRatingBundle::rating.html.twig</parameter>
       <parameter>form_div_layout.html.twig</parameter>
     </parameter>
     <parameter key="twig.default_path">C:\wamp64\www\PIDEV_Web\Nozelites/templates</parameter>
@@ -497,6 +508,7 @@
       <parameter>ResetPassword</parameter>
       <parameter>Default</parameter>
     </parameter>
+    <parameter key="star_rating.config" type="collection"/>
     <parameter key="web_profiler.debug_toolbar.position">bottom</parameter>
     <parameter key="web_profiler.debug_toolbar.intercept_redirects">false</parameter>
     <parameter key="web_profiler.debug_toolbar.mode">2</parameter>
@@ -853,9 +865,10 @@
     </service>
     <service id="fragment.renderer.hinclude" class="Symfony\Component\HttpKernel\Fragment\HIncludeFragmentRenderer">
       <tag name="kernel.fragment_renderer" alias="hinclude"/>
+      <tag name="kernel.fragment_renderer" alias="hinclude"/>
       <argument type="service" id="twig"/>
       <argument type="service" id="uri_signer"/>
-      <argument></argument>
+      <argument>null</argument>
       <call method="setFragmentPath">
         <argument>/_fragment</argument>
       </call>
@@ -997,6 +1010,7 @@
         <argument>Vich\UploaderBundle\Form\Type</argument>
         <argument>FOS\UserBundle\Form\Type</argument>
         <argument>Ivory\GoogleMapBundle\Form\Type</argument>
+        <argument>blackknight467\StarRatingBundle\Form</argument>
       </argument>
       <argument type="collection">
         <argument>UserBundle\Form\RegistrationType</argument>
@@ -1013,6 +1027,7 @@
         <argument>FOS\UserBundle\Form\Type\ChangePasswordFormType</argument>
         <argument>FOS\UserBundle\Form\Type\ResettingFormType</argument>
         <argument>Ivory\GoogleMapBundle\Form\Type\PlaceAutocompleteType</argument>
+        <argument>blackknight467\StarRatingBundle\Form\RatingType</argument>
       </argument>
       <argument type="collection">
         <argument>Symfony\Component\Form\Extension\Core\Type\TransformationFailureExtension</argument>
@@ -1179,7 +1194,8 @@
       <factory service="session" method="getFlashBag"/>
     </service>
     <service id="session.attribute_bag" class="Symfony\Component\HttpFoundation\Session\Attribute\AttributeBag" public="false">
-      <factory service="session" method="getAttributeBag"/>
+      <argument>attributes</argument>
+      <factory service="session" method="getBag"/>
     </service>
     <service id="session.storage.mock_file" class="Symfony\Component\HttpFoundation\Session\Storage\MockFileSessionStorage" public="false">
       <argument>C:\wamp64\www\PIDEV_Web\Nozelites\var\cache\dev/sessions</argument>
@@ -1227,7 +1243,7 @@
       <argument type="service" id="form.resolved_type_factory"/>
     </service>
     <service id="form.extension" class="Symfony\Component\Form\Extension\DependencyInjection\DependencyInjectionExtension" public="false">
-      <argument type="service" id="service_locator.joemfvg"/>
+      <argument type="service" id="service_locator.dv4pssz"/>
       <argument type="collection">
         <argument key="Symfony\Component\Form\Extension\Core\Type\FormType" type="iterator">
           <argument type="service" id="form.type_extension.form.transformation_failure_handling"/>
@@ -1438,6 +1454,45 @@
       <argument></argument>
       <argument type="service" id="assets.empty_version_strategy"/>
       <argument type="service" id="assets.context"/>
+    </service>
+    <service id="templating.engine.delegating" class="Symfony\Bundle\FrameworkBundle\Templating\DelegatingEngine" public="false">
+      <argument type="service" id="service_container"/>
+      <argument type="collection"/>
+    </service>
+    <service id="templating.name_parser" class="Symfony\Bundle\FrameworkBundle\Templating\TemplateNameParser">
+      <argument type="service" id="kernel"/>
+    </service>
+    <service id="templating.filename_parser" class="Symfony\Bundle\FrameworkBundle\Templating\TemplateFilenameParser"/>
+    <service id="templating.locator" class="Symfony\Bundle\FrameworkBundle\Templating\Loader\TemplateLocator" public="false">
+      <argument type="service" id="file_locator"/>
+      <argument>C:\wamp64\www\PIDEV_Web\Nozelites\var\cache\dev</argument>
+    </service>
+    <service id="templating.finder" class="Symfony\Bundle\FrameworkBundle\CacheWarmer\TemplateFinder" public="false">
+      <argument type="service" id="kernel"/>
+      <argument type="service" id="templating.filename_parser"/>
+      <argument>C:\wamp64\www\PIDEV_Web\Nozelites\app/Resources</argument>
+    </service>
+    <service id="templating.cache_warmer.template_paths" class="Symfony\Bundle\FrameworkBundle\CacheWarmer\TemplatePathsCacheWarmer" public="false">
+      <tag name="kernel.cache_warmer" priority="20"/>
+      <argument type="service" id="templating.finder"/>
+      <argument type="service" id="templating.locator"/>
+    </service>
+    <service id="templating.loader.filesystem" class="Symfony\Bundle\FrameworkBundle\Templating\Loader\FilesystemLoader" public="false">
+      <argument type="service" id="templating.locator"/>
+    </service>
+    <service id="templating.loader.cache" class="Symfony\Component\Templating\Loader\CacheLoader" public="false">
+      <tag name="monolog.logger" channel="templating"/>
+      <argument type="service" id="templating.loader.wrapped"/>
+      <argument>null</argument>
+      <call method="setLogger">
+        <argument type="service" id="monolog.logger.templating" on-invalid="ignore"/>
+      </call>
+    </service>
+    <service id="templating.loader.chain" class="Symfony\Component\Templating\Loader\ChainLoader" public="false">
+      <tag name="monolog.logger" channel="templating"/>
+      <call method="setLogger">
+        <argument type="service" id="monolog.logger.templating" on-invalid="ignore"/>
+      </call>
     </service>
     <service id="2_ApcCache~gb7_9gk" class="Doctrine\Common\Cache\ApcCache" public="false">
       <call method="setNamespace">
@@ -3105,7 +3160,7 @@
     </service>
     <service id="Symfony\Bundle\FrameworkBundle\Controller\TemplateController" class="Symfony\Bundle\FrameworkBundle\Controller\TemplateController" public="true">
       <argument type="service" id="twig" on-invalid="ignore"/>
-      <argument>null</argument>
+      <argument type="service" id="templating.engine.twig" on-invalid="ignore"/>
     </service>
     <service id="routing.loader.annotation" class="Symfony\Bundle\FrameworkBundle\Routing\AnnotatedRouteControllerLoader" public="false">
       <tag name="routing.loader" priority="-10"/>
@@ -3841,7 +3896,7 @@
       </call>
     </service>
     <service id="twig" class="Twig\Environment" public="true">
-      <argument type="service" id="twig.loader.native_filesystem"/>
+      <argument type="service" id="twig.loader.filesystem"/>
       <argument type="collection">
         <argument key="debug">true</argument>
         <argument key="strict_variables">true</argument>
@@ -3919,6 +3974,9 @@
         <argument type="service" id="httplug.collector.twig.http_message"/>
       </call>
       <call method="addExtension">
+        <argument type="service" id="star_rating.twig"/>
+      </call>
+      <call method="addExtension">
         <argument type="service" id="twig.extension.webprofiler"/>
       </call>
       <call method="addGlobal">
@@ -3948,7 +4006,7 @@
       <tag name="kernel.cache_warmer"/>
       <tag name="container.service_subscriber" id="twig"/>
       <argument type="service" id="service_locator.c7_qahl.twig.cache_warmer"/>
-      <argument>null</argument>
+      <argument type="service" id="templating.finder" on-invalid="ignore"/>
       <argument type="collection">
         <argument key="C:\wamp64\www\PIDEV_Web\Nozelites\vendor\symfony\symfony\src\Symfony\Bridge\Twig/Resources/views/Form">null</argument>
       </argument>
@@ -3968,7 +4026,6 @@
       <argument type="service" id="twig.template_iterator"/>
     </service>
     <service id="twig.loader.native_filesystem" class="Twig\Loader\FilesystemLoader" public="false">
-      <tag name="twig.loader"/>
       <argument type="collection"/>
       <argument>C:\wamp64\www\PIDEV_Web\Nozelites</argument>
       <call method="addPath">
@@ -4096,6 +4153,14 @@
         <argument>!Httplug</argument>
       </call>
       <call method="addPath">
+        <argument>C:\wamp64\www\PIDEV_Web\Nozelites\vendor\blackknight467\star-rating-bundle\blackknight467\StarRatingBundle/Resources/views</argument>
+        <argument>StarRating</argument>
+      </call>
+      <call method="addPath">
+        <argument>C:\wamp64\www\PIDEV_Web\Nozelites\vendor\blackknight467\star-rating-bundle\blackknight467\StarRatingBundle/Resources/views</argument>
+        <argument>!StarRating</argument>
+      </call>
+      <call method="addPath">
         <argument>C:\wamp64\www\PIDEV_Web\Nozelites\vendor\symfony\symfony\src\Symfony\Bundle\DebugBundle/Resources/views</argument>
         <argument>Debug</argument>
       </call>
@@ -4220,6 +4285,171 @@
       <tag name="twig.runtime"/>
       <argument type="service" id="twig.form.engine"/>
       <argument type="service" id="security.csrf.token_manager" on-invalid="null"/>
+    </service>
+    <service id="twig.loader.filesystem" class="Symfony\Bundle\TwigBundle\Loader\FilesystemLoader" public="false">
+      <tag name="twig.loader"/>
+      <argument type="service" id="templating.locator"/>
+      <argument type="service" id="templating.name_parser"/>
+      <argument>C:\wamp64\www\PIDEV_Web\Nozelites</argument>
+      <call method="addPath">
+        <argument>C:\wamp64\www\PIDEV_Web\Nozelites\vendor\symfony\symfony\src\Symfony\Bundle\FrameworkBundle/Resources/views</argument>
+        <argument>Framework</argument>
+      </call>
+      <call method="addPath">
+        <argument>C:\wamp64\www\PIDEV_Web\Nozelites\vendor\symfony\symfony\src\Symfony\Bundle\FrameworkBundle/Resources/views</argument>
+        <argument>!Framework</argument>
+      </call>
+      <call method="addPath">
+        <argument>C:\wamp64\www\PIDEV_Web\Nozelites\vendor\symfony\symfony\src\Symfony\Bundle\SecurityBundle/Resources/views</argument>
+        <argument>Security</argument>
+      </call>
+      <call method="addPath">
+        <argument>C:\wamp64\www\PIDEV_Web\Nozelites\vendor\symfony\symfony\src\Symfony\Bundle\SecurityBundle/Resources/views</argument>
+        <argument>!Security</argument>
+      </call>
+      <call method="addPath">
+        <argument>C:\wamp64\www\PIDEV_Web\Nozelites\vendor\symfony\symfony\src\Symfony\Bundle\TwigBundle/Resources/views</argument>
+        <argument>Twig</argument>
+      </call>
+      <call method="addPath">
+        <argument>C:\wamp64\www\PIDEV_Web\Nozelites\vendor\symfony\symfony\src\Symfony\Bundle\TwigBundle/Resources/views</argument>
+        <argument>!Twig</argument>
+      </call>
+      <call method="addPath">
+        <argument>C:\wamp64\www\PIDEV_Web\Nozelites\vendor\symfony\swiftmailer-bundle/Resources/views</argument>
+        <argument>Swiftmailer</argument>
+      </call>
+      <call method="addPath">
+        <argument>C:\wamp64\www\PIDEV_Web\Nozelites\vendor\symfony\swiftmailer-bundle/Resources/views</argument>
+        <argument>!Swiftmailer</argument>
+      </call>
+      <call method="addPath">
+        <argument>C:\wamp64\www\PIDEV_Web\Nozelites\vendor\doctrine\doctrine-bundle/Resources/views</argument>
+        <argument>Doctrine</argument>
+      </call>
+      <call method="addPath">
+        <argument>C:\wamp64\www\PIDEV_Web\Nozelites\vendor\doctrine\doctrine-bundle/Resources/views</argument>
+        <argument>!Doctrine</argument>
+      </call>
+      <call method="addPath">
+        <argument>C:\wamp64\www\PIDEV_Web\Nozelites\src\NozelitesBundle/Resources/views</argument>
+        <argument>Nozelites</argument>
+      </call>
+      <call method="addPath">
+        <argument>C:\wamp64\www\PIDEV_Web\Nozelites\src\NozelitesBundle/Resources/views</argument>
+        <argument>!Nozelites</argument>
+      </call>
+      <call method="addPath">
+        <argument>C:\wamp64\www\PIDEV_Web\Nozelites\vendor\vich\uploader-bundle/Resources/views</argument>
+        <argument>VichUploader</argument>
+      </call>
+      <call method="addPath">
+        <argument>C:\wamp64\www\PIDEV_Web\Nozelites\vendor\vich\uploader-bundle/Resources/views</argument>
+        <argument>!VichUploader</argument>
+      </call>
+      <call method="addPath">
+        <argument>C:\wamp64\www\PIDEV_Web\Nozelites\src\OffreBundle/Resources/views</argument>
+        <argument>Offre</argument>
+      </call>
+      <call method="addPath">
+        <argument>C:\wamp64\www\PIDEV_Web\Nozelites\src\OffreBundle/Resources/views</argument>
+        <argument>!Offre</argument>
+      </call>
+      <call method="addPath">
+        <argument>C:\wamp64\www\PIDEV_Web\Nozelites\vendor\knplabs\knp-paginator-bundle/Resources/views</argument>
+        <argument>KnpPaginator</argument>
+      </call>
+      <call method="addPath">
+        <argument>C:\wamp64\www\PIDEV_Web\Nozelites\vendor\knplabs\knp-paginator-bundle/Resources/views</argument>
+        <argument>!KnpPaginator</argument>
+      </call>
+      <call method="addPath">
+        <argument>C:\wamp64\www\PIDEV_Web\Nozelites\app/Resources/FOSUserBundle/views</argument>
+        <argument>FOSUser</argument>
+      </call>
+      <call method="addPath">
+        <argument>C:\wamp64\www\PIDEV_Web\Nozelites\vendor\friendsofsymfony\user-bundle/Resources/views</argument>
+        <argument>FOSUser</argument>
+      </call>
+      <call method="addPath">
+        <argument>C:\wamp64\www\PIDEV_Web\Nozelites\vendor\friendsofsymfony\user-bundle/Resources/views</argument>
+        <argument>!FOSUser</argument>
+      </call>
+      <call method="addPath">
+        <argument>C:\wamp64\www\PIDEV_Web\Nozelites\src\UserBundle/Resources/views</argument>
+        <argument>User</argument>
+      </call>
+      <call method="addPath">
+        <argument>C:\wamp64\www\PIDEV_Web\Nozelites\src\UserBundle/Resources/views</argument>
+        <argument>!User</argument>
+      </call>
+      <call method="addPath">
+        <argument>C:\wamp64\www\PIDEV_Web\Nozelites\src\ReclamationBundle/Resources/views</argument>
+        <argument>Reclamation</argument>
+      </call>
+      <call method="addPath">
+        <argument>C:\wamp64\www\PIDEV_Web\Nozelites\src\ReclamationBundle/Resources/views</argument>
+        <argument>!Reclamation</argument>
+      </call>
+      <call method="addPath">
+        <argument>C:\wamp64\www\PIDEV_Web\Nozelites\src\PublicationBundle/Resources/views</argument>
+        <argument>Publication</argument>
+      </call>
+      <call method="addPath">
+        <argument>C:\wamp64\www\PIDEV_Web\Nozelites\src\PublicationBundle/Resources/views</argument>
+        <argument>!Publication</argument>
+      </call>
+      <call method="addPath">
+        <argument>C:\wamp64\www\PIDEV_Web\Nozelites\vendor\egeloen\google-map-bundle/Resources/views</argument>
+        <argument>IvoryGoogleMap</argument>
+      </call>
+      <call method="addPath">
+        <argument>C:\wamp64\www\PIDEV_Web\Nozelites\vendor\egeloen\google-map-bundle/Resources/views</argument>
+        <argument>!IvoryGoogleMap</argument>
+      </call>
+      <call method="addPath">
+        <argument>C:\wamp64\www\PIDEV_Web\Nozelites\vendor\php-http\httplug-bundle\src/Resources/views</argument>
+        <argument>Httplug</argument>
+      </call>
+      <call method="addPath">
+        <argument>C:\wamp64\www\PIDEV_Web\Nozelites\vendor\php-http\httplug-bundle\src/Resources/views</argument>
+        <argument>!Httplug</argument>
+      </call>
+      <call method="addPath">
+        <argument>C:\wamp64\www\PIDEV_Web\Nozelites\vendor\blackknight467\star-rating-bundle\blackknight467\StarRatingBundle/Resources/views</argument>
+        <argument>StarRating</argument>
+      </call>
+      <call method="addPath">
+        <argument>C:\wamp64\www\PIDEV_Web\Nozelites\vendor\blackknight467\star-rating-bundle\blackknight467\StarRatingBundle/Resources/views</argument>
+        <argument>!StarRating</argument>
+      </call>
+      <call method="addPath">
+        <argument>C:\wamp64\www\PIDEV_Web\Nozelites\vendor\symfony\symfony\src\Symfony\Bundle\DebugBundle/Resources/views</argument>
+        <argument>Debug</argument>
+      </call>
+      <call method="addPath">
+        <argument>C:\wamp64\www\PIDEV_Web\Nozelites\vendor\symfony\symfony\src\Symfony\Bundle\DebugBundle/Resources/views</argument>
+        <argument>!Debug</argument>
+      </call>
+      <call method="addPath">
+        <argument>C:\wamp64\www\PIDEV_Web\Nozelites\vendor\symfony\symfony\src\Symfony\Bundle\WebProfilerBundle/Resources/views</argument>
+        <argument>WebProfiler</argument>
+      </call>
+      <call method="addPath">
+        <argument>C:\wamp64\www\PIDEV_Web\Nozelites\vendor\symfony\symfony\src\Symfony\Bundle\WebProfilerBundle/Resources/views</argument>
+        <argument>!WebProfiler</argument>
+      </call>
+      <call method="addPath">
+        <argument>C:\wamp64\www\PIDEV_Web\Nozelites\app/Resources/views</argument>
+      </call>
+      <call method="addPath">
+        <argument>C:\wamp64\www\PIDEV_Web\Nozelites\vendor\symfony\symfony\src\Symfony\Bridge\Twig/Resources/views/Form</argument>
+      </call>
+    </service>
+    <service id="templating.engine.twig" class="Symfony\Bundle\TwigBundle\TwigEngine" public="false">
+      <argument type="service" id="twig"/>
+      <argument type="service" id="templating.name_parser"/>
+      <argument type="service" id="templating.locator"/>
     </service>
     <service id="twig.command.debug" class="Symfony\Bridge\Twig\Command\DebugCommand" public="false">
       <tag name="console.command" command="debug:twig"/>
@@ -5250,7 +5480,7 @@
       <tag name="fos_user.requires_swift"/>
       <argument type="service" id="swiftmailer.mailer.default"/>
       <argument type="service" id="router.default"/>
-      <argument type="service" id="templating"/>
+      <argument type="service" id="templating.engine.twig"/>
       <argument type="collection">
         <argument key="confirmation.template">@FOSUser/Registration/email.txt.twig</argument>
         <argument key="resetting.template">@FOSUser/Resetting/email.txt.twig</argument>
@@ -7537,6 +7767,13 @@
       <tag name="container.hot_path"/>
       <argument type="service" id="Http\Client\Common\PluginClientFactory"/>
     </service>
+    <service id="star_rating.type" class="blackknight467\StarRatingBundle\Form\RatingType">
+      <tag name="form.type" alias="rating"/>
+    </service>
+    <service id="star_rating.twig" class="blackknight467\StarRatingBundle\Extensions\StarRatingExtension">
+      <tag name="twig.extension"/>
+      <argument type="service" id="service_container"/>
+    </service>
     <service id="twig.extension.dump" class="Symfony\Bridge\Twig\Extension\DumpExtension" public="false">
       <tag name="twig.extension"/>
       <argument type="service" id="var_dumper.cloner"/>
@@ -7724,7 +7961,7 @@
         <argument key="inline" type="service" id="fragment.renderer.inline"/>
       </argument>
     </service>
-    <service id="service_locator.joemfvg" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
+    <service id="service_locator.dv4pssz" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
       <tag name="container.service_locator"/>
       <argument type="collection">
         <argument key="FOS\UserBundle\Form\Type\ChangePasswordFormType" type="service" id="fos_user.change_password.form.type"/>
@@ -7741,6 +7978,7 @@
         <argument key="UserBundle\Form\RegistrationType" type="service" id="app.form.registration"/>
         <argument key="Vich\UploaderBundle\Form\Type\VichFileType" type="service" id="vich_uploader.form.type.file"/>
         <argument key="Vich\UploaderBundle\Form\Type\VichImageType" type="service" id="vich_uploader.form.type.image"/>
+        <argument key="blackknight467\StarRatingBundle\Form\RatingType" type="service" id="star_rating.type"/>
       </argument>
     </service>
     <service id="security.logout.handler.csrf_token_clearing" class="Symfony\Component\Security\Http\Logout\CsrfTokenClearingLogoutHandler" public="false">
@@ -7775,6 +8013,21 @@
     </service>
     <service id="monolog.logger.cache" class="Symfony\Bridge\Monolog\Logger">
       <argument>cache</argument>
+      <call method="pushProcessor">
+        <argument type="service" id="debug.log_processor"/>
+      </call>
+      <call method="pushHandler">
+        <argument type="service" id="monolog.handler.server_log"/>
+      </call>
+      <call method="pushHandler">
+        <argument type="service" id="monolog.handler.console"/>
+      </call>
+      <call method="pushHandler">
+        <argument type="service" id="monolog.handler.main"/>
+      </call>
+    </service>
+    <service id="monolog.logger.templating" class="Symfony\Bridge\Monolog\Logger">
+      <argument>templating</argument>
       <call method="pushProcessor">
         <argument type="service" id="debug.log_processor"/>
       </call>
@@ -8181,6 +8434,8 @@
     <service id="form.property_accessor" alias="property_accessor" public="false"/>
     <service id="form.choice_list_factory" alias="form.choice_list_factory.cached" public="false"/>
     <service id="Symfony\Component\Asset\Packages" alias="assets.packages" public="false"/>
+    <service id="templating.loader" alias="templating.loader.filesystem" public="true"/>
+    <service id="templating" alias="templating.engine.twig" public="true"/>
     <service id="Symfony\Component\Validator\Validator\ValidatorInterface" alias="debug.validator" public="false"/>
     <service id="validator.mapping.class_metadata_factory" alias="debug.validator" public="false"/>
     <service id="translator" alias="translator.data_collector" public="true"/>
@@ -8279,8 +8534,9 @@
     <service id="httplug.message_factory" alias="httplug.message_factory.default" public="true"/>
     <service id="httplug.uri_factory" alias="httplug.uri_factory.default" public="true"/>
     <service id="httplug.stream_factory" alias="httplug.stream_factory.default" public="true"/>
-    <service id="twig.loader.filesystem" alias="twig.loader.native_filesystem" public="false"/>
-    <service id="twig.loader" alias="twig.loader.native_filesystem"/>
+    <service id="Symfony\Component\Templating\EngineInterface" alias="templating.engine.twig" public="false"/>
+    <service id="Symfony\Bundle\FrameworkBundle\Templating\EngineInterface" alias="templating.engine.twig" public="false"/>
+    <service id="twig.loader" alias="twig.loader.filesystem"/>
     <service id="service_locator._fpuy7b" alias="2_ServiceLocator~ewyb5m7" public="false"/>
     <service id="service_locator.ml7rum7" alias="1_ServiceLocator~gkweq_a" public="false"/>
     <service id="validator" alias="debug.validator" public="true"/>

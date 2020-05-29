@@ -1,8 +1,10 @@
 <?php
 
+
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\HttpKernel\Kernel;
 use Symfony\Component\Config\Loader\LoaderInterface;
+
 
 class AppKernel extends Kernel
 {
@@ -35,6 +37,8 @@ class AppKernel extends Kernel
             new Ivory\GoogleMapBundle\IvoryGoogleMapBundle(),
             new Ivory\SerializerBundle\IvorySerializerBundle(),
             new Http\HttplugBundle\HttplugBundle(),
+            new blackknight467\StarRatingBundle\StarRatingBundle(),
+
 
 
         ];

@@ -14,7 +14,10 @@ class EvaluationType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('note')->add('idR');
+        $builder->add('rating', RatingType::class, [
+            'label' => 'Rating'
+        ]);
+
     }/**
      * {@inheritdoc}
      */

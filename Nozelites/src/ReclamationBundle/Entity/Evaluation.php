@@ -31,12 +31,13 @@ class Evaluation
      */
     private $idR;
 
+
     /**
-     * @var string
+     * @var integer
      *
-     * @ORM\Column(name="note", type="integer")
+     * @ORM\Column(name="rating", type="integer" )
      */
-    private $note;
+    private $rating ;
 
 
     /**
@@ -73,28 +74,23 @@ class Evaluation
         return $this->idR;
     }
 
+
+
     /**
-     * Set note
-     *
-     * @param string $note
-     *
-     * @return Evaluation
+     * @return int
      */
-    public function setNote($note)
+    public function getRating()
     {
-        $this->note = $note;
-    
-        return $this;
+        return $this->rating;
     }
 
     /**
-     * Get note
-     *
-     * @return integer
+     * @param int $rating
      */
-    public function getNote()
+    public function setRating($rating)
     {
-        return $this->note;
+        $this->rating = $rating;
     }
+
 }
 

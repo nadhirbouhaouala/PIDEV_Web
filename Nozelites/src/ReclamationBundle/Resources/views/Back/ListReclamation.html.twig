@@ -1,4 +1,5 @@
-{% extends '@Reclamation/baseback.html.twig' %}
+{#{% extends '@Reclamation/baseback.html.twig' %}#}
+{% extends '@Nozelites/baseback.html.twig' %}
 
 {% block titre %}{{ parent() }} - Acceuil {% endblock %}
 
@@ -6,6 +7,7 @@
     {{ parent() }}
     <!-- DataTables -->
     <link rel="stylesheet" href="{{ asset('plugins/datatables-bs4/css/dataTables.bootstrap4.css') }}">
+    <link href="{{ asset('css/toastr.min.css') }}" rel="stylesheet">
 {% endblock %}
 
 {% block content %}
@@ -66,7 +68,7 @@
                                         <td data-label="Column 3"> {{  rec.date|date('Y-m-d H:i:s') }}</td>
 
                                         <td>
-                                            <a href="{{ path('Deleteback',{'id':rec.idRecl}) }}" class="btn btn-block btn-danger">Supprimer</a>
+                                            <a href="{{ path('Deletebac',{'id':rec.idRecl}) }}" class="btn btn-block btn-danger">Supprimer</a>
                                         </td>
                                         <td>
                                             <a href="{{ path('Traiter',{'id':rec.idRecl}) }}" class="btn btn-block btn-warning">Traiter</a>
@@ -104,6 +106,12 @@
                 "info": true,
                 "autoWidth": false,
             });
+        });
+    </script>
+    <script src="{{ asset('js/toastr.min.js') }}"></script>
+    <script>
+        $(function () {
+            toastr.success('Bienvenue Admin , vous avez des nouvelles réclamations')
         });
     </script>
 {% endblock %}

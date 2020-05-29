@@ -14,6 +14,14 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 
 
+use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\Serializer\Encoder\JsonEncoder;
+use Symfony\Component\Serializer\Encoder\XmlEncoder;
+use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
+use Symfony\Component\Serializer\Serializer;
+
+
+
 class ReclamationController extends Controller
 {
     /**
@@ -72,8 +80,8 @@ class ReclamationController extends Controller
             $em->persist($reclamation);
             $em->flush();
 
-$mail="mohamedkheireddine.bairam@esprit.tn";
-  $msg="On a bien recu votre Reclamation";
+    $mail="mohamedkheireddine.bairam@esprit.tn";
+    $msg="On a bien recu votre Reclamation";
                 $transport = \Swift_SmtpTransport::newInstance('smtp.gmail.com',465,'ssl');
            $mailer = \Swift_Mailer::newInstance($transport);
                                     $message = \Swift_Message::newInstance()
@@ -111,7 +119,7 @@ $mail="mohamedkheireddine.bairam@esprit.tn";
         $em->flush();
         return $this->redirectToRoute('nozelites_homepagebac');
     }
-    function AfficheRecAction(){
+   /* function AfficheRecAction(){
         $user = $this->get('security.token_storage')->getToken()->getUser();
         $ide=5;
         $Reclamations=$this->getDoctrine()->getRepository(Reclamation::class)->findAll();
@@ -133,9 +141,29 @@ $mail="mohamedkheireddine.bairam@esprit.tn";
 
         return $this->render('@Reclamation/Front/AfficheReclamation.html.twig',
             array('R'=>$Reclamations,'IdEmeteur' => $membre,'groupes' => $groupes,'evenements' => $evenements));
+    }*/
+
+
+    public function  AfficheRecAction()
+    {
+
+        $Reclamations=$this->getDoctrine()->getRepository(Reclamation::class)->findByIdEmeteur($this->getRealIdAction());
+
+        $id = $this->getRealIdAction();
+        $groupes = []; $evenements = [];
+        for($i=0; $i < sizeof($Reclamations); $i++) {
+            if ($Reclamations[$i]->getSelecteur() == "groupe") {
+                $gr = $this->getDoctrine()->getRepository(Groupe::class)->find($Reclamations[$i]->getIdCible());
+                if (!in_array($gr, $groupes)) $groupes[sizeof($groupes)] = $gr;
+            }
+            if ($Reclamations[$i]->getSelecteur() == "evenement") {
+                $fr = $this->getDoctrine()->getRepository(Evenement::class)->find($Reclamations[$i]->getIdCible());
+                if (!in_array($fr, $evenements)) $evenements[sizeof($evenements)] = $fr;
+            }
+        }
+        return $this->render('@Reclamation/Front/AfficheReclamation.html.twig',
+            array('R'=>$Reclamations,'IdEmeteur' => $id,'groupes' => $groupes,'evenements' => $evenements));
     }
-
-
 
     function AfficheRec1Action(){
         $user = $this->get('security.token_storage')->getToken()->getUser();
@@ -263,5 +291,84 @@ $mail="mohamedkheireddine.bairam@esprit.tn";
 
     }
 
+    public function JsonAllAction()
+    {
+        $reclamation = $this->getDoctrine()->getManager()
+            ->getRepository("ReclamationBundle:Reclamation")->findAll();
+        $serializer = new Serializer([new ObjectNormalizer()]);
+        $formatted = $serializer->normalize($reclamation);
+
+        return new JsonResponse($formatted);
+    }
+
+    public function JsonFindAction($id)
+    {
+        $reclamation = $this->getDoctrine()->getManager()
+            ->getRepository("ReclamationBundle:Reclamation")->find($id);
+
+        $serializer = new Serializer([new ObjectNormalizer()]);
+        $formatted = $serializer->normalize($reclamation);
+
+        return new JsonResponse($formatted);
+    }
+
+    public function JsonAddAction($id_emeteur,$id_cible,$description,$selecteur)
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $reclamation = new reclamation();
+
+        $reclamation->setIdEmeteur($em->getRepository("NozelitesBundle:Membre")->find($id_emeteur));
+        $reclamation->setIdCible($id_cible);
+        $reclamation->setEtat(0);
+        $reclamation->setDate(new  \DateTime("now + 1 hour"));
+        $reclamation->setDescription($description);
+        $reclamation->setSelecteur($selecteur);
+        $em->persist($reclamation);
+        $em->flush();
+      /*  $mail="mohamedkheireddine.bairam@esprit.tn";
+        $msg="On a bien recu votre Reclamation";
+        $transport = \Swift_SmtpTransport::newInstance('smtp.gmail.com',465,'ssl');
+        $mailer = \Swift_Mailer::newInstance($transport);
+        $message = \Swift_Message::newInstance()
+            ->setSubject('Validation')->setFrom('nozelitesa3@gmail.com')->setTo($mail)->setBody($msg);
+
+        $this->get('mailer')->send($message);*/
+        $serializer = new Serializer([new ObjectNormalizer()]);
+        $formatted = $serializer->normalize($reclamation);
+
+        return new JsonResponse($formatted);
+    }
+
+    public function JsonEditAction($idRecl,$description)
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $reclamation = $em->getRepository("ReclamationBundle:Reclamation")->find($idRecl);
+        $reclamation->setDescription($description);
+
+
+        $em->persist($reclamation);
+        $em->flush();
+
+        $serializer = new Serializer([new ObjectNormalizer()]);
+        $formatted = $serializer->normalize($reclamation);
+
+        return new JsonResponse($formatted);
+    }
+
+    public function JsonDeleteAction($idRecl)
+    {
+        $reclamation = $this->getDoctrine()->getManager()
+            ->getRepository("ReclamationBundle:Reclamation")->find($idRecl);
+        $em = $this->getDoctrine()->getManager();
+        $em->remove($reclamation);
+        $em->flush();
+
+        $serializer = new Serializer([new ObjectNormalizer()]);
+        $formatted = $serializer->normalize($reclamation);
+
+        return new JsonResponse($formatted);
+    }
 
 }

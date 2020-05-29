@@ -1,12 +1,16 @@
 <!DOCTYPE html>
 <html>
 <head>
+
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <title>{% block title %}Nozelites - {% endblock %}</title>
     {% block stylesheets %}
         <link rel="stylesheet" href="{{ asset('css/style.css') }}">
         <link rel="stylesheet" href="{{ asset('css/colors/red.css') }}">
+        <link rel="stylesheet" type="text/css" href="{{ asset('css/rating.css') }}" />
+        <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+
     {% endblock %}
     <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
 </head>
@@ -361,6 +365,7 @@
                                     <div class="footer-rows-left">
                                         <div class="footer-row">
                                             <div class="footer-row-inner footer-logo">
+
                                                 <img src="images/logo2.png" alt="">
                                             </div>
                                         </div>
@@ -475,6 +480,7 @@
 {% endblock %}
 <!-- Scripts
 ================================================== -->
+
 {% block javascripts %}
     <script src="{{ asset('js/jquery-3.3.1.min.js') }}"></script>
     <script src="{{ asset('js/jquery-migrate-3.0.0.min.js') }}"></script>
@@ -489,6 +495,9 @@
     <script src="{{ asset('js/magnific-popup.min.js') }}"></script>
     <script src="{{ asset('js/slick.min.js') }}"></script>
     <script src="{{ asset('js/custom.js') }}"></script>
+    <script src="{{ asset('js/jquery-min.js') }}"></script>
+    <script src="{{ asset('js/rating.js') }}"></script>
+
 
     <!-- Snackbar // documentation: https://www.polonel.com/snackbar/ -->
     <script>
