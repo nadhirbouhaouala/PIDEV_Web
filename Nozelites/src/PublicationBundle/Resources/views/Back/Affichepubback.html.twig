@@ -1,4 +1,4 @@
-{% extends '@Publication/Back/Back.html.twig' %}
+{% extends '@Nozelites/baseback.html.twig' %}
 {% block titre %}{{ parent() }} - Acceuil {% endblock %}
 
 {% block stylesheets %}
@@ -21,7 +21,15 @@
                             <h3 class="card-title">Publication</h3>
                         </div>
                         <!-- /.card-header -->
+
+
+
+
+                    </div>
+                    <input id="myInput" type="text" placeholder="Recherche">
+                    <div class="card-body"  id="example23" >
                         <div class="card-body">
+
                             <table id="tableau" class="table table-bordered table-striped">
                                 <thead>
                                 <tr>
@@ -40,7 +48,7 @@
                                 <tbody>
                                 {% for cc in c %}
                                     <tr>
-                                        <td>{{ cc.titre }}</td>
+                                        <td >{{ cc.titre }}</td>
                                         <td>{{ cc.description }}</td>
                                         <td><div  class="blog-post-thumbnail-inner">
                                                 {% set imageur = cc.image|split('/')  %}
@@ -90,6 +98,17 @@
                 "ordering": true,
                 "info": true,
                 "autoWidth": false,
+            });
+        });
+    </script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $("#myInput").on("keyup", function() {
+                var value = $(this).val().toLowerCase();
+                $("#example23 tr").filter(function() {
+                    $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                });
             });
         });
     </script>
