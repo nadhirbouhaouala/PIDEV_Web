@@ -1,0 +1,88 @@
+{% extends '@Nozelites/baseback.html.twig' %}
+
+{% block titre %}{{ parent() }} - Acceuil {% endblock %}
+{% block stylesheets %}
+    {{ parent() }}
+    <!-- DataTables -->
+    <link rel="stylesheet" href="{{ asset('plugins/datatables-bs4/css/dataTables.bootstrap4.css') }}">
+{% endblock %}
+{% block content%}
+    <div class="content-wrapper">
+
+        <!-- Main content -->
+        <section class="content">
+            <div class="row">
+                <div class="col-12">
+
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="card-title">Liste des groupes</h3>
+
+                        </div>
+                        <!-- /.card-header -->
+                        <div class="card-body">
+                            <table id="tableau" class="table table-bordered table-striped">
+                                <thead>
+                                <tr>
+                                    <th>Etat du compte</th>
+                                    <th>Prenom</th>
+                                    <th>Nom</th>
+                                    <th>Nom d'utilisateur</th>
+                                    <th>Email</th>
+                                    <th>Age</th>
+                                    <th>Telephone</th>
+                                    <th>Type du compte</th>
+
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {% for membre in membres %}
+                                    <tr>
+                                        {% if membre.enabled == 1 %}
+                                        <td><a class="btn btn-block btn-danger btn-lg" href = "{{ path("user_blockUser",{'id':membre.id}) }}">Desactiver</a></td>
+                                        {% else %}
+                                            <td><a class="btn btn-block btn-danger btn-lg" href = "{{ path("user_blockUser",{'id':membre.id}) }}">Activer</a></td>
+                                        {% endif %}
+                                        <td>{{ membre.nom }}</td>
+                                        <td>{{ membre.prenom }}</td>
+                                        <td>{{ membre.username }}</td>
+                                        <td>{{ membre.email }}</td>
+                                        <td>{{ membre.age }}</td>
+                                        <td>{{ membre.telephone }}</td>
+                                        <td>{{ membre.roles[0] }}</td>
+
+                                    </tr>
+                                {% endfor %}
+
+
+                            </table>
+                        </div>
+                        <!-- /.card-body -->
+                    </div>
+                    <!-- /.card -->
+                </div>
+                <!-- /.col -->
+            </div>
+            <!-- /.row -->
+        </section>
+
+    </div>
+{% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+    <!-- DataTables -->
+    <script src="{{ asset('plugins/datatables/jquery.dataTables.js') }}"></script>
+    <script src="{{ asset('plugins/datatables-bs4/js/dataTables.bootstrap4.js') }}"></script>
+    <script>
+        $(function () {
+            $('#tableau').DataTable({
+                "paging": true,
+                "lengthChange": true,
+                "searching": true,
+                "ordering": true,
+                "info": true,
+                "autoWidth": false,
+            });
+        });
+    </script>
+{% endblock %}

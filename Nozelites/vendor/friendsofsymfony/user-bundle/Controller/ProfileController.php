@@ -20,12 +20,14 @@ use FOS\UserBundle\Model\UserInterface;
 use FOS\UserBundle\Model\UserManagerInterface;
 
 
+use NozelitesBundle\Entity\ChasseurTalent;
 use NozelitesBundle\Entity\Formation;
 use NozelitesBundle\Entity\Listediplome;
 
 
-
+use NozelitesBundle\Entity\Membre;
 use NozelitesBundle\Form\FormationType;
+use NozelitesBundle\Form\ListediplomeType;
 use NozelitesBundle\NozelitesBundle;
 
 
@@ -99,13 +101,16 @@ class ProfileController extends Controller
         if (null !== $event->getResponse()) {
             return $event->getResponse();
         }
-//Formulaire de la fomation
+
+
+
+        //Formulaire de la fomation
         $formation = new Formation();
         $formF = $this->createForm(FormationType::class, $formation);
         $formF->handleRequest($request);
         $formation->setIdMembre($user);
-        
-        
+        $formation->setMembre($user->getId());
+
         if ($formF->isSubmitted()) {
 
 
@@ -114,17 +119,38 @@ class ProfileController extends Controller
             $em->flush();
             return $this->redirectToRoute('fos_user_profile_show');
 
+
+        }
+
+        //Formulaire diplome
+        $diplomes = new Listediplome();
+        $formD = $this->createForm(listeDiplomeType::class, $diplomes);
+        $formD->handleRequest($request);
+        $diplomes->setIdMembre($user);
+        $diplomes->setMembre($user->getId());
+
+
+        if ($formD->isSubmitted()) {
+
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($diplomes);
+            $em->flush();
+            return $this->redirectToRoute('fos_user_profile_show');
+
         }
 
 
 
-//Formulaire du User
+        //Formulaire du User
         $form = $this->formFactory->createForm();
         $form->setData($user);
 
         $form->handleRequest($request);
+        $em = $this->getDoctrine()->getManager();
+
 
         if ($form->isSubmitted() && $form->isValid()) {
+
 
 
 
@@ -132,7 +158,7 @@ class ProfileController extends Controller
             $this->eventDispatcher->dispatch(FOSUserEvents::PROFILE_EDIT_SUCCESS, $event);
 
             $this->userManager->updateUser($user);
-
+            
             if (null === $response = $event->getResponse()) {
                 $url = $this->generateUrl('fos_user_profile_show');
                 $response = new RedirectResponse($url);
@@ -150,6 +176,7 @@ class ProfileController extends Controller
             'form' => $form->createView(),
             'formulaire' => $formF->createView(),
             'listFormation' => $formations,
+            'formD'=>$formD->createView(),
             'user'=>$user,
         ));
     }

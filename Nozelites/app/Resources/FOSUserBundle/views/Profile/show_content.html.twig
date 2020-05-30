@@ -28,9 +28,10 @@
                             <ul data-submenu-title="Start">
                                 <li class="active"><a href="{{ path("fos_user_profile_show") }}"><i class="icon-material-outline-dashboard"></i> Tableau de bord</a></li>
                                 <li><a href="dashboard-messages.html"><i class="icon-material-outline-question-answer"></i> Messages <span class="nav-tag">2</span></a></li>
+                                {% if is_granted('ROLE_MEMBRE')%}
                                 <li><a href="dashboard-bookmarks.html"><i class="icon-material-outline-star-border"></i> Mes Groupes</a></li>
                                 <li><a href="dashboard-reviews.html"><i class="icon-material-outline-rate-review"></i> Portfolio</a></li>
-
+                                {% endif %}
                             </ul>
 
 
@@ -151,19 +152,20 @@
                             </div>
                             <div class="content">
                                 <ul class="dashboard-box-list">
+                                    {% for diplome in listeDiplome %}
                                     <li>
                                         <span class="notification-icon"><i class="icon-material-outline-group"></i></span>
                                         <span class="notification-text">
-                                            {% for diplome in listeDiplome %}
+
                                                 <strong>Domaine : </strong> {{ diplome.domaine }} <strong> <br>Institut : </strong>{{ diplome.organisation }}<br>
                                                 <strong> Date : </strong>{{ diplome.date }}
-                                            {% endfor %}
+
 
 									</span>
                                         <!-- Buttons -->
 
                                     </li>
-
+                                    {% endfor %}
                                 </ul>
                             </div>
                         </div>

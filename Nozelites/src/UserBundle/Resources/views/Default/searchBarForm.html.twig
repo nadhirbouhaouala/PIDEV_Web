@@ -1,0 +1,9 @@
+{{ form_start(formationSearch, {
+    'attr': {'action' : path ('user_rechFormation'),'placeholder': "Saisissez un nom"}
+}) }}
+
+{{ form_widget(formationSearch.search, {
+    'attr': {'placeholder': "Saisissez une Formation"}
+} )}}
+
+{{ form_end(formationSearch) }}

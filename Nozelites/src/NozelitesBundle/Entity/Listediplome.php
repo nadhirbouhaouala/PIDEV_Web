@@ -54,13 +54,26 @@ class Listediplome
 
     /**
      * @var \Membre
+     *@ORM\Column(name="id_membre", type="integer", nullable=false)
      *
-     * @ORM\ManyToOne(targetEntity="Membre")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="id_membre", referencedColumnName="idUsr")
-     * })
      */
     private $Membre;
+
+    /**
+     * @return \Membre
+     */
+    public function getMembre()
+    {
+        return $this->Membre;
+    }
+
+    /**
+     * @param int $Membre
+     */
+    public function setMembre($Membre)
+    {
+        $this->Membre = $Membre;
+    }
 
 
 
@@ -153,7 +166,7 @@ class Listediplome
      *
      * @return Listediplome
      */
-    public function setIdMembre(\NozelitesBundle\Entity\Membre $idMembre = null)
+    public function setIdMembre($idMembre)
     {
         $this->idMembre = $idMembre;
 

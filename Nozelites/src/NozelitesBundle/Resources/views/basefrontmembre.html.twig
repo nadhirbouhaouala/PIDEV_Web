@@ -7,6 +7,9 @@
     {% block stylesheets %}
         <link rel="stylesheet" href="{{ asset('css/style.css') }}">
         <link rel="stylesheet" href="{{ asset('css/colors/red.css') }}">
+
+
+
     {% endblock %}
     <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
 </head>
@@ -491,7 +494,10 @@
     <script src="{{ asset('js/slick.min.js') }}"></script>
     <script src="{{ asset('js/custom.js') }}"></script>
 
+    <script  src="{{ asset('js/bloodhound.jquery.min.js') }}"></script>
+    <script  src="{{ asset('js/typeahead.jquery.min.js') }}"></script>
     <!-- Snackbar // documentation: https://www.polonel.com/snackbar/ -->
+
     <script>
         // Snackbar for user status switcher
         $('#snackbar-user-status label').click(function() {
@@ -531,6 +537,11 @@
 
     <!-- Google API -->
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAgeuuDfRlweIs7D6uo4wdIHVvJ0LonQ6g&libraries=places&callback=initAutocomplete"></script>
+
+
+
+    <!--Autocomplete (Nebil)-->
+
 {% endblock %}
 </body>
 </html>
