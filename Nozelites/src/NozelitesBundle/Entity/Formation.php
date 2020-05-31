@@ -57,9 +57,9 @@ class Formation
     /**
      * @var \Membre
      *
-     * @ORM\ManyToOne(targetEntity="Membre")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="id_membre", referencedColumnName="idUsr")
+     * @var string
+     *
+     * @ORM\Column(name="id_membre", type="integer", nullable=false)
      * })
      */
     private $Membre;

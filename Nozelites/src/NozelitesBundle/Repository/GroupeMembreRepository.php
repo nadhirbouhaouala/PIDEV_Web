@@ -2,7 +2,7 @@
 
 namespace NozelitesBundle\Repository;
 
-class GroupeMembreRepository extends \Doctrine\ORM\EntityRepository
+class         GroupeMembreRepository extends \Doctrine\ORM\EntityRepository
 {
     public function getInvitations($idMembre)
     {	$query=$this->getEntityManager()

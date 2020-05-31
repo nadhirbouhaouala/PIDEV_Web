@@ -25,10 +25,11 @@ use NozelitesBundle\Entity\Formation;
 use NozelitesBundle\Entity\Listediplome;
 
 
+
 use NozelitesBundle\Entity\Membre;
 use NozelitesBundle\Form\FormationType;
 use NozelitesBundle\Form\ListediplomeType;
-use NozelitesBundle\NozelitesBundle;
+
 
 
 
@@ -94,7 +95,9 @@ class ProfileController extends Controller
         if (!is_object($user) || !$user instanceof UserInterface) {
             throw new AccessDeniedException('This user does not have access to this section.');
         }
+        $em = $this->getDoctrine()->getManager();
 
+        $membre = $em->getRepository("NozelitesBundle:Membre")->findMembreByEmail($user->getEmail());
         $event = new GetResponseUserEvent($user, $request);
         $this->eventDispatcher->dispatch(FOSUserEvents::PROFILE_EDIT_INITIALIZE, $event);
 
@@ -109,16 +112,13 @@ class ProfileController extends Controller
         $formF = $this->createForm(FormationType::class, $formation);
         $formF->handleRequest($request);
         $formation->setIdMembre($user);
-        $formation->setMembre($user->getId());
+        $formation->setMembre($membre[0]->getIdusr());
 
         if ($formF->isSubmitted()) {
-
-
             $em = $this->getDoctrine()->getManager();
             $em->persist($formation);
             $em->flush();
             return $this->redirectToRoute('fos_user_profile_show');
-
 
         }
 
@@ -127,7 +127,7 @@ class ProfileController extends Controller
         $formD = $this->createForm(listeDiplomeType::class, $diplomes);
         $formD->handleRequest($request);
         $diplomes->setIdMembre($user);
-        $diplomes->setMembre($user->getId());
+        $diplomes->setMembre($membre[0]->getIdusr());
 
 
         if ($formD->isSubmitted()) {
@@ -146,14 +146,22 @@ class ProfileController extends Controller
         $form->setData($user);
 
         $form->handleRequest($request);
-        $em = $this->getDoctrine()->getManager();
 
 
         if ($form->isSubmitted() && $form->isValid()) {
 
+            $membre[0]->setNom($user->getNom());
+            $membre[0]->setPrenom($user->getPrenom());
+            $membre[0]->setMail($user->getEmail());
+            $membre[0]->setLogin($user->getUsername());
+            $membre[0]->setTel($user->getTelephone());
 
+            $membre[0]->setAge($user->getAge());
+            $membre[0]->setImage("D:/xampp/htdocs/PIDEV_Web/Nozelites/web/images/profile".$user->getImageName());
 
-
+            $em = $this->getDoctrine()->getManager();
+            $em->flush();
+            
             $event = new FormEvent($form, $request);
             $this->eventDispatcher->dispatch(FOSUserEvents::PROFILE_EDIT_SUCCESS, $event);
 
