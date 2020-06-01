@@ -28,10 +28,10 @@
 
 
 {#                            <a href="{{ path('Ajouter1',{'id':cc.idE,'type':'evenement'}) }}" class="button red ripple-effect ico" title="Ajouter" data-tippy-placement="left"><i class="icon-feather-edit-2"></i></a>#}
-                                <a href="{{ path('nozelites_Evenementmodifierfront',{'id':cc.idE}) }}" class="button red ripple-effect ico"  title="Modifier" data-tippy-placement="left"><i class="icon-feather-edit-2"></i></a>
+                          {#      <a href="{{ path('nozelites_Evenementmodifierfront',{'id':cc.idE}) }}" class="button red ripple-effect ico"  title="Modifier" data-tippy-placement="left"><i class="icon-feather-edit-2"></i></a>
 
                             <a href="{{ path('nozelites_Evenementmodifierfront',{'id':cc.idE}) }}" class="button red ripple-effect ico"  title="Modifier" data-tippy-placement="left"><i class="icon-feather-edit-2"></i></a>
-
+#}
 
                                                     {% set imageur = cc.image|split('/')  %}
                                                     {%  set imageur = imageur[imageur|length-1] %}
@@ -47,9 +47,9 @@
                                                 <p>{{ cc.date|date('d/m/Y') }}</p>
                                             </div>
 
-                                {% if cc.idc.idusr  != d.idusr %}
+                                {#{% if cc.idc.idusr  != d.idusr %}
                                             <a href="{{ path('Ajouter1',{'id':cc.idE,'type':'evenement'}) }}" class="button red ripple-effect ico" title="Ajouter" data-tippy-placement="left"><i class="icon-feather-edit-2"></i></a>
-                                {% endif %}
+                                {% endif %}#}
                                             <a href="{{ path('nozelites_Evenementmodifierfront',{'id':cc.idE}) }}" class="button red ripple-effect ico"  title="Modifier" data-tippy-placement="left"><i class="icon-feather-edit-2"></i></a>
 
                                             <a href="{{ path('nozelites_Evenementsupprimerfront',{'id':cc.idE}) }}" class="button red ripple-effect ico" title="Supprimer" data-tippy-placement="left"><i class="icon-feather-trash-2"></i></a>
