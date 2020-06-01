@@ -3,6 +3,7 @@
 namespace PublicationBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Commentaire
@@ -25,13 +26,14 @@ class Commentaire
      * @var string
      *
      * @ORM\Column(name="commentaire", type="string", length=255, nullable=false)
+     * @Assert\NotBlank
      */
     private $commentaire;
 
     /**
      * @var \Membre
      *
-     * @ORM\ManyToOne(targetEntity="Membre")
+     * @ORM\ManyToOne(targetEntity="\NozelitesBundle\Entity\Membre")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="id_membre", referencedColumnName="idUsr")
      * })

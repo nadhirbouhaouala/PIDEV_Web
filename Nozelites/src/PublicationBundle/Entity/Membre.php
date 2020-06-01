@@ -22,6 +22,22 @@ class Membre
     private $idusr;
 
     /**
+     * @return int
+     */
+    public function getIdusr()
+    {
+        return $this->idusr;
+    }
+
+    /**
+     * @param int $idusr
+     */
+    public function setIdusr($idusr)
+    {
+        $this->idusr = $idusr;
+    }
+
+    /**
      * @var string
      *
      * @ORM\Column(name="nom", type="string", length=255, nullable=false)
@@ -97,6 +113,22 @@ class Membre
      * @ORM\Column(name="image", type="string", length=255, nullable=false)
      */
     private $image;
+
+    /**
+     * @return string
+     */
+    public function getNom()
+    {
+        return $this->nom;
+    }
+
+    /**
+     * @return string
+     */
+    public function getPrenom()
+    {
+        return $this->prenom;
+    }
 
     /**
      * @var string

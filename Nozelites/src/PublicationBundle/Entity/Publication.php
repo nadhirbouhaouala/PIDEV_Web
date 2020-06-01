@@ -3,6 +3,7 @@
 namespace PublicationBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Publication
@@ -25,6 +26,7 @@ class Publication
      * @var string
      *
      * @ORM\Column(name="titre", type="string", length=255, nullable=false)
+     * @Assert\NotBlank
      */
     private $titre;
 
@@ -32,6 +34,7 @@ class Publication
      * @var string
      *
      * @ORM\Column(name="description", type="string", length=255, nullable=false)
+     * @Assert\NotBlank
      */
     private $description;
 
@@ -39,6 +42,7 @@ class Publication
      * @var string
      *
      * @ORM\Column(name="image", type="string", length=255, nullable=false)
+     *  @Assert\NotBlank
      */
     private $image;
 
@@ -50,9 +54,12 @@ class Publication
     private $idGroupe;
 
     /**
-     * @var integer
+     * @var \Membre
      *
-     * @ORM\Column(name="id_publicateur", type="integer", nullable=false)
+     * @ORM\ManyToOne(targetEntity="\NozelitesBundle\Entity\Membre")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="id_publicateur", referencedColumnName="idUsr")
+     * })
      */
     private $idPublicateur;
 
@@ -144,7 +151,7 @@ class Publication
     }
 
     /**
-     * @return int
+     * @return \Membre
      */
     public function getIdPublicateur()
     {
@@ -152,7 +159,7 @@ class Publication
     }
 
     /**
-     * @param int $idPublicateur
+     * @param \Membre $idPublicateur
      */
     public function setIdPublicateur($idPublicateur)
     {

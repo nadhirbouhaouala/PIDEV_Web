@@ -1,4 +1,4 @@
-{% extends '@Publication/Front/Publication.html.twig' %}
+{% extends '@Nozelites/basefrontmembre.html.twig' %}
 {% block content %}
     <!-- Comments -->
     <div class="row">
@@ -13,6 +13,7 @@
                             <div class="avatar"><img src="images/user-avatar-placeholder.png" alt=""></div>
                             <div class="comment-content"><div class="arrow-comment"></div>
                                 <div class="comment-by">Kathy Brown <span class="date"> </span>
+                                    
                                     <p> {{ cp.commentaire }} </p>
                                     <a href="{{  path('Updatecomm',{'idCommentaire':cp.idCommentaire}) }}" class="button red ripple-effect ico"  title="Modifier" data-tippy-placement="left"><i class="icon-feather-edit-2"></i></a>
                                     <a href="{{  path('Deletecomm',{'idCommentaire':cp.idCommentaire}) }}" class="button red ripple-effect ico"  title="supprimer" data-tippy-placement="left"><i class="icon-feather-trash-2"></i></a>

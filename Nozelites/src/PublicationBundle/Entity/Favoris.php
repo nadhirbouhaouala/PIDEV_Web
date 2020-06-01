@@ -41,6 +41,54 @@ class Favoris
      */
     private $idPub;
 
+    /**
+     * @return int
+     */
+    public function getIdFav()
+    {
+        return $this->idFav;
+    }
+
+    /**
+     * @param int $idFav
+     */
+    public function setIdFav($idFav)
+    {
+        $this->idFav = $idFav;
+    }
+
+    /**
+     * @return \Membre
+     */
+    public function getIdMembre()
+    {
+        return $this->idMembre;
+    }
+
+    /**
+     * @param \Membre $idMembre
+     */
+    public function setIdMembre($idMembre)
+    {
+        $this->idMembre = $idMembre;
+    }
+
+    /**
+     * @return \Publication
+     */
+    public function getIdPub()
+    {
+        return $this->idPub;
+    }
+
+    /**
+     * @param \Publication $idPub
+     */
+    public function setIdPub($idPub)
+    {
+        $this->idPub = $idPub;
+    }
+
 
 }
 
