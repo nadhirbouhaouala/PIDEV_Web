@@ -15,6 +15,12 @@ use Ivory\GoogleMap\Overlay\Marker;
 use Symfony\Component\HttpFoundation\File\Exception\FileException;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
+use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\Serializer\Encoder\JsonEncoder;
+use Symfony\Component\Serializer\Encoder\XmlEncoder;
+use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
+use Symfony\Component\Serializer\Serializer;
+
 /**
  * Evenement controller.
  *
@@ -22,6 +28,28 @@ use Symfony\Component\HttpFoundation\File\UploadedFile;
  */
 class EvenementController extends Controller
 {
+    /**
+     * @return integer
+     */
+    public function getRealIdAction()
+    {
+        $user = $this->getUser();
+        $mail = $user->getEmail();
+
+        if (in_array("ROLE_MEMBRE", $user->getRoles())) {
+
+            $em = $this->getDoctrine()->getManager();
+            $membre = $em->getRepository('NozelitesBundle:Membre')->findOneBymail($mail);
+            return $membre->getIdusr();
+
+        }
+        elseif (in_array("ROLE_CHASSEUR", $user->getRoles())) {
+
+            $em = $this->getDoctrine()->getManager();
+            $chasseur = $em->getRepository('NozelitesBundle:ChasseurTalent')->findOneBymail($mail);
+            return $chasseur->getIdusr();
+        }
+    }
     /**
      * Lists all evenement entities.
      *
@@ -50,6 +78,7 @@ class EvenementController extends Controller
         $evenement = new Evenement();
         $form = $this->createForm('NozelitesBundle\Form\EvenementType', $evenement);
         $form->handleRequest($request);
+        $id_emeteur = $this->getRealIdAction();
 
         if ($form->isSubmitted() && $form->isValid()) {
 
@@ -69,8 +98,7 @@ class EvenementController extends Controller
             $evenement->setEtat(0);
             $evenement->setNbparticipant(0);
 
-
-            $membre = $em->getRepository('NozelitesBundle:Membre')->find(10);
+            $membre = $em->getRepository('NozelitesBundle:Membre')->find($id_emeteur);
             $evenement->setIdc($membre);
             $em->persist($evenement);
             $em->flush();
@@ -87,39 +115,73 @@ class EvenementController extends Controller
 
     public function afficherAction()
     {
-        $id_membre_actif = 10;
+        $id_emeteur = $this->getRealIdAction();
         $evenement= $this->getDoctrine()
-            ->getRepository(Evenement::class)->findAll();
+            ->getRepository(Evenement::class)->findBy(array('idc'=>$id_emeteur));
         $participant=$this->getDoctrine()
-            ->getRepository(Listparticipant::class)->findBy(array('idm'=>$id_membre_actif));
+            ->getRepository(Listparticipant::class)->findBy(array('idm'=>$id_emeteur));
         return $this->render('@Nozelites/Front/EvenementAfficher.html.twig', array(
             'evenement' => $evenement,'participant'=>$participant));
     }
     public function afficherAllAction()
     {
-        $id_membre_actif = 10;
+        $id_emeteur = $this->getRealIdAction();
         $evenement= $this->getDoctrine()
             ->getRepository(Evenement::class)->findAll();
         $participant=$this->getDoctrine()
-            ->getRepository(Listparticipant::class)->findBy(array('idm'=>$id_membre_actif));
+            ->getRepository(Listparticipant::class)->findBy(array('idm'=>$id_emeteur));
         return $this->render('@Nozelites/Front/AllEvenement.html.twig', array(
             'evenement' => $evenement,'participant'=>$participant));
     }
     public function afficherEventAllAction()
     {
-        $id_membre_actif = 10;
+        $id_membre_actif = 9;
         $evenement= $this->getDoctrine()
             ->getRepository(Evenement::class)->findAll();
 
         return $this->render('@Nozelites/back/AdminEvenementAll.html.twig', array(
             'evenement' => $evenement));
     }
+    public function affichertopAction()
+    {
+        $em = $this->getDoctrine()->getManager();
+        $evenement=$this->getDoctrine()
+            ->getRepository(Evenement::class)
+            ->findAll();
+       // $publication = $em->getRepository(Publication::class)->find($id);
+        $var=[];
+        $var2=[];
+        $var3=[];
+        $new= $this->getDoctrine()->getRepository('NozelitesBundle:Evenement')->findBy([], ['nbparticipant' => 'DESC']);
+        if(!empty($new[0]))
+        {
+            $var[0]=$new[0];
+        }
+        if(!empty($new[1]))
+        {
+            $var2[0]=$new[1];
+        }
+        if(!empty($new[2]))
+        {
+            $var3[0]=$new[2];
+        }
+        $var4=[];
+        if(!empty($new[3]))
+        {
+            $var4[0]=$new[3];
+        }
 
+
+
+        return $this->render('@Nozelites/Front/TopEvenement.html.twig',array('premiere'=>$var,'deuxieme'=>$var2,'tt'=>$var3,'kk'=>$var4));
+
+
+    }
     public function afficherEventAction($id)
     {
 
         // $map->getOverlayManager()->addMarker(new Marker(new Coordinate(4.4705, 54.6548)));
-        $id_membre_actif = 10;
+        $id_membre_actif = 9;
         $evenement= $this->getDoctrine()
             ->getRepository(Evenement::class)->find($id);
         $var=explode("/",$evenement->getLieu());
@@ -147,7 +209,7 @@ class EvenementController extends Controller
     }
     public function afficherEventMAction($id)
     {
-        $id_membre_actif = 10;
+        $id_membre_actif = 9;
         $map = new Map();
         $evenement= $this->getDoctrine()
             ->getRepository(Evenement::class)->find($id);
@@ -274,6 +336,15 @@ class EvenementController extends Controller
         $em=$this->getDoctrine()->getManager();
         $evenement=$em->getRepository(Evenement::class)
             ->find($id);
+        $part=$em->getRepository(Listparticipant::class)
+            ->findBy(
+                ['ide' => $id]);
+        for ($j=0; $j<sizeof($part);$j++)
+        {
+            $em->remove($part[$j]);
+        }
+
+        $em->flush();
         $em->remove($evenement);
         $em->flush();
         return $this->redirectToRoute('nozelites_Evenementafficherfront');
@@ -288,7 +359,15 @@ class EvenementController extends Controller
         if($gm->getEtat()==0)$gm->setEtat(1);
         $em->persist($gm);
         $em->flush();
+        $membre=$em->getRepository(Membre::class)->find($gm->getIdc());
+        $mail=$membre->getMail();
+        $msg="your event has been accepted";
+        $transport = \Swift_SmtpTransport::newInstance('smtp.gmail.com',465,'ssl');
+        $mailer = \Swift_Mailer::newInstance($transport);
+        $message = \Swift_Message::newInstance()
+            ->setSubject('Validation')->setFrom('nozelitesa3@gmail.com')->setTo($mail)->setBody($msg);
 
+        $this->get('mailer')->send($message);
         return $this->redirectToRoute('nozelites_adminEvenementback');
     }
     public function showEvenementadminAction()
@@ -320,13 +399,13 @@ class EvenementController extends Controller
     }
     public function RejoindreAction(Request $request,$id)
     {
-        $id_membre_actif = 10;
+        $id_emeteur = $this->getRealIdAction();
         $em = $this->getDoctrine()->getManager();
         $evenement = $em->getRepository('NozelitesBundle:Evenement')->find($id);
 
         $listeparticipant= new Listparticipant();
         $listeparticipant->setIde($evenement);
-        $membre = $em->getRepository('NozelitesBundle:Membre')->find($id_membre_actif);
+        $membre = $em->getRepository('NozelitesBundle:Membre')->find($id_emeteur);
         $listeparticipant->setIdm($membre);
         $listeparticipant->setEtatp(0);
         $em->persist($listeparticipant);
@@ -336,11 +415,11 @@ class EvenementController extends Controller
     }
     public function disjoindreAction(Request $request,$id)
     {
-        $id_membre_actif = 10;
+        $id_emeteur = $this->getRealIdAction();
         $em = $this->getDoctrine()->getManager();
         $evenement = $em->getRepository('NozelitesBundle:Evenement')->find($id);
 
-        $listeparticipant= $em->getRepository('NozelitesBundle:Listparticipant')->findOneBy(array('ide'=>$id,'idm'=>$id_membre_actif));
+        $listeparticipant= $em->getRepository('NozelitesBundle:Listparticipant')->findOneBy(array('ide'=>$id,'idm'=>$id_emeteur));
 
         $old1=$evenement->getNbplace();
         $old=$evenement->getNbparticipant();
@@ -369,6 +448,18 @@ class EvenementController extends Controller
 
             $em->persist($evenement);
             $em->flush();
+
+            $membre=$em->getRepository(Membre::class)->find($idm);
+            $mail=$membre->getMail();
+            $nom=$evenement->getNom();
+            $msg="you have been accepted to $nom ";
+            $transport = \Swift_SmtpTransport::newInstance('smtp.gmail.com',465,'ssl');
+            $mailer = \Swift_Mailer::newInstance($transport);
+            $message = \Swift_Message::newInstance()
+                ->setSubject('Validation')->setFrom('nozelitesa3@gmail.com')->setTo($mail)->setBody($msg);
+
+            $this->get('mailer')->send($message);
+
         }
         return $this->redirectToRoute('nozelites_EvenementpageMfront',array('id' => $id));
 
@@ -381,20 +472,61 @@ class EvenementController extends Controller
         $em->flush();
         return $this->redirectToRoute('nozelites_EvenementpageMfront',array('id' => $id));
     }
+
+
+
     public function afficherInvitationAction()
     {
+        $id_emeteur = $this->getRealIdAction();
+        $evenement= $this->getDoctrine()
+            ->getRepository(Evenement::class)->findBy(array('idc'=>$id_emeteur));
 
+        $participant=$this->getDoctrine()
+            ->getRepository(Listparticipant::class)->findAll();
+        $list=[];
+        $m=0;
+        for ($i=0 ; $i<sizeof($evenement);$i++)
+        {
+            for ($j=0; $j<sizeof($participant);$j++)
+            {
+                if ($evenement[$i]->getIde()==$participant[$j]->getIde()->getIde())
+                {
+                    if($participant[$j]->getEtatp()==0)
+                    {
+                    $list[$m] = $participant[$j];
+                    $m++;
+                     }
+                }
+            }
+        }
+        $mem=[];
+        $a=0;
+        $all=$this->getDoctrine()
+            ->getRepository(Membre::class)->findAll();
+        for ($i=0 ; $i<sizeof($all);$i++)
+        {
+            for ($j=0; $j<sizeof($list);$j++)
+            {
+                if ($all[$i]->getIdusr()==$list[$j]->getIdm()->getIdusr())
+                {
+                    $mem[$a]=$all[$i];
+                    $a++;
+                }
+            }
+        }
+        return $this->render('@Nozelites/basefrontmembre.html.twig', array('membre' => $mem,'part' => $list));
     }
     public function afficherEventadminAction($id)
     {
 
         // $map->getOverlayManager()->addMarker(new Marker(new Coordinate(4.4705, 54.6548)));
-        $id_membre_actif = 10;
+        $id_membre_actif = 9;
         $evenement= $this->getDoctrine()
             ->getRepository(Evenement::class)->find($id);
         $var=explode("/",$evenement->getLieu());
         $participant=$this->getDoctrine()
             ->getRepository(Listparticipant::class)->findBy(array('ide'=>$id));
+        $part=[];
         for($i=0 ; $i<sizeof($participant);$i++)
         {
             if($participant[$i]->getEtatp()==1)
@@ -420,4 +552,101 @@ class EvenementController extends Controller
             ->getForm()
             ;
     }
+
+    public function JsonAllAction()
+    {
+        $evenement = $this->getDoctrine()->getManager()
+            ->getRepository("NozelitesBundle:Evenement")->findAll();
+        for($i=0 ; $i<sizeof($evenement);$i++)
+        {
+            $value=$evenement[$i]->getHeure();
+            $evenement[$i]->setHeure($value->format('H:i'));
+
+            $value1=$evenement[$i]->getDate();
+            $evenement[$i]->setDate($value1->format('Y-m-d'));
+
+        }
+        $serializer = new Serializer([new ObjectNormalizer()]);
+        $formatted = $serializer->normalize($evenement);
+
+        return new JsonResponse($formatted);
+    }
+    public function JsonFindAction($id)
+    {
+        $evenement = $this->getDoctrine()->getManager()
+            ->getRepository("NozelitesBundle:Evenement")->find($id);
+
+        $serializer = new Serializer([new ObjectNormalizer()]);
+        $formatted = $serializer->normalize( $evenement);
+
+        return new JsonResponse($formatted);
+    }
+    public function JsonAddAction($id_membre,$nom,$lieu,$date,$heure,$description,$siteweb,$nbplace,$image)
+    {
+        $dat = new \DateTime($date);
+        $da = new \DateTime($heure);
+        $em = $this->getDoctrine()->getManager();
+        $evenement = new Evenement();
+        $ni=str_replace('-','/',$image);
+        $nw=str_replace('-','/',$lieu);
+
+
+        $evenement->setIdc($em->getRepository("NozelitesBundle:Membre")->find($id_membre));
+        $evenement->setNom($nom);
+        $evenement->setLieu($nw);
+        $evenement->setDate($dat);
+        $evenement->setHeure($da);
+        $evenement->setNbplace($nbplace);
+        $evenement->setDescription($description);
+        $evenement->setSiteweb($siteweb);
+        $evenement->setImage($ni);
+        $evenement->setNbparticipant(0);
+        $evenement->setEtat(1);
+        $em = $this->getDoctrine()->getManager();
+        $em->persist($evenement);
+        $em->flush();
+
+        $serializer = new Serializer([new ObjectNormalizer()]);
+        $formatted = $serializer->normalize($evenement);
+
+        return new JsonResponse($formatted);
+    }
+    public function JsonDeleteAction($id)
+    {
+        $evenement = $this->getDoctrine()->getManager()
+            ->getRepository("NozelitesBundle:Evenement")->find($id);
+        $em = $this->getDoctrine()->getManager();
+        $em->remove($evenement);
+        $em->flush();
+
+        $serializer = new Serializer([new ObjectNormalizer()]);
+        $formatted = $serializer->normalize($evenement);
+
+        return new JsonResponse($formatted);
+    }
+    public function JsonEditAction($ide,$nom,$lieu,$date,$heure,$description,$siteweb,$nbplace,$image)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $dat = new \DateTime($date);
+        $da = new \DateTime($heure);
+        $evenement = $em->getRepository("NozelitesBundle:Evenement")->find($ide);
+        $evenement->setNom($nom);
+        $nw=str_replace('-','/',$lieu);
+        $evenement->setLieu($nw);
+        $evenement->setDate($dat);
+        $evenement->setHeure($da);
+        $evenement->setNbplace($nbplace);
+        $evenement->setDescription($description);
+        $evenement->setSiteweb($siteweb);
+        $evenement->setImage($image);
+
+        $em->persist($evenement);
+        $em->flush();
+
+        $serializer = new Serializer([new ObjectNormalizer()]);
+        $formatted = $serializer->normalize($evenement);
+
+        return new JsonResponse($formatted);
+    }
+
 }

@@ -41,8 +41,14 @@
                         <h3 class="card-title"></h3>
 
 
+
+                <div class="card-tools">
+                    <div class="input-group input-group-sm" style="width: 200px;">
+                <input id="myInput" type="text" class="form-control float-right" placeholder="Recherche">
                     </div>
-                    <div class="card-body p-0">
+                </div>
+                <div class="card-body"  id="example23" >
+
                         <table class="table table-striped projects">
                             <thead>
                             <tr>
@@ -126,12 +132,26 @@
                             {% endfor %}
                             </tbody>
                         </table>
-                    </div>
-                    <!-- /.card-body -->
                 </div>
+                </div>
+                    </div>
+
+                    <!-- /.card-body -->
+
                 <!-- /.card -->
 
             </section>
         </div>
     </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $("#myInput").on("keyup", function() {
+                var value = $(this).val().toLowerCase();
+                $("#example23 tr").filter(function() {
+                    $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                });
+            });
+        });
+    </script>
 {% endblock %}

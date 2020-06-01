@@ -6,6 +6,13 @@ use NozelitesBundle\Entity\Listparticipant;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component\HttpFoundation\Request;
+use NozelitesBundle\Entity\Membre;
+
+use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\Serializer\Encoder\JsonEncoder;
+use Symfony\Component\Serializer\Encoder\XmlEncoder;
+use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
+use Symfony\Component\Serializer\Serializer;
 
 /**
  * Listparticipant controller.
@@ -132,5 +139,68 @@ class ListparticipantController extends Controller
             ->setMethod('DELETE')
             ->getForm()
         ;
+    }
+    public function JsonFindAction($id,$id_membre)
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $listeparticipant= $em->getRepository('NozelitesBundle:Listparticipant')->findOneBy(array('ide'=>$id,'idm'=>$id_membre));
+
+        $serializer = new Serializer([new ObjectNormalizer()]);
+        $formatted = $serializer->normalize($listeparticipant);
+
+        return new JsonResponse($formatted);
+    }
+    public function JsonAllAction()
+    {
+        $part = $this->getDoctrine()->getManager()
+            ->getRepository("NozelitesBundle:Listparticipant")->findAll();
+
+        $serializer = new Serializer([new ObjectNormalizer()]);
+        $formatted = $serializer->normalize($part);
+
+        return new JsonResponse($formatted);
+    }
+    public function JsonAddAction($id_evenement,$id_membre)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $evenement = $em->getRepository('NozelitesBundle:Evenement')->find($id_evenement);
+        $old1=$evenement->getNbplace();
+        $old=$evenement->getNbparticipant();
+        if ($old1>$old) {
+            $listeparticipant = new Listparticipant();
+            $listeparticipant->setIde($em->getRepository("NozelitesBundle:Evenement")->find($id_evenement));
+            $listeparticipant->setIdm($em->getRepository("NozelitesBundle:Membre")->find($id_membre));
+            $listeparticipant->setEtatp(1);
+            $em->persist($listeparticipant);
+            $em->flush();
+            $evenement->setNbplace($old1 - 1);
+            $evenement->setNbparticipant($old + 1);
+
+            $em->persist($evenement);
+            $em->flush();
+        }
+        $serializer = new Serializer([new ObjectNormalizer()]);
+        $formatted = $serializer->normalize($listeparticipant);
+
+        return new JsonResponse($formatted);
+    }
+    public function JsonDeleteAction($id,$id_membre)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $evenement = $em->getRepository('NozelitesBundle:Evenement')->find($id);
+        $listeparticipant= $em->getRepository('NozelitesBundle:Listparticipant')->findOneBy(array('ide'=>$id,'idm'=>$id_membre));
+        $old1=$evenement->getNbplace();
+        $old=$evenement->getNbparticipant();
+        $evenement->setNbparticipant($old - 1);
+        $evenement->setNbplace($old1 + 1);
+        $em->persist($evenement);
+        $em->remove($listeparticipant);
+        $em->flush();
+
+        $serializer = new Serializer([new ObjectNormalizer()]);
+        $formatted = $serializer->normalize($listeparticipant);
+
+        return new JsonResponse($formatted);
     }
 }
