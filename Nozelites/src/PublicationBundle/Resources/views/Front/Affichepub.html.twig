@@ -80,7 +80,7 @@
                               {% endfor %}
 
                         <a href="{{  path('Imprimer',{'id':cc.id}) }}" class="button white ripple-effect ico" title="Imprimer   " data-tippy-placement="left"><i class="icon-material-outline-print"></i></a>
-
+                        <a href="{{ path('Ajouter1',{'id':cc.id,'type':'pub'}) }}" class="button red ripple-effect ico" title="Signaler" data-tippy-placement="left"><i class=" icon-feather-align-left"></i></a>
                     </a>
                     {% endfor %}
 

@@ -2,6 +2,7 @@
 
 namespace ReclamationBundle\Controller;
 
+use NozelitesBundle\NozelitesBundle;
 use ReclamationBundle\Entity\Evaluation;
 use NozelitesBundle\Entity\Evenement;
 use NozelitesBundle\Entity\Groupe;
@@ -150,7 +151,7 @@ class ReclamationController extends Controller
         $Reclamations=$this->getDoctrine()->getRepository(Reclamation::class)->findByIdEmeteur($this->getRealIdAction());
 
         $id = $this->getRealIdAction();
-        $groupes = []; $evenements = [];
+        $groupes = []; $evenements = []; $publications =[];
         for($i=0; $i < sizeof($Reclamations); $i++) {
             if ($Reclamations[$i]->getSelecteur() == "groupe") {
                 $gr = $this->getDoctrine()->getRepository(Groupe::class)->find($Reclamations[$i]->getIdCible());
@@ -160,9 +161,13 @@ class ReclamationController extends Controller
                 $fr = $this->getDoctrine()->getRepository(Evenement::class)->find($Reclamations[$i]->getIdCible());
                 if (!in_array($fr, $evenements)) $evenements[sizeof($evenements)] = $fr;
             }
+            if ($Reclamations[$i]->getSelecteur() == "pub") {
+                $pr = $this->getDoctrine()->getRepository(\PublicationBundle\Entity\Publication::class)->find($Reclamations[$i]->getIdCible());
+                if (!in_array($pr, $publications)) $publications[sizeof($publications)] = $pr;
+            }
         }
         return $this->render('@Reclamation/Front/AfficheReclamation.html.twig',
-            array('R'=>$Reclamations,'IdEmeteur' => $id,'groupes' => $groupes,'evenements' => $evenements));
+            array('R'=>$Reclamations,'IdEmeteur' => $id,'groupes' => $groupes,'evenements' => $evenements,'publications' => $publications));
     }
 
     function AfficheRec1Action(){
@@ -171,26 +176,26 @@ class ReclamationController extends Controller
         $Reclamations=$this->getDoctrine()->getRepository(Reclamation::class)->findAll();
         $membre=$this->getDoctrine()->getRepository(Membre::class)->findBy(array('idusr'=>$user));
         $evaluation=$this->getDoctrine()->getRepository(Evaluation::class)->findBy(array('id'=>$user));
-        $groupes = []; $evenements = []; $pubs = [];
-        for($i=0; $i < sizeof($Reclamations); $i++)
-        {
-            if($Reclamations[$i]->getSelecteur()=="groupe") {
+        $groupes = []; $evenements = []; $publications = [];
+        for($i=0; $i < sizeof($Reclamations); $i++) {
+            if ($Reclamations[$i]->getSelecteur() == "groupe") {
                 $gr = $this->getDoctrine()->getRepository(Groupe::class)->find($Reclamations[$i]->getIdCible());
-                if(!in_array($gr,$groupes))$groupes[sizeof($groupes)] = $gr;
+                if (!in_array($gr, $groupes)) $groupes[sizeof($groupes)] = $gr;
             }
-            if($Reclamations[$i]->getSelecteur()=="evenement") {
-                  $fr =  $this->getDoctrine()->getRepository(Evenement::class)->find($Reclamations[$i]->getIdCible());
-                if(!in_array($fr,$evenements))$evenements[sizeof($evenements)] = $fr;
+            if ($Reclamations[$i]->getSelecteur() == "evenement") {
+                $fr = $this->getDoctrine()->getRepository(Evenement::class)->find($Reclamations[$i]->getIdCible());
+                if (!in_array($fr, $evenements)) $evenements[sizeof($evenements)] = $fr;
             }
-            if($Reclamations[$i]->getSelecteur()=="pub")
-                $pubs[sizeof($pubs)] =
-                    $this->getDoctrine()->getRepository(Publication::class)->find($Reclamations[$i]->getIdCible());
+
+            if ($Reclamations[$i]->getSelecteur() == "pub") {
+                $pr = $this->getDoctrine()->getRepository(\PublicationBundle\Entity\Publication::class)->find($Reclamations[$i]->getIdCible());
+                if (!in_array($pr, $publications)) $publications[sizeof($publications)] = $pr;
+            }
         }
 
 
-
         return $this->render('@Reclamation/Back/ListReclamation.html.twig',
-            array('R'=>$Reclamations,'IdEmeteur' => $membre,'groupes' => $groupes,'evenements' => $evenements,'pubs' => $pubs,'idrecl' =>$evaluation));
+            array('R'=>$Reclamations,'IdEmeteur' => $membre,'groupes' => $groupes,'evenements' => $evenements,'publications' => $publications,'idrecl' =>$evaluation));
     }
     function UpdateAction($id,Request $request){
 
@@ -246,8 +251,9 @@ class ReclamationController extends Controller
         }
         else if($type=="pub")
         {
-            $entity='NozelitesBundle:Publication';
+            $entity='PublicationBundle:Publication';
             $resultat = $em->getRepository($entity)->find($id);
+            $resultat = $resultat->getId();
         }
 
 

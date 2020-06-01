@@ -57,10 +57,14 @@
                                             {% for event in evenements if event.ide ==  rec.idCible %}
                                                 <td data-label="Column 1">{{ event.nom }}</td>
                                             {% endfor %}
-                                        {% else %}
-                                            {% for pub in pubs if pub.id ==  rec.idCible %}
+                                        {% else  %}
+                                            {% for pub in publications if pub.id ==  rec.idCible %}
                                                 <td data-label="Column 1">{{ pub.titre }}</td>
                                             {% endfor %}
+                                       {# {% else %}
+                                            {% for pub in pubs if pub.id ==  rec.idCible %}
+                                                <td data-label="Column 1">{{ pub.titre }}</td>
+                                            {% endfor %}#}
                                         {% endif %}
                                         <td data-label="Column 1">{{ rec.description }}</td>
                                         <td data-label="Column 2">{{ rec.etat }}</td>
