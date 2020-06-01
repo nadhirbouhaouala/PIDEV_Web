@@ -19,7 +19,7 @@
     <div class="row">
         <div class="col-xl-5 offset-xl-3">
 
-{{ form_start(form, {'method': 'post', 'action': path('fos_user_registration_register'), 'attr': {'class': 'fos_user_registration_register'}}) }}
+{{ form_start(form, {'method': 'post', 'action': path('fos_user_registration_register'), 'attr': {'class': 'fos_user_registration_register','novalidate':'novalidate'}}) }}
 
             {{ form_widget(form.roles) }}
 
@@ -27,7 +27,9 @@
             <i class="icon-material-outline-account-circle"></i>
 
             <input type="text" class="input-text with-border" name="{{form.nom.vars.full_name}}" id="{{ form.nom.vars.id }}" placeholder="Nom" value="{{ form.nom.vars.value }}"/>
+
         </div>
+            {{ form_errors(form.nom) }}
             {% do form.nom.setRendered %}
             <!--prenom-->
             <div class="input-with-icon-left">
@@ -35,6 +37,7 @@
 
                 <input type="text" class="input-text with-border" name="{{form.prenom.vars.full_name}}" id="{{ form.prenom.vars.id }}" placeholder="Prenom" value="{{ form.prenom.vars.value }}"/>
             </div>
+            {{ form_errors(form.prenom) }}
             {% do form.prenom.setRendered %}
 
             <!--UserName-->
@@ -43,6 +46,9 @@
 
                 <input type="text" class="input-text with-border" name="{{form.username.vars.full_name}}" id="{{ form.username.vars.id }}" placeholder="Nom d'utilisateur" value="{{ form.username.vars.value }}"/>
             </div>
+
+            {{ form_errors(form.username) }}
+
             {% do form.username.setRendered %}
 
             <!--Telephone-->
@@ -51,6 +57,7 @@
 
                 <input type="text" class="input-text with-border" name="{{form.telephone.vars.full_name}}" id="{{ form.telephone.vars.id }}" placeholder="Telephone" value="{{ form.telephone.vars.value }}"/>
             </div>
+            {{ form_errors(form.telephone) }}
             {% do form.telephone.setRendered %}
 
             <!--Age-->
@@ -59,6 +66,7 @@
 
                 <input type="text" class="input-text with-border" name="{{form.age.vars.full_name}}" id="{{ form.age.vars.id }}" placeholder="Age" value="{{ form.age.vars.value }}"/>
             </div>
+            {{ form_errors(form.age) }}
             {% do form.age.setRendered %}
             <!--Email-->
             <div class="input-with-icon-left">
@@ -66,6 +74,7 @@
 
                 <input type="text" class="input-text with-border" name="{{form.email.vars.full_name}}" id="{{ form.email.vars.id }}" placeholder="Email" value="{{ form.email.vars.value }}"/>
             </div>
+            {{ form_errors(form.email) }}
             {% do form.email.setRendered %}
             <!--mdp 1 -->
             <div class="input-with-icon-left">
@@ -73,6 +82,7 @@
 
                 <input type="password" class="input-text with-border" name="{{form.plainPassword.first.vars.full_name}}" id="{{ form.plainPassword.first.vars.id }}" placeholder="Mot de passe" />
             </div>
+            {{ form_errors(form.plainPassword.first) }}
             {% do form.plainPassword.first.setRendered %}
             <!--mdp2-->
             <div class="input-with-icon-left">
@@ -80,9 +90,10 @@
 
                 <input type="password" class="input-text with-border" name="{{form.plainPassword.second.vars.full_name}}" id="{{ form.plainPassword.second.vars.id }}" placeholder="Répeter le mot de passe" />
             </div>
+            {{ form_errors(form.plainPassword.second) }}
             {% do form.plainPassword.second.setRendered %}
             {{ form_widget(form.imageFile) }}
-
+            {{ form_errors(form.imageFile) }}
         <input class="button full-width button-sliding-icon ripple-effect margin-top-10" type="submit" value="{{ 'registration.submit'|trans }}" />
 
 {{ form_end(form) }}

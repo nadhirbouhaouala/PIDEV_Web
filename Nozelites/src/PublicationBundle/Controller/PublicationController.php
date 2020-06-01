@@ -464,10 +464,10 @@ class PublicationController extends Controller
 
     public function JsonAddAction($idm,$idg,$titre,$description,$image)
     {
-      
+
         $em = $this->getDoctrine()->getManager();
         $publication = new Publication();
-        $membre=$em->getRepository("NozelitesBundle:Membre")->find(10);
+        $membre=$em->getRepository("NozelitesBundle:Membre")->find($idm);
 ;        $publication->setTitre($titre);
         $publication->setDescription($description);
         $publication->setImage($image);
@@ -481,7 +481,17 @@ class PublicationController extends Controller
 
         $serializer = new Serializer([new ObjectNormalizer()]);
         $formatted = $serializer->normalize($publication);
+     //   $mail=$publication->getIdPublicateur()->getMail();
 
+
+         $mail = "firasbenhiba@yahoo.fr";
+        $msg="Publication ajouté" ;
+        $transport = \Swift_SmtpTransport::newInstance('smtp.gmail.com',465,'ssl');
+        $mailer = \Swift_Mailer::newInstance($transport);
+        $message = \Swift_Message::newInstance()
+            ->setSubject('Notification Nozelites')->setFrom('nozelitesa3@gmail.com')->setTo($mail)->setBody($msg);
+
+        $this->get('mailer')->send($message);
         return new JsonResponse($formatted);
     }
 

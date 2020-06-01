@@ -27,9 +27,10 @@
                         <ul data-submenu-title="Start">
                             <li class="active"><a href="{{ path("fos_user_profile_show") }}"><i class="icon-material-outline-dashboard"></i> Tableau de bord</a></li>
                             <li><a href="dashboard-messages.html"><i class="icon-material-outline-question-answer"></i> Messages <span class="nav-tag">2</span></a></li>
+                            {% if is_granted('ROLE_MEMBRE')%}
                             <li><a href="dashboard-bookmarks.html"><i class="icon-material-outline-star-border"></i> Mes Groupes</a></li>
                             <li><a href="dashboard-reviews.html"><i class="icon-material-outline-rate-review"></i> Portfolio</a></li>
-
+                            {% endif %}
                         </ul>
 
 
@@ -56,16 +57,10 @@
 
             <!-- Dashboard Headline -->
             <div class="dashboard-headline">
-                <h3>Settings</h3>
+                <h3>Paramètres du compte</h3>
 
                 <!-- Breadcrumbs -->
-                <nav id="breadcrumbs" class="dark">
-                    <ul>
-                        <li><a href="#">Home</a></li>
-                        <li><a href="#">Dashboard</a></li>
-                        <li>Settings</li>
-                    </ul>
-                </nav>
+
             </div>
 
             <!-- Row -->
@@ -85,7 +80,7 @@
                             <div class="row">
 
                                 <div class="col-auto">
-                                    {{ form_start(form, { 'action': path('fos_user_profile_edit'), 'attr': { 'class': 'fos_user_profile_edit' } }) }}
+                                    {{ form_start(form, { 'action': path('fos_user_profile_edit'), 'attr': { 'class': 'fos_user_profile_edit','novalidate':'novalidate' } }) }}
 
                                     <div class="avatar-wrapper" data-tippy-placement="bottom" title="Change Avatar">
                                         <img class="profile-pic"src="{{ asset('images/profile/'~ user.imageName)}}" alt="{{ user.imageName }}" />
@@ -109,7 +104,7 @@
 
 
                                         </div>
-                                        {{ form_end(form) }}
+                                            {{ form_end(form) }}
 
                                     </div>
                                 </div>
@@ -120,6 +115,7 @@
                 </div>
 
                 <!-- Dashboard Box -->
+                {% if is_granted('ROLE_MEMBRE')%}
                 <div class="col-xl-12">
                     <div class="dashboard-box">
 
@@ -171,52 +167,50 @@
                 </div>
 
                 <!-- Dashboard Box -->
+
                 <div class="col-xl-12">
                     <div id="test1" class="dashboard-box">
 
-                        <!-- Headline -->
                         <div class="headline">
                             <h3><i class="icon-material-outline-lock"></i> Mes Diplomes</h3>
                         </div>
-
+                        {{ form_start(formD) }}
                         <div class="content with-padding">
                             <div class="row">
                                 <div class="col-xl-4">
                                     <div class="submit-field">
-                                        <h5>Current Password</h5>
-                                        <input type="password" class="with-border">
+                                        <h5>{{ form_label(formD.organisation)}}</h5>
+                                        {{ form_widget(formD.organisation, {'attr' : {'class' : 'with-border'}}) }}
+                                    </div>
+                                </div>
+                                {{ form_start(formD) }}
+                                <div class="col-xl-4">
+                                    <div class="submit-field">
+                                        <h5>{{ form_label(formD.domaine)}}</h5>
+                                        {{ form_widget(formD.domaine, {'attr' : {'class' : 'with-border'}}) }}
                                     </div>
                                 </div>
 
                                 <div class="col-xl-4">
                                     <div class="submit-field">
-                                        <h5>New Password</h5>
-                                        <input type="password" class="with-border">
+                                        <h5>{{ form_label(formD.date)}}</h5>
+                                        {{ form_widget(formD.date, {'attr' : {'class' : 'with-border'}} ) }}
                                     </div>
                                 </div>
 
-                                <div class="col-xl-4">
-                                    <div class="submit-field">
-                                        <h5>Repeat New Password</h5>
-                                        <input type="password" class="with-border">
-                                    </div>
-                                </div>
 
-                                <div class="col-xl-12">
-                                    <div class="checkbox">
-                                        <input type="checkbox" id="two-step" checked>
-                                        <label for="two-step"><span class="checkbox-icon"></span> Enable Two-Step Verification via Email</label>
-                                    </div>
-                                </div>
                             </div>
+                            <div class="col-xl-12">
+                                <input type = "submit" class="button ripple-effect big margin-top-30" ></input>
+                            </div>
+                            {{ form_end(formD) }}
                         </div>
                     </div>
                 </div>
+                {% endif %}
 
                 <!-- Button -->
-                <div class="col-xl-12">
-                    <a href="#" class="button ripple-effect big margin-top-30">Save Changes</a>
-                </div>
+
 
             </div>
 
