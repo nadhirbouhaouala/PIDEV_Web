@@ -1,0 +1,146 @@
+{% extends '@Nozelites/basefrontmembre.html.twig' %}
+{% block titre %}{{ parent() }} - MGroupes {% endblock %}
+{% block content %}
+    <div id="titlebar" class="white margin-bottom-30">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <h2>Top</h2>
+                    <span>Evenements</span>
+
+                    <!-- Breadcrumbs -->
+                    <nav id="breadcrumbs" class="dark">
+
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="section white padding-top-0 padding-bottom-60 full-width-carousel-fix">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-12">
+                    <div class="blog-carousel">
+                        {% for de in premiere %}
+                        {% if de is empty %}
+
+                        {% else %}
+                        <a href="{{ path('nozelites_Evenementpagefront',{'id':de.idE})}}" class="blog-compact-item-container">
+                            <div class="blog-compact-item">
+                                {% set imageur = de.image|split('/')  %}
+                                {%  set imageur = imageur[imageur|length-1] %}
+                                {% set imageurl = "front/images/"~imageur %}
+
+                                <img src="{{ asset(imageurl) }}">
+
+                                <span class="blog-item-tag">Top 1</span>
+                                <div class="blog-compact-item-content">
+                                    <ul class="blog-post-tags">
+                                        <li>{{ de.date|date('d/m/Y') }}</li>
+
+                                    </ul>
+                                    <ul class="blog-post-tags">
+                                        <li>{{ de.nbparticipant }} participants</li>
+                                    </ul>
+                                    <h3>{{ de.nom }}</h3>
+                                    <p>{{ de.description }}</p>
+                                </div>
+                            </div>
+                        </a>
+
+                        {% endif %}
+                        {% endfor %}
+                        {% for dp in deuxieme %}
+                            {% if dp is empty %}
+
+                            {% else %}
+                                <a href="{{ path('nozelites_Evenementpagefront',{'id':dp.idE})}}" class="blog-compact-item-container">
+                                    <div class="blog-compact-item">
+                                        {% set imageur = dp.image|split('/')  %}
+                                        {%  set imageur = imageur[imageur|length-1] %}
+                                        {% set imageurl = "front/images/"~imageur %}
+
+                                        <img src="{{ asset(imageurl) }}">
+
+                                        <span class="blog-item-tag">Top 2</span>
+                                        <div class="blog-compact-item-content">
+                                            <ul class="blog-post-tags">
+                                                <li>{{ dp.date|date('d/m/Y') }}</li>
+                                            </ul>
+                                            <ul class="blog-post-tags">
+                                                <li>{{ dp.nbparticipant }} participants</li>
+                                            </ul>
+                                            <h3>{{ dp.nom }}</h3>
+                                            <p>{{ dp.description }}</p>
+                                        </div>
+                                    </div>
+                                </a>
+
+                            {% endif %}
+                        {% endfor %}
+
+                        {% for do in tt %}
+                            {% if do is empty %}
+
+                            {% else %}
+                                <a href="{{ path('nozelites_Evenementpagefront',{'id':do.idE})}}" class="blog-compact-item-container">
+                                    <div class="blog-compact-item">
+                                        {% set imageur = do.image|split('/')  %}
+                                        {%  set imageur = imageur[imageur|length-1] %}
+                                        {% set imageurl = "front/images/"~imageur %}
+
+                                        <img src="{{ asset(imageurl) }}">
+
+                                        <span class="blog-item-tag">Top 3</span>
+                                        <div class="blog-compact-item-content">
+                                            <ul class="blog-post-tags">
+                                                <li>{{ do.date|date('d/m/Y') }}</li>
+                                            </ul>
+                                            <ul class="blog-post-tags">
+                                                <li>{{ do.nbparticipant }} participants</li>
+                                            </ul>
+                                            <h3>{{ do.nom }}</h3>
+                                            <p>{{ do.description }}</p>
+                                        </div>
+                                    </div>
+                                </a>
+
+                            {% endif %}
+                        {% endfor %}
+
+                        {% for do in kk %}
+                            {% if do is empty %}
+
+                            {% else %}
+                                <a href="{{ path('nozelites_Evenementpagefront',{'id':do.idE})}}" class="blog-compact-item-container">
+                                    <div class="blog-compact-item">
+                                        {% set imageur = do.image|split('/')  %}
+                                        {%  set imageur = imageur[imageur|length-1] %}
+                                        {% set imageurl = "front/images/"~imageur %}
+
+                                        <img src="{{ asset(imageurl) }}">
+
+                                        <span class="blog-item-tag">Top 4</span>
+                                        <div class="blog-compact-item-content">
+                                            <ul class="blog-post-tags">
+                                                <li>{{ do.date|date('d/m/Y') }}</li>
+                                            </ul>
+                                            <ul class="blog-post-tags">
+                                                <li>{{ do.nbparticipant }} participants</li>
+                                            </ul>
+                                            <h3>{{ do.nom }}</h3>
+                                            <p>{{ do.description }}</p>
+                                        </div>
+                                    </div>
+                                </a>
+
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
