@@ -2,6 +2,19 @@ nozelites_homepagefront:
     path:     /front
     defaults: { _controller: NozelitesBundle:DefaultFront:index }
 
+Add_portfolio:
+    path: /addPortfolio
+    defaults: { _controller: NozelitesBundle:Portfolio:AddPortfolio}
+
+Delete_portfolio:
+    path: /deletePortfolio/{id}
+    defaults: { _controller: NozelitesBundle:Portfolio:DeletePortfolio}
+Edit_portfolio:
+    path: /editPortfolio/{id}
+    defaults: { _controller: NozelitesBundle:Portfolio:EditPortfolio}
+Show_portfolio:
+    path: /showPortfolio/{id}
+    defaults: { _controller: NozelitesBundle:Portfolio:ShowPortfolio}
 
 
 nozelites_Evenementajouterfront:

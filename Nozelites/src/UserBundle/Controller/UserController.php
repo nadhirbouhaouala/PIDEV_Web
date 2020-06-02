@@ -84,8 +84,10 @@ class UserController extends Controller
         $listDiplome = new ListeDiplome();
         $listeDiplome = $em->getRepository("NozelitesBundle:Listediplome")->findby(array('idMembre'=>$membre->getId()));
 
+        $utilisateur = $em->getRepository("NozelitesBundle:Membre")->findMembreByEmail($membre->getEmail());
+        $portfolio = $em->getRepository("NozelitesBundle:Portfolio")->findby(array('idMembre'=>$utilisateur[0]->getIdusr()));
 
-        return $this->render("@User/Default/AfficherUnUser.html.twig",array('membre'=>$membre, 'formations'=>$formations,'diplomes'=>$listeDiplome));
+        return $this->render("@User/Default/AfficherUnUser.html.twig",array('membre'=>$membre, 'formations'=>$formations,'diplomes'=>$listeDiplome,'portfolio'=>$portfolio));
 
     }
 

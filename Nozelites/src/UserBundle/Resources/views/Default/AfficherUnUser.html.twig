@@ -41,21 +41,23 @@
                         <h3><i class="icon-material-outline-thumb-up"></i> Portfolio</h3>
                     </div>
                     <ul class="boxed-list-ul">
+                        {% for port in portfolio %}
                         <li>
                             <div class="boxed-list-item">
                                 <!-- Content -->
                                 <div class="item-content">
-                                    <h4>Web, Database and API Developer <span>Rated as Freelancer</span></h4>
+                                    <h4>{{port.titre}} </h4>
                                     <div class="item-details margin-top-10">
-                                        <div class="star-rating" data-rating="5.0"></div>
-                                        <div class="detail-item"><i class="icon-material-outline-date-range"></i> August 2018</div>
+
+                                        <div class="detail-item"><i class="icon-brand-github"></i>Github : <a href="{{port.lien}}">{{port.lien}}</a> </div>
                                     </div>
                                     <div class="item-description">
-                                        <p>Excellent programmer - fully carried out my project in a very professional manner. </p>
+                                        <p>{{port.description}} </p>
                                     </div>
                                 </div>
                             </div>
                         </li>
+                        {% endfor %}
 
                     </ul>
 

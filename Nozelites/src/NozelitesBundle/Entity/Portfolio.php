@@ -3,6 +3,7 @@
 namespace NozelitesBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Portfolio
@@ -29,6 +30,8 @@ class Portfolio
     private $idMembre;
 
     /**
+     *
+     * @Assert\NotBlank(message = "Champ obligatoire")
      * @var string
      *
      * @ORM\Column(name="titre", type="string", length=255, nullable=false)
@@ -37,13 +40,21 @@ class Portfolio
 
     /**
      * @var string
-     *
+     * @Assert\NotBlank(
+     *     message = "Champ obligatoire"
+     * )
      * @ORM\Column(name="description", type="string", length=255, nullable=false)
      */
     private $description;
 
     /**
      * @var string
+     *@Assert\NotBlank(
+     *     message = "Champ obligatoire"
+     * )
+     * @Assert\Url(
+     *    message = "Ce lien n'est pas valide",
+     * )
      *
      * @ORM\Column(name="lien", type="string", length=255, nullable=false)
      */
