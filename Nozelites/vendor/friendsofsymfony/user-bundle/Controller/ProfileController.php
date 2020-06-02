@@ -96,8 +96,14 @@ class ProfileController extends Controller
             throw new AccessDeniedException('This user does not have access to this section.');
         }
         $em = $this->getDoctrine()->getManager();
-
-        $membre = $em->getRepository("NozelitesBundle:Membre")->findMembreByEmail($user->getEmail());
+        if(in_array("ROLE_MEMBRE",$user->getRoles())) {
+            $membre = $em->getRepository("NozelitesBundle:Membre")->findMembreByEmail($user->getEmail());
+            $case = 1;
+        }
+        else{
+            $membre = $em->getRepository("NozelitesBundle:ChasseurTalent")->findChasseurByEmail($user->getEmail());
+            $case = 2;
+        }
         $event = new GetResponseUserEvent($user, $request);
         $this->eventDispatcher->dispatch(FOSUserEvents::PROFILE_EDIT_INITIALIZE, $event);
 
@@ -149,16 +155,25 @@ class ProfileController extends Controller
 
 
         if ($form->isSubmitted() && $form->isValid()) {
-
-            $membre[0]->setNom($user->getNom());
-            $membre[0]->setPrenom($user->getPrenom());
-            $membre[0]->setMail($user->getEmail());
-            $membre[0]->setLogin($user->getUsername());
-            $membre[0]->setTel($user->getTelephone());
-
-            $membre[0]->setAge($user->getAge());
-            $membre[0]->setImage("D:/xampp/htdocs/PIDEV_Web/Nozelites/web/images/profile".$user->getImageName());
-
+            if($case == 1){
+                
+                $membre[0]->setNom($user->getNom());
+                $membre[0]->setPrenom($user->getPrenom());
+                $membre[0]->setMail($user->getEmail());
+                $membre[0]->setLogin($user->getUsername());
+                $membre[0]->setTel($user->getTelephone());
+                $membre[0]->setAge($user->getAge());
+                $membre[0]->setImage("D:/xampp/htdocs/PIDEV_Web/Nozelites/web/images/profile/" . $user->getImageName());
+            }
+            elseif($case == 2){
+                $membre[0]->setNom($user->getNom());
+                $membre[0]->setPrenom($user->getPrenom());
+                $membre[0]->setMail($user->getEmail());
+                $membre[0]->setLogin($user->getUsername());
+                $membre[0]->setTel($user->getTelephone());
+                $membre[0]->setAge($user->getAge());
+                $membre[0]->setImage("D:/xampp/htdocs/PIDEV_Web/Nozelites/web/images/profile" . $user->getImageName());
+            }
             $em = $this->getDoctrine()->getManager();
             $em->flush();
             

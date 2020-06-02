@@ -121,7 +121,7 @@ class UserController extends Controller
         return new JsonResponse($formatted);
     }
 
-    public function JsonAddAction($nom,$prenom,$age,$email,$tel,$login,$mdp)
+    public function JsonAddAction($nom,$prenom,$age,$email,$tel,$login,$mdp,$image)
     {
 
         $membre = new Membre();
@@ -130,7 +130,7 @@ class UserController extends Controller
         $membre->setPrenom($prenom);
         $membre->setAge($age);
         $membre->setMail($email);
-        $membre->setImage("placeholder");
+        $membre->setImage("D:/xampp/htdocs/PIDEV_Web/Nozelites/web/images/profile/".$image);
         $membre->setTel($tel);
         $membre->setLogin($login);
         $membre->setMdp($mdp);

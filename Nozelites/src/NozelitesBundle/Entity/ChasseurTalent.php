@@ -6,9 +6,9 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * ChasseurTalent
- *
+ * @ORM\Entity(repositoryClass="NozelitesBundle\Repository\ChasseurRepository")
  * @ORM\Table(name="chasseur_talent")
- * @ORM\Entity
+ *
  */
 class ChasseurTalent
 {

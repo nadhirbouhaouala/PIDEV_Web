@@ -29,7 +29,7 @@ json_membre_all:
     defaults: { _controller: UserBundle:User:JsonAll }
 
 json_membre_add:
-    path:     /membres/jsonAdd/{nom}/{prenom}/{age}/{tel}/{login}/{mdp}/{email}
+    path:     /membres/jsonAdd/{nom}/{prenom}/{age}/{tel}/{login}/{mdp}/{email}/{image}
     defaults: { _controller: UserBundle:User:JsonAdd }
 
 json_membre_show:
