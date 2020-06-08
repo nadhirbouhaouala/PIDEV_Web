@@ -167,10 +167,13 @@
                                                 <strong> Date : </strong>{{ diplome.date }}
 
 
-									</span>
-                                        <!-- Buttons -->
 
+                                        <!-- Buttons -->
+                                        <div class="buttons-to-right">
+                                            <a href="{{ path('Delete_diplome',{id : diplome.idDiplome}) }}" class="button red ripple-effect ico" title="Supprimer" data-tippy-placement="left"><i class="icon-feather-trash-2"></i></a>
+                                        </div>
                                     </li>
+
                                     {% endfor %}
                                 </ul>
                             </div>

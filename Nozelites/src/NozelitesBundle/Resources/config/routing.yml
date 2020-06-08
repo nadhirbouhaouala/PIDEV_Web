@@ -16,6 +16,9 @@ Show_portfolio:
     path: /showPortfolio/{id}
     defaults: { _controller: NozelitesBundle:Portfolio:ShowPortfolio}
 
+Delete_diplome:
+    path: /deleteDiplome/{id}
+    defaults: { _controller: NozelitesBundle:Listediplome:DeleteDiplome}
 
 nozelites_Evenementajouterfront:
     path:     /frontEvenementAjouter
