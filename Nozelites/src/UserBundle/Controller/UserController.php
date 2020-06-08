@@ -8,6 +8,7 @@ use NozelitesBundle\Entity\Listediplome;
 
 use NozelitesBundle\Entity\Membre;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
@@ -144,6 +145,24 @@ class UserController extends Controller
 
         $serializer = new Serializer([new ObjectNormalizer()]);
         $formatted = $serializer->normalize($membre);
+
+        $userManager = $this->get('fos_user.user_manager');
+        $user = $userManager->createUser();
+        $user->setPrenom($prenom);
+        $user->setNom($nom);
+        $user->setAge($age);
+        $user->setTelephone($tel);
+        $file = new UploadedFile("D:/xampp/htdocs/PIDEV_Web/Nozelites/web/images/profile/".$image,"D:/xampp/htdocs/PIDEV_Web/Nozelites/web/images/profile/".$image,null,null,null,true);
+        $user->setImageFile($file);
+        $user->setRoles(array('ROLE_MEMBRE'));
+        $user->setUsername($login);
+        $user->setEmail($email);
+        $user->setEmailCanonical($email);
+        //$user->setLocked(0); // don't lock the user
+        $user->setEnabled(1); // enable the user or enable it later with a confirmation token in the email
+        // this method will encrypt the password with the default settings :)
+        $user->setPlainPassword($mdp);
+        $userManager->updateUser($user);
 
         return new JsonResponse($formatted);
     }
