@@ -40,7 +40,7 @@ class Commentaire
      *
      * @ORM\ManyToOne(targetEntity="Membre")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="id_membre", referencedColumnName="idUsr")
+     *   @ORM\JoinColumn(name="id_publicateur", referencedColumnName="idUsr")
      * })
      */
     private $idMembre;

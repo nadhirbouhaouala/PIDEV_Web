@@ -1,4 +1,4 @@
-{% extends '@Publication/Front/Publication.html.twig' %}
+{% extends '@Nozelites/basefrontmembre.html.twig' %}
 {% block content %}
 
     <!-- Section -->
@@ -10,18 +10,15 @@
                 <div class="col-xl-8 col-lg-8">
 
                     <!-- Section Headline -->
-                    <div class="section-headline margin-top-60 margin-bottom-35">
-                        <h4>Publication recente</h4>
 
 
-                    </div>
 
-                    {% for cc in c %}
+                {% for cc in c %}
                     <!-- Blog Post -->
                     <a href="{{ path('Commentaire',{'id':cc.id})}}" class="blog-post">
                         <!-- Blog Post Thumbnail -->
                         <div class="blog-post-thumbnail">
-                            <div  class="blog-post-thumbnail-inner">
+                            <div  class="blog-post-thumbnail-inner" >
 
 
 
@@ -37,8 +34,19 @@
                         <!-- Blog Post Content -->
                         <div class="blog-post-content">
                             <!--  <span class="blog-post-date">{{ cc.titre }}</span>  -->
-                            <h3>{{ cc.titre }}</h3>
-                            <p>{{ cc.description }}</p>
+
+
+
+                          <h3>{{ cc.titre }}</h3>
+                              <p>{{ cc.description }}</p>
+
+
+
+                          </table>
+
+
+
+
 
 
                         </div>
@@ -50,15 +58,29 @@
                         <!-- Icon -->
                         <div class="entry-icon"></div>
 
-
+                        {% if cc.idPublicateur.idusr  == d.idusr %}
                             <a href="{{  path('Delete',{'id':cc.id}) }}" class="button red ripple-effect ico"  title="Modifier" data-tippy-placement="left"><i class="icon-feather-trash-2"></i></a>
 
                             <a href="{{  path('Update',{'id':cc.id}) }}" class="button red ripple-effect ico" title="Supprimer" data-tippy-placement="left"><i class="icon-feather-edit-2"></i></a>
+                        {% endif %}
 
-                        <a href="{{  path('jaime',{'id':cc.id}) }}" class="button white ripple-effect ico" title="J aime" data-tippy-placement="left"><i class="icon-feather-heart"></i></a>
+
+
+                        {% if (favoris is empty) %}
+                        <a href="{{  path('jaime',{'id':cc.id}) }}" class="button white ripple-effect ico" title="J aime" data-tippy-placement="left" ><i class="icon-material-outline-thumb-up"></i></a>
+                        {%endif  %}
+                            {% for p in favoris%}
+
+                                {% if p.idPub.id==cc.id %}
+                        <a href="{{  path('dislike',{'id':cc.id}) }}" class="button white ripple-effect ico" title="J aime" data-tippy-placement="left" ><i class="icon-material-outline-thumb-down"></i></a>
+                        {% elseif p.idPub.id!=cc.id %}
+
+                            <a href="{{  path('jaime',{'id':cc.id}) }}" class="button white ripple-effect ico" title="J aime" data-tippy-placement="left" ><i class="icon-material-outline-thumb-up"></i></a>
+                        {% endif %}
+                              {% endfor %}
 
                         <a href="{{  path('Imprimer',{'id':cc.id}) }}" class="button white ripple-effect ico" title="Imprimer   " data-tippy-placement="left"><i class="icon-material-outline-print"></i></a>
-
+                        <a href="{{ path('Ajouter1',{'id':cc.id,'type':'pub'}) }}" class="button red ripple-effect ico" title="Signaler" data-tippy-placement="left"><i class=" icon-feather-align-left"></i></a>
                     </a>
                     {% endfor %}
 
@@ -102,4 +124,5 @@
 
     </div>
     <!-- Section / End -->
+
 {% endblock %}

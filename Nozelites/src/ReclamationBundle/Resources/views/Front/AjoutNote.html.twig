@@ -1,4 +1,8 @@
-{% extends '@Reclamation/Front/contact.html.twig' %}
+
+{#{% extends '@Reclamation/Front/contact.html.twig' %}#}
+
+{% extends '@Nozelites/basefrontmembre.html.twig' %}
+
 {% block content %}
     <div id="titlebar" class="gradient">
         <div class="container">
@@ -55,23 +59,31 @@
             <div class="col-xl-8 col-lg-8 offset-xl-2 offset-lg-2">
 
                 <section id="contact" class="margin-bottom-60">
-                    <h3 class="headline margin-top-15 margin-bottom-35">Expliquez nous?</h3>
+
 
                     <div class="col-xl-6 col-lg-6 content-left-offset">
-                        <h1>Reclamation</h1>
+                        <h1>Veuillez noter la Réclamation</h1>
                         <br>
-                        <form action="{{ path('AjouterNote',{'id':R.idRecl}) }}" method="post" id="mainform">
+                      {#  <form action="{{ path('AjouterNote',{'id':R.idRecl}) }}" method="post" id="mainform">
 
 
                             <label>Note</label>
                             <input type="number" name="note" class="with-border" value="">
+
                             <input type="hidden" name="id_r">
 
 
                             <br>
 
                             <input type="submit"  value="Create" />
-                        </form>
+                        </form>#}
+
+                        {{ form_start(f) }}
+                        {{ form_widget(f) }}
+                        <input type="submit" value="ajouter"/>
+                        {{ form_end(f) }}
+
+
 
                     </div>
 

@@ -3,7 +3,7 @@
 namespace NozelitesBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-
+use Symfony\Component\Validator\Constraints as Assert;
 /**
  * Evenement
  *
@@ -25,6 +25,7 @@ class Evenement
      * @var string
      *
      * @ORM\Column(name="nom", type="string", length=255, nullable=false)
+     * @Assert\NotBlank
      */
     private $nom;
 
@@ -32,6 +33,7 @@ class Evenement
      * @var string
      *
      * @ORM\Column(name="lieu", type="string", length=255, nullable=false)
+     * @Assert\NotBlank
      */
     private $lieu;
 
@@ -39,6 +41,7 @@ class Evenement
      * @var \DateTime
      *
      * @ORM\Column(name="date", type="date", nullable=false)
+     * @Assert\GreaterThan("today")
      */
     private $date;
 
@@ -53,6 +56,7 @@ class Evenement
      * @var string
      *
      * @ORM\Column(name="description", type="string", length=255, nullable=false)
+     * @Assert\NotBlank
      */
     private $description;
 
@@ -60,6 +64,8 @@ class Evenement
      * @var string
      *
      * @ORM\Column(name="siteWeb", type="string", length=255, nullable=false)
+     * @Assert\NotBlank
+     * @Assert\Url()
      */
     private $siteweb;
 
@@ -74,13 +80,17 @@ class Evenement
      * @var integer
      *
      * @ORM\Column(name="NbPlace", type="integer", nullable=false)
+     * @Assert\NotNull
+     * @Assert\GreaterThan("0")
      */
     private $nbplace;
 
     /**
      * @var string
      *
+     *
      * @ORM\Column(name="image", type="string", length=255, nullable=false)
+     * @Assert\NotBlank
      */
     private $image;
 
@@ -88,6 +98,7 @@ class Evenement
      * @var integer
      *
      * @ORM\Column(name="etat", type="integer", nullable=false)
+     *
      */
     private $etat;
 

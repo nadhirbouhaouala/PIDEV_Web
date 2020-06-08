@@ -5,6 +5,7 @@ namespace ReclamationBundle\Form;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use blackknight467\StarRatingBundle\Form\RatingType;
 
 class EvaluationType extends AbstractType
 {
@@ -13,7 +14,10 @@ class EvaluationType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('note')->add('idR');
+        $builder->add('rating', RatingType::class, [
+            'label' => 'Rating'
+        ]);
+
     }/**
      * {@inheritdoc}
      */

@@ -57,7 +57,10 @@
                 <strong class="margin-bottom-5">Publication</strong>
                 <p>
                 <div >
-                    <img width="400" height="400" src="{{ asset('front/images/'~ c.image) }}" alt="">
+                    {% set imageur = c.image|split('/')  %}
+                    {%  set imageur = imageur[imageur|length-1] %}
+                    {% set imageurl = "front/images/"~imageur %}
+                    <img width="400" height="400" src="{{ asset(imageurl) }}" alt="">
                 </div>
                 </p>
             </div>

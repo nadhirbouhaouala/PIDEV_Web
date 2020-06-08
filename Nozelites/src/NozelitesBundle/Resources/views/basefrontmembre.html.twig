@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <title>{% block title %}Nozelites - {% endblock %}</title>
@@ -8,6 +9,8 @@
         <link rel="stylesheet" href="{{ asset('css/style.css') }}">
         <link rel="stylesheet" href="{{ asset('css/colors/red.css') }}">
 
+        <link rel="stylesheet" type="text/css" href="{{ asset('css/rating.css') }}" />
+        <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
 
 
     {% endblock %}
@@ -48,48 +51,9 @@
                                         </ul>
                                     </li>
 
-                                    <li><a href="#">Profil</a>
-                                        <ul class="dropdown-nav">
-                                            <li><a href="#">Browse Jobs</a>
-                                                <ul class="dropdown-nav">
-                                                    <li><a href="jobs-list-layout-full-page-map.html">Full Page List + Map</a></li>
-                                                    <li><a href="jobs-grid-layout-full-page-map.html">Full Page Grid + Map</a></li>
-                                                    <li><a href="jobs-grid-layout-full-page.html">Full Page Grid</a></li>
-                                                    <li><a href="jobs-list-layout-1.html">List Layout 1</a></li>
-                                                    <li><a href="jobs-list-layout-2.html">List Layout 2</a></li>
-                                                    <li><a href="jobs-grid-layout.html">Grid Layout</a></li>
-                                                </ul>
-                                            </li>
-                                            <li><a href="#">Browse Tasks</a>
-                                                <ul class="dropdown-nav">
-                                                    <li><a href="tasks-list-layout-1.html">List Layout 1</a></li>
-                                                    <li><a href="tasks-list-layout-2.html">List Layout 2</a></li>
-                                                    <li><a href="tasks-grid-layout.html">Grid Layout</a></li>
-                                                    <li><a href="tasks-grid-layout-full-page.html">Full Page Grid</a></li>
-                                                </ul>
-                                            </li>
-                                            <li><a href="browse-companies.html">Browse Companies</a></li>
-                                            <li><a href="single-job-page.html">Job Page</a></li>
-                                            <li><a href="single-task-page.html">Task Page</a></li>
-                                            <li><a href="single-company-profile.html">Company Profile</a></li>
-                                        </ul>
-                                    </li>
 
-                                    <li><a href="#">Portfolio</a>
-                                        <ul class="dropdown-nav">
-                                            <li><a href="#">Find a Freelancer</a>
-                                                <ul class="dropdown-nav">
-                                                    <li><a href="freelancers-grid-layout-full-page.html">Full Page Grid</a></li>
-                                                    <li><a href="freelancers-grid-layout.html">Grid Layout</a></li>
-                                                    <li><a href="freelancers-list-layout-1.html">List Layout 1</a></li>
-                                                    <li><a href="freelancers-list-layout-2.html">List Layout 2</a></li>
-                                                </ul>
-                                            </li>
-                                            <li><a href="single-freelancer-profile.html">Freelancer Profile</a></li>
-                                            <li><a href="dashboard-post-a-job.html">Post a Job</a></li>
-                                            <li><a href="dashboard-post-a-task.html">Post a Task</a></li>
-                                        </ul>
-                                    </li>
+
+
 
                                     <li><a href="{{ path('nozelites_membregroupesfront') }}">Groupes</a>
                                         <ul class="dropdown-nav">
@@ -106,9 +70,10 @@
 
                                     <li><a href="{{ path('nozelites_AllEvenementfront')}}">Evenements</a>
                                         <ul class="dropdown-nav">
-                                            <li><a href="{{ path('nozelites_Evenementajouterfront')}}">creer</a></li>
+                                            <li><a href="{{ path('nozelites_Evenementajouterfront')}}">Créer un evenement</a></li>
                                             <li><a href="{{ path('nozelites_Evenementafficherfront')}}">Mes Evenements</a></li>
-                                            <li><a href="{{ path('nozelites_AllEvenementfront')}}">All</a></li>
+                                            <li><a href="{{ path('nozelites_AllEvenementfront')}}">Tous les evenements</a></li>
+                                            <li><a href="{{ path('nozelites_EvenementTopfront')}}">Top 4</a></li>
                                         </ul>
                                     </li>
 
@@ -197,7 +162,7 @@
 
                                     <!-- Trigger -->
                                     <div class="header-notifications-trigger">
-                                        <a href="#"><i class="icon-feather-bell"></i><span>4</span></a>
+
                                     </div>
                                     <!-- Dropdown -->
                                     <div class="header-notifications-dropdown">
@@ -211,51 +176,36 @@
                                         <div class="header-notifications-content">
                                             <div class="header-notifications-scroll" data-simplebar>
                                                 <ul>
+
                                                     <!-- Notification -->
+
+
                                                     <li class="notifications-not-read">
-                                                        <a href="dashboard-manage-candidates.html">
-                                                            <span class="notification-icon"><i class="icon-material-outline-group"></i></span>
-                                                            <span class="notification-text">
-													<strong>Michael Shannah</strong> applied for a job <span class="color">Full Stack Software Engineer</span>
-												</span>
-                                                        </a>
+
+
+
+
+                                                                    <a href="dashboard-manage-candidates.html">
+                                                                        <span class="notification-icon"><i class="icon-material-outline-group"></i></span>
+                                                                        <span class="notification-text">
+
+													<strong></strong> a aimé la  publication  <span class="color"> </span>
+
+                                                            </span>
+
+                                                                    </a>
+
+
+
+
                                                     </li>
 
-                                                    <!-- Notification -->
-                                                    <li>
-                                                        <a href="dashboard-manage-bidders.html">
-                                                            <span class="notification-icon"><i class=" icon-material-outline-gavel"></i></span>
-                                                            <span class="notification-text">
-													<strong>Gilbert Allanis</strong> placed a bid on your <span class="color">iOS App Development</span> project
-												</span>
-                                                        </a>
-                                                    </li>
-
-                                                    <!-- Notification -->
-                                                    <li>
-                                                        <a href="dashboard-manage-jobs.html">
-                                                            <span class="notification-icon"><i class="icon-material-outline-autorenew"></i></span>
-                                                            <span class="notification-text">
-													Your job listing <span class="color">Full Stack PHP Developer</span> is expiring.
-												</span>
-                                                        </a>
-                                                    </li>
-
-                                                    <!-- Notification -->
-                                                    <li>
-                                                        <a href="dashboard-manage-candidates.html">
-                                                            <span class="notification-icon"><i class="icon-material-outline-group"></i></span>
-                                                            <span class="notification-text">
-													<strong>Sindy Forrest</strong> applied for a job <span class="color">Full Stack Software Engineer</span>
-												</span>
-                                                        </a>
-                                                    </li>
                                                 </ul>
                                             </div>
                                         </div>
+
                                     </div>
                                 </div>
-
                                 <!-- Messages -->
                                 {% if is_granted('ROLE_MEMBRE')%}
                                 <div class="header-notifications">
@@ -364,6 +314,7 @@
                                     <div class="footer-rows-left">
                                         <div class="footer-row">
                                             <div class="footer-row-inner footer-logo">
+
                                                 <img src="images/logo2.png" alt="">
                                             </div>
                                         </div>
@@ -478,6 +429,7 @@
 {% endblock %}
 <!-- Scripts
 ================================================== -->
+
 {% block javascripts %}
     <script src="{{ asset('js/jquery-3.3.1.min.js') }}"></script>
     <script src="{{ asset('js/jquery-migrate-3.0.0.min.js') }}"></script>
@@ -492,6 +444,9 @@
     <script src="{{ asset('js/magnific-popup.min.js') }}"></script>
     <script src="{{ asset('js/slick.min.js') }}"></script>
     <script src="{{ asset('js/custom.js') }}"></script>
+    <script src="{{ asset('js/jquery-min.js') }}"></script>
+    <script src="{{ asset('js/rating.js') }}"></script>
+
 
     <script  src="{{ asset('js/bloodhound.jquery.min.js') }}"></script>
     <script  src="{{ asset('js/typeahead.jquery.min.js') }}"></script>

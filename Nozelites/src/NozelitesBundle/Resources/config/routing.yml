@@ -6,6 +6,7 @@ Add_portfolio:
     path: /addPortfolio
     defaults: { _controller: NozelitesBundle:Portfolio:AddPortfolio}
 
+
 Delete_portfolio:
     path: /deletePortfolio/{id}
     defaults: { _controller: NozelitesBundle:Portfolio:DeletePortfolio}
@@ -19,6 +20,11 @@ Show_portfolio:
 Delete_diplome:
     path: /deleteDiplome/{id}
     defaults: { _controller: NozelitesBundle:Listediplome:DeleteDiplome}
+
+
+nozelites_EvenementTopfront:
+    path:     /frontEvenementtop
+    defaults: { _controller: NozelitesBundle:Evenement:affichertop}
 
 nozelites_Evenementajouterfront:
     path:     /frontEvenementAjouter
@@ -178,3 +184,35 @@ nozelites_adminEvenementAccepterback:
 nozelites_adminEvenementPageback:
     path:       /backadminEvenement/page/{id}
     defaults: { _controller: NozelitesBundle:Evenement:afficherEventadmin}
+
+
+
+
+json_evenement_all:
+    path:     /events/jsonAll
+    defaults: { _controller: NozelitesBundle:Evenement:JsonAll }
+json_evenement_find:
+    path:     /events/jsonFind/{id}
+    defaults: { _controller: NozelitesBundle:Evenement:JsonFind }
+json_evenement_add:
+    path:     /events/jsonadd/{id_membre}/{nom}/{lieu}/{date}/{heure}/{description}/{siteweb}/{nbplace}/{image}
+    defaults: { _controller: NozelitesBundle:Evenement:JsonAdd }
+json_evenement_delete:
+    path:     /events/jsondelete/{id}
+    defaults: { _controller: NozelitesBundle:Evenement:JsonDelete }
+json_evenement_edit:
+    path:     /events/jsonedit/{ide}/{nom}/{lieu}/{date}/{heure}/{description}/{siteweb}/{nbplace}/{image}
+    defaults: { _controller: NozelitesBundle:Evenement:JsonEdit }
+
+json_evenementpart_all:
+    path:     /eventspart/jsonAll
+    defaults: { _controller: NozelitesBundle:Listparticipant:JsonAll }
+json_evenementpart_add:
+    path:     /eventspart/jsonadd/{id_evenement}/{id_membre}
+    defaults: { _controller: NozelitesBundle:Listparticipant:JsonAdd }
+json_evenementpart_delete:
+    path:     /eventspart/jsondelete/{id}/{id_membre}
+    defaults: { _controller: NozelitesBundle:Listparticipant:JsonDelete }
+json_evenementpart_find:
+    path:     /eventspart/jsonFind/{id}/{id_membre}
+    defaults: { _controller: NozelitesBundle:Listparticipant:JsonFind }

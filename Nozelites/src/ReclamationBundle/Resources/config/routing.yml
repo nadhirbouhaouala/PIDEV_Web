@@ -10,11 +10,11 @@ reclamation_show:
     path:     /AfficheReclamation
     defaults: { _controller: ReclamationBundle:Reclamation:AfficheRec }
 
-Delete:
+DeleteREC:
     path:     /DeleteReclamation/{id}
     defaults: { _controller: ReclamationBundle:Reclamation:Delete }
 
-Update:
+UpdateREC:
     path:     /UpdateReclamation/{id}
     defaults: { _controller: ReclamationBundle:Reclamation:Update }
 
@@ -31,13 +31,14 @@ Traiter:
     path:     /TraiterReclamation/{id}
     defaults: { _controller: ReclamationBundle:Reclamation:Traiter }
 
-Deleteback:
+Deletebac:
     path:     /DeleteBack/{id}
     defaults: { _controller: ReclamationBundle:Reclamation:Deleteback }
 
 AjouterNote:
     path:     /AjoutNote/{id}
     defaults: { _controller: ReclamationBundle:Evaluation:AjoutNote }
+
 AjouterNoteTest:
     path:     /AjoutNoteTest/{id}
     defaults: { _controller: ReclamationBundle:Evaluation:AjoutNoteTest }
@@ -45,3 +46,27 @@ AjouterNoteTest:
 AfficherNote:
     path:     /AfficherNote/{id}
     defaults: { _controller: ReclamationBundle:Evaluation:AfficherNote }
+
+json_Reclamation_all:
+    path:     /reclamation/jsonAll
+    defaults: { _controller: ReclamationBundle:Reclamation:JsonAll }
+
+json_groupe_find:
+    path:     /reclamation/jsonFind/{id}
+    defaults: { _controller: ReclamationBundle:Reclamation:JsonFind }
+
+json_Reclamation_add:
+    path:      /reclamation/jsonadd/{id_emeteur}/{id_cible}/{description}/{selecteur}
+    defaults: { _controller: ReclamationBundle:Reclamation:JsonAdd }
+
+json_Reclamation_delete:
+    path:     /reclamation/jsondelete/{idRecl}
+    defaults: { _controller: ReclamationBundle:Reclamation:JsonDelete }
+
+json_Reclamation_edit:
+    path:     /reclamation/jsonedit/{idRecl}/{description}
+    defaults: { _controller: ReclamationBundle:Reclamation:JsonEdit }
+
+json_Evaluation_add:
+    path:      /reclamation/jsonadd/{id_r}/{rating}
+    defaults: { _controller: ReclamationBundle:Evaluation:JsonAdd }

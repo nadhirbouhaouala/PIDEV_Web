@@ -10,6 +10,11 @@ Afficher:
     path:     /AffichePublication
     defaults: { _controller: PublicationBundle:Publication:Affichepub }
 
+notification:
+    path:     /notification
+    defaults: { _controller: PublicationBundle:Publication:notification }
+
+
 Delete:
     path:     /DeletePublication/{id}
     defaults: { _controller: PublicationBundle:Publication:Delete }
@@ -33,6 +38,10 @@ AjouterComm:
 jaime:
     path:     /jaime/{id}
     defaults: { _controller: PublicationBundle:Publication:jaime }
+
+dislike:
+    path:     /dislike/{id}
+    defaults: { _controller: PublicationBundle:Publication:dislike }
 
 Imprimer:
     path:     /Imprimer/{id}
@@ -77,3 +86,38 @@ Affichercommback:
 Deletecommback:
     path:     /Deletecommentaireback/{id}
     defaults: { _controller: PublicationBundle:Publication:Deletecommback }
+
+json_publication_all:
+    path:     /publications/jsonAll
+    defaults: { _controller: PublicationBundle:Publication:JsonAll }
+
+
+
+
+json_publication_add:
+    path:     /publications/jsonadd/{idm}/{idg}/{titre}/{description}/{image}
+    defaults: { _controller: PublicationBundle:Publication:JsonAdd }
+
+
+
+json_publication_delete:
+    path:     /publications/jsondelete/{id}
+    defaults: { _controller: PublicationBundle:Publication:JsonDelete }
+
+
+
+json_publication_edit:
+    path:     /publications/jsonedit/{id}/{titre}/{description}/{image}
+    defaults: { _controller: PublicationBundle:Publication:JsonEdit }
+
+json_publication_like:
+    path:     /publications/jsonlike/{id}
+    defaults: { _controller: PublicationBundle:Publication:JsonLike }
+
+json_publication_dislike:
+    path:     /publications/jsondislike/{id}
+    defaults: { _controller: PublicationBundle:Publication:JsonDislike }
+
+facebook:
+    path:     /facebook
+    defaults: { _controller: PublicationBundle:Publication:facebook }

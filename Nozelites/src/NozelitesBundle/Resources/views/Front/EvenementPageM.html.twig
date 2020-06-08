@@ -148,8 +148,12 @@
 
                                 <!-- Logo -->
                                 <div class="job-listing-company-logo">
+                                    {% set imageur = pt.image|split('/')  %}
+                                    {%  set imageur = imageur[imageur|length-1] %}
+                                    {% set imageurl = "front/images/"~imageur %}
 
-                                    <img src="{{ asset('front/images/'~ pt.image) }}" alt="image" />
+                                    <img src="{{ asset(imageurl) }}">
+
                                 </div>
 
                                 <!-- Details -->

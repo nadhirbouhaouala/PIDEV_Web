@@ -2,7 +2,9 @@
 {#{{ form_start(f) }}
 {{ form_widget(f.Ajout,{'label':'Modifier'}) }}
 {{ form_end(f) }}#}
-{% extends '@Reclamation/Front/contact.html.twig' %}
+{#{% extends '@Reclamation/Front/contact.html.twig' %}#}
+
+{% extends '@Nozelites/basefrontmembre.html.twig' %}
 {% block content %}
     <div id="titlebar" class="gradient">
         <div class="container">
@@ -64,6 +66,7 @@
                     {{ form_start(f) }}
                     {{ form_widget(f) }}
                     <input type="submit" value="Create" />
+
                     {{ form_end(f) }}
 
 

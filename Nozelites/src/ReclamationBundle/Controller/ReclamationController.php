@@ -2,19 +2,51 @@
 
 namespace ReclamationBundle\Controller;
 
+use NozelitesBundle\NozelitesBundle;
 use ReclamationBundle\Entity\Evaluation;
-use ReclamationBundle\Entity\Evenement;
-use ReclamationBundle\Entity\Groupe;
-use ReclamationBundle\Entity\Publication;
-use ReclamationBundle\Entity\Membre;
+use NozelitesBundle\Entity\Evenement;
+use NozelitesBundle\Entity\Groupe;
+use NozelitesBundle\Entity\Publication;
+use NozelitesBundle\Entity\Membre;
 use ReclamationBundle\Entity\Reclamation;
 use ReclamationBundle\Form\ReclamationType;
 use ReclamationBundle\Form\UpdateType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 
+
+use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\Serializer\Encoder\JsonEncoder;
+use Symfony\Component\Serializer\Encoder\XmlEncoder;
+use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
+use Symfony\Component\Serializer\Serializer;
+
+
+
 class ReclamationController extends Controller
 {
+    /**
+     * @return integer
+     */
+    public function getRealIdAction()
+    {
+        $user = $this->getUser();
+        $mail = $user->getEmail();
+
+        if (in_array("ROLE_MEMBRE", $user->getRoles())) {
+
+            $em = $this->getDoctrine()->getManager();
+            $membre = $em->getRepository('NozelitesBundle:Membre')->findOneBymail($mail);
+            return $membre->getIdusr();
+
+        }
+        elseif (in_array("ROLE_CHASSEUR", $user->getRoles())) {
+
+            $em = $this->getDoctrine()->getManager();
+            $chasseur = $em->getRepository('NozelitesBundle:ChasseurTalent')->findOneBymail($mail);
+            return $chasseur->getIdusr();
+        }
+    }
 
     public function AjouterAction(Request $request)
     { // $id_membre_actif = 9;
@@ -49,8 +81,8 @@ class ReclamationController extends Controller
             $em->persist($reclamation);
             $em->flush();
 
-$mail="mohamedkheireddine.bairam@esprit.tn";
-  $msg="On a bien recu votre Reclamation";
+    $mail="mohamedkheireddine.bairam@esprit.tn";
+    $msg="On a bien recu votre Reclamation";
                 $transport = \Swift_SmtpTransport::newInstance('smtp.gmail.com',465,'ssl');
            $mailer = \Swift_Mailer::newInstance($transport);
                                     $message = \Swift_Message::newInstance()
@@ -88,56 +120,55 @@ $mail="mohamedkheireddine.bairam@esprit.tn";
         $em->flush();
         return $this->redirectToRoute('nozelites_homepagebac');
     }
-    function AfficheRecAction(){
+   /* function AfficheRecAction(){
         $user = $this->get('security.token_storage')->getToken()->getUser();
         $ide=5;
         $Reclamations=$this->getDoctrine()->getRepository(Reclamation::class)->findAll();
         $membre=$this->getDoctrine()->getRepository(Membre::class)->findBy(array('idusr'=>$user));
 
         $groupes = []; $evenements = [];
-        for($i=0; $i < sizeof($Reclamations); $i++)
-        {
-            if($Reclamations[$i]->getSelecteur()=="groupe") {
+        for($i=0; $i < sizeof($Reclamations); $i++) {
+            if ($Reclamations[$i]->getSelecteur() == "groupe") {
                 $gr = $this->getDoctrine()->getRepository(Groupe::class)->find($Reclamations[$i]->getIdCible());
-                if(!in_array($gr,$groupes))$groupes[sizeof($groupes)] = $gr;
+                if (!in_array($gr, $groupes)) $groupes[sizeof($groupes)] = $gr;
             }
-            if($Reclamations[$i]->getSelecteur()=="event")
-                $evenements[sizeof($evenements)] =
-                    $this->getDoctrine()->getRepository(Evenement::class)->find($Reclamations[$i]->getIdCible());
+            if ($Reclamations[$i]->getSelecteur() == "evenement") {
+                $fr = $this->getDoctrine()->getRepository(Evenement::class)->find($Reclamations[$i]->getIdCible());
+                if (!in_array($fr, $evenements)) $evenements[sizeof($evenements)] = $fr;
+            }
         }
 
 
 
         return $this->render('@Reclamation/Front/AfficheReclamation.html.twig',
             array('R'=>$Reclamations,'IdEmeteur' => $membre,'groupes' => $groupes,'evenements' => $evenements));
-    }
-
-
-    /* function AfficheRecAction(){
-        $user = $this->get('security.token_storage')->getToken()->getUser();
-     //   $Reclamation=$this->getDoctrine()
-          //  ->getRepository(Reclamation::class)
-          //  ->findAll();
-$ide=5;
-        $Reclamation=$this->getDoctrine()
-            ->getRepository(Reclamation::class)
-            ->findAll();
-
-        $membre=$this->getDoctrine()
-            ->getRepository(Membre::class)
-            ->findBy(array('idusr'=>$user));
-
-        $groups=$this->getDoctrine()
-
-            ->getRepository(Groupe::class)
-            ->findBy(array('idGroupe'=>$user));
-        $event=$this->getDoctrine()
-            ->getRepository(Reclamation::class)
-            ->findBy(array('idCible'=>$ide));
-        return $this->render('@Reclamation/Front/AfficheReclamation.html.twig',
-            array('R'=>$Reclamation,'IdEmeteur' => $membre,'idCible' => $groups,'idCible' => $event));
     }*/
 
+
+    public function  AfficheRecAction()
+    {
+
+        $Reclamations=$this->getDoctrine()->getRepository(Reclamation::class)->findByIdEmeteur($this->getRealIdAction());
+
+        $id = $this->getRealIdAction();
+        $groupes = []; $evenements = []; $publications =[];
+        for($i=0; $i < sizeof($Reclamations); $i++) {
+            if ($Reclamations[$i]->getSelecteur() == "groupe") {
+                $gr = $this->getDoctrine()->getRepository(Groupe::class)->find($Reclamations[$i]->getIdCible());
+                if (!in_array($gr, $groupes)) $groupes[sizeof($groupes)] = $gr;
+            }
+            if ($Reclamations[$i]->getSelecteur() == "evenement") {
+                $fr = $this->getDoctrine()->getRepository(Evenement::class)->find($Reclamations[$i]->getIdCible());
+                if (!in_array($fr, $evenements)) $evenements[sizeof($evenements)] = $fr;
+            }
+            if ($Reclamations[$i]->getSelecteur() == "pub") {
+                $pr = $this->getDoctrine()->getRepository(\PublicationBundle\Entity\Publication::class)->find($Reclamations[$i]->getIdCible());
+                if (!in_array($pr, $publications)) $publications[sizeof($publications)] = $pr;
+            }
+        }
+        return $this->render('@Reclamation/Front/AfficheReclamation.html.twig',
+            array('R'=>$Reclamations,'IdEmeteur' => $id,'groupes' => $groupes,'evenements' => $evenements,'publications' => $publications));
+    }
 
     function AfficheRec1Action(){
         $user = $this->get('security.token_storage')->getToken()->getUser();
@@ -145,26 +176,26 @@ $ide=5;
         $Reclamations=$this->getDoctrine()->getRepository(Reclamation::class)->findAll();
         $membre=$this->getDoctrine()->getRepository(Membre::class)->findBy(array('idusr'=>$user));
         $evaluation=$this->getDoctrine()->getRepository(Evaluation::class)->findBy(array('id'=>$user));
-        $groupes = []; $evenements = []; $pubs = [];
-        for($i=0; $i < sizeof($Reclamations); $i++)
-        {
-            if($Reclamations[$i]->getSelecteur()=="groupe") {
+        $groupes = []; $evenements = []; $publications = [];
+        for($i=0; $i < sizeof($Reclamations); $i++) {
+            if ($Reclamations[$i]->getSelecteur() == "groupe") {
                 $gr = $this->getDoctrine()->getRepository(Groupe::class)->find($Reclamations[$i]->getIdCible());
-                if(!in_array($gr,$groupes))$groupes[sizeof($groupes)] = $gr;
+                if (!in_array($gr, $groupes)) $groupes[sizeof($groupes)] = $gr;
             }
-            if($Reclamations[$i]->getSelecteur()=="event") {
-                  $fr =  $this->getDoctrine()->getRepository(Evenement::class)->find($Reclamations[$i]->getIdCible());
-                if(!in_array($fr,$evenements))$evenements[sizeof($evenements)] = $fr;
+            if ($Reclamations[$i]->getSelecteur() == "evenement") {
+                $fr = $this->getDoctrine()->getRepository(Evenement::class)->find($Reclamations[$i]->getIdCible());
+                if (!in_array($fr, $evenements)) $evenements[sizeof($evenements)] = $fr;
             }
-            if($Reclamations[$i]->getSelecteur()=="pub")
-                $pubs[sizeof($pubs)] =
-                    $this->getDoctrine()->getRepository(Publication::class)->find($Reclamations[$i]->getIdCible());
+
+            if ($Reclamations[$i]->getSelecteur() == "pub") {
+                $pr = $this->getDoctrine()->getRepository(\PublicationBundle\Entity\Publication::class)->find($Reclamations[$i]->getIdCible());
+                if (!in_array($pr, $publications)) $publications[sizeof($publications)] = $pr;
+            }
         }
 
 
-
         return $this->render('@Reclamation/Back/ListReclamation.html.twig',
-            array('R'=>$Reclamations,'IdEmeteur' => $membre,'groupes' => $groupes,'evenements' => $evenements,'pubs' => $pubs,'idrecl' =>$evaluation));
+            array('R'=>$Reclamations,'IdEmeteur' => $membre,'groupes' => $groupes,'evenements' => $evenements,'publications' => $publications,'idrecl' =>$evaluation));
     }
     function UpdateAction($id,Request $request){
 
@@ -200,28 +231,29 @@ $ide=5;
     public function Ajouter1Action(Request $request,$id,$type)
     {
 
-      $id_emeteur = 9;
+      $id_emeteur = $this->getRealIdAction();
 
         $em = $this->getDoctrine()->getManager();
-       $membres = $em->getRepository('ReclamationBundle:Membre')->findAll();
-       $membrecn = $em->getRepository('ReclamationBundle:Membre')->find($id_emeteur);
+       $membres = $em->getRepository('NozelitesBundle:Membre')->findAll();
+       $membrecn = $em->getRepository('NozelitesBundle:Membre')->find($id_emeteur);
         $entity = "";$resultat= 0;
         if($type=="groupe")
         {
-            $entity='ReclamationBundle:Groupe';
+            $entity='NozelitesBundle:Groupe';
             $resultat = $em->getRepository($entity)->find($id);
             $resultat = $resultat->getIdGroupe();
         }
-        else if($type=="event")
+        else if($type=="evenement")
         {
-            $entity='ReclamationBundle:Evenement';
+            $entity='NozelitesBundle:Evenement';
             $resultat = $em->getRepository($entity)->find($id);
             $resultat = $resultat->getIdE();
         }
         else if($type=="pub")
         {
-            $entity='ReclamationBundle:Publication';
+            $entity='PublicationBundle:Publication';
             $resultat = $em->getRepository($entity)->find($id);
+            $resultat = $resultat->getId();
         }
 
 
@@ -230,14 +262,18 @@ $ide=5;
 
             $reclamation = new Reclamation();
 
-            //$reclamation->setIdEmeteur($id_emeteur);
-           //$reclamation->setIdEmeteur($membrecn);
-            //$reclamation->setIdCible($groupss);//
+
+           //$c = new Membre();
+          // $id = $this->getRealIdAction();
+          // $c->setIdusr($id); //Id du chasseur connecté
+           $reclamation->setIdEmeteur($membrecn);
+
             $reclamation->setDescription($request->get('description'));
             $reclamation->setSelecteur($request->get('selecteur'));
             $reclamation->setEtat(0);
             $reclamation->setDate(new  \DateTime("now + 1 hour"));
-            $reclamation->setIdEmeteur($membres[1]);
+
+           // $reclamation->setIdEmeteur($membres[1]);
             $reclamation->setIdCible($id);
             $em->persist($reclamation);
             $em->flush();
@@ -261,5 +297,84 @@ $ide=5;
 
     }
 
+    public function JsonAllAction()
+    {
+        $reclamation = $this->getDoctrine()->getManager()
+            ->getRepository("ReclamationBundle:Reclamation")->findAll();
+        $serializer = new Serializer([new ObjectNormalizer()]);
+        $formatted = $serializer->normalize($reclamation);
+
+        return new JsonResponse($formatted);
+    }
+
+    public function JsonFindAction($id)
+    {
+        $reclamation = $this->getDoctrine()->getManager()
+            ->getRepository("ReclamationBundle:Reclamation")->find($id);
+
+        $serializer = new Serializer([new ObjectNormalizer()]);
+        $formatted = $serializer->normalize($reclamation);
+
+        return new JsonResponse($formatted);
+    }
+
+    public function JsonAddAction($id_emeteur,$id_cible,$description,$selecteur)
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $reclamation = new reclamation();
+
+        $reclamation->setIdEmeteur($em->getRepository("NozelitesBundle:Membre")->find($id_emeteur));
+        $reclamation->setIdCible($id_cible);
+        $reclamation->setEtat(0);
+        $reclamation->setDate(new  \DateTime("now + 1 hour"));
+        $reclamation->setDescription($description);
+        $reclamation->setSelecteur($selecteur);
+        $em->persist($reclamation);
+        $em->flush();
+      /*  $mail="mohamedkheireddine.bairam@esprit.tn";
+        $msg="On a bien recu votre Reclamation";
+        $transport = \Swift_SmtpTransport::newInstance('smtp.gmail.com',465,'ssl');
+        $mailer = \Swift_Mailer::newInstance($transport);
+        $message = \Swift_Message::newInstance()
+            ->setSubject('Validation')->setFrom('nozelitesa3@gmail.com')->setTo($mail)->setBody($msg);
+
+        $this->get('mailer')->send($message);*/
+        $serializer = new Serializer([new ObjectNormalizer()]);
+        $formatted = $serializer->normalize($reclamation);
+
+        return new JsonResponse($formatted);
+    }
+
+    public function JsonEditAction($idRecl,$description)
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $reclamation = $em->getRepository("ReclamationBundle:Reclamation")->find($idRecl);
+        $reclamation->setDescription($description);
+
+
+        $em->persist($reclamation);
+        $em->flush();
+
+        $serializer = new Serializer([new ObjectNormalizer()]);
+        $formatted = $serializer->normalize($reclamation);
+
+        return new JsonResponse($formatted);
+    }
+
+    public function JsonDeleteAction($idRecl)
+    {
+        $reclamation = $this->getDoctrine()->getManager()
+            ->getRepository("ReclamationBundle:Reclamation")->find($idRecl);
+        $em = $this->getDoctrine()->getManager();
+        $em->remove($reclamation);
+        $em->flush();
+
+        $serializer = new Serializer([new ObjectNormalizer()]);
+        $formatted = $serializer->normalize($reclamation);
+
+        return new JsonResponse($formatted);
+    }
 
 }

@@ -30,6 +30,7 @@
                                 <li><a href="dashboard-messages.html"><i class="icon-material-outline-question-answer"></i> Messages <span class="nav-tag">2</span></a></li>
                                 {% if is_granted('ROLE_MEMBRE')%}
                                 <li><a href="dashboard-bookmarks.html"><i class="icon-material-outline-star-border"></i> Mes Groupes</a></li>
+
                                     <li class="active-submenu"><a href="#"><i class="icon-material-outline-rate-review"></i> Gerer le Protfolio</a>
                                         <ul>
                                             <li><a href="{{ path("Show_portfolio",{id:app.user.id}) }}">Mon Portfolio  </a></li>
@@ -37,7 +38,14 @@
 
                                         </ul>
                                     </li>
+
+
+
+                                <li><a href="{{ path('reclamation_show')}}"><i class="icon-material-outline-assignment"></i> Mes Réclamations</a></li>
+
+
                                 {% endif %}
+
                             </ul>
 
 
@@ -165,7 +173,7 @@
 
                                                 <strong>Domaine : </strong> {{ diplome.domaine }} <strong> <br>Institut : </strong>{{ diplome.organisation }}<br>
                                                 <strong> Date : </strong>{{ diplome.date }}
-
+                                        </span>
 
 
                                         <!-- Buttons -->

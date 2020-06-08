@@ -5,6 +5,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <!-- Tell the browser to be responsive to screen width -->
         <meta name="viewport" content="width=device-width, initial-scale=1">
+
         <title>{% block title %}Nozelites Dashboard{% endblock %}</title>
         {% block stylesheets %}
             <!-- Font Awesome -->
@@ -27,6 +28,8 @@
             <link rel="stylesheet" href="{{ asset('plugins/summernote/summernote-bs4.css') }}">
             <!-- Google Font: Source Sans Pro -->
             <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+            <link rel="stylesheet" type="text/css" href="{{ asset('css/rating.css') }}" />
+            <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
         {% endblock %}
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
     </head>
@@ -196,7 +199,7 @@
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="pages/widgets.html" class="nav-link">
+                                <a href="{{ path("nozelites_homepagebac") }}" class="nav-link">
                                     <i class="nav-icon fas fa-th"></i>
                                     <p>
                                         Reclamations
@@ -219,6 +222,7 @@
                                     </p>
                                 </a>
                             </li>
+
                             <li class="nav-item">
                                 <a href="pages/widgets.html" class="nav-link">
                                     <i class="nav-icon fas fa-th"></i>
@@ -254,6 +258,23 @@
                                     <i class="nav-icon fas fa-file"></i>
                                     <p>
                                         Offres
+                                    </p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{ path("Afficherback") }}" class="nav-link">
+                                    <i class="nav-icon fas fa-th"></i>
+                                    <p>
+                                        Publications
+                                    </p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{ path("Affichercommback") }}" class="nav-link">
+                                    <i class="nav-icon fas fa-th"></i>
+                                    <p>
+                                        Commentaires
+
                                     </p>
                                 </a>
                             </li>
@@ -322,6 +343,8 @@
             <script src="{{ asset('dist/js/pages/dashboard.js') }}"></script>
             <!-- AdminLTE for demo purposes -->
             <script src="{{ asset('dist/js/demo.js') }}"></script>
+            <script src="{{ asset('js/jquery-min.js') }}"></script>
+            <script src="{{ asset('js/rating.js') }}"></script>
         {% endblock %}
     </body>
 </html>
