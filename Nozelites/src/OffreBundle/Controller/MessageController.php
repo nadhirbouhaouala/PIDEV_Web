@@ -6,7 +6,13 @@ use NozelitesBundle\Entity\Membre;
 use NozelitesBundle\Entity\Message;
 use NozelitesBundle\Entity\Offre;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
+use Symfony\Component\Serializer\Serializer;
+use Symfony\Component\Serializer\Encoder\JsonEncoder;
+use Symfony\Component\Serializer\Encoder\XmlEncoder;
+
 
 class MessageController extends Controller
 {
@@ -166,5 +172,88 @@ class MessageController extends Controller
         $message = $em->getRepository("NozelitesBundle:Message")->find($id);
 
         return $this->render('@Offre/Default/oneMessage.html.twig', array('message' => $message));
+    }
+
+    public function JsonidbyemailAction($email)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $lastid = $em->getRepository('NozelitesBundle:Membre')->findOneByMail($email)->getIdusr();
+
+        $serializer = new Serializer([new ObjectNormalizer()]);
+        $formatted = $serializer->normalize($lastid);
+
+        return new JsonResponse($formatted);
+    }
+
+    public function JsonlastidAction()
+    {
+        $em = $this->getDoctrine()->getManager();
+        $lastid = $em->getRepository('NozelitesBundle:Message')->findOneBy([], ['idmessage' => 'desc'])->getIdmessage();
+
+        $serializer = new Serializer([new ObjectNormalizer()]);
+        $formatted = $serializer->normalize($lastid);
+
+        return new JsonResponse($formatted);
+    }
+
+    public function JsonAllAction()
+    {
+        $messages = $this->getDoctrine()->getManager()
+            ->getRepository("NozelitesBundle:Message")->findAll();
+        $serializer = new Serializer([new ObjectNormalizer()]);
+        $formatted = $serializer->normalize($messages);
+
+        return new JsonResponse($formatted);
+    }
+
+    public function JsonAddAction(Request $request,$id,$idMembre,$idDest,$objet,$texte)
+    {
+        $message = new Message();
+
+        $m = new Membre();
+        $m->setIdusr($idMembre);
+
+        $m1 = new Membre();
+        $m1->setIdusr($idDest);
+
+        if ($id == -1)
+        {
+            $message->setIdmessage(null);
+        }
+        else
+        {
+            $message->setIdmessage($id);
+        }
+
+        $message->setIdEmeteur($m);
+        $message->setIdDestinataire($m1);
+        $message->setObjet($objet);
+        $message->setTexte($texte);
+        $message->setDate(date('Y-m-d'));
+
+
+        $em = $this->getDoctrine()->getManager();
+        $em->merge($message);
+        $em->flush();
+
+        $serializer = new Serializer([new ObjectNormalizer()]);
+        $formatted = $serializer->normalize($message);
+
+        return new JsonResponse($formatted);
+    }
+
+    public function JsonDeleteAction($id)
+    {
+        $message = $this->getDoctrine()->getManager()
+            ->getRepository("NozelitesBundle:Message")->find($id);
+
+        $em = $this->getDoctrine()->getManager();
+        $em->remove($message);
+        $em->flush();
+
+        $serializer = new Serializer([new ObjectNormalizer()]);
+        $formatted = $serializer->normalize($message);
+
+        return new JsonResponse($formatted);
     }
 }

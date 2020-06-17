@@ -179,7 +179,9 @@ class EvenementController extends Controller
     }
     public function afficherEventAction($id)
     {
-
+        $id_emeteur = $this->getRealIdAction();
+        $membrecn = $this->getDoctrine()
+            ->getRepository('NozelitesBundle:Membre')->find($id_emeteur);
         // $map->getOverlayManager()->addMarker(new Marker(new Coordinate(4.4705, 54.6548)));
         $id_membre_actif = 9;
         $evenement= $this->getDoctrine()
@@ -205,7 +207,7 @@ class EvenementController extends Controller
                 ->getRepository(Membre::class)->findBy(array('idusr'=>$part));
         }
         return $this->render('@Nozelites/Front/EvenementPage.html.twig', array(
-            'evenement' => $evenement,'participant'=>$participant,'listp'=>$listp,'map'=>$map));
+            'evenement' => $evenement,'d'=>$membrecn,'participant'=>$participant,'listp'=>$listp,'map'=>$map));
     }
     public function afficherEventMAction($id)
     {

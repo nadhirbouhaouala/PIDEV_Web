@@ -678,6 +678,16 @@ class GroupeController extends Controller
         $groupe = $this->getDoctrine()->getManager()
             ->getRepository("NozelitesBundle:Groupe")->find($id);
 
+        //email
+        $mail="nadhir.bouhaouala@esprit.tn";
+        //$mail = $gm->getIdMembre()->getMail();
+        $msg="Bonjour Mr/Mme Le groupe ".$groupe->getTitre()." : ".$groupe->getDescription()." à été supprimer";
+        $transport = \Swift_SmtpTransport::newInstance('smtp.gmail.com',465,'ssl');
+        $mailer = \Swift_Mailer::newInstance($transport);
+        $message = \Swift_Message::newInstance()
+            ->setSubject('Validation')->setFrom('nozelitesa3@gmail.com')->setTo($mail)->setBody($msg);
+        $this->get('mailer')->send($message);
+
         $em = $this->getDoctrine()->getManager();
         $em->remove($groupe);
         $em->flush();

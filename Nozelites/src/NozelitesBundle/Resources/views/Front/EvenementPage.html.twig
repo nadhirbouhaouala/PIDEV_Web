@@ -49,23 +49,27 @@
                             <a href="#"  class="blog-post-info">{{ evenement.heure|date('H:II') }}</a>
                         </div>
                         <div>
-                            {% if (participant is empty) %}
-                                <a href="{{ path('nozelites_EvenementRejoindrefront',{'id':evenement.ide}) }}"  class="button red ripple-effect ico">Rejoindre</a>
-                            {%endif  %}
-                            {% for p in participant%}
-
-                                {% if p.etatp==0 %}
-                                    <a class="button red ripple-effect ico">Envoyée</a>
-                                {% elseif p.etatp==1 %}
-                                    <a href="{{ path('nozelites_Evenementdisjoindrefront',{'id':evenement.ide}) }}"  class="button red ripple-effect ico">Disjoindre</a>
-                                {% endif %}
-                            {% endfor %}
+                            {% if evenement.idc.idusr  != d.idusr %}
+                                <a href="{{ path('Ajouter1',{'id':evenement.ide,'type':'evenement'}) }}"  class="button red ripple-effect ico">Réclamer</a>
 
 
+                                {% if (participant is empty) %}
+
+                                {%endif  %}
+                                {% for p in participant%}
+
+                                    {% if p.etatp==0 %}
+                                        <a class="button red ripple-effect ico">Envoyée</a>
+                                    {% elseif p.etatp==1 %}
+                                        <a href="{{ path('nozelites_Evenementdisjoindrefront',{'id':evenement.ide}) }}"  class="button red ripple-effect ico">Disjoindre</a>
+                                    {% endif %}
+                                {% endfor %}
+
+                            {% endif %}
 
 
 
-                            <a href=""  class="button red ripple-effect ico">Réclamer</a>
+
 
 
 

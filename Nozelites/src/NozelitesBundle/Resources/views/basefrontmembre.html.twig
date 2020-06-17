@@ -205,19 +205,20 @@
                                         </div>
 
                                     </div>
+                                    {% if is_granted('ROLE_MEMBRE')%}
+                                        <div class="header-notifications">
+                                            <div class="header-notifications-trigger">
+                                                <a href="{{ path('message_liste')}}"><i class="icon-feather-mail"></i></a>
+                                            </div>
+                                            <!-- Dropdown -->
+                                            <div class="header-notifications-dropdown">
+                                                <a href="{{ path('message_liste')}}" class="header-notifications-button ripple-effect button-sliding-icon">Voir tous les messages<i class="icon-material-outline-arrow-right-alt"></i></a>
+                                            </div>
+                                        </div>
+                                    {% endif %}
                                 </div>
                                 <!-- Messages -->
-                                {% if is_granted('ROLE_MEMBRE')%}
-                                <div class="header-notifications">
-                                    <div class="header-notifications-trigger">
-                                        <a href="{{ path('message_liste')}}"><i class="icon-feather-mail"></i></a>
-                                    </div>
-                                    <!-- Dropdown -->
-                                    <div class="header-notifications-dropdown">
-                                    <a href="{{ path('message_liste')}}" class="header-notifications-button ripple-effect button-sliding-icon">Voir tous les messages<i class="icon-material-outline-arrow-right-alt"></i></a>
-                                    </div>
-                                </div>
-                                {% endif %}
+
                             </div>
 
                             <!--  User Notifications / End -->

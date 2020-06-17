@@ -26,6 +26,7 @@ class PublicationController extends Controller
     public function getRealIdAction()
     {
         $user = $this->getUser();
+
         $mail = $user->getEmail();
 
         if (in_array("ROLE_MEMBRE", $user->getRoles())) {

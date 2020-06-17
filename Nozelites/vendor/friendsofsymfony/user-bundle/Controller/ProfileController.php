@@ -155,15 +155,17 @@ class ProfileController extends Controller
 
 
         if ($form->isSubmitted() && $form->isValid()) {
+
             if($case == 1){
-                
+
                 $membre[0]->setNom($user->getNom());
                 $membre[0]->setPrenom($user->getPrenom());
                 $membre[0]->setMail($user->getEmail());
                 $membre[0]->setLogin($user->getUsername());
                 $membre[0]->setTel($user->getTelephone());
                 $membre[0]->setAge($user->getAge());
-                $membre[0]->setImage("D:/xampp/htdocs/PIDEV_Web/Nozelites/web/images/profile/" . $user->getImageName());
+                $membre[0]->setImage("C:/wamp64/www/3.2/PIDEV/PIDEV_Web/Nozelites/web/images/profile/" . $user->getImageName());
+                $membre[0]->setImage("C:/wamp64/www/3.2/PIDEV/PIDEV_Web/Nozelites/web/images/profile/" . $user->getImageName());
             }
             elseif($case == 2){
                 $membre[0]->setNom($user->getNom());
@@ -172,16 +174,17 @@ class ProfileController extends Controller
                 $membre[0]->setLogin($user->getUsername());
                 $membre[0]->setTel($user->getTelephone());
                 $membre[0]->setAge($user->getAge());
-                $membre[0]->setImage("D:/xampp/htdocs/PIDEV_Web/Nozelites/web/images/profile" . $user->getImageName());
+                $membre[0]->setImage("C:/wamp64/www/3.2/PIDEV/PIDEV_Web/Nozelites/web/images/profile/" . $user->getImageName());
+                $membre[0]->setImage("C:/wamp64/www/3.2/PIDEV/PIDEV_Web/Nozelites/web/images/profile/" . $user->getImageName());
             }
-            $em = $this->getDoctrine()->getManager();
-            $em->flush();
+
             
             $event = new FormEvent($form, $request);
             $this->eventDispatcher->dispatch(FOSUserEvents::PROFILE_EDIT_SUCCESS, $event);
 
             $this->userManager->updateUser($user);
-            
+            $em = $this->getDoctrine()->getManager();
+            $em->flush();
             if (null === $response = $event->getResponse()) {
                 $url = $this->generateUrl('fos_user_profile_show');
                 $response = new RedirectResponse($url);

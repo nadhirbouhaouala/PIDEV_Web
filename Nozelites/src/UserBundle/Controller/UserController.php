@@ -133,7 +133,7 @@ class UserController extends Controller
         $membre->setPrenom($prenom);
         $membre->setAge($age);
         $membre->setMail($email);
-        $membre->setImage("D:/xampp/htdocs/PIDEV_Web/Nozelites/web/images/profile/".$image);
+        $membre->setImage("C:/wamp64/www/3.2/PIDEV/PIDEV_Web/Nozelites/web/images/profile/".$image);
         $membre->setTel($tel);
         $membre->setLogin($login);
         $membre->setMdp($mdp);
@@ -152,7 +152,7 @@ class UserController extends Controller
         $user->setNom($nom);
         $user->setAge($age);
         $user->setTelephone($tel);
-        $file = new UploadedFile("D:/xampp/htdocs/PIDEV_Web/Nozelites/web/images/profile/".$image,"D:/xampp/htdocs/PIDEV_Web/Nozelites/web/images/profile/".$image,null,null,null,true);
+        $file = new UploadedFile("C:/wamp64/www/3.2/PIDEV/PIDEV_Web/Nozelites/web/images/profile/".$image,"C:/wamp64/www/3.2/PIDEV/PIDEV_Web/Nozelites/web/images/profile/".$image,null,null,null,true);
         $user->setImageFile($file);
         $user->setRoles(array('ROLE_MEMBRE'));
         $user->setUsername($login);

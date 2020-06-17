@@ -61,3 +61,35 @@ message_repondre:
 message_transferer:
     path:     /transferermessage{id}
     defaults: { _controller: OffreBundle:Message:transferer }
+
+json_offre_all:
+    path:     /jsonAll
+    defaults: { _controller: OffreBundle:Offre:JsonAll }
+
+json_accepter:
+    path:     /jsonAccepter{id}
+    defaults: { _controller: OffreBundle:Offre:JsonAccepter }
+
+json_refuser:
+    path:     /jsonRefuser{id}
+    defaults: { _controller: OffreBundle:Offre:JsonRefuser }
+
+json_message_lastid:
+    path:     /message/jsonlastid
+    defaults: { _controller: OffreBundle:Message:Jsonlastid }
+
+json_message_idbyemail:
+    path:     /message/jsonidbyemail/{email}
+    defaults: { _controller: OffreBundle:Message:Jsonidbyemail }
+
+json_message_all:
+    path:     /message/jsonAll
+    defaults: { _controller: OffreBundle:Message:JsonAll }
+
+json_message_add:
+    path:     /message/jsonadd/{id}/{idMembre}/{idDest}/{objet}/{texte}
+    defaults: { _controller: OffreBundle:Message:JsonAdd }
+
+json_message_delete:
+    path:     /message/jsondelete{id}
+    defaults: { _controller: OffreBundle:Message:JsonDelete }

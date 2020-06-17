@@ -277,7 +277,7 @@ class ReclamationController extends Controller
             $reclamation->setIdCible($id);
             $em->persist($reclamation);
             $em->flush();
-           $mail="mohamedkheireddine.bairam@esprit.tn";
+           $mail="nadhir.bouhaouala@esprit.tn";
            $msg="On a bien recu votre Reclamation";
            $transport = \Swift_SmtpTransport::newInstance('smtp.gmail.com',465,'ssl');
            $mailer = \Swift_Mailer::newInstance($transport);

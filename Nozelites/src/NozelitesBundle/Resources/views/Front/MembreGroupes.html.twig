@@ -86,11 +86,11 @@
 
                                         <!-- Buttons -->
                                         <div class="buttons-to-right">
-                                            <a href="{{ path('Ajouter1',{'id':gm.idGroupe.idGroupe,'type':'groupe'}) }}" class="button red ripple-effect ico" title="Ajouter" data-tippy-placement="left"><i class=" icon-feather-align-left"></i></a>
-
                                             {% if gm.etat == "administrateur" %}
                                                 <a href="{{ path('nozelites_membregroupesmodifierfront',{'id':gm.idGroupe.idGroupe}) }}" class="button red ripple-effect ico" title="Modifier" data-tippy-placement="left"><i class="icon-feather-edit-2"></i></a>
                                                 <a href="{{ path('nozelites_membregroupessupprimerfront',{'id':gm.idGroupe.idGroupe}) }}" class="button red ripple-effect ico" title="Supprimer" data-tippy-placement="left"><i class="icon-feather-trash-2"></i></a>
+                                            {% else %}
+                                                <a href="{{ path('Ajouter1',{'id':gm.idGroupe.idGroupe,'type':'groupe'}) }}" class="button red ripple-effect ico" title="Ajouter" data-tippy-placement="left"><i class=" icon-feather-align-left"></i></a>
                                             {% endif %}
                                             <!--<a href="#" class="button red ripple-effect ico" title="Accepter" data-tippy-placement="left"><i class="icon-material-outline-check"></i></a>
                                             <a href="#" class="button red ripple-effect ico" title="Refuser" data-tippy-placement="left"><i class="icon-feather-trash-2"></i></a>-->

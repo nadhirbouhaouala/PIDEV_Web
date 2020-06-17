@@ -3,9 +3,15 @@
 namespace OffreBundle\Controller;
 
 use NozelitesBundle\Entity\ChasseurTalent;
+use NozelitesBundle\Entity\Membre;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use NozelitesBundle\Entity\Offre;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\Serializer\Encoder\JsonEncoder;
+use Symfony\Component\Serializer\Encoder\XmlEncoder;
+use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
+use Symfony\Component\Serializer\Serializer;
 
 class OffreController extends Controller
 {
@@ -146,4 +152,49 @@ class OffreController extends Controller
 
         return $this->redirectToRoute('offre_liste_membre');
     }
+
+    public function JsonAllAction()
+    {
+        $offres = $this->getDoctrine()->getManager()
+            ->getRepository("NozelitesBundle:Offre")->findAll();
+        $serializer = new Serializer([new ObjectNormalizer()]);
+        $formatted = $serializer->normalize($offres);
+
+        return new JsonResponse($formatted);
+    }
+
+    public function JsonAccepterAction($id)
+    {
+        $offre = $this->getDoctrine()->getManager()
+            ->getRepository("NozelitesBundle:Offre")->find($id);
+
+        $offre->setEtat("Acceptée");
+
+        $em = $this->getDoctrine()->getManager();
+        $em->persist($offre);
+        $em->flush();
+
+        $serializer = new Serializer([new ObjectNormalizer()]);
+        $formatted = $serializer->normalize($offre);
+
+        return new JsonResponse($formatted);
+    }
+
+    public function JsonRefuserAction($id)
+    {
+        $offre = $this->getDoctrine()->getManager()
+            ->getRepository("NozelitesBundle:Offre")->find($id);
+
+        $offre->setEtat("Refusée");
+
+        $em = $this->getDoctrine()->getManager();
+        $em->persist($offre);
+        $em->flush();
+
+        $serializer = new Serializer([new ObjectNormalizer()]);
+        $formatted = $serializer->normalize($offre);
+
+        return new JsonResponse($formatted);
+    }
+
 }
